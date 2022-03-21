@@ -1,23 +1,25 @@
-# TÍTULO DO PROJETO
+# SISTEMA RH
 
-`CURSO`
+`CURSO: Analise e Desevolvimento de Sistmas`
 
-`DISCIPLINA`
+`DISCIPLINA: Eixo 2 - Projeto: Desenvolvimento de uma Aplicação Interativa`
 
-`SEMESTRE`
+`SEMESTRE: 2 Semestre de 2022`
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+O objetivo é desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Vitória Gabriella Maffei Corrêa
+* Nayra Alessandra Simão Reis
+* Alex
+* Rafael
+* Pedro 
+* Bruno
 
 ## Orientador
 
-* Nome completo do professor 1
+* Bernardo Jeunon de Alencar
 
 ## Instruções de utilização
 
