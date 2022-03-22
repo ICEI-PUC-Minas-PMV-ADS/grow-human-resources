@@ -14,7 +14,7 @@ O objetivo é desenvolver um sistema que auxilie diversas empresas na análise d
 * Nayra Alessandra Simão Reis
 * Alex
 * Rafael
-* Pedro 
+* Pedro Luiz Braga Andrade Leite
 * Bruno
 
 ## Orientador
