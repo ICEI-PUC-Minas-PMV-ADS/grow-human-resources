@@ -4,18 +4,19 @@
 
 `DISCIPLINA: Eixo 2 - Projeto: Desenvolvimento de uma Aplicação Interativa`
 
-`SEMESTRE: 2 Semestre de 2022`
+`SEMESTRE: 2° Semestre de 2022`
 
 O objetivo é desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
+
 
 ## Integrantes
 
 * Vitória Gabriella Maffei Corrêa
 * Nayra Alessandra Simão Reis
-* Alex
-* Rafael
-* Pedro 
-* Bruno
+* Alex De Souza Galdino
+* Rafael Pacheco Leite
+* Pedro Luiz Braga Andrade Leite
+* Bruno Carolino Lopes
 
 ## Orientador
 
