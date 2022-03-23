@@ -8,19 +8,24 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Personas
 
-Pedro Paulo tem 26 anos, é arquiteto recém-formado e autônomo. Pensa em se desenvolver profissionalmente através de um mestrado fora do país, pois adora viajar, é solteiro e sempre quis fazer um intercâmbio. Está buscando uma agência que o ajude a encontrar universidades na Europa que aceitem alunos estrangeiros.
+As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
-Enumere e detalhe as personas da sua solução. Para tanto, baseie-se tanto nos documentos disponibilizados na disciplina e/ou nos seguintes links:
+| **Lucas De Oliveira Santos** |      |      |
+|------------------------------|------|------|
+|<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
 
-> **Links Úteis**:
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Hotmart](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [Mapa de Empatia](https://resultadosdigitais.com.br/blog/mapa-da-empatia/)
-> - [Mapa de Stalkeholders](https://www.racecomunicacao.com.br/blog/como-fazer-o-mapeamento-de-stakeholders/)
->
-Lembre-se que você deve ser enumerar e descrever precisamente e personalizada todos os clientes ideais que sua solução almeja.
+| **João Francisco de Almeida** |      |      |
+|-------------------------------|------|------|
+|<img src="/docs/img/photo-joao.png"> | **Idade:** 57 anos  | **Ocupação:** psicólogo atuante há 35 anos, auxiliou diversas empresas e atualmente busca uma recolocação no mercado.       |
+
+| **Melissa Fernandes Santos** |      |      |
+|------------------------------|------|------|
+|<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** faz faculdade de Ciências Contábeis, procura estágio para desenvolver experiência na área.                        |
+
+| **Lúcia De Medeiros Silva** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/photo-lucia.png"> | **Idade:** 42 anos  | **Ocupação:** atualmente trabalha como no setor de Gestão de RH, é formada em Administração de empresas. |
+
 
 ## Histórias de Usuários
 
@@ -47,31 +52,32 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|-------|----------------------------|------|
+|RNF-001| Cadastrar funcionários     | ALTA | 
+|RNF-002| Gerenciar dados funcionais | ALTA | 
+|RNF-003| Emitir relatórios          | ALTA | 
+|RNF-004| Gerenciar o cadastro de Funcionários  | ALTA | 
+|RNF-005| Gerenciar setores de atuação | ALTA | 
+|RNF-006| Gerenciar cargos e salários de funcionários | ALTA | 
+|RNF-007| Gerenciar cadastro de metas (CRUD) | ALTA | 
+|RNF-008| Permitir o acompanhamento trimestral das metas | ALTA | 
+|RNF-009| Emitir controle de metas atingidas/não atingidas| ALTA | 
+|RNF-0010| Gerenciar acesso: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
+|RNF-0011| Emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
+
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|-------|----------------------------|------|
+|RNF-001| O sistema de ser feito usando práticas de UX e IxD   | ALTA | 
+|RNF-002| O sistema deve ser disponibilizado publicamente no GitHub. | ALTA | 
+|RNF-003| O sistema deve apresentar baixo tempo de resposta nas requisições. | ALTA | 
+|RNF-004| O sistema deve apresentar um filtro para pesquisas. | ALTA | 
+|RNF-005| O sistema deve ser implementado em C#. | ALTA | 
+|RNF-006| O sistema deve ser responsivo e compatível com os principais navegadores. | ALTA | 
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
