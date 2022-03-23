@@ -13,10 +13,12 @@ O objetivo é desenvolver um sistema que auxilie diversas empresas na análise d
 
 * Vitória Gabriella Maffei Corrêa
 * Nayra Alessandra Simão Reis
+
 * Alex De Souza Galdino
 * Rafael Pacheco Leite
 * Pedro Luiz Braga Andrade Leite
 * Bruno Carolino Lopes
+
 
 ## Orientador
 
