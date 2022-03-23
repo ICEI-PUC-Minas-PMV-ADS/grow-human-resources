@@ -10,12 +10,22 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
-| `Lucas De Oliveira Santos` |
-|--------------------|
-|<img src="/docs/img/photo-lucas.jpg"> |
-|**Idade:** 32 anos  | 
-|**Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
-|
+| `Lucas De Oliveira Santos` |      |      |
+|----------------------------|------|------|
+|<img src="/docs/img/photo-lucas.png"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
+
+| `João Francisco de Almeida`|      |      |
+|----------------------------|------|------|
+|<img src="/docs/img/photo-joao.png"> | **Idade:** 57 anos  | **Ocupação:** psicólogo atuante há 35 anos, auxiliou diversas empresas e atualmente busca uma recolocação no mercado.       |
+
+| `Melissa Fernandes Santos` |      |      |
+|----------------------------|------|------|
+|<img src="/docs/img/photo-.jpg"> | **Idade:** 22 anos  | **Ocupação:** faz faculdade de Ciências Contábeis, procura estágio para desenvolver experiência na área.                        |
+
+| `Lucas De Oliveira Santos` |      |      |
+|----------------------------|------|------|
+|<img src="/docs/img/photo-.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.         |
+
 
 ## Histórias de Usuários
 
