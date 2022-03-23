@@ -10,21 +10,21 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
-| `Lucas De Oliveira Santos` |      |      |
-|----------------------------|------|------|
-|<img src="/docs/img/photo-lucas.png"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
+| **Lucas De Oliveira Santos** |      |      |
+|------------------------------|------|------|
+|<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
 
-| `João Francisco de Almeida`|      |      |
-|----------------------------|------|------|
+| **João Francisco de Almeida** |      |      |
+|-------------------------------|------|------|
 |<img src="/docs/img/photo-joao.png"> | **Idade:** 57 anos  | **Ocupação:** psicólogo atuante há 35 anos, auxiliou diversas empresas e atualmente busca uma recolocação no mercado.       |
 
-| `Melissa Fernandes Santos` |      |      |
-|----------------------------|------|------|
-|<img src="/docs/img/photo-.jpg"> | **Idade:** 22 anos  | **Ocupação:** faz faculdade de Ciências Contábeis, procura estágio para desenvolver experiência na área.                        |
+| **Melissa Fernandes Santos** |      |      |
+|------------------------------|------|------|
+|<img src="/docs/img/photo-.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** faz faculdade de Ciências Contábeis, procura estágio para desenvolver experiência na área.                        |
 
-| `Lucas De Oliveira Santos` |      |      |
-|----------------------------|------|------|
-|<img src="/docs/img/photo-.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.         |
+| **Lúcia De Medeiros Silva** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/photo-lucia.jpg"> | **Idade:** 42 anos  | **Ocupação:** atualmente trabalha como no setor de Gestão de RH, é formada em Administração de empresas. |
 
 
 ## Histórias de Usuários
@@ -52,16 +52,33 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
-|------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|-------|----------------------------|------|
+|RNF-001| Cadastrar funcionários     | ALTA | 
+|RNF-002| Gerenciar dados funcionais | ALTA | 
+|RNF-003| Emitir relatórios          | ALTA | 
+|RNF-004| Gerenciar o cadastro de Funcionários  | ALTA | 
+|RNF-005| Gerenciar setores de atuação | ALTA | 
+|RNF-006| Gerenciar cargos e salários de funcionários | ALTA | 
+|RNF-007| Gerenciar cadastro de metas (CRUD) | ALTA | 
+|RNF-008| Permitir o acompanhamento trimestral das metas | ALTA | 
+|RNF-009| Emitir controle de metas atingidas/não atingidas| ALTA | 
+|RNF-0010| Gerenciar acesso: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
+|RNF-0011| Emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
+
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
-|-------|-------------------------|----|
-|RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|-------|----------------------------|------|
+|RNF-001| O sistema de ser feito usando práticas de UX e IxD   | ALTA | 
+|RNF-002| O sistema deve ser disponibilizado publicamente no GitHub. | ALTA | 
+|RNF-003| O sistema deve apresentar baixo tempo de resposta nas requisições. | ALTA | 
+|RNF-004| O sistema deve apresentar um filtro para pesquisas. | ALTA | 
+|RNF-005| O sistema deve ser implementado em C#. | ALTA | 
+|RNF-006| O sistema deve ser responsivo e compatível com os principais navegadores. | ALTA | 
+
+
 
 Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
 
