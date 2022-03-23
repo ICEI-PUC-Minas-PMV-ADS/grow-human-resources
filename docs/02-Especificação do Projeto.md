@@ -10,11 +10,12 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
-|<img src="photo-lucas.png" alt="some text"> | Lucas De Oliveira Santos  |
+|<img src="/docs/img/photo-lucas.jpg"> | **Lucas De Oliveira Santos**  |
+|-------------------------------------------------------------|
 |**Idade:** 32 anos - **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.|
 
 ## Histórias de Usuários
-
+gi
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
