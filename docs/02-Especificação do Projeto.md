@@ -10,9 +10,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
-|    Lucas De Oliveira Santos             |
-|-----------------------------------------|
-|<img src="photo-lucas.png" alt="some text" width=300 height=200>|
+|<img src="photo-lucas.png" alt="some text"> | Lucas De Oliveira Santos  |
 |**Idade:** 32 anos - **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.|
 
 ## Histórias de Usuários
