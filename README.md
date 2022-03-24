@@ -9,7 +9,7 @@
 
 `SEMESTRE: 2° Semestre de 2022`
 
-O objetivo é desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
+O objetivo é desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, gerar um crescimento contínuo entre ambos.
 
 
 ## Integrantes
@@ -18,9 +18,9 @@ O objetivo é desenvolver um sistema que auxilie diversas empresas na análise d
 * Nayra Alessandra Simão Reis
 
 * Alex De Souza Galdino
-* Rafael Pacheco Leitegit 
+* Rafael Pacheco Leite 
 * Pedro Luiz Braga Andrade Leite
-* Bruno Carolino Lopesg
+* Bruno Carolino Lopes
 
 
 ## Orientador
