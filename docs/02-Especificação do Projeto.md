@@ -33,13 +33,13 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Gerente (Lucas)  | Realizar cadastros de pessoal       | Adicionar funcionários ao Banco de Dados da empresa          |
-|Administrador (Lucia)       | Cadastrar novas metas            | Gerenciar melhor o desempenho funcional dos colaboradores |
-|Administrador (Melissa)  | Realizar buscas      | Gerar relatórios funcionais que os diferentes setores venham a requisitar       |
-|Gerente (Lucas)  | Realizar buscas por funcionários      | Acompanhar os resultados dos funcionários        |
-|Gerente (Joao)  | Realizar pesquisas com filtros     | Melhor direcionar os treinamentos da empresa         |
-|Administrador (Melissa)  | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
-|Gerente (Joao)  | Realizar pesquisas sobre colaboradores      | Acompanhar a presença nos treinamentos         |
+|Administrador (Lucas)  | Realizar cadastros de pessoal       | Adicionar funcionários ao Banco de Dados da empresa          |
+|Usuário (Lucia)       | Cadastrar novas metas            | Gerenciar melhor o desempenho funcional dos colaboradores |
+|Usuário (Melissa)  | Realizar buscas      | Gerar relatórios funcionais que os diferentes setores venham a requisitar       |
+|Usuário (Lucas)  | Realizar buscas por funcionários      | Acompanhar os resultados dos funcionários        |
+|Usuário (Joao)  | Realizar pesquisas com filtros     | Melhor direcionar os treinamentos da empresa         |
+|Usuário (Melissa)  | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
+|Usuário (Joao)  | Realizar pesquisas sobre colaboradores      | Acompanhar a presença nos treinamentos         |
 
 
 
