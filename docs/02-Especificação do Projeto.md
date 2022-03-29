@@ -12,7 +12,7 @@ As personas levantadas durante o processo de entendimento do problema são apres
 
 | **Lucas De Oliveira Santos** |      |      |
 |------------------------------|------|------|
-|<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha em uma empresa de grande porte.   |
+|<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha na empresa Xing Ling do Brasil, uma multinacional de grande porte.   |
 | **Motivações:** Lucas tem ótimas idéias de gerenciamento e controle da produção, bem como, a gestão de expectativas de carreira e motivacional.	| **Frustrações:** Atualmente Lucas tem dificuldades de acompanhar/avaliar as metas e os objetivos profissionais de cada funcionario, pois não possui uma ferramenta sistematizada que fornece dados estatísticos dos funcionários. | **Hobbies, História:** Lucas sonha em revolucionar as relação funcionario x empregador e, para isso, dedica parte de seu tempo em estudo, pesquisas e treinamentos em inovações de RH.|
 
 | **João Francisco de Almeida** |      |      |
@@ -22,13 +22,23 @@ As personas levantadas durante o processo de entendimento do problema são apres
 
 | **Melissa Fernandes Santos** |      |      |
 |------------------------------|------|------|
-|<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do Lucas. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
+|<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
 | **Motivações:** Melissa está conhecendo o mercado de trabalho e viu a oprtunidade de trabalhar na empresa de Lucas desafiadora pois coniciliar contabilidade com RH será um desafio inovador para sua carreira.	| **Frustrações:** Não domina a maratona de atividades do RH e precisa se orientar dentro da empresa através de uma ferramenta de suporte e capacitação. | **Hobbies, História:** Além de ser uma jogador de vôlei e estudante, Melissa dedica uma fração do tempo em pesquisa e desenvolvimento interpessoal. |                    |
 
 | **Lúcia De Medeiros Silva** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/photo-lucia.png"> | **Idade:** 42 anos  | **Ocupação:** Supervisora de RH na empresa do Lucas. Faz o gerenciamento do time e atividades de RH.|
+|<img src="/docs/img/photo-lucia.png"> | **Idade:** 42 anos  | **Ocupação:** Supervisora de RH na empresa Xing Ling do Brasil. Faz o gerenciamento do time e atividades de RH.|
 | **Motivações:** Lúcia está na empresa a 10 anos e foi recentemente promovida à supervisora de RH. Está motivada com as idéias e metodologias de Lucas e está empenhada em fazer acontecer a inovação na empresa.	| **Frustrações:** A ausência de ferramentas sistematizadas de gestão de RH, onera seu tempo de pensamento inovador com funções operacionais de preenchimento de formulários de cadastros, envio e recebimento de maolotes, dentre outras necessidades do setor. | **Hobbies, História:** Lucia realiza um sonho de estudar e conhecer belas artes. |
+
+| **Lara Fernandes da Silva** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/Lara_Fernandes_da_Silva.jpg"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
+| **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
+
+| **João Matheus de Souza** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/João Matheus de Souza.jpg"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
+| **Motivações:** João é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
 
 
 
@@ -38,13 +48,20 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Administrador (Lucas)  | Realizar cadastros de pessoal       | Adicionar funcionários ao Banco de Dados da empresa          |
-|Usuário (Lucia)       | Cadastrar novas metas            | Gerenciar melhor o desempenho funcional dos colaboradores |
-|Usuário (Melissa)  | Realizar buscas      | Gerar relatórios funcionais que os diferentes setores venham a requisitar       |
-|Usuário (Lucas)  | Realizar buscas por funcionários      | Acompanhar os resultados dos funcionários        |
-|Usuário (Joao)  | Realizar pesquisas com filtros     | Melhor direcionar os treinamentos da empresa         |
-|Usuário (Melissa)  | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
-|Usuário (Joao)  | Realizar pesquisas sobre colaboradores      | Acompanhar a presença nos treinamentos         |
+|Lucas | Receber dados estatísticos de funcionários | Analisar tendências, cumprimento das metas e atendimento aos objetivos. |
+|Lucas | Fornecer metas trimestrais | Balanceamento e cadastro pelo time de RH. |
+|Lucas | Fornecer objetivos anuais | Balanceamento e cadastro pelo time de RH. |
+|Lucia  | Realizar cadastros de funcionários       | Adicionar funcionários ao Banco de Dados da empresa          |
+|Lucia  | Realizar cadastros de metas       | Gerar controle de metas          |
+|Lucia  | Realizar cadastros de objetivos       | Gerar controle de objetivos         |
+|Melissa| Controlar metas      | Que reflitam com clareza os indicadores de performance|
+|Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
+|João Francisco | Consultar oportunidades em abero | Candidatar a vagas disponíveis |
+|Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
+|Joao Matheus| Realizar consulta de ponto      | Acompanhar a presença nos treinamentos         |
+|Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
+|Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
+|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
 
 
 
