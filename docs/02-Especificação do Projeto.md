@@ -58,10 +58,11 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
 |João Francisco | Consultar oportunidades em abero | Candidatar a vagas disponíveis |
 |Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
-|Joao Matheus| Realizar consulta de ponto      | Acompanhar a presença nos treinamentos         |
+|Joao Matheus| Realizar consulta de ponto      | Acompanhar a absenteísmo da equipe        |
 |Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
 |Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
 |Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
+|Lara| Conhecer as equipes de trabalho  | Promover o engajamento entre TI e Negócios.|
 
 
 
@@ -74,17 +75,28 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |-------|----------------------------|------|
-|RNF-001| Cadastrar funcionários     | ALTA | 
-|RNF-002| Gerenciar dados funcionais | ALTA | 
-|RNF-003| Emitir relatórios          | ALTA | 
-|RNF-004| Gerenciar o cadastro de Funcionários  | ALTA | 
-|RNF-005| Gerenciar setores de atuação | ALTA | 
-|RNF-006| Gerenciar cargos e salários de funcionários | ALTA | 
-|RNF-007| Gerenciar cadastro de metas (CRUD) | ALTA | 
-|RNF-008| Permitir o acompanhamento trimestral das metas | ALTA | 
-|RNF-009| Emitir controle de metas atingidas/não atingidas| ALTA | 
-|RNF-0010| Gerenciar acesso: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
-|RNF-0011| Emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
+|RF01| O Sistema deverá Permitir o login de funcionários de uma empresa     | ALTA | 
+|RF02| O Sistema deverá Permitir o login de um usuário externo     | Baixa | 
+|RF03| O Supervisor de RH deverá gerenciar funcionários (CRUD)     | ALTA | 
+|RF04| O Sistema deverá gerenciar Usuários (CRUD)     | Baixa | 
+|RF05| O Supervisor de RH deverá gerenciar Departamentos (CRUD)    | ALTA | 
+|RF06| O Supervisor de RH deverá gerenciar metas (CRUD)     | ALTA | 
+|RF07| O Supervisor de RH deverá gerenciar objetivos (CRUD) | MEDIA | 
+|RF08| O Supervisor de RH deverá gerenciar cargos e salários (CRUD) | MEDIA | 
+|RF09| O Funcionário de RH deverá gerenciar Oferta de Vagas (CRUD) | BAIXO | 
+|RF10| O Supervisor de Departamento deverá cadastrar Metas para Funcionário | ALTA | 
+|RF11| O Supervisor de Departamento deverá cadastrar Objetivos para Funcionário | MEDIA | 
+|RF12| O Funcionário de RH deverá associar um Funcionário a um deparamento | ALTA | 
+|RF13| O Gerente de RH deverá consultar relatórios estatísticos | ALTA | 
+|RF14| O Setor de RH deverá associar um funcionário a um cargo e salário | BAIXA | 
+|RF15| O Sistema deverá emitir relatório de acompanhamento trimestral das metas | ALTA | 
+|RF16| O Sistema deverá emitir relatório de acompanhamento anual dos objetivos | MEDIA | 
+|RF17| O Funcionário deverá cadastrar metas atingidas/não atingidas| ALTA |
+|RF18| O Supervisor de departamento deverá validar metas atingidas/não atingidas| MEDIA | 
+|RF19| O Funcionário deverá cadastrar objetivos atingidos/não atingidao| MEDIA | 
+|RF20| O Supervisor de departamento deverá validar objetivos atingidos/não atingidos| MEDIA | 
+|RF21| O Supervisor de RH deverá gerenciar os acessos de funcionarios: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
+|RF22| O sistema deverá emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
 
 
 
@@ -108,6 +120,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
 |02| Não pode ser desenvolvido um módulo de backend        |
+|03| A Proposta contempla a construção de no máximo 03 relatórios|
+|04| Cada relatório deverá conter no máximo 1 gráfico|
 
 
 ## Diagrama de Casos de Uso
