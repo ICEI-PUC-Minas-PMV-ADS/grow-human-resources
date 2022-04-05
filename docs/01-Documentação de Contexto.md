@@ -35,7 +35,3 @@ Afinal, não basta contratar um talento e creditar a ele a responsabilidade tota
 ## Público-Alvo
 
 O desenvolvimento do sistema tem em foco o setor RH (Gestão de pessoas) de empresas sejam elas de pequeno, médio ou grande porte. Buscando auxiliar no acompanhamento de resultados, avaliações de metas e um melhor desempenho profissional de cada colaborador.  
-
-Adicione informações sobre o público-alvo por meio de uma descrição textual, diagramas de personas e mapa de stakeholders.
-
-
