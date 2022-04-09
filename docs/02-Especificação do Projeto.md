@@ -1,24 +1,18 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
-
-Definição do problema e ideia de solução a partir da perspectiva do usuário. É composta pela definição do  diagrama de personas, histórias de usuários, requisitos funcionais e não funcionais além das restrições do projeto.
-
-Apresente uma visão geral do que será abordado nesta parte do documento, enumerando as técnicas e/ou ferramentas utilizadas para realizar a especificações do projeto
+Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
 
 ## Personas
 
-As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
-
-| **Lucas De Oliveira Santos** |  **Idade:** 32 anos |
+| **Lucas De Oliveira Santos** |      |      |
 |------------------------------|------|------|
-|<img src="/docs/img/photo-lucas.jpg">| **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha na empresa Xing Ling do Brasil, uma multinacional de grande porte.   |
+|<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha na empresa Xing Ling do Brasil, uma multinacional de grande porte.   |
 | **Motivações:** Lucas tem ótimas idéias de gerenciamento e controle da produção, bem como, a gestão de expectativas de carreira e motivacional.	| **Frustrações:** Atualmente Lucas tem dificuldades de acompanhar/avaliar as metas e os objetivos profissionais de cada funcionario, pois não possui uma ferramenta sistematizada que fornece dados estatísticos dos funcionários. | **Hobbies, História:** Lucas sonha em revolucionar as relação funcionario x empregador e, para isso, dedica parte de seu tempo em estudo, pesquisas e treinamentos em inovações de RH.|
 
 | **João Francisco de Almeida** |      |      |
 |-------------------------------|------|------|
 |<img src="/docs/img/photo-joao.png"> | **Idade:** 57 anos  | **Ocupação:** psicólogo atuante há 35 anos, auxiliou diversas empresas e atualmente busca uma recolocação no mercado.       |
-| **Motivações:** João é um profissional dedicado e inovador no desempenho de suas funções. Apesar da aparente idade avançada, João acredita que pode "dar um gás" a mais na sua carreira, promovendo a inovações em multinacionais.	| **Frustrações:** O mercado não fornece recursos de realocação a partir de determinada idade, então ela sente falta de uma ferramenta que o insira no mercado, avaliando seu currículo e suas habilidades. | **Hobbies, História:** João é um pé-de-valsa nato. Gosta de se relacionar com pessoas, não importando etnia, idade ou grau de instrução, o importante é aumentar sua network.| 
+| **Motivações:** João é um profissional dedicado e inovador no desempenho de suas funções. Apesar da aparente idade avançada, João acredita que pode "dar um gás" a mais na sua carreira, promovendo a inovações em multinacionais.	| **Frustrações:** O mercado não fornece recursos de realocação a partir de determinada idade, então ela sente falta de uma ferramenta que o insira no mercado, avaliando seu currículo e suas habilidades. | **Hobbies, História:** João é um pé-de-valsa nato. Gosta de se relacionar com pessoas, não importando etnia, idade ou grau de instrução, o importante é aumentar sua network. | 
 
 | **Melissa Fernandes Santos** |      |      |
 |------------------------------|------|------|
@@ -36,10 +30,9 @@ As personas levantadas durante o processo de entendimento do problema são apres
 | **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
 
 | **Matheus de Souza** |      |      |
-|------------------- --|------|------|
+|-----------------------------|------|------|
 |<img src="/docs/img/photo-matheus.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
 | **Motivações:** Matheus é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
-
 
 ## Histórias de Usuários
 
