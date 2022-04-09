@@ -37,7 +37,7 @@ As personas levantadas durante o processo de entendimento do problema são apres
 
 | **Matheus de Souza** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/joao.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
+|<img src="/docs/img/photo-matheus.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
 | **Motivações:** Matheus é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
 
 
