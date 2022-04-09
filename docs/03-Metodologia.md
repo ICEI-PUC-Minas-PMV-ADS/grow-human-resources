@@ -31,6 +31,8 @@ etiquetas:
 
 Desenvolvedora - Vitória Gabriella Maffei Corrêa 
 branch: dev/Vitoria
+Desenvolvedor - Rafael Pacheco Leite
+branch: dev/Rafael
 
 
 ### Processo
