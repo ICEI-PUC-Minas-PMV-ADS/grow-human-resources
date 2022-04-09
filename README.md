@@ -1,6 +1,6 @@
 # Grow Human Resources - G.H.R.
 
-<img src="/docs/img/ghr-logo.png">
+<img src="/docs/img/ghr-logo.jpg">
 
 
 `CURSO: Analise e Desevolvimento de Sistmas`
