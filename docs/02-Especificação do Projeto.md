@@ -32,7 +32,7 @@ As personas levantadas durante o processo de entendimento do problema são apres
 
 | **Lara Fernandes da Silva** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/Lara_Fernandes_da_Silva.jpg"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
+|<img src="/docs/img/photo-lara.png"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
 | **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
 
 | **Matheus de Souza** |      |      |
