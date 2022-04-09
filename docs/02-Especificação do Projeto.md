@@ -1,10 +1,10 @@
 # Especificações do Projeto
 
-<span style="color:red">Pré-requisitos: <a href="1-Documentação de Contexto.md"> Documentação de Contexto</a></span>
+
+Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
+
 
 ## Personas
-
-As personas levantadas durante o processo de entendimento do problema são apresentadas nas figuras que se seguem:
 
 | **Lucas De Oliveira Santos** |      |      |
 |------------------------------|------|------|
@@ -28,15 +28,14 @@ As personas levantadas durante o processo de entendimento do problema são apres
 
 | **Lara Fernandes da Silva** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/Lara_Fernandes_da_Silva.jpg"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
-| **Motivações:** Lara entende que se existe mudança na organização é um sinal de que a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnologia de Desenvolvimento de Sistemas e, nas horas de folga, nadadora. |
+|<img src="/docs/img/photo-lara.png"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
+| **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
 
-| **João Matheus de Souza** |      |      |
+
+| **Matheus de Souza** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/João Matheus de Souza.jpg"> | **Idade:** 25 anos | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
-| **Motivações:** João é um jovem engenheiro que se preocupa em promover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa o lenta e às vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisiculturista. |
-
-
+|<img src="/docs/img/photo-matheus.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
+| **Motivações:** Matheus é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
 
 ## Histórias de Usuários
 
