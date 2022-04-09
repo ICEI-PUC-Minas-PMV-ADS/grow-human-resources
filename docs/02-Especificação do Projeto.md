@@ -1,13 +1,15 @@
 # Especificações do Projeto
 
+
 Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que auxilie diversas empresas na análise de crescimento e desenvolvimento de cada colaborador, criando metas e relatórios trimestrais com o intuito de trazer agilidade e simplicidade de informações, e assim, trazendo um crescimento contínuo entre empresas e colaboradores ou vice-versa.
+
 
 ## Personas
 
 | **Lucas De Oliveira Santos** |      |      |
 |------------------------------|------|------|
 |<img src="/docs/img/photo-lucas.jpg"> | **Idade:** 32 anos  | **Ocupação:** foi promovido a Gerente do setor de RH há aproximadamente 2 anos, trabalha na empresa Xing Ling do Brasil, uma multinacional de grande porte.   |
-| **Motivações:** Lucas tem ótimas idéias de gerenciamento e controle da produção, bem como, a gestão de expectativas de carreira e motivacional.	| **Frustrações:** Atualmente Lucas tem dificuldades de acompanhar/avaliar as metas e os objetivos profissionais de cada funcionario, pois não possui uma ferramenta sistematizada que fornece dados estatísticos dos funcionários. | **Hobbies, História:** Lucas sonha em revolucionar as relação funcionario x empregador e, para isso, dedica parte de seu tempo em estudo, pesquisas e treinamentos em inovações de RH.|
+| **Motivações:** Lucas tem ótimas ideias de gerenciamento e controle da produção, bem como, a gestão de expectativas de carreira e motivacional.	| **Frustrações:** Atualmente Lucas tem dificuldades de acompanhar/avaliar as metas e os objetivos profissionais de cada funcionário, pois não possui uma ferramenta sistematizada que fornece dados estatísticos dos funcionários. | **Hobbies, História:** Lucas sonha em revolucionar as relação funcionário x empregador e, para isso, dedica parte de seu tempo em estudo, pesquisas e treinamentos em inovações de RH.|
 
 | **João Francisco de Almeida** |      |      |
 |-------------------------------|------|------|
@@ -17,17 +19,18 @@ Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que 
 | **Melissa Fernandes Santos** |      |      |
 |------------------------------|------|------|
 |<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
-| **Motivações:** Melissa está conhecendo o mercado de trabalho e viu a oprtunidade de trabalhar na empresa de Lucas desafiadora pois coniciliar contabilidade com RH será um desafio inovador para sua carreira.	| **Frustrações:** Não domina a maratona de atividades do RH e precisa se orientar dentro da empresa através de uma ferramenta de suporte e capacitação. | **Hobbies, História:** Além de ser uma jogador de vôlei e estudante, Melissa dedica uma fração do tempo em pesquisa e desenvolvimento interpessoal. |                    |
+| **Motivações:** Melissa está conhecendo o mercado de trabalho e viu a oportunidade de trabalhar na empresa de Lucas desafiadora pois conciliar contabilidade com RH será um desafio inovador para sua carreira.	| **Frustrações:** Não domina a maratona de atividades do RH e precisa se orientar dentro da empresa através de uma ferramenta de suporte e capacitação. | **Hobbies, História:** Além de ser uma jogador de vôlei e estudante, Melissa dedica uma fração do tempo em pesquisa e desenvolvimento interpessoal. |                    |
 
 | **Lúcia De Medeiros Silva** |      |      |
 |-----------------------------|------|------|
 |<img src="/docs/img/photo-lucia.png"> | **Idade:** 42 anos  | **Ocupação:** Supervisora de RH na empresa Xing Ling do Brasil. Faz o gerenciamento do time e atividades de RH.|
-| **Motivações:** Lúcia está na empresa a 10 anos e foi recentemente promovida à supervisora de RH. Está motivada com as idéias e metodologias de Lucas e está empenhada em fazer acontecer a inovação na empresa.	| **Frustrações:** A ausência de ferramentas sistematizadas de gestão de RH, onera seu tempo de pensamento inovador com funções operacionais de preenchimento de formulários de cadastros, envio e recebimento de maolotes, dentre outras necessidades do setor. | **Hobbies, História:** Lucia realiza um sonho de estudar e conhecer belas artes. |
+| **Motivações:** Lúcia está na empresa a 10 anos e foi recentemente promovida à supervisora de RH. Está motivada com as ideias e metodologias de Lucas e está empenhada em fazer acontecer a inovação na empresa.	| **Frustrações:** A ausência de ferramentas sistematizadas de gestão de RH, onera seu tempo de pensamento inovador com funções operacionais de preenchimento de formulários de cadastros, envio e recebimento de malotes, dentre outras necessidades do setor. | **Hobbies, História:** Lucia realiza um sonho de estudar e conhecer belas artes. |
 
 | **Lara Fernandes da Silva** |      |      |
 |-----------------------------|------|------|
 |<img src="/docs/img/photo-lara.png"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
 | **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
+
 
 | **Matheus de Souza** |      |      |
 |-----------------------------|------|------|
@@ -48,12 +51,12 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Lucia  | Realizar cadastros de objetivos       | Gerar controle de objetivos         |
 |Melissa| Controlar metas      | Que reflitam com clareza os indicadores de performance|
 |Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
-|João Francisco | Consultar oportunidades em abero | Candidatar a vagas disponíveis |
+|João Francisco | Consultar oportunidades em aberto | Candidatar a vagas disponíveis |
 |Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
 |Joao Matheus| Realizar consulta de ponto      | Acompanhar a absenteísmo da equipe        |
 |Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
 |Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
-|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
+|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeiçoamento profissional de cada membro da equipe|
 |Lara| Conhecer as equipes de trabalho  | Promover o engajamento entre TI e Negócios.|
 
 
@@ -79,16 +82,16 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF10| O Funcionário de RH deverá gerenciar Oferta de Vagas (CRUD) | BAIXA | 
 |RF11| O Supervisor de Departamento deverá cadastrar Metas para Funcionário | ALTA | 
 |RF12| O Supervisor de Departamento deverá cadastrar Objetivos para Funcionário | MEDIA | 
-|RF13| O Funcionário de RH deverá associar um Funcionário a um deparamento | ALTA | 
+|RF13| O Funcionário de RH deverá associar um Funcionário a um departamento | ALTA | 
 |RF14| O Gerente de RH deverá consultar relatórios estatísticos | ALTA | 
 |RF15| O Funcionário de RH deverá associar um funcionário a um cargo e salário | BAIXA | 
 |RF16| O Gerente deve consultar relatório de acompanhamento trimestral das metas | ALTA | 
-|RF17| O Gerente deve consultarr relatório de acompanhamento anual dos objetivos | MEDIA | 
+|RF17| O Gerente deve consultar relatório de acompanhamento anual dos objetivos | MEDIA | 
 |RF18| O Funcionário deverá cadastrar metas atingidas/não atingidas| ALTA |
 |RF19| O Supervisor de departamento deverá validar metas atingidas/não atingidas| MEDIA | 
-|RF20| O Funcionário deverá cadastrar objetivos atingidos/não atingidao| MEDIA | 
+|RF20| O Funcionário deverá cadastrar objetivos atingidos/não atingidos| MEDIA | 
 |RF21| O Supervisor de departamento deverá validar objetivos atingidos/não atingidos| MEDIA | 
-|RF22| O Supervisor de RH deverá gerenciar os acessos de funcionarios: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
+|RF22| O Supervisor de RH deverá gerenciar os acessos de funcionários: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
 |RF23| O sistema deverá emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
 |RF24| O usuário deverá consultar as vagas disponíveis em uma empresa. | BAIXA | 
 
@@ -124,9 +127,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |----|-----------|
 |Usuário|	Pessoa interessada em realizar consultas na empresa. Possui um cadastro para logar no sistema.|
 |Funcionário| Pessoa que possui as mesmas atribuições de usuário, porém é capaz de realizar acões específicas da organização|
-|Funcionário RH| Realiza todoas as atribuições de funcionário, mas também possui atribuições específicas da gestão de RH|
+|Funcionário RH| Realiza todas as atribuições de funcionário, mas também possui atribuições específicas da gestão de RH|
 |Supervisor| O supervisor é um funcionário da organização que realiza atividades de controle operacional e pessoal da equipe.|
-|Supervisor RH| Realiza o gerenciamento de equipe e é responsável pelo contorle das funções de RH  |
+|Supervisor RH| Realiza o gerenciamento de equipe e é responsável pelo controle das funções de RH  |
 |Gerente| Responsável pelo controle e gerenciamento de um departamento|
 |Gerente RH| Responsável pelo controle e gerenciamento de um departamento com atribuições gerenciais de RH
 
@@ -139,7 +142,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar objetivos pessoais| O funcionário deve gerenciar a situação de seus objetivos| RF20 |
 |Gerenciar oferta de vagas| O funcionário de RH deve efetuar os cadastros de vagas disponíveis para consulta pelos usuários| RF10 |
 |Consultar Vagas disponíveis | O usuário dever consultar as vagas disponíveis | RF24|
-|Associcar funcionário a departamento| O funcionário de RH deverá associar um funcionário a um departamento| RF13 |
+|Associar funcionário a departamento| O funcionário de RH deverá associar um funcionário a um departamento| RF13 |
 |Gerenciar Funcionários | O supervisor de RH deve gerenciar os funcionários da empresa. | RF04 | 
 |Gerenciar Departamentos | O supervisor de RH deve gerenciar os departamentos da empresa. | RF06 | 
 |Gerenciar Metas Globais| O supervisor de RH deve gerenciar as metas para os funcionários. | RF07 | 
@@ -148,7 +151,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar Metas de Equipe| O supervisor deve gerenciar as metas individuais dos funcionários da empresa. | RF11 | 
 |Gerenciar Objetivos de Equipe | O supervisor deve gerenciar os objetivos dos funcionários da empresa. | RF12 | 
 |Consultar relatório Trimestral | O gerente deve consultar o relatório trimestral de acompanhamento de metas. | RF16 | 
-|Consultar relatório Anual | O gerebte deve consultar o relatório anual de acompanhamento de objetivos. | RF17 | 
+|Consultar relatório Anual | O gerente deve consultar o relatório anual de acompanhamento de objetivos. | RF17 | 
 |Gerenciar Cargos e Salários | O supervisor de RH deve gerenciar Cargos e Salários da empresa. | RF15 | 
 |Gerenciar Acessos | O supervisor de RH deve gerenciar os acessos dos funcionários. | RF22 | 
 |Consultar Ranqueamento| O Gerente de RH deve consultar o ranqueamento de metas e objetivos| RF23|
