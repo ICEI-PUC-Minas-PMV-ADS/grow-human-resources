@@ -1,10 +1,7 @@
 
 # Metodologia
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Documentação de Especificação</a></span>
-
-Metodologia ágil
-As abordagens enxutas (lean) e ágil (agile), que permeam o mundo do desenvolvimento de sotfware e da gestão de projetos.
+Metodologia ágil: As abordagens enxutas (lean) e ágil (agile), que permeam o mundo do desenvolvimento de sotfware e da gestão de projetos.
 Ultilizamos o método Kamban. 
 
 ## Controle de Versão
@@ -32,13 +29,13 @@ etiquetas:
 
 ### Divisão de Papéis: 
 
-Desenvolvedora - Vitória
+Desenvolvedora - Vitória Gabriella Maffei Corrêa 
+branch: dev/Vitoria
 
 
 ### Processo
 
-No processo está sendo ultilizado o método Kamban.
-Criado um Backlog no Github.
+No processo está sendo ultilizado o método Kamban e também Criado um Backlog no Github.
  
 ### Ferramentas
 
