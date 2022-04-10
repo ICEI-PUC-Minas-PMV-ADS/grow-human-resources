@@ -58,6 +58,9 @@ Pedro Luiz Braga Andrade Leite
 Bruno Carolino Lopes
 Vitória Gabriella Maffei Corrêa 
 
+Desenvolvedor - Rafael Pacheco Leite
+branch: dev/Rafael
+
 
 ### Processo
 
@@ -78,7 +81,7 @@ As ferramentas empregadas no projeto são:
 
 - Editor de código - Visual Code, Visual Studio.
 - Ferramentas de comunicação - WhatsApp, Microsoft Teams.
-- Ferramentas de desenho de tela - Dra.wio, Figma.
+- Ferramentas de desenho de tela - Dra.wio, Figma, Adobe Photoshop.
 
 O editor de código foi escolhido porque ele possui uma integração com o
 sistema de versão. As ferramentas de comunicação utilizadas possuem
