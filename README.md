@@ -3,7 +3,7 @@
 <img src="/docs/img/ghr-logo.jpg">
 
 
-`CURSO: Analise e Desevolvimento de Sistmas`
+`CURSO: Analise e Desevolvimento Sistemas`
 
 `DISCIPLINA: Eixo 2 - Projeto: Desenvolvimento de uma Aplicação Interativa`
 
