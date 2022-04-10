@@ -19,10 +19,19 @@
 
 |  `Caso de Teste`           |  `CT-03`
 |----------------------------|-----------------------------------------------------------------|
-| `Requisitos  Associados`    |RF-05: O site deve ser publicado em um ambiente acessível publicamente na Internet (Repl.it, GitHub Pages, Heroku). |
-|   `Objetivo do Teste`      | Verificar se o site está sendo hospedado e disposto de forma web.  |
-|         `Passos`           |1. Abrir o navegador web do celular do usuário; <br> 2. Informar a URL do site.</br> |
-|   `Critérios de Êxito`     |• O site deve abrir corretamente através do link disposto. |
+| `Requisitos  Associados`    |RF-07: O sistema deve permitir ao supervisor a inserção, edição e exclusão de funcionários. |
+|   `Objetivo do Teste`      | Verificar se as funções estão funcionando de forma correta.  |
+|         `Passos`           |1. Abrir o navegador web utilizado pela empresa; <br> 2. Acessar o atalho presente na intranet;</br> 3. Acessar o funcionário desejado e realizar a ação requerida. |
+|   `Critérios de Êxito`     |• O gestor deve conseguir realizar com êxito as ações de acordo com suas necessidades. |
+
+=====
+
+|  `Caso de Teste`           |  `CT-04`
+|----------------------------|-----------------------------------------------------------------|
+| `Requisitos  Associados`    |RF-05: O sistema deve permitir a visualização de indicador de produtividade de metas atingidas/não atingidas. <br> RF-06: O sistema deve apresentar ranqueamento(top5) individual de cada funcionário, apresentando sua posição nos indicadores. </br>  |
+|   `Objetivo do Teste`      | Verificar se o conteúdo está sendo disponibilizado de forma correta.  |
+|         `Passos`           |1. Abrir o navegador web utilizado pela empresa; <br> 2. Acessar o atalho presente na intranet;</br> 3. Acessar o funcionário desejado e realizar análise de dados. |
+|   `Critérios de Êxito`     |• O gestor deve conseguir visualizar de forma clara e objetiva os indicadores dispostos. |
 
 =====
 
