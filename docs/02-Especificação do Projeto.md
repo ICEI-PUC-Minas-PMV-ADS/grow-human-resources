@@ -69,32 +69,14 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 ### Requisitos Funcionais
 
 |ID    | Descrição do Requisito  | Prioridade |
-|-------|----------------------------|------|
-|RF01| O Sistema deverá Permitir o login de funcionários de uma empresa     | ALTA | 
-|RF02| O Sistema deverá Permitir o login de um usuário externo     | BAIXA | 
-|RF03| O Sistema deverá Permitir o gerenciamento de usuários (CRUD)     | ALTA | 
-|RF04| O Supervisor de RH deverá gerenciar funcionários (CRUD)     | ALTA | 
-|RF05| O Sistema deverá gerenciar Usuários (CRUD)     | BAIXA | 
-|RF06| O Supervisor de RH deverá gerenciar Departamentos (CRUD)    | ALTA | 
-|RF07| O Supervisor de RH deverá gerenciar metas (CRUD)     | ALTA | 
-|RF08| O Supervisor de RH deverá gerenciar objetivos (CRUD) | MEDIA | 
-|RF09| O Supervisor de RH deverá gerenciar cargos e salários (CRUD) | MEDIA | 
-|RF10| O Funcionário de RH deverá gerenciar Oferta de Vagas (CRUD) | BAIXA | 
-|RF11| O Supervisor de Departamento deverá cadastrar Metas para Funcionário | ALTA | 
-|RF12| O Supervisor de Departamento deverá cadastrar Objetivos para Funcionário | MEDIA | 
-|RF13| O Funcionário de RH deverá associar um Funcionário a um departamento | ALTA | 
-|RF14| O Gerente de RH deverá consultar relatórios estatísticos | ALTA | 
-|RF15| O Funcionário de RH deverá associar um funcionário a um cargo e salário | BAIXA | 
-|RF16| O Gerente deve consultar relatório de acompanhamento trimestral das metas | ALTA | 
-|RF17| O Gerente deve consultar relatório de acompanhamento anual dos objetivos | MEDIA | 
-|RF18| O Funcionário deverá cadastrar metas atingidas/não atingidas| ALTA |
-|RF19| O Supervisor de departamento deverá validar metas atingidas/não atingidas| MEDIA | 
-|RF20| O Funcionário deverá cadastrar objetivos atingidos/não atingidos| MEDIA | 
-|RF21| O Supervisor de departamento deverá validar objetivos atingidos/não atingidos| MEDIA | 
-|RF22| O Supervisor de RH deverá gerenciar os acessos de funcionários: Permitir a conexão/desconexão de um usuário/funcionário no sistema, carregando suas atribuições de acesso. | ALTA | 
-|RF23| O sistema deverá emitir ranqueamento (top 5) de: metas priorizadas, metas atingidas, metas não atingidas. | ALTA | 
-|RF24| O usuário deverá consultar as vagas disponíveis em uma empresa. | BAIXA | 
-
+|------|-------------------------|------|
+|RF01| O Sistema deverá permitir o cadastro, login e alteração de senha dos colaboradores seguindo o perfil: funcionário e supervisor.| ALTA | 
+|RF02| O sistema deve permitir ao supervisor a inserção e exclusão de perfis cadastratos pelos funcionários.| ALTA | 
+|RF03| O sistema deve permitir que o supervisor associe o funcionário ao seu departamento.| ALTA | 
+|RF04| O sistema deve permitir que o supervisor acompanhe o relatório de desempenho e metas de seus subordinados.| ALTA | 
+|RF05| O sistema deve permitir ao gerente e ao supervisor visualizar relatórios de cada departamento.| ALTA | 
+|RF06| O sistema deve emitir status de metas atingidas/não atingidas que pode ser consultado pelo supervisor, gerente e funcionário.| ALTA | 
+|RF07| O sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas.| ALTA | 
 
 
 ### Requisitos não Funcionais
@@ -125,37 +107,22 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ATOR|	DESCRIÇÃO|
 |----|-----------|
-|Usuário|	Pessoa interessada em realizar consultas na empresa. Possui um cadastro para logar no sistema.|
-|Funcionário| Pessoa que possui as mesmas atribuições de usuário, porém é capaz de realizar acões específicas da organização|
-|Funcionário RH| Realiza todas as atribuições de funcionário, mas também possui atribuições específicas da gestão de RH|
-|Supervisor| O supervisor é um funcionário da organização que realiza atividades de controle operacional e pessoal da equipe.|
-|Supervisor RH| Realiza o gerenciamento de equipe e é responsável pelo controle das funções de RH  |
-|Gerente| Responsável pelo controle e gerenciamento de um departamento|
-|Gerente RH| Responsável pelo controle e gerenciamento de um departamento com atribuições gerenciais de RH
-
+|Funcionário| Consulta seu desempenho e metas, realiza seu cadastro, login e alteração de senha. |
+|Supervisor| O supervisor é um funcionário responsável pelo controle de perfis, consulta o desempenho, controle de funcionários, controla departamentos e visualiza relatório.|
+|Gerente| Responsável pelo gerenciamento de departamentos, funcionário e visualiza relatório de desempenho dos mesmos.|
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
 |-|-|-|
-|Realizar login no sistema|	O usuário deve conseguir realizar um login no sistema com suas credenciais cadastradas|	RF01 RF02|
-|Gerenciar Perfil|	O usuário deve conseguir gerenciar o seu perfil|	RF03 RF05 |
-|Gerenciar metas pessoais| O funcionário deve gerenciar a situação de suas metas| RF18 |
-|Gerenciar objetivos pessoais| O funcionário deve gerenciar a situação de seus objetivos| RF20 |
-|Gerenciar oferta de vagas| O funcionário de RH deve efetuar os cadastros de vagas disponíveis para consulta pelos usuários| RF10 |
-|Consultar Vagas disponíveis | O usuário dever consultar as vagas disponíveis | RF24|
-|Associar funcionário a departamento| O funcionário de RH deverá associar um funcionário a um departamento| RF13 |
-|Gerenciar Funcionários | O supervisor de RH deve gerenciar os funcionários da empresa. | RF04 | 
-|Gerenciar Departamentos | O supervisor de RH deve gerenciar os departamentos da empresa. | RF06 | 
-|Gerenciar Metas Globais| O supervisor de RH deve gerenciar as metas para os funcionários. | RF07 | 
-|Gerenciar Objetivos Globais | O supervisor de RH deve gerenciar os objetivos para os funcionários. | RF08 | 
-|Gerenciar Cargos e Salários | O supervisor de RH deve gerenciar os cargos e salários de acordo com a função dos funcionários da empresa. | RF09 | 
-|Gerenciar Metas de Equipe| O supervisor deve gerenciar as metas individuais dos funcionários da empresa. | RF11 | 
-|Gerenciar Objetivos de Equipe | O supervisor deve gerenciar os objetivos dos funcionários da empresa. | RF12 | 
-|Consultar relatório Trimestral | O gerente deve consultar o relatório trimestral de acompanhamento de metas. | RF16 | 
-|Consultar relatório Anual | O gerente deve consultar o relatório anual de acompanhamento de objetivos. | RF17 | 
-|Gerenciar Cargos e Salários | O supervisor de RH deve gerenciar Cargos e Salários da empresa. | RF15 | 
-|Gerenciar Acessos | O supervisor de RH deve gerenciar os acessos dos funcionários. | RF22 | 
-|Consultar Ranqueamento| O Gerente de RH deve consultar o ranqueamento de metas e objetivos| RF23|
+|Realizar cadastro no sistema|	O funcionário deve conseguir realizar cadastro de suas credenciais no sistema.|	RF01|
+|Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01|
+|Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF01 |
+|Gerenciar Desempenho| O funcionário deve consultar seu desempenho e status de metas.| RF06|
+|Associar funcionário a departamento| O supervisor deverá associar cada funcionário a um departamento.| RF03 |
+|Gerenciar Departamentos | O supervisor e o gerente devem visualizar relatório de cada departamento. | RF05 | 
+|Gerenciar Metas | O supervisor e o gerente devem gerenciar o desempenho e metas do funcionário. | RF04 | 
+|Gerenciar Acessos | O supervisor deve gerenciar (incluir, excluir) o acesso do funcionário. | RF02| 
+|Consultar Ranqueamento| O ranqueamento (top 5) metas atingidas e não atingidas poderá ser consultado por funcionário, gerente e supervisor.  | RF07|
 
-https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1b94imjTEjeaUMr_QMCaFIUFmTRBVSjKR
+## Diagrama de caso de Uso
 
-<img src="/docs/img/User case.drawio.png"> 
+<img src="./img/diagrama-caso-uso.png"/> 
