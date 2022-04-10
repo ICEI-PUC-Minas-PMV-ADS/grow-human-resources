@@ -47,14 +47,30 @@ etiquetas:
 ## Gerenciamento de Projeto
 
 ### Divisão de Papéis: 
+Scrum Master: Vitória Gabriella Maffei Corrêa 
+Product Owner: Bernardo Jeunon de Alencar
+Equipe de Desenvolvimento:
 
-Desenvolvedora - Vitória Gabriella Maffei Corrêa 
-branch: dev/Vitoria
+Nayra Alessandra Simão Reis
+Alex De Souza Galdino
+Rafael Pacheco Leite
+Pedro Luiz Braga Andrade Leite
+Bruno Carolino Lopes
+Vitória Gabriella Maffei Corrêa 
 
 
 ### Processo
 
+Para organização e distribuição das tarefas do projeto, a equipe está utilizando a ferramenta de gestão do Github estruturado da seguinte forma:
+
+Backlog: recebe as tarefas a serem trabalhadas e representa o Product Backlog. Todas as atividades identificadas no decorrer do projeto também devem ser incorporadas a esta lista;
+To Do: Esta lista representa o Sprint Backlog. Este é o Sprint atual que estamos trabalhando;
+In Progress: representa as tarefas que estão em execução naquele momento; e
+Done: nesta lista são colocadas as tarefas que passaram pelos testes e controle de qualidade e estão prontos para ser entregues ao usuário. Não há mais edições ou revisões necessárias, ele está agendado e pronto para a ação.
+Foi escolhido o quadro de kanban para o gerenciamento do projeto, com o sistema kanban é possível avaliar o progresso do trabalho da equipe, avaliar etapas posteriores, medir o tempo gasto em tarefas especificas e também promover a cooperação entre a equipe, tudo isso utilizando um sistema simples e visual. (AGUIAR, 2007). O quadro kanban do grupo no Github está disponível através da URL Doação (github.com) e é apresentado, no estado atual:
 No processo está sendo ultilizado o método Kamban e também Criado um Backlog no Github.
+
+<img src="./img/gitkamban.png">
  
 ### Ferramentas
 
