@@ -123,6 +123,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar Acessos | O supervisor deve gerenciar (incluir, excluir) o acesso do funcionário. | RF02| 
 |Consultar Ranqueamento| O ranqueamento (top 5) metas atingidas e não atingidas poderá ser consultado por funcionário, gerente e supervisor.  | RF07|
 
-## Diagrama de caso de Uso
 
-<img src="./img/diagrama-caso-uso.png"/> 
+
+
