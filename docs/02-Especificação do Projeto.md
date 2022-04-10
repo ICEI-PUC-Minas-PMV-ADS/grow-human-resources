@@ -125,4 +125,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 
 
+ ## Representação Visual
 
+ <img src="./img/diagrama-caso-uso.png">
