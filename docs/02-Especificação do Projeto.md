@@ -93,7 +93,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
 |-|-|-|
-|Realizar cadastro no sistema|	O funcionário deve conseguir realizar cadastro de suas credenciais no sistema.|	RF01|
 |Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01|
 |Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF01 |
 |Gerenciar Desempenho| O funcionário deve consultar seu desempenho e status de metas.| RF06|
