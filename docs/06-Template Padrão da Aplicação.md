@@ -32,12 +32,16 @@ As fontes selecionadas para a aplicação são Jaldi e Inter em algumas das suas
 
 ## Aplicação nas telas e fluxos:
 
+## Wireframes
+
+
+
 ## Tela - LandingPage / Login 
 
 A tela de login ou Landing Page, permite o funcionário e seu supervisor a fazer o login para acesso as demais atividades, como se trata de um sistema empresarial optamos por dar informações somente a aqueles que são associados a empresa em questão.  Nesta tela também temos as opções caso os demais usuários esqueçam suas senha e precise recupera-la.
 
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig1.jpeg">
+<img src="./img/fig1.jpeg">
 
 Figura 1
 
@@ -51,7 +55,7 @@ Figura 1
 
 Ao acessar a "Esqueceu sua senha?" será encaminhado para uma tela de recuperação como mencionado na Figura 1. O usuário precisaram inserir seu e-mail para verificação de identidade.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig02.jpeg">
+<img src="./img/fig02.jpeg">
 Figura 2
 
 
@@ -62,7 +66,7 @@ Figura 2
 
 Após fazer o processo descrito na Figura 2 será encaminhado um código ao e-mail verificado para ser inserido um código de segurança 
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig03.jpeg">
+<img src="./img/fig03.jpeg">
 
 Figura 3
 
@@ -74,7 +78,7 @@ Figura 3
 
 Fazendo todo processo anterior, o usuário finalmente conseguira alterar sua senha. Depois de escolher a senha, seguindo o critério de ter 6 dígitos, basta salvar e senha já foi alterada.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig04.jpeg">
+<img src="./img/fig04.jpeg">
 
 Figura 4
 
@@ -84,7 +88,7 @@ Figura 4
 
 Depois de fazer o login na aplicação, o usuário é redirecionado para uma homepage que possui um menu Lateral com opções personalizadas para Supervisor e funcionário do lado esquerdo e informações no centro/Lado direito.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig05.jpg">
+<img src="./img/fig05.jpg">
 
 Figura 5
 
@@ -96,7 +100,7 @@ Figura 5
 
 Selecionando a opção "Meu Perfil" o usuário é redirecionado para uma página, na qual tem as "informações Pessoais e as informações de contato" e também sua foto de perfil,  que pode ser alterada clicando em "Trocar de foto".  As informações são editáveis, para editar basta clicar em "Editar" no canto superior direito.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig06.jpeg">
+<img src="./img/fig06.jpeg">
 
 Figura 6
 
@@ -104,7 +108,7 @@ Figura 6
 
 
 
- É possível Alterar quase todos os campos, apenas Matricula, cargo e departamento somente      o supervisor tem acesso para alterar essas informações.<img src="C:\Users\User\grow-human-resources\docs\img\fig07.jpeg">
+ É possível Alterar quase todos os campos, apenas Matricula, cargo e departamento somente      o supervisor tem acesso para alterar essas informações.<img src="./img/fig07.jpeg">
 
 Figura 7
 
@@ -120,7 +124,7 @@ Nesta tela somente supervisor terá acesso, ele poderá pesquisar o funcionário
 
 
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig08.jpeg">
+<img src="./img/fig08.jpeg">
 
 ​     Figura 8
 
@@ -132,7 +136,7 @@ Nesta tela somente supervisor terá acesso, ele poderá pesquisar o funcionário
 
 Para começar a manipular dados do funcionário, basta clicar em editar será aberto lacunas de dados editáveis do funcionário, do lado inferior direito e exibido link para exclusão de tal.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig09.jpeg">
+<img src="./img/fig09.jpeg">
 
 Figura 9
 
@@ -144,7 +148,7 @@ Figura 9
 
 Caso novos funcionários sejam admitidos na empresa é possível também adicionar no sistema clicando no botão de cor azul "Adicionar funcionários" após preencher a lacunas é só selecionar "Adicionar" e pronto, o funcionário foi adicionado no sistema.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig10.jpeg">
+<img src="./img/fig10.jpeg">
 
 Figura 10
 
@@ -158,7 +162,7 @@ Figura 10
 
 Um ranking editável também se encontra no sistema, está página somente o supervisor tem acesso ele poderá visualizar o ranking é também editado.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig11.jpeg">
+<img src="./img/fig11.jpeg">
 
 
 Figura 11
@@ -169,7 +173,7 @@ Figura 11
 
 Para editar basta clicar em "Editar" as linhas editáveis ficaram em cor azul
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig12.jpeg">
+<img src="./img/fig12.jpeg">
 
 Figura 12
 
@@ -183,7 +187,7 @@ Figura 12
 
 Para adicionar relatórios o sistema tem uma página aonde é possível ser adicionado. Funcionários e supervisores tem acesso a está página, mas somente os supervisores podem pesquisar relatórios por departamento, funcionários só podem ver os relatórios dos seus respectivos departamentos.
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig13.jpeg">
+<img src="./img/fig13.jpeg">
 
 Figura 13
 
@@ -197,7 +201,7 @@ Figura 13
 
 O sistema tem uma tela de metas, aonde todos os funcionários tem acesso independente do cargo, nela mostra as principais metas e o resultado do funcionário, tendo metas de resultado, desempenho e de processo. Indicando o resultado por meio de barras de indicadoras quanto mais cheia a barra estiver, significa que o funcionário esta ótimo (atribuída a cor verde),  caso esteja meio cheia significa que o funcionário está mediano (atribuído a cor amarela), e se a barra estiver vazia o funcionários está ruim (atribuído a cor vermelha).
 
-<img src="C:\Users\User\grow-human-resources\docs\img\fig14.jpeg">
+<img src="./img/fig14.jpeg">
 
 
 Figura 14
