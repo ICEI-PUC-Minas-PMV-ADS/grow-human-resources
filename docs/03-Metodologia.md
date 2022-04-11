@@ -49,17 +49,15 @@ etiquetas:
 ### Divisão de Papéis: 
 Scrum Master: Vitória Gabriella Maffei Corrêa 
 Product Owner: Bernardo Jeunon de Alencar
+
 Equipe de Desenvolvimento:
+*Vitória Gabriella Maffei Corrêa
+*Nayra Alessandra Simão Reis
+*Alex De Souza Galdino
+*Rafael Pacheco Leite
+*Pedro Luiz Braga Andrade Leite
+*Bruno Carolino Lopes
 
-Nayra Alessandra Simão Reis
-Alex De Souza Galdino
-Rafael Pacheco Leite
-Pedro Luiz Braga Andrade Leite
-Bruno Carolino Lopes
-Vitória Gabriella Maffei Corrêa 
-
-Desenvolvedor - Rafael Pacheco Leite
-branch: dev/Rafael
 
 
 ### Processo
@@ -74,6 +72,12 @@ Foi escolhido o quadro de kanban para o gerenciamento do projeto, com o sistema 
 No processo está sendo ultilizado o método Kamban e também Criado um Backlog no Github.
 
 <img src="./img/gitkamban.png">
+
+
+A tarefas são classificadas em função da natureza ou prioridade da atividade e seguem o um esquema de etiquetagem entre cores e categorias que pode ser visto pela Figura:
+
+<img src="./img/gitetiquetas.png">
+
  
 ### Ferramentas
 
