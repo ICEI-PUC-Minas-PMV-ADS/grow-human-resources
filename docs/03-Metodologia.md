@@ -49,7 +49,7 @@ etiquetas:
 ### Divisão de Papéis:
 
 Scrum Master: Vitória Gabriella Maffei Corrêa 
-Product Owner:Bernardo Jeunon de Alencar
+Product Owner: Bernardo Jeunon de Alencar
 
 Equipe de Desenvolvimento: Vitória Gabriella Maffei Corrêa, Nayra Alessandra Simão Reis, Alex De Souza Galdino, Rafael Pacheco Leite, Pedro Luiz Braga Andrade Leite e Bruno Carolino Lopes.
 
