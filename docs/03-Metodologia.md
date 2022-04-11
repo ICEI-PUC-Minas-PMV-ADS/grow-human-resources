@@ -46,17 +46,12 @@ etiquetas:
 
 ## Gerenciamento de Projeto
 
-### Divisão de Papéis: 
-Scrum Master: Vitória Gabriella Maffei Corrêa 
-Product Owner: Bernardo Jeunon de Alencar
+### Divisão de Papéis:
 
-Equipe de Desenvolvimento:
-*Vitória Gabriella Maffei Corrêa
-*Nayra Alessandra Simão Reis
-*Alex De Souza Galdino
-*Rafael Pacheco Leite
-*Pedro Luiz Braga Andrade Leite
-*Bruno Carolino Lopes
+Scrum Master: Vitória Gabriella Maffei Corrêa 
+Product Owner:Bernardo Jeunon de Alencar
+
+Equipe de Desenvolvimento: Vitória Gabriella Maffei Corrêa, Nayra Alessandra Simão Reis, Alex De Souza Galdino, Rafael Pacheco Leite, Pedro Luiz Braga Andrade Leite e Bruno Carolino Lopes.
 
 
 
@@ -77,7 +72,6 @@ No processo está sendo ultilizado o método Kamban e também Criado um Backlog 
 A tarefas são classificadas em função da natureza ou prioridade da atividade e seguem o um esquema de etiquetagem entre cores e categorias que pode ser visto pela Figura:
 
 <img src="./img/gitetiquetas.png">
-
  
 ### Ferramentas
 
@@ -85,7 +79,7 @@ As ferramentas empregadas no projeto são:
 
 - Editor de código - Visual Code, Visual Studio.
 - Ferramentas de comunicação - WhatsApp, Microsoft Teams.
-- Ferramentas de desenho de tela - Dra.wio, Figma, Adobe Photoshop.
+- Ferramentas de desenho de tela - Dra.wio, Figma.
 
 O editor de código foi escolhido porque ele possui uma integração com o
 sistema de versão. As ferramentas de comunicação utilizadas possuem
