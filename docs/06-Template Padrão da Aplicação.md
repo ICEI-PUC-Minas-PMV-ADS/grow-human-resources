@@ -12,7 +12,7 @@ Antes de definir o template da aplicação, foi necessário definir uma guia de 
 
 A paleta de cores definida para nosso sistema conta com 4 cores que reflete calma e serenidade para o usuário.
 
-<img src="./img/paleta.jpeg">
+<img src="./img/paleta.png">
 
 
 
@@ -20,7 +20,7 @@ A paleta de cores definida para nosso sistema conta com 4 cores que reflete calm
 
 As fontes selecionadas para a aplicação são Jaldi e Inter em algumas das suas variações e seguem as seguintes definições:
 
-<img src="./img/fonte.jpeg">
+<img src="./img/fonte.png">
 
 
 
