@@ -12,7 +12,9 @@ Antes de definir o template da aplicação, foi necessário definir uma guia de 
 
 A paleta de cores definida para nosso sistema conta com 4 cores que reflete calma e serenidade para o usuário.
 
-<img src="./img/paleta.png">
+
+
+<img src="./img/paletadecores.png">
 
 
 
