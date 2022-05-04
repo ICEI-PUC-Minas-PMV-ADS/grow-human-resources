@@ -13,14 +13,20 @@ Antes de definir o template da aplicação, foi necessário definir uma guia de 
 A paleta de cores definida para nosso sistema conta com 4 cores que reflete calma e serenidade para o usuário.
 
 
+<<<<<<< HEAD
 
 <img src="./img/Paletadecores.jpg">
 
+=======
+<img src="./img/Paletadecores.jpg">
+>>>>>>> 6c8642b5f6a9859ce8ceb8db122610b1d7d067f5
 
 
 ## Tipografia
 
 As fontes selecionadas para a aplicação são Jaldi e Inter em algumas das suas variações e seguem as seguintes definições:
+
+
 
 <img src="./img/fonte.png">
 
