@@ -1,0 +1,80 @@
+<h2>Funcionarios</h2>
+<hr>
+
+<div>
+  <div class="mb-2">
+    <label class="mr-2 mt-2">
+      Filtro:
+    </label>
+    <input
+      type="text"
+      class="form-control mr-2"
+      placeholder="pesquisar"
+      [(ngModel)]="filtroLista"
+    >
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>
+        <button type="button" class="btn btn-outline-light btn-sm"
+          (click)="alternarImagem()"
+        >
+          <b>
+            Foto
+            <i class="{{exibirImg ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
+          </b>
+        </button>
+      </th>
+      <th>#</th>
+      <th>Nome Completo</th>
+      <th>e-mail</th>
+      <th>Telefone</th>
+      <th>Salario</th>
+      <th>Data Admissão</th>
+      <th>Data Demissão</th>
+      <th>Perfil</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="funcionarios && funcionarios.length">
+    <tr *ngFor="let funcionario of funcionariosFiltrados">
+      <td>
+        <img [collapse]="exibirImg"
+          [isAnimated]="true"
+          src="/assets/img/{{funcionario.imagemURL}}" alt=""
+          [style.width.px]="larguraImg"
+          [style.margin.px]="margemImg"
+        >
+      </td>
+      <td>{{funcionario.funcionarioId}}</td>
+      <td>{{funcionario.nomeCompleto}}</td>
+      <td>{{funcionario.email}}</td>
+      <td>{{funcionario.telefone}}</td>
+      <td>{{funcionario.salario}}</td>
+      <td>{{funcionario.dataAdmissao}}</td>
+      <td>{{funcionario.dataDemissao}}</td>
+      <td>{{funcionario.perfilFuncionarioId}}</td>
+      <td>
+        <button class="btn btn-outline-success btn-sm mr-2">
+          <i class="fa-solid fa-pen"></i>
+        </button>
+        <button class="btn btn-outline-danger btn-sm">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!funcionarios.length">
+    <tr>
+      <td colspan="8" class="text-center" >
+        <h4>Nenhum funcionario encontrado!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+{{funcionarios | json}}
+
