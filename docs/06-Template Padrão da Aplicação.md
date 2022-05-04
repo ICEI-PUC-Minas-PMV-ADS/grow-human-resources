@@ -14,7 +14,7 @@ A paleta de cores definida para nosso sistema conta com 4 cores que reflete calm
 
 
 
-<img src="./img/paletadecores.jpg">
+<img src="./img/Paletadecores.jpg">
 
 
 
