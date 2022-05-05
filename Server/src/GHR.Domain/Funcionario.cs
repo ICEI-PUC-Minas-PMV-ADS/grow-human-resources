@@ -12,6 +12,7 @@ namespace GHR.Domain
         public string Email { get; set; }
         public string Telefone { get; set; }
         public float Salario { get; set; }
+        public int CargoId { get; set; }
         public Cargo Cargo { get; set; }
         public DateTime? DataAdmissao { get; set; }
         public DateTime? DataDemissao { get; set; }
@@ -19,7 +20,9 @@ namespace GHR.Domain
         public Boolean FuncionarioAtivo { get; set; }
         public int DepartamentoId { get; set; }
         public Departamento Departamento { get; set; }
+        public int SupervisorId { get; set; }
         public Supervisor Supervisor { get; set; }
+        public int LoginId { get; set; }
         public Login Login { get; set; }
         public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
     }

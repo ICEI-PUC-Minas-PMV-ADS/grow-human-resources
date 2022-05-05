@@ -1,5 +1,4 @@
-<h2>Funcionarios</h2>
-<hr>
+<app-titulo [titulo]="'Funcionários'"></app-titulo>
 
 <div>
   <div class="mb-2">
@@ -49,21 +48,21 @@
           [style.margin.px]="margemImg"
         >
       </td>
-      <td>{{funcionario.funcionarioId}}</td>
+      <td>{{funcionario.id}}</td>
       <td>{{funcionario.nomeCompleto}}</td>
       <td>{{funcionario.email}}</td>
       <td>{{funcionario.telefone}}</td>
       <td>{{funcionario.salario}}</td>
-      <td>{{funcionario.dataAdmissao}}</td>
-      <td>{{funcionario.dataDemissao}}</td>
-      <td>{{funcionario.perfilFuncionarioId}}</td>
+      <td>{{funcionario.dataAdmissao | DateTimeFormat}}</td>
+      <td>{{funcionario.dataDemissao | DateTimeFormat}}</td>
+      <td>{{funcionario.cargoId}}</td>
       <td>
-        <button class="btn btn-outline-success btn-sm mr-2">
-          <i class="fa-solid fa-pen"></i>
-        </button>
-        <button class="btn btn-outline-danger btn-sm">
-          <i class="fa-solid fa-trash"></i>
-        </button>
+          <button type="button" class="btn btn-outline-success btn-sm mr-2" tooltip="Editar">
+            <i class="fa fa-pen"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+            <i class="fa fa-trash"></i>
+          </button>
       </td>
     </tr>
   </tbody>
@@ -76,5 +75,13 @@
   </tfoot>
 </table>
 
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão deste funcionario?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+  </div>
+</ng-template>
 {{funcionarios | json}}
 
