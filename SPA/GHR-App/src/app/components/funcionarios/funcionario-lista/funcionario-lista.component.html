@@ -1,0 +1,90 @@
+<div  class="card rounded shadow-sm p-3">
+
+  <div  class="d-flex">
+    <div  class="flex-fill pr-3" >
+      <div class="input-group mb-2 ">
+        <div class="input-group-prepend">
+          <div class="input-group-text mr-2">Filtro:</div>
+        </div>
+        <input type="text"
+          class="form-control"
+          placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
+          [(ngModel)]="filtroLista"
+        >
+      </div>
+    </div>
+    <div  class="ms-auto">
+      <a class="d-flex btn btn-outline-success" routerLink="/funcionarios/detalhe">
+          <i class="fa fa-plus-circle my-1"  tooltip="Novo" ></i>
+       </a>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hngover">
+    <thead class="table-dark">
+      <tr>
+        <th class="d-none d-md-table-cell">
+          <button type="button" class="btn btn-outline-light btn-sm"
+            (click)="alternarImagem()"
+          >
+            <b>
+
+              <i class="{{exibirImg ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
+            </b>
+          </button>
+        </th>
+        <th class="d-none d-md-table-cell">#</th>
+        <th>Nome Completo</th>
+        <th class="d-none d-md-table-cell">e-mail</th>
+        <th>Telefone</th>
+        <th class="d-none d-md-table-cell">Salario</th>
+        <th class="d-none d-md-table-cell">Dt. Admissão</th>
+        <th class="d-none d-md-table-cell">Dt. Demissão</th>
+        <th class="d-none d-md-table-cell">Perfil</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="funcionarios && funcionarios.length">
+      <tr *ngFor="let funcionario of funcionariosFiltrados" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+        <td class="d-none d-md-table-cell">
+          <img [collapse]="exibirImg"
+            [isAnimated]="true"
+            src="/assets/img/{{funcionario.imagemURL}}" alt=""
+            [style.width.px]="larguraImg"
+            [style.margin.px]="margemImg"
+          >
+        </td>
+        <td class="d-none d-md-table-cell">{{funcionario.id}}</td>
+        <td>{{funcionario.nomeCompleto}}</td>
+        <td class="d-none d-md-table-cell">{{funcionario.email}}</td>
+        <td>{{funcionario.telefone}}</td>
+        <td class="d-none d-md-table-cell">{{funcionario.salario}}</td>
+        <td class="d-none d-md-table-cell">{{funcionario.dataAdmissao | DateTimeFormat}}</td>
+        <td class="d-none d-md-table-cell">{{funcionario.dataDemissao | DateTimeFormat}}</td>
+        <td class="d-none d-md-table-cell">{{funcionario.cargoId}}</td>
+        <td>
+            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+              <i class="fa fa-trash"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!funcionarios.length">
+      <tr>
+        <td colspan="8" class="text-center" >
+          <h4>Nenhum funcionario encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão deste funcionario?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+  </div>
+</ng-template>
+
+

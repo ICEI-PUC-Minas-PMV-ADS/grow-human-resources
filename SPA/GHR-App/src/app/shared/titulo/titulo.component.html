@@ -1,5 +1,14 @@
-<h2>
-  {{titulo}}
-</h2>
-<hr>
-
+<div class="d-flex p-3 my-3 text-white bg-success rounded shadow-sm">
+  <div class="d-flex align-items-center ">
+    <i class="{{iconClass}}"></i>
+      <div class="lh-1">
+        <h3 class="mb-0">{{titulo}}</h3>
+        <small>{{subtitulo}}</small>
+      </div>
+  </div>
+  <div class="p-3 ms-auto" *ngIf="botaoListar">
+    <button class="btn btn-outline-light" routerLink="/funcionarios/lista">
+      Listar {{titulo}}
+    </button>
+  </div>
+</div>
