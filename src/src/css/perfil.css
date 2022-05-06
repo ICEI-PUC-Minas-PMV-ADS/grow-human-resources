@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+}
+
+body {
+    width: 100%;
+    font-family: Arial;
+}
+
+header {
+    width: 100%;
+    height: 8vh;
+    background-color: #bbe2e9;
+}
+
+img{
+     margin-left: 80%;
+     
+     margin-top:10px;
+}
+.perfil{
+    float: left;
+    margin-top: 0px;
+    
+}
+
+.editar{
+    
+    float: right;
+    margin-right: 50px;
+  
+}
+
+h3{
+ margin-left: 50px;
+
+}
+.link{
+    text-decoration: none;
+    color: black;
+}
+
+.fotodeperfil{
+    margin-top:5%;
+    margin-right:48%;
+}
+
+
+.formularios{
+   margin-top: 90px;
+   margin-left:28%;
+   font-size:20px;
+   font-family: Jaldi Regular;
+   
+  
+
+}
+
+.informaçõespessoais{
+float: left;
+margin-right: 40px;
+
+
+
+
+
+}
+
+
+.informaçõesdecontato{
+   
+float: left;}
+
+#Departamento{
+width: 150px;;
+
+}
+
+#Setor{
+    width: 18%;
+}
+
+#DDD{
+    width:60px;
+}
+#Telefone{
+    width: 150px;
+}
+
+input{
+    border: solid 2px;
+    border-color: #808080;
+}
+
+.Voltar{
+    float:left;
+    margin:122px 30px;
+}
