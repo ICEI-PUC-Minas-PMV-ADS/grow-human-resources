@@ -1,8 +1,8 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -26,12 +26,12 @@ import { MetasComponent } from './components/metas/metas.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { SupervisoresComponent } from './components/supervisores/supervisores.component';
+import { TituloComponent } from './shared/titulo/titulo.component';
 import { UserComponent } from './components/user/user.component';
 
 import { FuncionarioService } from './services/funcionario.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
-import { TituloComponent } from './shared/titulo/titulo.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +61,8 @@ import { TituloComponent } from './shared/titulo/titulo.component';
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    NgxSpinnerModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
@@ -68,7 +70,6 @@ import { TituloComponent } from './shared/titulo/titulo.component';
       progressBar: true
     }),
     TooltipModule.forRoot(),
-    NgxSpinnerModule,
   ],
   providers: [FuncionarioService],
   bootstrap: [AppComponent],
