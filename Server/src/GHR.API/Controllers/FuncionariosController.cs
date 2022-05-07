@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GHR.Persistence;
-using GHR.Domain;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using GHR.Persistence.Contexts;
 using GHR.Application.Contracts;
+using GHR.Application.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 
 namespace GHR.API.Controllers
@@ -30,7 +27,7 @@ namespace GHR.API.Controllers
             {
                 var funcionarios = await _funcionarioService.GetAllFuncionariosAsync(true);
 
-                if (funcionarios == null) return NotFound("GETALL - Nenhum funcionário encontrado.");
+                if (funcionarios == null) return NoContent();
 
                 return Ok(funcionarios);
             }
@@ -49,7 +46,7 @@ namespace GHR.API.Controllers
             {
                 var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(id, true);
 
-                if (funcionario == null) return NotFound($"Funcionário {id} não encontrado.");
+                if (funcionario == null) return NoContent();
 
                 return Ok(funcionario);
             }
@@ -67,7 +64,7 @@ namespace GHR.API.Controllers
             {
                 var funcionario = await _funcionarioService.GetAllFuncionariosByNomeCompletoAsync(nome, true);
 
-                if (funcionario == null) return NotFound($"GETNOME - Nenhum funcionário encontrado.");
+                if (funcionario == null) return NoContent();
 
                 return Ok(funcionario);
             }
@@ -79,13 +76,13 @@ namespace GHR.API.Controllers
             }
         }        
         [HttpPost]
-        public async Task<IActionResult> Post(Funcionario model)
+        public async Task<IActionResult> Post(FuncionarioDto model)
         {
             try
             {
                 var funcionario = await _funcionarioService.AddFuncionarios(model);
 
-                if (funcionario == null) return BadRequest($"POST - Erro ao adicionar Eventos.");
+                if (funcionario == null) return NoContent();
 
                 return Ok(funcionario);
             }
@@ -96,13 +93,13 @@ namespace GHR.API.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Funcionario model)
+        public async Task<IActionResult> Put(int id, FuncionarioDto model)
         {
             try
             {
                 var funcionario = await _funcionarioService.UpdateFuncionario(id, model);
 
-                if (funcionario == null) return BadRequest($"PUT - Erro ao alterar Eventos.");
+                if (funcionario == null) return NoContent();
 
                 return Ok(funcionario);
             }
@@ -117,9 +114,13 @@ namespace GHR.API.Controllers
         {
             try
             {
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(id, true);
+
+                if (funcionario == null) return NoContent();
+
                 return await _funcionarioService.DeleteFuncionario(id) ?
                     Ok($"Funcionário {id} excluído da base de dados.") :
-                    BadRequest($"DELETE - Funcionário {id} não excluído da base de dados.");
+                    throw new Exception("Ocorreu ma falaha ao tentar deletar o funcionario.");
             }
             catch (Exception ex)
             {

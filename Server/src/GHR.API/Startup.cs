@@ -1,3 +1,5 @@
+using System;
+using AutoMapper;
 using GHR.Application;
 using GHR.Application.Contracts;
 using GHR.Persistence;
@@ -32,6 +34,8 @@ namespace GHR.API
             services.AddControllers()
                     .AddNewtonsoftJson(n => n.SerializerSettings.ReferenceLoopHandling = 
                         Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();

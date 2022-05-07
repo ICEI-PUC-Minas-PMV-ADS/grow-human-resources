@@ -9,4 +9,8 @@
     <ProjectReference Include="..\GHR.Persistence\GHR.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
 </Project>
