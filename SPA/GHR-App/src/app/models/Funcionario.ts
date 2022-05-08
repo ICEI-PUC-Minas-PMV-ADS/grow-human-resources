@@ -7,8 +7,8 @@ export interface Funcionario {
   telefone: string;
   salario: number;
   cargoId: number;
-  dataAdmissao?: Date;
-  dataDemissao?: Date;
+  dataAdmissao?: string;
+  dataDemissao?: string;
   imagemURL: string;
   funcionarioAtivo: Boolean;
   departamentoId: number;

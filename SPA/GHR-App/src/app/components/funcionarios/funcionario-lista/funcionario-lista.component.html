@@ -63,7 +63,7 @@
         <td class="d-none d-md-table-cell">{{funcionario.dataDemissao | DateTimeFormat}}</td>
         <td class="d-none d-md-table-cell">{{funcionario.cargoId}}</td>
         <td>
-            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal(template)">
+            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionario.id)">
               <i class="fa fa-trash"></i>
             </button>
         </td>
@@ -81,7 +81,7 @@
 <!-- Modal -->
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Confirma a exclusão deste funcionario?</p>
+    <p>Confirma a exclusão deste funcionario de códgio {{this.funcionarioId}} ?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
   </div>

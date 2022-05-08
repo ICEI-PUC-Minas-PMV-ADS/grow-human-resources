@@ -89,7 +89,7 @@ namespace GHR.API.Controllers
             catch (Exception ex)
             {
 
-                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicianar funcionários. Erro: {ex.Message}");
+                return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar funcionários. Erro: {ex.Message}");
             }
         }
         [HttpPut("{id}")]
@@ -118,9 +118,9 @@ namespace GHR.API.Controllers
 
                 if (funcionario == null) return NoContent();
 
-                return await _funcionarioService.DeleteFuncionario(id) ?
-                    Ok($"Funcionário {id} excluído da base de dados.") :
-                    throw new Exception("Ocorreu ma falaha ao tentar deletar o funcionario.");
+                return await _funcionarioService.DeleteFuncionario(id)
+                    ? Ok(new { message = "Excluído"}) 
+                    : throw new Exception("Ocorreu ma falaha ao tentar deletar o funcionario.");
             }
             catch (Exception ex)
             {

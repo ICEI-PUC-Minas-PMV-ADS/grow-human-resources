@@ -1,6 +1,6 @@
 <div class="card rounded shadow-sm p-2">
 
-  <div class="card-head text-center text-white bg-dark">
+  <div class="card-head text-center text-white bg-secondary">
     <H3>Formulário de Funcionários</H3>
   </div>
 
@@ -163,6 +163,9 @@
  				    <input type="text" class="form-control" placeholder="Informe a data admissão"
              [ngClass]="validarCampo(f.dataAdmissao)"
              formControlName="dataAdmissao"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{funcionario.dataAdmissao | DateTimeFormat}}"
              >
             <div  class="invalid-feedback">
               {{retornarValidacao(f.dataAdmissao, "")}}
@@ -170,7 +173,12 @@
           </div>
  			    <div class="form-group col-md-3 p-1">
  				    <label>Data Desligamento</label>
- 				    <input type="text" class="form-control" formControlName="dataDemissao" placeholder="Informe a data desligamento">
+ 				    <input type="text" class="form-control" placeholder="Informe a data desligamento"
+              formControlName="dataDemissao"
+              [ngClass]="validarCampo(f.dataDemissao)"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              value="{{funcionario.dataDemissao | DateTimeFormat">
           </div>
           <div class="form-group col-md-3 p-1">
  				    <label>Departamento</label>
@@ -207,13 +215,13 @@
  		    </div>
       </div>
 
-      <div class="card-footer bg-dark">
+      <div class="card-footer bg-dark p-0">
  		    <div class="d-flex">
  			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
  				    Cancelar
  			    </button>
- 			    <button class="btn btn-success m-1" [disabled]="!form.valid">
- 				    <span class="spinner-border spinner-border-sm mr-1"></span>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
  				     Salvar
  			    </button>
  		    </div>

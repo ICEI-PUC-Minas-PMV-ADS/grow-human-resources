@@ -4,9 +4,12 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -33,6 +36,7 @@ import { FuncionarioService } from './services/funcionario.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
+defineLocale('pt-br', ptBrLocale);
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +60,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    BsDatepickerModule.forRoot(),
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
     FormsModule,
@@ -70,6 +75,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
       progressBar: true
     }),
     TooltipModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   providers: [FuncionarioService],
   bootstrap: [AppComponent],

@@ -14,8 +14,10 @@ import { FuncionarioService } from 'src/app/services/funcionario.service';
 export class FuncionarioListaComponent implements OnInit {
   modalRef?: BsModalRef;
 
+
   public funcionarios: Funcionario[] = [];
   public funcionariosFiltrados: Funcionario[] = [];
+  public funcionarioId = 0;
 
   public larguraImg = 100;
   public margemImg = 2;
@@ -52,38 +54,52 @@ export class FuncionarioListaComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.getFuncionarios();
+    this.carregarFuncionarios();
     this.spinner.show();
   }
 
   public alternarImagem(): void {
     this.exibirImg = !this.exibirImg;
   }
-  public getFuncionarios(): void {
+  public carregarFuncionarios(): void {
+    this.spinner.show();
     this.funcionarioService.getFuncionarios().subscribe({
       next: (funcionariosRetorno: Funcionario[]) => {
         this.funcionarios = funcionariosRetorno;
         this.funcionariosFiltrados = this.funcionarios;
       },
-      error: (error: any) => {
-        this.spinner.hide();
-        this.toastr.error('Falha ao carregar os funcionários', 'Erro!');
-      },
-      complete: () => this.spinner.hide()
-    });
+      error: (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'),
+    }).add(() => this.spinner.hide());
   }
-  openModal(template: TemplateRef<any>): void {
+  openModal(event: any, template: TemplateRef<any>, funcionarioId: number): void {
+    event.stopPropagation();
+    this.funcionarioId = funcionarioId
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
   confirmar(): void {
     this.modalRef?.hide();
-    this.toastr.success('Exclusão de funcionario realizada', 'Sucesso!');
+    this.spinner.show();
+
+    this.funcionarioService.deleteFuncionario(this.funcionarioId).subscribe(
+      (retornoDelete: any) => {
+        if (retornoDelete.message === "Excluído") {
+          this.toastr.success("Funcionário excluído da base!", "Excluído!")
+          this.spinner.hide();
+          this.carregarFuncionarios();
+        }
+      },
+      (error: any) => {
+        this.toastr.error(`Falha ao excluir funcionário ${this.funcionarioId}`, 'Erro!');
+        console.error(error);
+      }
+    ).add(() => this.spinner.hide());
   }
 
   recusar(): void {
     this.modalRef?.hide();
   }
+
   detalheFuncionario(id: number): void {
     this.router.navigate([`funcionarios/detalhe/${id}`]);
   }
