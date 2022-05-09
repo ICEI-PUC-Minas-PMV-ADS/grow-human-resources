@@ -12,6 +12,8 @@ import { MetasComponent } from './components/metas/metas.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { SupervisoresComponent } from './components/supervisores/supervisores.component';
 import { UserComponent } from './components/user/user.component';
+import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
+import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
 
 
 const routes: Routes = [
@@ -38,12 +40,23 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'departamentos', redirectTo: 'departamentos/lista', pathMatch: 'full' },
+
+  {
+    path: 'departamentos', component: DepartamentosComponent,
+    children: [
+      { path: 'detalhe/:id', component: DepartamentoDetalheComponent },
+      { path: 'detalhe', component: DepartamentoDetalheComponent },
+      { path: 'lista', component: DepartamentoListaComponent }
+    ]
+  },
+
   { path: 'cargos', component: CargosComponent },
   { path: 'departamentos', component: DepartamentosComponent },
   { path: 'metas', component: MetasComponent },
   { path: 'supervisores', component: SupervisoresComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'user/login', pathMatch: 'full' }
 
 ];
 

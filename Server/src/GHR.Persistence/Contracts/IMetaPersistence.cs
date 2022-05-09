@@ -10,10 +10,10 @@ namespace GHR.Persistence.Contracts
     {
         //Metas
         Task<Meta[]> GetAllMetasByNomeMetaAsync(string nome, bool incluirFuncionarios = false);
-        Task<Meta[]> GetAllMetasByDecricaoMetaAsync(string descricao, bool incluirFuncionarios = false);
+        Task<Meta[]> GetAllMetasByDescricaoMetaAsync(string descricao, bool incluirFuncionarios = false);
         Task<Meta[]> GetAllMetasByMetaCumpridaAsync(bool metaCumprida, bool incluirFuncionarios = false);
         Task<Meta[]> GetAllMetasByMetaAprovadaAsync(bool metaAprovada, bool incluirFuncionarios = false);
-        Task<Meta[]> GetAllMetasAsync(string nome, bool incluirFuncionarios = false);
+        Task<Meta[]> GetAllMetasAsync(bool incluirFuncionarios = false);
         Task<Meta> GetMetaByIdAsync(int metaId, bool incluirFuncionarios = false);   
     }
 }

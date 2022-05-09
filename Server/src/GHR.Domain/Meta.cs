@@ -9,7 +9,6 @@ namespace GHR.Domain
     {
         public int Id { get; set; }
         public int SupervisorId { get; set; }
-        public Supervisor Supervisor { get; set; }
         public string NomeMeta { get; set; }
         public string Descricao { get; set; }
         public Boolean MetaCumprida { get; set; }

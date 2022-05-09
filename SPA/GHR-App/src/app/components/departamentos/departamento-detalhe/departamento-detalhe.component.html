@@ -1,0 +1,57 @@
+<div class="card rounded shadow-sm p-2">
+
+  <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Departamentos</H3>
+  </div>
+
+  <form class="row" [formGroup]="form!">
+    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p>
+    <div>
+
+      <div class="card-body bg-light ">
+        <h4 class="border-bottom">Dados Departamento</h4>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-6 p-1">
+            <label>Nome</label>
+            <input type="text" class="form-control" placeholder="Nome Departamento"
+              [ngClass]="validarCampo(f.nomeDepartamento)"
+              formControlName="nomeDepartamento"
+            />
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.nomeDepartamento, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-2 p-1 ">
+            <label>Sigla</label>
+            <input type="text" class="form-control" placeholder="Sigla Departamento"
+              [ngClass]="validarCampo(f.siglaDepartamento)"
+              formControlName="siglaDepartamento"
+            >
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.siglaDepartamento, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-4 p-1 ">
+            <label>Supervisor</label>
+            <input type="text" class="form-control" placeholder="Supervisor do Departamento" disabled>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-dark p-0">
+ 		    <div class="d-flex">
+ 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+ 				    Cancelar
+ 			    </button>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
+ 				     Salvar
+ 			    </button>
+ 		    </div>
+ 	    </div>
+    </div>
+  </form>
+ </div>

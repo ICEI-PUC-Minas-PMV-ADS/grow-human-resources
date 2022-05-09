@@ -20,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { CadastroComponent } from './components/user/cadastro/cadastro.component';
 import { CargosComponent } from './components/cargos/cargos.component';
+import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
+import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
 import { FuncionarioDetalheComponent } from './components/funcionarios/funcionario-detalhe/funcionario-detalhe.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
@@ -32,6 +34,7 @@ import { SupervisoresComponent } from './components/supervisores/supervisores.co
 import { TituloComponent } from './shared/titulo/titulo.component';
 import { UserComponent } from './components/user/user.component';
 
+import { DepartamentoService } from './services/departamento.service';
 import { FuncionarioService } from './services/funcionario.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
@@ -43,6 +46,8 @@ defineLocale('pt-br', ptBrLocale);
     CadastroComponent,
     CargosComponent,
     DateTimeFormatPipe,
+    DepartamentoDetalheComponent,
+    DepartamentoListaComponent,
     DepartamentosComponent,
     FuncionarioDetalheComponent,
     FuncionarioListaComponent,
@@ -77,7 +82,8 @@ defineLocale('pt-br', ptBrLocale);
     TooltipModule.forRoot(),
     BsDatepickerModule.forRoot(),
   ],
-  providers: [FuncionarioService],
+  providers: [FuncionarioService,
+              DepartamentoService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

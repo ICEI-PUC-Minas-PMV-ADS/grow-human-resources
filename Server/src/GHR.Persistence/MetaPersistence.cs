@@ -21,8 +21,7 @@ namespace GHR.Persistence
         //Metas
         public async Task<Meta> GetMetaByIdAsync(int metaId, bool incluirFuncionarios)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -40,10 +39,9 @@ namespace GHR.Persistence
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Meta[]> GetAllMetasAsync(string nome, bool incluirFuncionarios = false)
+        public async Task<Meta[]> GetAllMetasAsync(bool incluirFuncionarios = false)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -59,10 +57,9 @@ namespace GHR.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Meta[]> GetAllMetasByDecricaoMetaAsync(string descricao, bool incluirFuncionarios = false)
+        public async Task<Meta[]> GetAllMetasByDescricaoMetaAsync(string descricao, bool incluirFuncionarios = false)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -81,8 +78,7 @@ namespace GHR.Persistence
 
         public async Task<Meta[]> GetAllMetasByMetaAprovadaAsync(bool metaAprovada, bool incluirFuncionarios)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -94,15 +90,14 @@ namespace GHR.Persistence
             query = query
                 .AsNoTracking()
                 .OrderBy(m => m.Id)
-                .Where(m => m.MetaAprovada == true);
+                .Where(m => m.MetaAprovada == metaAprovada);
 
             return await query.ToArrayAsync();
         }
 
         public async Task<Meta[]> GetAllMetasByMetaCumpridaAsync(bool metaCumprida, bool incluirFuncionarios)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -114,15 +109,14 @@ namespace GHR.Persistence
             query = query
                 .AsNoTracking()
                 .OrderBy(m => m.Id)
-                .Where(m => m.MetaCumprida == true);
+                .Where(m => m.MetaCumprida == metaCumprida);
 
             return await query.ToArrayAsync();
         }
 
         public async Task<Meta[]> GetAllMetasByNomeMetaAsync(string nome, bool incluirFuncionarios = true)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(m => m.Supervisor);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {

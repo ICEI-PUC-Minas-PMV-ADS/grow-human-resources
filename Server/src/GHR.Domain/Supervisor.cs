@@ -11,5 +11,7 @@ namespace GHR.Domain
         public int? MetaId { get; set; }
         public int FuncionarioId { get; set; }
         public int DepartamentoId { get; set; }
+        public DateTime? DataPromocao { get; set; }
+        public string UltimoCargo { get; set; }
     }
 }

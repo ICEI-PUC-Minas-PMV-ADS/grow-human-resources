@@ -38,8 +38,15 @@ namespace GHR.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IFuncionarioService, FuncionarioService>();
+            services.AddScoped<IDepartamentoService, DepartamentoService>();
+            services.AddScoped<ISupervisorService, SupervisorService>();
+            services.AddScoped<IMetaService, MetaService>();
+
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IFuncionarioPersistence, FuncionarioPersistence>();
+            services.AddScoped<IDepartamentoPersistence, DepartamentoPersistence>();
+            services.AddScoped<ISupervisorPersistence, SupervisorPersistence>();
+            services.AddScoped<IMetaPersistence, MetaPersistence>();
 
 
             services.AddCors();

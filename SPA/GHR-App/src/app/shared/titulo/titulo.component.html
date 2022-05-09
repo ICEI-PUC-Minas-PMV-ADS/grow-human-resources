@@ -7,7 +7,7 @@
       </div>
   </div>
   <div class="p-3 ms-auto" *ngIf="botaoListar">
-    <button class="btn btn-outline-light" routerLink="/funcionarios/lista">
+    <button class="btn btn-outline-light" (click)="listar()">
       Listar {{titulo}}
     </button>
   </div>
