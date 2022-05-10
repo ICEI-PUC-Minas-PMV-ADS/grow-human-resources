@@ -1,0 +1,58 @@
+<div  class="card rounded shadow-sm p-2">
+
+  <div  class="d-flex">
+    <div  class="flex-fill pr-3" >
+      <div class="input-group mb-2 ">
+        <div class="input-group-prepend">
+          <div class="input-group-text mr-2">Filtro:</div>
+        </div>
+        <input type="text"
+          class="form-control"
+          placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
+          [(ngModel)]="filtroLista"
+        >
+      </div>
+    </div>
+    <div  class="ms-auto">
+      <a class="d-flex btn btn-outline-success" routerLink="/cargos/detalhe">
+          <i class="fa fa-plus-circle my-1"  tooltip="Novo" ></i>
+       </a>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th class="d-none d-md-table-cell">#</th>
+        <th>Cargo</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="cargos && cargos.length">
+      <tr *ngFor="let cargo of cargosFiltrados" (click)="detalheCargo(cargo.id)" style="cursor: pointer">
+        <td class="d-none d-md-table-cell">{{cargo.id}}</td>
+        <td>{{cargo.nomeCargo}}</td>
+        <td>
+            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, cargo.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!cargos.length">
+      <tr>
+        <td colspan="8" class="text-center" >
+          <h4>Nenhum cargo encontrado!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão deste cargo de códgio {{this.cargoId}} ?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+  </div>
+</ng-template>

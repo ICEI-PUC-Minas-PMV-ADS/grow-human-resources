@@ -1,0 +1,68 @@
+<div  class="card rounded shadow-sm p-2">
+
+  <div  class="d-flex">
+    <div  class="flex-fill pr-3" >
+      <div class="input-group mb-2 ">
+        <div class="input-group-prepend">
+          <div class="input-group-text mr-2">Filtro:</div>
+        </div>
+        <input type="text"
+          class="form-control"
+          placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
+          [(ngModel)]="filtroLista"
+        >
+      </div>
+    </div>
+    <div  class="ms-auto">
+      <a class="d-flex btn btn-outline-success" routerLink="/metas/detalhe">
+          <i class="fa fa-plus-circle my-1"  tooltip="Novo" ></i>
+       </a>
+    </div>
+  </div>
+
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th class="d-none d-md-table-cell">#</th>
+        <th>Meta</th>
+        <th >Descrição</th>
+        <th class="d-none d-md-table-cell">Cumprida?</th>
+        <th class="d-none d-md-table-cell">Aprovada?</th>
+        <th class="d-none d-md-table-cell">Inicio Planejado</th>
+        <th class="d-none d-md-table-cell">Fim Planejado</th>
+        <th>Opções</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="metas && metas.length">
+      <tr *ngFor="let meta of metasFiltrados" (click)="detalheMeta(meta.id)" style="cursor: pointer">
+        <td class="d-none d-md-table-cell">{{meta.id}}</td>
+        <td>{{meta.nomeMeta}}</td>
+        <td>{{meta.descricao}}</td>
+        <td class="d-none d-md-table-cell">{{meta.metaCumprida}}</td>
+        <td class="d-none d-md-table-cell">{{meta.metaAprovada}}</td>
+        <td class="d-none d-md-table-cell">{{meta.inicioPlanejado}}</td>
+        <td class="d-none d-md-table-cell">{{meta.fimPlanejado}}</td>
+        <td>
+            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, meta.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="!metas.length">
+      <tr>
+        <td colspan="8" class="text-center" >
+          <h4>Nenhuma meta encontrada!</h4>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão desta meta de códgio {{this.metaId}} ?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+  </div>
+</ng-template>

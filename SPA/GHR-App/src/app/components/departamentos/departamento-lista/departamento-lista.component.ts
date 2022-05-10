@@ -94,6 +94,6 @@ export class DepartamentoListaComponent implements OnInit {
   }
 
   detalheDepartamento(id: number): void {
-    this.router.navigate([`Departamentos/detalhe/${id}`]);
+    this.router.navigate([`departamentos/detalhe/${id}`]);
   }
 }

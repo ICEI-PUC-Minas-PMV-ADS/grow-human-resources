@@ -1,3 +1,6 @@
+import { CargoDetalheComponent } from './components/cargos/cargo-detalhe/cargo-detalhe.component';
+import { MetaDetalheComponent } from './components/metas/meta-Detalhe/meta-Detalhe.component';
+import { MetaListaComponent } from './components/metas/meta-lista/meta-lista.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -19,6 +22,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { CadastroComponent } from './components/user/cadastro/cadastro.component';
+import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista.component';
 import { CargosComponent } from './components/cargos/cargos.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
@@ -38,12 +42,17 @@ import { DepartamentoService } from './services/departamento.service';
 import { FuncionarioService } from './services/funcionario.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { MetaService } from './services/MetaService.service';
+import { CargoService } from './services/Cargo.service';
+import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
+    CargoDetalheComponent,
+    CargoListaComponent,
     CargosComponent,
     DateTimeFormatPipe,
     DepartamentoDetalheComponent,
@@ -51,15 +60,19 @@ defineLocale('pt-br', ptBrLocale);
     DepartamentosComponent,
     FuncionarioDetalheComponent,
     FuncionarioListaComponent,
+    FuncionarioMetaComponent,
     FuncionariosComponent,
     LoginComponent,
     PerfilComponent,
+    MetaDetalheComponent,
+    MetaListaComponent,
     MetasComponent,
     NavComponent,
     PerfilComponent,
     SupervisoresComponent,
     TituloComponent,
-    UserComponent
+    UserComponent,
+    FuncionarioMetaComponent
    ],
   imports: [
     AppRoutingModule,
@@ -83,7 +96,9 @@ defineLocale('pt-br', ptBrLocale);
     BsDatepickerModule.forRoot(),
   ],
   providers: [FuncionarioService,
-              DepartamentoService],
+    DepartamentoService,
+    MetaService,
+    CargoService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 

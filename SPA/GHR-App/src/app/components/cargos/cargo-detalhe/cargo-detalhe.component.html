@@ -1,0 +1,42 @@
+<div class="card rounded shadow-sm p-2">
+
+  <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Departamentos</H3>
+  </div>
+
+  <form class="row" [formGroup]="form!">
+    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p>
+    <div>
+
+      <div class="card-body bg-light ">
+        <h4 class="border-bottom">Dados Cargo</h4>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col p-1">
+            <label>Cargo</label>
+            <input type="text" class="form-control" placeholder="Nome cargo"
+              [ngClass]="validarCampo(f.nomeCargo)"
+              formControlName="nomeCargo"
+            />
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.nomeCargo, "")}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-dark p-0">
+ 		    <div class="d-flex">
+ 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+ 				    Cancelar
+ 			    </button>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
+ 				     Salvar
+ 			    </button>
+ 		    </div>
+ 	    </div>
+    </div>
+  </form>
+ </div>

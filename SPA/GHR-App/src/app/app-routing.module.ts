@@ -14,6 +14,11 @@ import { SupervisoresComponent } from './components/supervisores/supervisores.co
 import { UserComponent } from './components/user/user.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
+import { MetaListaComponent } from './components/metas/meta-lista/meta-lista.component';
+import { MetaDetalheComponent } from './components/metas/meta-Detalhe/meta-Detalhe.component';
+import { CargoDetalheComponent } from './components/cargos/cargo-detalhe/cargo-detalhe.component';
+import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista.component';
+import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 
 
 const routes: Routes = [
@@ -36,7 +41,8 @@ const routes: Routes = [
     children: [
       { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
       { path: 'detalhe', component: FuncionarioDetalheComponent },
-      { path: 'lista', component: FuncionarioListaComponent }
+      { path: 'lista', component: FuncionarioListaComponent },
+      { path: 'meta/:id', component: FuncionarioMetaComponent }
     ]
   },
 
@@ -51,9 +57,29 @@ const routes: Routes = [
     ]
   },
 
+  { path: 'metas', redirectTo: 'metas/lista', pathMatch: 'full' },
+
+  {
+    path: 'metas', component: MetasComponent,
+    children: [
+      { path: 'detalhe/:id', component: MetaDetalheComponent },
+      { path: 'detalhe', component: MetaDetalheComponent },
+      { path: 'lista', component: MetaListaComponent }
+    ]
+  },
+
+  { path: 'cargos', redirectTo: 'cargos/lista', pathMatch: 'full' },
+
+  {
+    path: 'cargos', component: CargosComponent,
+    children: [
+      { path: 'detalhe/:id', component: CargoDetalheComponent },
+      { path: 'detalhe', component: CargoDetalheComponent },
+      { path: 'lista', component: CargoListaComponent }
+    ]
+  },
+
   { path: 'cargos', component: CargosComponent },
-  { path: 'departamentos', component: DepartamentosComponent },
-  { path: 'metas', component: MetasComponent },
   { path: 'supervisores', component: SupervisoresComponent },
   { path: '', redirectTo: 'user/login', pathMatch: 'full' },
   { path: '**', redirectTo: 'user/login', pathMatch: 'full' }

@@ -1,4 +1,4 @@
-import { Metas } from "./Metas";
+import { Meta } from "./Meta";
 
 export interface Funcionario {
   id: number;
@@ -14,5 +14,5 @@ export interface Funcionario {
   departamentoId: number;
   supervisorId: number;
   loginId: number;
-  metas: Metas[];
+  metas: Meta[];
 }

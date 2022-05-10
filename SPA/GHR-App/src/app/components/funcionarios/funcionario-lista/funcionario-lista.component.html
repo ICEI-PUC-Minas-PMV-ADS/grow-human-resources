@@ -39,13 +39,12 @@
         <th>Telefone</th>
         <th class="d-none d-md-table-cell">Salario</th>
         <th class="d-none d-md-table-cell">Dt. Admissão</th>
-        <th class="d-none d-md-table-cell">Dt. Demissão</th>
         <th class="d-none d-md-table-cell">Perfil</th>
         <th>Opções</th>
       </tr>
     </thead>
     <tbody *ngIf="funcionarios && funcionarios.length">
-      <tr *ngFor="let funcionario of funcionariosFiltrados" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+      <tr *ngFor="let funcionario of funcionariosFiltrados" >
         <td class="d-none d-md-table-cell">
           <img [collapse]="exibirImg"
             [isAnimated]="true"
@@ -54,18 +53,34 @@
             [style.margin.px]="margemImg"
           >
         </td>
-        <td class="d-none d-md-table-cell">{{funcionario.id}}</td>
-        <td>{{funcionario.nomeCompleto}}</td>
-        <td class="d-none d-md-table-cell">{{funcionario.email}}</td>
-        <td>{{funcionario.telefone}}</td>
-        <td class="d-none d-md-table-cell">{{funcionario.salario}}</td>
-        <td class="d-none d-md-table-cell">{{funcionario.dataAdmissao | DateTimeFormat}}</td>
-        <td class="d-none d-md-table-cell">{{funcionario.dataDemissao | DateTimeFormat}}</td>
-        <td class="d-none d-md-table-cell">{{funcionario.cargoId}}</td>
+        <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.id}}
+        </td>
+        <td (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.nomeCompleto}}
+        </td>
+        <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.email}}
+        </td>
+        <td (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.telefone}}
+        </td>
+        <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.salario}}
+        </td>
+        <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.dataAdmissao | DateTimeFormat}}
+        </td>
+        <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
+          {{funcionario.cargoId}}
+        </td>
         <td>
-            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionario.id)">
-              <i class="fa fa-trash"></i>
-            </button>
+          <button type="button" class="btn btn-outline-info btn-sm m-1" tooltip="Metas" (click)="funcionarioMeta(funcionario.id)">
+            <i class="fa fa-medal"></i>
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionario.id)">
+            <i class="fa fa-trash"></i>
+          </button>
         </td>
       </tr>
     </tbody>

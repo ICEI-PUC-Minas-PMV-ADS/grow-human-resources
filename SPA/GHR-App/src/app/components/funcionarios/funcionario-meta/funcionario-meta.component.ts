@@ -1,21 +1,19 @@
-import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-
+import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 import { Funcionario } from 'src/app/models/Funcionario';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
-import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 
 @Component({
-  selector: 'app-funcionario-detalhe',
-  templateUrl: './funcionario-detalhe.component.html',
-  styleUrls: ['./funcionario-detalhe.component.scss']
+  selector: 'app-funcionario-meta',
+  templateUrl: './funcionario-meta.component.html',
+  styleUrls: ['./funcionario-meta.component.scss']
 })
-export class FuncionarioDetalheComponent implements OnInit {
+export class FuncionarioMetaComponent implements OnInit {
 
   form!: FormGroup;
   locale = 'pt-br';
@@ -135,6 +133,5 @@ export class FuncionarioDetalheComponent implements OnInit {
       ).add(() => this.spinner.hide());
     };
   }
+
 }
-
-

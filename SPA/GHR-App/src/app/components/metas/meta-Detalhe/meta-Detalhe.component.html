@@ -1,0 +1,126 @@
+<div class="card rounded shadow-sm p-2">
+
+  <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Metas</H3>
+  </div>
+
+  <form class="row" [formGroup]="form!">
+    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p>
+    <div>
+
+      <div class="card-body bg-light ">
+        <h4 class="border-bottom">Dados Meta</h4>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-8 p-1">
+            <label>Nome</label>
+            <input type="text" class="form-control" placeholder="Nome Meta"
+              [ngClass]="validarCampo(f.nomeMeta)"
+              formControlName="nomeMeta"
+            />
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.nomeMeta, "")}}
+            </div>
+          </div>
+                    <div class="form-group col-md-2 p-1">
+            <label>Meta Aprovada?</label>
+            <select class="form-select" aria-label="Default select example"
+              [ngClass]="validarCampo(f.metaAprovada)"
+              formControlName="metaAprovada">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+          </div>
+          <div class="form-group col-md-2 p-1">
+            <label>Meta Cumprida?</label>
+            <select class="form-select" aria-label="Default select example"
+              [ngClass]="validarCampo(f.metaCumprida)"
+              formControlName="metaCumprida">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row d-md-flex">
+          <div class="form-group col p-1">
+            <label>Descrição</label>
+            <textarea type="text" class="form-control" placeholder="Descrição da meta" style="height: 200px"
+              [ngClass]="validarCampo(f.descricao)"
+              formControlName="descricao"></textarea>
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.descricao, "")}}
+            </div>
+          </div>
+        </div>
+        <div class="form-row d-md-flex">
+
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Início Planejado</label>
+ 				    <input type="text" class="form-control" placeholder="Início Planejado"
+             [ngClass]="validarCampo(f.inicioPlanejado)"
+             formControlName="inicioPlanejado"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{meta.inicioPlanejado | DateTimeFormat}}"
+             >
+            <div  class="invalid-feedback">
+              {{retornarValidacao(f.inicioPlanejado, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Fim Planejado</label>
+ 				    <input type="text" class="form-control" placeholder="Fim Planejado"
+             [ngClass]="validarCampo(f.fimPlanejado)"
+             formControlName="fimPlanejado"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{meta.fimPlanejado | DateTimeFormat}}"
+             >
+            <div  class="invalid-feedback">
+              {{retornarValidacao(f.fimPlanejado, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Início Realizado</label>
+ 				    <input type="text" class="form-control" placeholder="Início Realizado"
+             [ngClass]="validarCampo(f.inicioRealizado)"
+             formControlName="inicioRealizado"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{meta.inicioRealizado | DateTimeFormat}}"
+             >
+            <div  class="invalid-feedback">
+              {{retornarValidacao(f.inicioRealizado, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Fim Realizado</label>
+ 				    <input type="text" class="form-control" placeholder="Início Realizado"
+             [ngClass]="validarCampo(f.inicioRealizado)"
+             formControlName="inicioRealizado"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{meta.inicioRealizado | DateTimeFormat}}"
+             >
+            <div  class="invalid-feedback">
+              {{retornarValidacao(f.inicioRealizado, "")}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-dark p-0">
+ 		    <div class="d-flex">
+ 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+ 				    Cancelar
+ 			    </button>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
+ 				     Salvar
+ 			    </button>
+ 		    </div>
+ 	    </div>
+    </div>
+  </form>
+ </div>

@@ -1,6 +1,88 @@
 <div class="card rounded shadow-sm p-2">
 
   <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Funcionários x Metas</H3>
+  </div>
+
+  <div class="row" [formGroup]="form!">
+    <!-- <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p> -->
+    <div>
+
+      <div class="card-body bg-light ">
+        <h4 class="border-bottom">Dados Pessoais</h4>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-6 p-1">
+            <label>Nome</label>
+            <input type="text" class="form-control"
+              [ngClass]="validarCampo(f.nomeCompleto)"
+              formControlName="nomeCompleto"
+              disabled>
+          </div>
+          <div class="form-group col-md-6 p-1 ">
+            <label>e-mail</label>
+            <input type="text" class="form-control" placeholder="fulanodetal@email.com.br"
+              [ngClass]="validarCampo(f.email)"
+              formControlName="email"
+              disabled>
+          </div>
+        </div>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-3 p-1 ">
+           <label>Telefone</label>
+           <input type="text" class="form-control" placeholder="(99) 9999-9999"
+            [ngClass]="validarCampo(f.telefone)"
+            formControlName="telefone"
+            disabled>
+          </div>
+
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Data Admissão</label>
+ 				    <input type="text" class="form-control" placeholder="Informe a data admissão"
+             [ngClass]="validarCampo(f.dataAdmissao)"
+             formControlName="dataAdmissao"
+             bsDatepicker
+             [bsConfig]="bsConfig"
+             value="{{funcionario.dataAdmissao | DateTimeFormat}}"
+             disabled>
+          </div>
+ 			    <div class="form-group col-md-3 p-1">
+ 				    <label>Data Desligamento</label>
+ 				    <input type="text" class="form-control" placeholder="Informe a data desligamento"
+              formControlName="dataDemissao"
+              [ngClass]="validarCampo(f.dataDemissao)"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              value="{{funcionario.dataDemissao | DateTimeFormat}}"
+              disabled>
+          </div>
+          <div class="form-group col-md-3 p-1">
+ 				    <label>Departamento</label>
+ 				    <input type="text" class="form-control" disabled>
+ 			    </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-dark p-0">
+ 		    <div class="d-flex">
+ 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+ 				    Cancelar
+ 			    </button>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
+ 				     Salvar
+ 			    </button>
+ 		    </div>
+ 	    </div>
+    </div>
+  </div>
+ </div>
+
+ <div class="card rounded shadow-sm p-2">
+
+  <div class="card-head text-center text-white bg-secondary">
     <H3>Formulário de Funcionários</H3>
   </div>
 
@@ -229,3 +311,4 @@
     </div>
   </form>
  </div>
+

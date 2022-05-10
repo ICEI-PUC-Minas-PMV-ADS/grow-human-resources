@@ -71,6 +71,7 @@ export class FuncionarioListaComponent implements OnInit {
       error: (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'),
     }).add(() => this.spinner.hide());
   }
+
   openModal(event: any, template: TemplateRef<any>, funcionarioId: number): void {
     event.stopPropagation();
     this.funcionarioId = funcionarioId
@@ -102,5 +103,9 @@ export class FuncionarioListaComponent implements OnInit {
 
   detalheFuncionario(id: number): void {
     this.router.navigate([`funcionarios/detalhe/${id}`]);
+  }
+
+  funcionarioMeta(id: number): void {
+    this.router.navigate([`funcionarios/meta/${+id}`]);
   }
 }

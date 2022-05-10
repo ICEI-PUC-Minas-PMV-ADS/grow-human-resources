@@ -41,12 +41,14 @@ namespace GHR.API
             services.AddScoped<IDepartamentoService, DepartamentoService>();
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IMetaService, MetaService>();
+            services.AddScoped<ICargoService, CargoService>();
 
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IFuncionarioPersistence, FuncionarioPersistence>();
             services.AddScoped<IDepartamentoPersistence, DepartamentoPersistence>();
             services.AddScoped<ISupervisorPersistence, SupervisorPersistence>();
             services.AddScoped<IMetaPersistence, MetaPersistence>();
+            services.AddScoped<ICargoPersistence, CargoPersistence>();
 
 
             services.AddCors();
