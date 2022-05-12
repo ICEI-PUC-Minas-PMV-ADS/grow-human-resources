@@ -42,7 +42,7 @@ import { DepartamentoService } from './services/departamento.service';
 import { FuncionarioService } from './services/funcionario.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
-import { MetaService } from './services/MetaService.service';
+import { MetaService } from './services/Meta.service';
 import { CargoService } from './services/Cargo.service';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 

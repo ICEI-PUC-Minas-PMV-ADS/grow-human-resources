@@ -18,6 +18,7 @@ namespace GHR.Application.helpers
             CreateMap<Login, LoginDto>().ReverseMap();
             CreateMap<Meta, MetaDto>().ReverseMap();
             CreateMap<Supervisor, SupervisorDto>().ReverseMap();
+            CreateMap<FuncionarioMeta, FuncionarioMetaDto>().ReverseMap();
         }
     }
 }

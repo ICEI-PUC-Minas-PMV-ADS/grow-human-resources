@@ -42,6 +42,7 @@ namespace GHR.API
             services.AddScoped<ISupervisorService, SupervisorService>();
             services.AddScoped<IMetaService, MetaService>();
             services.AddScoped<ICargoService, CargoService>();
+            services.AddScoped<IFuncionarioMetaService, FuncionarioMetaService>();
 
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IFuncionarioPersistence, FuncionarioPersistence>();
@@ -49,6 +50,7 @@ namespace GHR.API
             services.AddScoped<ISupervisorPersistence, SupervisorPersistence>();
             services.AddScoped<IMetaPersistence, MetaPersistence>();
             services.AddScoped<ICargoPersistence, CargoPersistence>();
+            services.AddScoped<IFuncionarioMetaPersistence, FuncionarioMetaPersistence>();
 
 
             services.AddCors();

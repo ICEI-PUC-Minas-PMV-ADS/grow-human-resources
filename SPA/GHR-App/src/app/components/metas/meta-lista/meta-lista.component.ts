@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Departamento } from 'src/app/models/Departamento';
 import { Meta } from 'src/app/models/Meta';
 import { DepartamentoService } from 'src/app/services/departamento.service';
-import { MetaService } from 'src/app/services/MetaService.service';
+import { MetaService } from 'src/app/services/Meta.service';
 
 @Component({
   selector: 'app-meta-lista',

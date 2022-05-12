@@ -1,314 +1,195 @@
-<div class="card rounded shadow-sm p-2">
-
+<div class="card rounded shadow-sm p-2 bg-light">
+<!-- Cabeçaljo do formulário -->
   <div class="card-head text-center text-white bg-secondary">
     <H3>Formulário de Funcionários x Metas</H3>
   </div>
 
-  <div class="row" [formGroup]="form!">
-    <!-- <p>Form value: {{form.value | json}}</p>
+  <form class="row" [formGroup]="form!">
+<!--    <p>Form value: {{form.value | json}}</p>
     <p>Form status: {{form.status | json}}</p> -->
     <div>
 
-      <div class="card-body bg-light ">
-        <h4 class="border-bottom">Dados Pessoais</h4>
+      <div class="card-body bg-white ">
+        <h4 class="border-bottom">Dados do Funcionário</h4>
 
         <div class="form-row d-md-flex">
           <div class="form-group col-md-6 p-1">
             <label>Nome</label>
-            <input type="text" class="form-control"
-              [ngClass]="validarCampo(f.nomeCompleto)"
+            <input type="text" class="form-control disabled"
               formControlName="nomeCompleto"
               disabled>
           </div>
-          <div class="form-group col-md-6 p-1 ">
-            <label>e-mail</label>
-            <input type="text" class="form-control" placeholder="fulanodetal@email.com.br"
-              [ngClass]="validarCampo(f.email)"
-              formControlName="email"
-              disabled>
-          </div>
-        </div>
-
-        <div class="form-row d-md-flex">
-          <div class="form-group col-md-3 p-1 ">
-           <label>Telefone</label>
-           <input type="text" class="form-control" placeholder="(99) 9999-9999"
-            [ngClass]="validarCampo(f.telefone)"
-            formControlName="telefone"
-            disabled>
-          </div>
-
           <div class="form-group col-md-3 p-1">
  				    <label>Data Admissão</label>
- 				    <input type="text" class="form-control" placeholder="Informe a data admissão"
+ 				    <input type="text" class="form-control"
              [ngClass]="validarCampo(f.dataAdmissao)"
              formControlName="dataAdmissao"
-             bsDatepicker
-             [bsConfig]="bsConfig"
              value="{{funcionario.dataAdmissao | DateTimeFormat}}"
              disabled>
           </div>
  			    <div class="form-group col-md-3 p-1">
  				    <label>Data Desligamento</label>
- 				    <input type="text" class="form-control" placeholder="Informe a data desligamento"
+ 				    <input type="text" class="form-control"
               formControlName="dataDemissao"
               [ngClass]="validarCampo(f.dataDemissao)"
-              bsDatepicker
-              [bsConfig]="bsConfig"
               value="{{funcionario.dataDemissao | DateTimeFormat}}"
               disabled>
           </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Departamento</label>
- 				    <input type="text" class="form-control" disabled>
- 			    </div>
+        </div>
+        <h4 class="border-bottom mx-2 mt-2 mb-0">Meta Filtro</h4>
+        <div class="form-row">
+          <div class="row p-2">
+            <div class="form-group">
+              <div class="input-group px-3 py-2">
+                <label class="input-group-text">Selecione uma meta: </label>
+                <select class="form-select" aria-label="Default select example"
+                  formControlName="id">
+                  <option *ngFor='let meta of metas'
+                    value={{meta.id}}>{{meta.nomeMeta}}</option>
+                  </select>
+                  <button class="btn btn-outline-success p-1"
+                  (click)="consultarMeta()">
+                  <b>Consultar</b>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row d-md-flex ">
+          <div class="row col py-0 px-5">
+            <div class="bg-light">
+              <h4 class="border-bottom mt-3">Meta:</h4>
+              <div class="form-row d-md-flex">
+                <div class="form-group col-md-6 p-1">
+                  <label>Nome Meta</label>
+                  <input type="text"
+                  class="form-control"
+                  formControlName="nomeMeta"
+                  disabled>
+                </div>
+                <div class="form-group col-md-3 p-1">
+                  <label>Meta Cumprida?</label>
+                  <select class="form-select disabed" aria-label="Default select example"
+                  formControlName="metaCumprida"
+                  disabled>
+                    <option value="false">Não</option>
+                    <option option value="true">Sim</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-3 p-1">
+                  <label>Início Planejado</label>
+                  <input type="text" class="form-control"
+                    formControlName="inicioPlanejado"
+                    [ngClass]="validarCampo(fMeta.inicioPlanejado)"
+                    value="{{meta.inicioPlanejado | DateTimeFormat}}"
+                    disabled>
+                </div>
+              </div>
+              <div class="form-row d-md-flex">
+                <div class="form-group col-md-3 p-1">
+                  <label>Fim Planejado</label>
+                  <input type="text" class="form-control"
+                    formControlName="fimPlanejado"
+                    [ngClass]="validarCampo(fMeta.fimPlanejado)"
+                    value="{{meta.fimPlanejado | DateTimeFormat}}"
+                    disabled>
+                </div>
+                <div class="form-group col-md-3 p-1">
+                  <label>Início Realizado</label>
+                  <input type="text" class="form-control"
+                    formControlName="inicioRealizado"
+                    [ngClass]="validarCampo(fMeta.inicioRealizado)"
+                    value="{{meta.inicioRealizado | DateTimeFormat}}"
+                    disabled>
+                </div>
+                <div class="form-group col-md-3 p-1">
+                  <label>Fim Realizado</label>
+                  <input type="text" class="form-control"
+                    formControlName="fimRealizado"
+                    [ngClass]="validarCampo(fMeta.fimRealizado)"
+                    value="{{meta.fimRealizado | DateTimeFormat}}"
+                    disabled>
+                </div>
+                <div class="form-group col-md-3 p-1">
+                  <label>Supervisor</label>
+                  <input type="text" class="form-control"
+                    formControlName="supervisorId"
+                    [ngClass]="validarCampo(fMeta.supervisorId)"
+                    disabled>
+                </div>
+              </div>
+              <div class="form-row d-md-flex">
+                <div class="card-footer col bg-dark">
+                  <div class="d-flex ">
+                    <button class="btn btn-success p-1 ms-auto" [disabled]="!form.valid" (click)="associarFuncionarioMeta()">
+                      Associar Meta
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="card-footer bg-dark p-0">
- 		    <div class="d-flex">
- 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
- 				    Cancelar
- 			    </button>
- 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
- 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
- 				     Salvar
- 			    </button>
- 		    </div>
- 	    </div>
-    </div>
-  </div>
- </div>
-
- <div class="card rounded shadow-sm p-2">
-
-  <div class="card-head text-center text-white bg-secondary">
-    <H3>Formulário de Funcionários</H3>
-  </div>
-
-  <form class="row" [formGroup]="form!">
-    <!-- <p>Form value: {{form.value | json}}</p>
-    <p>Form status: {{form.status | json}}</p> -->
-    <div>
-
-      <div class="card-body bg-light ">
-        <h4 class="border-bottom">Dados Pessoais</h4>
-
-        <div class="form-row d-md-flex">
-          <div class="form-group col-md-6 p-1">
-            <label>Nome</label>
-            <input type="text" class="form-control" placeholder="Nome Completo"
-              [ngClass]="validarCampo(f.nomeCompleto)"
-              formControlName="nomeCompleto"
-            />
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.nomeCompleto, "")}}
-            </div>
-          </div>
-          <div class="form-group col-md-6 p-1 ">
-            <label>e-mail Pessoal</label>
-            <input type="text" class="form-control" placeholder="fulanodetal@email.com.br"
-              [ngClass]="validarCampo(f.email)"
-              formControlName="email"
-            >
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.email, "")}}
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row d-md-flex">
-          <div class="form-group col-md-3 p-1 ">
-           <label>Telefone</label>
-           <input type="text" class="form-control" placeholder="(99) 9999-9999"
-            [ngClass]="validarCampo(f.telefone)"
-            formControlName="telefone"
-           >
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.telefone, "")}}
-            </div>
-          </div>
-          <div class="form-group col-md-3 p-1">
-            <label>CPF</label>
-            <input type="text" class="form-control" disabled placeholder="999.999.999-99">
-          </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Título de Eleitor</label>
- 				    <input type="text" class="form-control" disabled placeholder="Somente números">
-          </div>
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Identidade</label>
- 				    <input type="text" class="form-control" disabled placeholder="Somente números">
- 			    </div>
-        </div>
-
-        <div class="form-row d-md-flex">
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Data Expedição</label>
- 				    <input type="text" class="form-control" disabled placeholder="dd/mm/aaaa">
- 			    </div>
-          <div class="form-group col-md-3 p-1">
-            <label>Órgão Expedição</label>
- 				    <input type="text" class="form-control" disabled placeholder="Órgão Expedição">
- 			    </div>
-          <div class="form-group col-md-2 p-1">
-            <label>UF</label>
- 				    <input type="text" class="form-control" disabled placeholder="UF">
- 			    </div>
-          <div class="form-group col-md-2 p-1">
-            <label>Estado Civil</label>
- 				    <input type="text" class="form-control" disabled placeholder="Civil">
- 			    </div>
-          <div class="form-group col-md-2 p-1">
-            <label>Dependentes?</label>
- 				    <input type="text" class="form-control" disabled placeholder="Dependentes">
- 			    </div>
- 		    </div>
-
-        <h4 class="border-bottom mt-2">Endereço</h4>
-
-        <div class="form-row d-flex">
-          <div class="form-group col-md-3 p-1">
- 			  	  <label label>CEP</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Somente números">
- 			    </div>
- 			    <div class="form-group col-md-6 p-1">
- 			  	  <label label>Rua</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Nome da rua">
- 			    </div>
-          <div class="form-group col-md-3 p-1">
- 			  	  <label label>Número</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Número da Casa">
- 			    </div>
-        </div>
-
-        <div class="form-row d-flex">
-          <div class="form-group col-md-3 p-1">
- 			  	  <label label>Complemento</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Casa/Apto/Andar">
- 			    </div>
- 			    <div class="form-group col-md-6 p-1">
- 			  	  <label label>Bairro</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Nome do Bairro">
- 			    </div>
-          <div class="form-group col-md-3 p-1">
- 			  	  <label label>Cidade</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Nome Cidade">
- 			    </div>
-        </div>
-
-        <div class="form-row d-flex">
-          <div class="form-group col-md-1 p-1">
-            <label>UF</label>
- 				    <input type="text" class="form-control" disabled placeholder="UF">
- 			    </div>
-          <div class="form-group col-md-2 p-1">
- 			  	  <label label>País</label>
- 			    	<input type="text" class="form-control" disabled placeholder="País">
- 			    </div>
- 			    <div class="form-group col-md-3 p-1">
- 			  	  <label label>Caixa Postal</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Caixa Postal">
- 			    </div>
-          <div class="form-group col-md-6 p-1">
- 			  	  <label label>Complemento</label>
- 			    	<input type="text" class="form-control" disabled placeholder="Complemento">
- 			    </div>
-        </div>
-
-        <h4 class="border-bottom mt-2">Empresa</h4>
-
-        <div class="form-row d-flex">
-          <div class="form-group col-md-6 p-1">
- 				    <label>e-mail Empresa</label>
- 				    <input type="text" class="form-control" disabled  placeholder="@br.growhumanresource.com">
- 			    </div>
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Cargo</label>
- 				    <input type="text" class="form-control" disabled placeholder="Cargo">
- 			    </div>
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Salário</label>
- 				    <input type="number" class="form-control" placeholder="R$ 9.999.999,99"
-              [ngClass]="validarCampo(f.salario)"
-              formControlName="salario"
-            >
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.salario, "")}}
-            </div>
- 			    </div>
-        </div>
-
-        <div class="form-row d-flex">
-           <div class="form-group col-md-3 p-1">
- 				    <label>Data Admissão</label>
- 				    <input type="text" class="form-control" placeholder="Informe a data admissão"
-             [ngClass]="validarCampo(f.dataAdmissao)"
-             formControlName="dataAdmissao"
-             bsDatepicker
-             [bsConfig]="bsConfig"
-             value="{{funcionario.dataAdmissao | DateTimeFormat}}"
-             >
-            <div  class="invalid-feedback">
-              {{retornarValidacao(f.dataAdmissao, "")}}
-            </div>
-          </div>
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Data Desligamento</label>
- 				    <input type="text" class="form-control" placeholder="Informe a data desligamento"
-              formControlName="dataDemissao"
-              [ngClass]="validarCampo(f.dataDemissao)"
-              bsDatepicker
-              [bsConfig]="bsConfig"
-              value="{{funcionario.dataDemissao | DateTimeFormat}}">
-          </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Departamento</label>
- 				    <input type="text" class="form-control" disabled placeholder="Informe o departamento">
- 			    </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Supervisor</label>
- 				    <input type="text" class="form-control" disabled placeholder="Informe o supervisor">
- 			    </div>
-        </div>
-
-        <div class="form-row d-flex">
-          <div class="form-group col-md-3 p-1">
- 				    <label>Gerência Administrativa</label>
- 				    <input type="text" class="form-control" disabled placeholder="Gerência Administrativa">
-          </div>
-          <div class="form-group col-md-3 p-1 ">
- 				    <label>Gerência Operacional</label>
- 				    <input type="text" class="form-control" disabled placeholder="Gerência de Operações">
-          </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Diretoria</label>
- 				  <input type="text" class="form-control" disabled placeholder="Diretoria">
- 			    </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Caminho Imagem</label>
- 				    <input type="text" class="form-control" placeholder="URL da foto"
-             [ngClass]="validarCampo(f.imagemURL)"
-             formControlName="imagemURL" >
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.imagemURL, "")}}
-            </div>
-          </div>
- 		    </div>
-      </div>
-
-      <div class="card-footer bg-dark p-0">
- 		    <div class="d-flex">
- 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
- 				    Cancelar
- 			    </button>
- 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
- 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
- 				     Salvar
- 			    </button>
- 		    </div>
- 	    </div>
     </div>
   </form>
- </div>
+</div>
 
+<div  class="d-flex">
+  <div  class="p-3 mt-2" >
+    <h4 class="border-bottom">Lista de Metas Por Funcionario</h4>
+  </div>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th class="d-none d-md-table-cell">#</th>
+      <th>Nome Meta</th>
+      <th class="d-none d-md-table-cell">Meta Cumprida</th>
+      <th>Inicio Planejado</th>
+      <th class="d-none d-md-table-cell">Fim Planejado</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="funcionarioMetas && funcionarioMetas.length">
+    <tr *ngFor="let funcionarioMeta of funcionarioMetas" >
+      <td class="d-none d-md-table-cell">
+        {{funcionarioMeta.metaId}}
+      </td>
+      <td>
+        {{funcionarioMeta.meta.nomeMeta}}
+      </td>
+      <td class="d-none d-md-table-cell" >
+        {{funcionarioMeta.metaCumprida}}
+      </td>
+      <td>
+        {{funcionarioMeta.meta.inicioPlanejado}}
+      </td>
+      <td class="d-none d-md-table-cell">
+        {{funcionarioMeta.meta.fimPlanejado}}
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionarioMeta.funcionarioId, funcionarioMeta.metaId)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!funcionarioMetas.length">
+    <tr>
+      <td colspan="8" class="text-center" >
+        <h4>Nenhuma meta encontrada!</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Confirma a exclusão desta meta?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+  </div>
+</ng-template>

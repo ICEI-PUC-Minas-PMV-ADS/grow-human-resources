@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { MetaServiceService } from './MetaService.service';
+import { MetaService } from './Meta.service';
 
-describe('Service: MetaService', () => {
+describe('Service: Meta', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MetaServiceService]
+      providers: [MetaService]
     });
   });
 
-  it('should ...', inject([MetaServiceService], (service: MetaServiceService) => {
+  it('should ...', inject([MetaService], (service: MetaService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -65,7 +65,7 @@ export class FuncionarioDetalheComponent implements OnInit {
         telefone: ['', Validators.required],
         salario: ['', Validators.required],
         dataAdmissao: ['', Validators.required],
-        dataDemissao: [''],
+        dataDemissao: [null],
         imagemURL: ['', Validators.required],
       });
   }
