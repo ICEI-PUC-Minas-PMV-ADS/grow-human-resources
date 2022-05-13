@@ -1,17 +1,25 @@
-import { Cargo } from './../../../models/Cargo';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CargoService } from 'src/app/services/Cargo.service';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators} from '@angular/forms';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
+
+import { Cargo } from './../../../models/Cargo';
+
+import { CargoService } from 'src/app/services/Cargo.service';
 
 @Component({
   selector: 'app-cargo-detalhe',
   templateUrl: './cargo-detalhe.component.html',
   styleUrls: ['./cargo-detalhe.component.scss']
 })
+
 export class CargoDetalheComponent implements OnInit {
 
   form!: FormGroup;
@@ -19,84 +27,78 @@ export class CargoDetalheComponent implements OnInit {
   cargo = {} as Cargo;
   estadoSalvar: string = "post";
 
-  get f(): any
-  {
+  get f(): any {
+
     return this.form.controls;
   }
 
   constructor(
+    private cargoService: CargoService,
     private fb: FormBuilder,
     private router: ActivatedRoute,
-    private cargoService: CargoService,
     private spinner: NgxSpinnerService,
-    private toastr: ToastrService)
-  {
+    private toastr: ToastrService) {
   }
 
 
-  ngOnInit(): void
-  {
-    this.carregarCargo();
-    this.validation();
+  ngOnInit(): void {
+  
+    this.validarFormulario();
+    this.consultarCargos();
   }
-  public validation(): void
-  {
-    this.form = this.fb.group(
-      {
-        nomeCargo: ['', [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(50)
-        ]]
-      });
+  
+  public validarFormulario(): void {
+    this.form = this.fb.group({
+      nomeCargo: ['', [ Validators.required,
+                        Validators.minLength(4),
+                        Validators.maxLength(50)]],
+      nivel: ['', Validators.required],
+      recursosHumanos: ['', Validators.required],
+    });
   }
 
-  public limparFormulario(): void
-  {
+  public limparFormulario(): void   {
+ 
     this.form.reset();
   }
 
-  public validarCampo(campoForm: FormControl): any
-  {
+  public validarCampo(campoForm: FormControl): any {
+  
     return ValidadorFormularios.verificarErroCampo(campoForm);
   }
 
-  public retornarValidacao(nomeCampo: FormControl, nomeElemento: string): any
-  {
+  public retornarValidacao(nomeCampo: FormControl, nomeElemento: string): any {
+  
     return ValidadorFormularios.retornarMensagemErro(nomeCampo, nomeElemento);
   }
 
-  public carregarCargo(): void
-  {
+  public consultarCargos(): void {
+    
     const cargoIdParam = this.router.snapshot.paramMap.get('id');
 
-    if (cargoIdParam !== null)
-    {
+    if (cargoIdParam !== null){
+      
       this.spinner.show();
 
       this.estadoSalvar = "put";
 
       this.cargoService.getCargoById(+cargoIdParam).subscribe(
-        (cargo: Cargo) =>
-        {
+        (cargo: Cargo) => {
           this.cargo = { ...cargo };
-          this.form.patchValue(this.cargo);
-        },
-        (error: any) =>
-        {
-          this.toastr.error("Não foi possível carregar a página de departamento", "Erro!");
+          this.form.patchValue(this.cargo);},
+        (error: any) => {
+          this.toastr.error("Não foi possível carregar os dados de cargos", "Erro!");
           console.error(error);
-        }
-      ).add(() => this.spinner.hide());
+        }).add(() => this.spinner.hide());
     }
   }
 
-  public salvarAlteracao(): void
-  {
+  public salvarAlteracao(): void {
+    
     this.spinner.show();
 
-    if (this.form.valid)
-    {
+    if (this.form.valid) {
+
       this.cargo = (this.estadoSalvar === 'post')
         ? { ...this.form.value }
         : { id: this.cargo.id, ...this.form.value };
@@ -104,12 +106,10 @@ export class CargoDetalheComponent implements OnInit {
       this.cargoService[this.estadoSalvar](this.cargo).subscribe(
         () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
         (error: any) => {
-          console.error(error);
           this.toastr.error("Erro ao salvar alterações.", "Erro!");
-        }
-      ).add(() => this.spinner.hide());
+          console.error(error);
+        }).add(() => this.spinner.hide());
     };
   }
-
 
 }

@@ -31,6 +31,9 @@
               <option value="false">Não</option>
               <option value="true">Sim</option>
             </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.metaAprovada, "")}}
+            </div>
           </div>
           <div class="form-group col-md-2 p-1">
             <label>Meta Cumprida?</label>
@@ -40,6 +43,9 @@
               <option value="false">Não</option>
               <option value="true">Sim</option>
             </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.metaCumprida, "")}}
+            </div>
           </div>
         </div>
         <div class="form-row d-md-flex">

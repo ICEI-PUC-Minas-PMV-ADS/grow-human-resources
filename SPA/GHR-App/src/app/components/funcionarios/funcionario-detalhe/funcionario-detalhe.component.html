@@ -147,8 +147,10 @@
  			    </div>
  			    <div class="form-group col-md-3 p-1">
  				    <label>Salário</label>
- 				    <input type="number" class="form-control" placeholder="R$ 9.999.999,99"
+ 				    <input class="form-control"
               [ngClass]="validarCampo(f.salario)"
+              currencyMask
+              [options]="{prefix: 'R$ ', thousands: '.', decimal: ','}"
               formControlName="salario"
             >
             <div class="invalid-feedback">
@@ -181,9 +183,13 @@
               value="{{funcionario.dataDemissao | DateTimeFormat}}">
           </div>
           <div class="form-group col-md-3 p-1">
- 				    <label>Departamento</label>
- 				    <input type="text" class="form-control" disabled placeholder="Informe o departamento">
- 			    </div>
+            <label>Selecione um Departamento: </label>
+            <select class="form-select form-control" aria-label="Default select example"
+              formControlName="departamentoId">
+              <option *ngFor='let departamento of departamentos'
+                value={{departamento.id}}>{{departamento.nomeDepartamento}}</option>
+              </select>
+          </div>
           <div class="form-group col-md-3 p-1">
  				    <label>Supervisor</label>
  				    <input type="text" class="form-control" disabled placeholder="Informe o supervisor">

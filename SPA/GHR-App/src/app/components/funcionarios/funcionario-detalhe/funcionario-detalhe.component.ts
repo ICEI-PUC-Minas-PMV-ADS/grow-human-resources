@@ -9,6 +9,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Funcionario } from 'src/app/models/Funcionario';
 import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
+import { Departamento } from 'src/app/models/Departamento';
+import { DepartamentoService } from 'src/app/services/departamento.service';
 
 @Component({
   selector: 'app-funcionario-detalhe',
@@ -21,6 +23,7 @@ export class FuncionarioDetalheComponent implements OnInit {
   locale = 'pt-br';
   funcionario = {} as Funcionario;
   estadoSalvar: string = "post";
+  departamentos: Departamento[] = [];
 
   get f(): any
   {
@@ -37,6 +40,7 @@ export class FuncionarioDetalheComponent implements OnInit {
     private localeService: BsLocaleService,
     private router: ActivatedRoute,
     private funcionarioService: FuncionarioService,
+    private departamentoService: DepartamentoService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService)
   {
@@ -46,8 +50,9 @@ export class FuncionarioDetalheComponent implements OnInit {
 
   ngOnInit(): void
   {
-    this.carregarFuncionario();
     this.validation();
+    this.carregarFuncionario();
+    this.carregarDepartamento();
   }
   public validation(): void
   {
@@ -67,6 +72,8 @@ export class FuncionarioDetalheComponent implements OnInit {
         dataAdmissao: ['', Validators.required],
         dataDemissao: [null],
         imagemURL: ['', Validators.required],
+        departamentoId: [''],
+        funcionarioAtivo: ['true']
       });
   }
 
@@ -119,12 +126,10 @@ export class FuncionarioDetalheComponent implements OnInit {
       this.funcionario = (this.estadoSalvar === 'post')
         ? { ...this.form.value }
         : { id: this.funcionario.id, ...this.form.value };
-
-      this.funcionario.funcionarioAtivo = true;
+      console.log(this.funcionario.departamentoId)
       this.funcionario.loginId = 1;
       this.funcionario.supervisorId = 1;
       this.funcionario.cargoId = 1;
-      this.funcionario.departamentoId = 1;
 
       this.funcionarioService[this.estadoSalvar](this.funcionario).subscribe(
         () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
@@ -135,6 +140,24 @@ export class FuncionarioDetalheComponent implements OnInit {
       ).add(() => this.spinner.hide());
     };
   }
+
+   public carregarDepartamento(): void
+  {
+      this.spinner.show();
+
+      this.departamentoService.getDepartamentos().subscribe(
+        (departamentoRetorno: Departamento[]) =>
+        {
+          this.departamentos = departamentoRetorno;
+        },
+        (error: any) =>
+        {
+          this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
+          console.error(error);
+        }
+      ).add(() => this.spinner.hide());
+    }
+
 }
 
 

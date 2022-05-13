@@ -41,10 +41,10 @@ namespace GHR.Persistence.Context
         public async Task<Funcionario[]> GetAllFuncionariosByNomeCompletoAsync(string nome, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
-                .Include(f => f.Cargo)
-                .Include(f => f.Departamento)
-                .Include(f => f.Supervisor)
-                .Include(f => f.Login);
+                .Include(c => c.Cargo)
+                .Include(d => d.Departamento)
+                .Include(s => s.Supervisor)
+                .Include(l => l.Login);
 
             if (incluirMetas)
             {

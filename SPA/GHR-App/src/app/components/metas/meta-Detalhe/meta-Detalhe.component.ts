@@ -47,26 +47,18 @@ export class MetaDetalheComponent implements OnInit {
   {
     this.form = this.fb.group(
       {
-        nomeMeta: ['', [
-          Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(50)
-        ]],
-        descricao: ['', [
-          Validators.required,
-          Validators.minLength(50),
-          Validators.maxLength(500)
-        ]],
-        metaCumprida: ['', [
-          Validators.required
-        ]],
-        metaAprovada: ['', [
-          Validators.required
-        ]],
-        inicioPlanejado: [''],
-        fimPlanejado: [''],
-        inicioRealizado: [''],
-        fimRealizado: [''],
+        nomeMeta: ['', [  Validators.required,
+                          Validators.minLength(4),
+                          Validators.maxLength(50)]],
+        descricao: ['', [ Validators.required,
+                          Validators.minLength(50),
+                          Validators.maxLength(500)]],
+        metaCumprida: ['', [ Validators.required]],
+        metaAprovada: ['', [ Validators.required]],
+        inicioPlanejado: [null],
+        fimPlanejado: [null],
+        inicioRealizado: [null],
+        fimRealizado: [null],
       });
   }
 

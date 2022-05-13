@@ -13,7 +13,7 @@
         <h4 class="border-bottom">Dados Cargo</h4>
 
         <div class="form-row d-md-flex">
-          <div class="form-group col p-1">
+          <div class="form-group col-md-6 p-1">
             <label>Cargo</label>
             <input type="text" class="form-control" placeholder="Nome cargo"
               [ngClass]="validarCampo(f.nomeCargo)"
@@ -23,6 +23,39 @@
               {{retornarValidacao(f.nomeCargo, "")}}
             </div>
           </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Nível</label>
+            <select class="form-select form-control" 
+              aria-label="Default select example"
+              formControlName="nivel"
+              [ngClass]="validarCampo(f.nivel)">
+              <option value=01>Auxiliar</option>
+              <option value=02>Assistente</option>
+              <option value=03>Analista</option>
+              <option value=04>Líder</option>
+              <option value=05>Supervisor</option>
+              <option value=06>Coordenador</option>
+              <option value=07>Gerente</option>
+              <option value=08>Diretor</option>
+              <option value=09>Presidente</option>
+            </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.nivel, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Recursos Homanos?</label>
+            <select class="form-select form-control" 
+              aria-label="Default select example"
+              formControlName="recursosHumanos"
+              [ngClass]="validarCampo(f.recursosHumanos)">
+              <option value=false>Não</option>
+              <option value=true>Sim</option>
+            </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.recursosHumanos, "")}}
+            </div>            
+          </div>          
         </div>
       </div>
 

@@ -45,6 +45,7 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { MetaService } from './services/Meta.service';
 import { CargoService } from './services/Cargo.service';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -73,7 +74,7 @@ defineLocale('pt-br', ptBrLocale);
     TituloComponent,
     UserComponent,
     FuncionarioMetaComponent
-   ],
+  ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -84,6 +85,7 @@ defineLocale('pt-br', ptBrLocale);
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    NgxCurrencyModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
