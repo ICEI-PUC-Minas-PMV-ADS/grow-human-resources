@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    [Migration("20220504165710_Initial")]
-    partial class Initial
+    [Migration("20220514211247_Initial2")]
+    partial class Initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,8 +24,17 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("DepartamentoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nivel")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NomeCargo")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("RecursosHumanos")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -38,14 +47,14 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("MetaId")
+                    b.Property<int?>("MetaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("NomeDepartamento")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SiglaDepartamento")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -58,10 +67,10 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("CargoId")
+                    b.Property<int>("CargoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DataAdmissao")
+                    b.Property<string>("DataAdmissao")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataDemissao")
@@ -79,11 +88,23 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("ImagemURL")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("LoginId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("LoginId1")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("NomeCompleto")
                         .HasColumnType("TEXT");
 
                     b.Property<float>("Salario")
                         .HasColumnType("REAL");
+
+                    b.Property<int>("SupervisorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("SupervisorId1")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Telefone")
                         .HasColumnType("TEXT");
@@ -93,6 +114,10 @@ namespace GHR.Persistence.Migrations
                     b.HasIndex("CargoId");
 
                     b.HasIndex("DepartamentoId");
+
+                    b.HasIndex("LoginId1");
+
+                    b.HasIndex("SupervisorId1");
 
                     b.ToTable("Funcionarios");
                 });
@@ -153,9 +178,6 @@ namespace GHR.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FuncionarioId")
-                        .IsUnique();
-
                     b.ToTable("Login");
                 });
 
@@ -192,12 +214,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("SupervisorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SupervisorId1")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SupervisorId1");
 
                     b.ToTable("Metas");
                 });
@@ -208,6 +225,9 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("DataPromocao")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DepartamentoId")
                         .HasColumnType("INTEGER");
 
@@ -217,10 +237,10 @@ namespace GHR.Persistence.Migrations
                     b.Property<int?>("MetaId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.Property<string>("UltimoCargo")
+                        .HasColumnType("TEXT");
 
-                    b.HasIndex("FuncionarioId")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("Supervisores");
                 });
@@ -229,7 +249,9 @@ namespace GHR.Persistence.Migrations
                 {
                     b.HasOne("GHR.Domain.Cargo", "Cargo")
                         .WithMany()
-                        .HasForeignKey("CargoId");
+                        .HasForeignKey("CargoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("GHR.Domain.Departamento", "Departamento")
                         .WithMany()
@@ -237,9 +259,21 @@ namespace GHR.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GHR.Domain.Login", "Login")
+                        .WithMany()
+                        .HasForeignKey("LoginId1");
+
+                    b.HasOne("GHR.Domain.Supervisor", "Supervisor")
+                        .WithMany()
+                        .HasForeignKey("SupervisorId1");
+
                     b.Navigation("Cargo");
 
                     b.Navigation("Departamento");
+
+                    b.Navigation("Login");
+
+                    b.Navigation("Supervisor");
                 });
 
             modelBuilder.Entity("GHR.Domain.FuncionarioMeta", b =>
@@ -261,38 +295,9 @@ namespace GHR.Persistence.Migrations
                     b.Navigation("Meta");
                 });
 
-            modelBuilder.Entity("GHR.Domain.Login", b =>
-                {
-                    b.HasOne("GHR.Domain.Funcionario", null)
-                        .WithOne("Login")
-                        .HasForeignKey("GHR.Domain.Login", "FuncionarioId");
-                });
-
-            modelBuilder.Entity("GHR.Domain.Meta", b =>
-                {
-                    b.HasOne("GHR.Domain.Supervisor", "Supervisor")
-                        .WithMany()
-                        .HasForeignKey("SupervisorId1");
-
-                    b.Navigation("Supervisor");
-                });
-
-            modelBuilder.Entity("GHR.Domain.Supervisor", b =>
-                {
-                    b.HasOne("GHR.Domain.Funcionario", null)
-                        .WithOne("Supervisor")
-                        .HasForeignKey("GHR.Domain.Supervisor", "FuncionarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("GHR.Domain.Funcionario", b =>
                 {
                     b.Navigation("FuncionariosMetas");
-
-                    b.Navigation("Login");
-
-                    b.Navigation("Supervisor");
                 });
 
             modelBuilder.Entity("GHR.Domain.Meta", b =>

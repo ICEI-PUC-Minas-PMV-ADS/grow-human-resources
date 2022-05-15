@@ -3,4 +3,5 @@ export interface Cargo {
   nomeCargo: string;
   nivel: string;
   recursosHumanos: boolean;
+  departamentoId: number;
 }

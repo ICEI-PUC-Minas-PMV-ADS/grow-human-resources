@@ -6,6 +6,7 @@ export interface Funcionario {
   nomeCompleto: string;
   email: string;
   telefone: string;
+  cpf: string;
   salario: number;
   cargoId: number;
   dataAdmissao?: string;

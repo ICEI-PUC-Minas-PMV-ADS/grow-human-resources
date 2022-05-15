@@ -76,6 +76,7 @@ namespace GHR.API.Controllers
                     $"Erro ao tentar recuperar cargos. Erro: {ex.Message}");
             }
         }
+        
         [HttpPost]
         public async Task<IActionResult> Post(CargoDto model)
         {
@@ -94,6 +95,7 @@ namespace GHR.API.Controllers
                 $"Erro ao tentar adicionar cargo. Erro: {ex.Message}");
             }
         }
+        
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, CargoDto model)
         {

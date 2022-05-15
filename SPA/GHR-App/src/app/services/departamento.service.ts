@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -11,7 +12,7 @@ import { Departamento } from '../models/Departamento';
 )
 export class DepartamentoService {
 
-  public baseURL = 'https://localhost:5001/api/departamentos'
+  public baseURL = environment.apiURL + 'api/departamentos'
 
   constructor(private http: HttpClient) { }
 

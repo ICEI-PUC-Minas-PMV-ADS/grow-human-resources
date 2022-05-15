@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -61,6 +62,13 @@ export class FuncionarioListaComponent implements OnInit {
   public alternarImagem(): void {
     this.exibirImg = !this.exibirImg;
   }
+
+  public exibirImagem(imagemURL: string): string {
+    return (imagemURL !== 'semfoto.jpg')
+      ? `${environment.apiURL}resources/images/${imagemURL}`
+      : 'assets/img/semImagem.jfif';
+  }
+
   public carregarFuncionarios(): void {
     this.spinner.show();
     this.funcionarioService.getFuncionarios().subscribe({

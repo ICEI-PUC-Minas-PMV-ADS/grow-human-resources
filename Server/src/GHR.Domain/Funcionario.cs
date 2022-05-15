@@ -14,8 +14,8 @@ namespace GHR.Domain
         public float Salario { get; set; }
         public int CargoId { get; set; }
         public Cargo Cargo { get; set; }
-        public DateTime? DataAdmissao { get; set; }
-        public DateTime? DataDemissao { get; set; }
+        public string DataAdmissao { get; set; }
+        public string DataDemissao { get; set; }
         public string ImagemURL { get; set; }
         public Boolean FuncionarioAtivo { get; set; }
         public int DepartamentoId { get; set; }

@@ -2,7 +2,7 @@
 
 namespace GHR.Persistence.Migrations
 {
-    public partial class AjusteMeta3 : Migration
+    public partial class Initial2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

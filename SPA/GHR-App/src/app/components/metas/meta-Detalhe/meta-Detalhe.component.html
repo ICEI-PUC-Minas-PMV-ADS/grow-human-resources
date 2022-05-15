@@ -102,15 +102,15 @@
           </div>
           <div class="form-group col-md-3 p-1">
  				    <label>Fim Realizado</label>
- 				    <input type="text" class="form-control" placeholder="Início Realizado"
-             [ngClass]="validarCampo(f.inicioRealizado)"
-             formControlName="inicioRealizado"
+ 				    <input type="text" class="form-control" placeholder="Fim Realizado"
+             [ngClass]="validarCampo(f.fimRealizado)"
+             formControlName="fimRealizado"
              bsDatepicker
              [bsConfig]="bsConfig"
-             value="{{meta.inicioRealizado | DateTimeFormat}}"
+             value="{{meta.fimRealizado | DateTimeFormat}}"
              >
             <div  class="invalid-feedback">
-              {{retornarValidacao(f.inicioRealizado, "")}}
+              {{retornarValidacao(f.fimRealizado, "")}}
             </div>
           </div>
         </div>

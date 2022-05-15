@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 import { Meta } from '../models/Meta';
 
@@ -11,7 +12,7 @@ import { Meta } from '../models/Meta';
 )
 export class MetaService {
 
-  public baseURL = 'https://localhost:5001/api/metas'
+  public baseURL = environment.apiURL + 'api/metas'
 
   constructor(private http: HttpClient) { }
 

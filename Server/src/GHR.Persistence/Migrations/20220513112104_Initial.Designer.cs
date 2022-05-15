@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    [Migration("20220509133114_AjusteMeta3")]
-    partial class AjusteMeta3
+    [Migration("20220513112104_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,8 +24,14 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Nivel")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NomeCargo")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("RecursosHumanos")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -208,12 +214,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("SupervisorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SupervisorId1")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("SupervisorId1");
 
                     b.ToTable("Metas");
                 });
@@ -224,6 +225,9 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime?>("DataPromocao")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("DepartamentoId")
                         .HasColumnType("INTEGER");
 
@@ -232,6 +236,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<int?>("MetaId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("UltimoCargo")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -286,15 +293,6 @@ namespace GHR.Persistence.Migrations
                     b.Navigation("Funcionario");
 
                     b.Navigation("Meta");
-                });
-
-            modelBuilder.Entity("GHR.Domain.Meta", b =>
-                {
-                    b.HasOne("GHR.Domain.Supervisor", "Supervisor")
-                        .WithMany()
-                        .HasForeignKey("SupervisorId1");
-
-                    b.Navigation("Supervisor");
                 });
 
             modelBuilder.Entity("GHR.Domain.Funcionario", b =>

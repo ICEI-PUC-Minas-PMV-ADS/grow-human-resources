@@ -13,6 +13,8 @@ import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 import { Cargo } from './../../../models/Cargo';
 
 import { CargoService } from 'src/app/services/Cargo.service';
+import { Departamento } from 'src/app/models/Departamento';
+import { DepartamentoService } from 'src/app/services/departamento.service';
 
 @Component({
   selector: 'app-cargo-detalhe',
@@ -26,6 +28,7 @@ export class CargoDetalheComponent implements OnInit {
   locale = 'pt-br';
   cargo = {} as Cargo;
   estadoSalvar: string = "post";
+  public departamentos: Departamento[] = [];
 
   get f(): any {
 
@@ -34,6 +37,7 @@ export class CargoDetalheComponent implements OnInit {
 
   constructor(
     private cargoService: CargoService,
+    private departamentoService: DepartamentoService,
     private fb: FormBuilder,
     private router: ActivatedRoute,
     private spinner: NgxSpinnerService,
@@ -45,6 +49,7 @@ export class CargoDetalheComponent implements OnInit {
   
     this.validarFormulario();
     this.consultarCargos();
+    this.consultarDepartamento();
   }
   
   public validarFormulario(): void {
@@ -54,6 +59,7 @@ export class CargoDetalheComponent implements OnInit {
                         Validators.maxLength(50)]],
       nivel: ['', Validators.required],
       recursosHumanos: ['', Validators.required],
+      departamentoId: ['', Validators.required],
     });
   }
 
@@ -103,6 +109,8 @@ export class CargoDetalheComponent implements OnInit {
         ? { ...this.form.value }
         : { id: this.cargo.id, ...this.form.value };
 
+
+      console.log(this.cargo.departamentoId)
       this.cargoService[this.estadoSalvar](this.cargo).subscribe(
         () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
         (error: any) => {
@@ -112,4 +120,20 @@ export class CargoDetalheComponent implements OnInit {
     };
   }
 
+  public consultarDepartamento(): void
+  {
+      this.spinner.show();
+
+      this.departamentoService.getDepartamentos().subscribe(
+        (departamentoRetorno: Departamento[]) =>
+        {
+          this.departamentos = departamentoRetorno;
+        },
+        (error: any) =>
+        {
+          this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
+          console.error(error);
+        }
+      ).add(() => this.spinner.hide());
+    }
 }

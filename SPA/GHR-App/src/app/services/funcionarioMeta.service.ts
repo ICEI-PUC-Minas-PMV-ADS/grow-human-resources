@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { FuncionarioMeta } from '../models/FuncionarioMeta';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionarioMetaService {
-  public baseURL = 'https://localhost:5001/api/funcionariosMetas'
+  public baseURL = environment.apiURL + 'api/funcionariosMetas'
 
   constructor(private http: HttpClient) { }
 

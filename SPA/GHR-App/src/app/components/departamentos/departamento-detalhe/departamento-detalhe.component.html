@@ -13,7 +13,7 @@
         <h4 class="border-bottom">Dados Departamento</h4>
 
         <div class="form-row d-md-flex">
-          <div class="form-group col-md-6 p-1">
+          <div class="form-group col-md-10 p-1">
             <label>Nome</label>
             <input type="text" class="form-control" placeholder="Nome Departamento"
               [ngClass]="validarCampo(f.nomeDepartamento)"
@@ -32,11 +32,6 @@
             <div class="invalid-feedback">
               {{retornarValidacao(f.siglaDepartamento, "")}}
             </div>
-          </div>
-          <div class="form-group col-md-4 p-1 ">
-            <label>Supervisor</label>
-            <input type="text" class="form-control" placeholder="Supervisor do Departamento" disabled>
-
           </div>
         </div>
       </div>

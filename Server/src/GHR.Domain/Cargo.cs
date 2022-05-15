@@ -9,5 +9,8 @@ namespace GHR.Domain
     {
         public int Id { get; set; }
         public string NomeCargo { get; set; }
+        public string Nivel { get; set; }
+        public Boolean RecursosHumanos { get; set; }
+        public int DepartamentoId { get; set; }
     }
 }

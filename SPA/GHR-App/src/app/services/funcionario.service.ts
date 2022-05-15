@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators'
+import { environment } from 'src/environments/environment';
 
 import { Funcionario } from '../models/Funcionario';
 
@@ -11,7 +12,7 @@ import { Funcionario } from '../models/Funcionario';
 )
 export class FuncionarioService {
 
-  public baseURL = 'https://localhost:5001/api/funcionarios'
+  public baseURL = environment.apiURL +  'api/funcionarios'
 
   constructor(private http: HttpClient) { }
 
@@ -48,6 +49,19 @@ export class FuncionarioService {
   public deleteFuncionario(id: number): Observable<any> {
     return this.http
       .delete<string>(`${this.baseURL}/${id}`)
+      .pipe(take(1));
+  }
+
+  public postUpload(funcionarioId: number, file: File): Observable<Funcionario> {
+    
+    const fileToUpload = file[0] as File;
+    const formData = new FormData();
+
+    formData.append('file', fileToUpload, 'foto.jpg');
+    console.log(formData, fileToUpload,   )
+    
+    return this.http
+      .post<Funcionario>(`${this.baseURL}/upload-image/${funcionarioId}`, formData)
       .pipe(take(1));
   }
 }

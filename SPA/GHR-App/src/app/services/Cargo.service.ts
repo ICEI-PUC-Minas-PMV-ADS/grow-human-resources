@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { take } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Cargo } from '../models/Cargo';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Cargo } from '../models/Cargo';
 })
 export class CargoService {
 
-  public baseURL = 'https://localhost:5001/api/cargos'
+  public baseURL = environment.apiURL + 'api/cargos'
 
   constructor(private http: HttpClient) { }
 

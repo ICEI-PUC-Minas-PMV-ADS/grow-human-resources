@@ -21,8 +21,6 @@ namespace GHR.Application.Dtos
         MinLength(2, ErrorMessage = "O campo {0} deve conter no mínimo 2 caracteres."),
         MaxLength(5, ErrorMessage = "O campo {0} deve conter no máximo 5 caracteres")]
         public string SiglaDepartamento { get; set; }
-        
-        public int SupervisorId { get; set; }
         public int MetaId { get; set; }
     }
 }

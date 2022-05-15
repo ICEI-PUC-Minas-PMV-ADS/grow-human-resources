@@ -26,7 +26,6 @@
         <th class="d-none d-md-table-cell">#</th>
         <th>Depatamento</th>
         <th >Sigla</th>
-        <th class="d-none d-md-table-cell">Supervisor</th>
         <th>Opções</th>
       </tr>
     </thead>
@@ -35,7 +34,6 @@
         <td class="d-none d-md-table-cell">{{departamento.id}}</td>
         <td>{{departamento.nomeDepartamento}}</td>
         <td>{{departamento.siglaDepartamento}}</td>
-        <td class="d-none d-md-table-cell">{{departamento.supervisorId}}</td>
         <td>
             <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, departamento.id)">
               <i class="fa fa-trash"></i>

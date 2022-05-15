@@ -11,7 +11,6 @@ namespace GHR.Domain
         public string NomeDepartamento { get; set; }
 
         public string SiglaDepartamento { get; set; }
-        public int? SupervisorId { get; set; }
         public int? MetaId { get; set; }
     }
 }

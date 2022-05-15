@@ -27,6 +27,7 @@
         <th>Cargo</th>
         <th>Nível</th>
         <th>Recursos Humanos?</th>
+        <th>Departamento</th>
         <th>Opções</th>
       </tr>
     </thead>
@@ -35,11 +36,12 @@
         <td class="d-none d-md-table-cell">{{cargo.id}}</td>
         <td>{{cargo.nomeCargo}}</td>
         <td>{{cargo.nivel}}</td>
-        <td>{{cargo.novel}}</td>
+        <td>{{cargo.recursosHumanos}}</td>
+        <td>{{cargo.departamentoId}}</td>
         <td>
-            <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, cargo.id)">
-              <i class="fa fa-trash"></i>
-            </button>
+          <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, cargo.id)">
+            <i class="fa fa-trash"></i>
+          </button>
         </td>
       </tr>
     </tbody>

@@ -31,7 +31,7 @@ namespace GHR.Application.Dtos
 
       [Display(Name = "Data Admissão"), 
       Required(ErrorMessage = "O campo {0} é obrigatório.")]
-      public string DataAdmissao { get; set; }
+      public DateTime DataAdmissao { get; set; }
 
       public string DataDemissao { get; set; }
 

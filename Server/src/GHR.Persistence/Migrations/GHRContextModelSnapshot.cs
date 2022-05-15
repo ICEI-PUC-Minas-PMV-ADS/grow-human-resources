@@ -22,8 +22,17 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("DepartamentoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Nivel")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("NomeCargo")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("RecursosHumanos")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -45,9 +54,6 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("SiglaDepartamento")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("Departamentos");
@@ -62,10 +68,10 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("CargoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("DataAdmissao")
+                    b.Property<string>("DataAdmissao")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("DataDemissao")
+                    b.Property<string>("DataDemissao")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("DepartamentoId")

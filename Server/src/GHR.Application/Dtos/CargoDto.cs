@@ -15,5 +15,14 @@ namespace GHR.Application.Dtos
         MinLength(4, ErrorMessage = "O campo {0} deve conter no mínimo 4 caracteres."),
         MaxLength(50, ErrorMessage = "O campo {0} deve conter no máximo 50 caracteres")]
         public string NomeCargo { get; set; }
+
+        [Display(Name = "Nível do Cargo"),
+        Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        public string Nivel { get; set; }
+
+        [Display(Name = "Recursos Humanos?"),
+        Required(ErrorMessage = "O campo {0} é obrigatório.")]
+        public Boolean RecursosHumanos { get; set; }
+        public int DepartamentoId { get; set; }
     }
 }
