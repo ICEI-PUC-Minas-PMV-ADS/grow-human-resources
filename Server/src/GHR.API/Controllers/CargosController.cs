@@ -6,18 +6,24 @@ using GHR.Application.Contracts;
 using GHR.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using GHR.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GHR.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CargosController : ControllerBase
     {
         private readonly ICargoService _cargoService;
-        public CargosController(ICargoService cargoService)
+        private readonly IAccountService acccountService;
+
+        public CargosController(ICargoService cargoService,
+                                IAccountService acccountService)
         {
             _cargoService = cargoService;
-
+            this.acccountService = acccountService;
         }
 
         [HttpGet]
@@ -25,7 +31,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargos = await _cargoService.GetAllCargosAsync();
+                var cargos = await _cargoService.GetAllCargosAsync(User.GetUserId(), User.GetVisao());
 
                 if (cargos == null) return NoContent();
 
@@ -44,7 +50,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargo = await _cargoService.GetCargoByIdAsync(id);
+                var cargo = await _cargoService.GetCargoByIdAsync(User.GetUserId(), User.GetVisao(), id);
 
                 if (cargo == null) return NoContent();
 
@@ -63,7 +69,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargos = await _cargoService.GetAllCargosByNomeCargoAsync(nome);
+                var cargos = await _cargoService.GetAllCargosByNomeCargoAsync(User.GetUserId(), User.GetVisao(), nome);
 
                 if (cargos == null) return NoContent();
 
@@ -82,7 +88,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargo = await _cargoService.AddCargo(model);
+                var cargo = await _cargoService.AddCargo(User.GetUserId(), User.GetVisao(), model);
 
                 if (cargo == null) return NoContent();
 
@@ -101,7 +107,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargo = await _cargoService.UpdateCargo(id, model);
+                var cargo = await _cargoService.UpdateCargo(User.GetUserId(), User.GetVisao(), id, model);
 
                 if (cargo == null) return NoContent();
 
@@ -119,11 +125,11 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var cargo = await _cargoService.GetCargoByIdAsync(id);
+                var cargo = await _cargoService.GetCargoByIdAsync(User.GetUserId(), User.GetVisao(), id);
 
                 if (cargo == null) return NoContent();
 
-                return await _cargoService.DeleteCargo(id)
+                return await _cargoService.DeleteCargo(User.GetUserId(), User.GetVisao(), id)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar o cargo.");
             }

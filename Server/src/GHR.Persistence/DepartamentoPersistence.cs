@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence
 {
-    public class DepartamentoPersistence : IDepartamentoPersistence
+    public class DepartamentoPersistence : GlobalPersistence, IDepartamentoPersistence
     {
 
         private readonly GHRContext _context;
 
-        public DepartamentoPersistence(GHRContext context)
+        public DepartamentoPersistence(GHRContext context) : base(context)
         {
             _context = context;
         }
-        public async Task<Departamento[]> GetAllDepartamentosAsync()
+        public async Task<Departamento[]> GetAllDepartamentosAsync(int userId, string visao)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 
@@ -29,7 +29,7 @@ namespace GHR.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Departamento[]> GetAllDepartamentosByNomeDepartamentoAsync(string nome)
+        public async Task<Departamento[]> GetAllDepartamentosByNomeDepartamentoAsync(int userId, string visao, string nome)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 
@@ -41,7 +41,7 @@ namespace GHR.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Departamento> GetDepartamentoByIdAsync(int departamentoId)
+        public async Task<Departamento> GetDepartamentoByIdAsync(int userId, string visao, int departamentoId)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 

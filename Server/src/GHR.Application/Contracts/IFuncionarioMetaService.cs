@@ -8,10 +8,10 @@ namespace GHR.Application.Contracts
 {
     public interface IFuncionarioMetaService
     {
-        Task<FuncionarioMetaDto> AddFuncionarioMeta(FuncionarioMetaDto model);
-        Task<FuncionarioMetaDto> UpdateFuncionarioMeta(int funcionarioId, int metaId, FuncionarioMetaDto model);
-        Task<bool> DeleteFuncionarioMeta(int funcionarioId, int metaId);
-        Task<FuncionarioMetaDto[]> GetMetasByFuncionarioIdAsync(int funcionarioId);
-        Task<FuncionarioMetaDto> GetFuncionarioMetaAsync(int funcionarioId, int metaId);
+        Task<FuncionarioMetaDto> AddFuncionarioMeta(int userId, string visao, FuncionarioMetaDto model);
+        Task<FuncionarioMetaDto> UpdateFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId, FuncionarioMetaDto model);
+        Task<bool> DeleteFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId);
+        Task<FuncionarioMetaDto[]> GetMetasByFuncionarioIdAsync(int userId, string visao, int funcionarioId);
+        Task<FuncionarioMetaDto> GetFuncionarioMetaAsync(int userId, string visao, int funcionarioId, int metaId);
     }
 }

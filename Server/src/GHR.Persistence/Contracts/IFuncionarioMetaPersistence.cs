@@ -6,10 +6,10 @@ using GHR.Domain;
 
 namespace GHR.Persistence.Contracts
 {
-    public interface IFuncionarioMetaPersistence
+    public interface IFuncionarioMetaPersistence : IGlobalPersistence
     {
         //Funcionarios
-        Task<FuncionarioMeta[]> GetMetasByFuncionarioIdAsync(int funcionarioId);
-        Task<FuncionarioMeta> GetFuncionarioMetaAsync(int funcionarioId, int metaId);
+        Task<FuncionarioMeta[]> GetMetasByFuncionarioIdAsync(int userId, string visao, int funcionarioId);
+        Task<FuncionarioMeta> GetFuncionarioMetaAsync(int userId, string visao, int funcionarioId, int metaId);
     }
 }

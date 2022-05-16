@@ -24,7 +24,7 @@ namespace GHR.Application.Contracts
             _cargoPersistence = CargoPersistence;
             _mapper = mapper;
         }
-        public async Task<CargoDto> AddCargo(CargoDto model)
+        public async Task<CargoDto> AddCargo(int userId, string visao, CargoDto model)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace GHR.Application.Contracts
                 _globalPersistence.Add<Cargo>(cargo);
                 if (await _globalPersistence.SaveChangeAsync())
                 {
-                    var cargoRetorno = await _cargoPersistence.GetCargoByIdAsync(cargo.Id);
+                    var cargoRetorno = await _cargoPersistence.GetCargoByIdAsync(userId, visao, cargo.Id);
 
                     return _mapper.Map<CargoDto>(cargoRetorno);
                 }
@@ -46,11 +46,11 @@ namespace GHR.Application.Contracts
             }
         }
 
-        public async Task<bool> DeleteCargo(int cargoId)
+        public async Task<bool> DeleteCargo(int userId, string visao, int cargoId)
         {
             try
             {
-                var cargo = await _cargoPersistence.GetCargoByIdAsync(cargoId);
+                var cargo = await _cargoPersistence.GetCargoByIdAsync(userId, visao, cargoId);
 
                 if (cargo == null) throw new Exception("Cargo não encontrado para exclusão");
 
@@ -67,11 +67,11 @@ namespace GHR.Application.Contracts
             }
         }
 
-        public async Task<CargoDto[]> GetAllCargosAsync()
+        public async Task<CargoDto[]> GetAllCargosAsync( int userId, string visao)
         {
             try
             {
-                var cargos = await _cargoPersistence.GetAllCargosAsync();
+                var cargos = await _cargoPersistence.GetAllCargosAsync( userId,  visao);
 
                 if (cargos == null) return null;
 
@@ -86,11 +86,11 @@ namespace GHR.Application.Contracts
             }
         }
 
-        public async Task<CargoDto[]> GetAllCargosByNomeCargoAsync(string nome)
+        public async Task<CargoDto[]> GetAllCargosByNomeCargoAsync(int userId, string visao, string nome)
         {
             try
             {
-                var cargos = await _cargoPersistence.GetAllCargosByNomeCargoAsync(nome);
+                var cargos = await _cargoPersistence.GetAllCargosByNomeCargoAsync( userId,  visao, nome);
 
                 if (cargos == null) return null;
 
@@ -105,11 +105,11 @@ namespace GHR.Application.Contracts
             }
         }
 
-        public async Task<CargoDto> GetCargoByIdAsync(int cargoId)
+        public async Task<CargoDto> GetCargoByIdAsync(int userId, string visao, int cargoId)
         {
             try
             {
-                var cargo = await _cargoPersistence.GetCargoByIdAsync(cargoId);
+                var cargo = await _cargoPersistence.GetCargoByIdAsync( userId,  visao, cargoId);
 
                 if (cargo == null) return null;
 
@@ -124,11 +124,11 @@ namespace GHR.Application.Contracts
             }
         }
 
-        public async Task<CargoDto> UpdateCargo(int cargoId, CargoDto model)
+        public async Task<CargoDto> UpdateCargo(int userId, string visao, int cargoId, CargoDto model)
         {
             try
             {
-                var cargo = await _cargoPersistence.GetCargoByIdAsync(cargoId);
+                var cargo = await _cargoPersistence.GetCargoByIdAsync( userId,  visao, cargoId);
 
                 if (cargo == null) return null;
 
@@ -140,7 +140,7 @@ namespace GHR.Application.Contracts
 
                 if (await _globalPersistence.SaveChangeAsync())
                 {
-                    var cargoRetorno = await _cargoPersistence.GetCargoByIdAsync(cargo.Id);
+                    var cargoRetorno = await _cargoPersistence.GetCargoByIdAsync( userId,  visao, cargo.Id);
 
                     return _mapper.Map<CargoDto>(cargoRetorno);
                 }

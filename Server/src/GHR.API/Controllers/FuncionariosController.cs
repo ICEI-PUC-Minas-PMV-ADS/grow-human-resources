@@ -8,20 +8,27 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using GHR.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GHR.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FuncionariosController : ControllerBase
     {
         private readonly IFuncionarioService _funcionarioService;
         public readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IAccountService _acccountService;
+
         public FuncionariosController(
             IFuncionarioService funcionarioService,
-            IWebHostEnvironment hostEnvironment)
+            IWebHostEnvironment hostEnvironment,
+            IAccountService acccountService)
         {
             _hostEnvironment = hostEnvironment;
+            _acccountService = acccountService;
             _funcionarioService = funcionarioService;
 
         }
@@ -31,7 +38,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionarios = await _funcionarioService.GetAllFuncionariosAsync(true);
+                var funcionarios = await _funcionarioService.GetAllFuncionariosAsync(User.GetUserId(), User.GetVisao(), true);
 
                 if (funcionarios == null) return NoContent();
 
@@ -50,7 +57,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(id, true);
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(User.GetUserId(), User.GetVisao(), id, true);
 
                 if (funcionario == null) return NoContent();
 
@@ -68,7 +75,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.GetAllFuncionariosByNomeCompletoAsync(nome, true);
+                var funcionario = await _funcionarioService.GetAllFuncionariosByNomeCompletoAsync(User.GetUserId(), User.GetVisao(), nome, true);
 
                 if (funcionario == null) return NoContent();
 
@@ -87,7 +94,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.AddFuncionarios(model);
+                var funcionario = await _funcionarioService.AddFuncionarios(User.GetUserId(), User.GetVisao(), model);
 
                 if (funcionario == null) return NoContent();
 
@@ -105,7 +112,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(funcionarioId, false);
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(User.GetUserId(), User.GetVisao(), funcionarioId, false);
 
                 if (funcionario == null) return NoContent();
 
@@ -116,7 +123,7 @@ namespace GHR.API.Controllers
                     funcionario.ImagemURL = await SaveImage(file);
                 }
 
-                var funcionarioRetorno = await _funcionarioService.UpdateFuncionario(funcionarioId, funcionario);
+                var funcionarioRetorno = await _funcionarioService.UpdateFuncionario(User.GetUserId(), User.GetVisao(), funcionarioId, funcionario);
 
                 return Ok(funcionarioRetorno);
             }
@@ -132,7 +139,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.UpdateFuncionario(id, model);
+                var funcionario = await _funcionarioService.UpdateFuncionario(User.GetUserId(), User.GetVisao(), id, model);
 
                 if (funcionario == null) return NoContent();
 
@@ -149,12 +156,12 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(id, true);
+                var funcionario = await _funcionarioService.GetFuncionarioByIdAsync(User.GetUserId(), User.GetVisao(), id, true);
 
                 if (funcionario == null) return NoContent();
 
                 
-                if (await _funcionarioService.DeleteFuncionario(id)){
+                if (await _funcionarioService.DeleteFuncionario(User.GetUserId(), User.GetVisao(), id)){
                     DeleteImage(funcionario.ImagemURL);
                     return Ok(new { message = "Excluído" });
                 }
@@ -183,7 +190,7 @@ namespace GHR.API.Controllers
                 .ToArray()
             ).Replace(' ', '-');
 
-            imageName = $"{imageName}{DateTime.UtcNow.ToString("yymmddfff")}{Path.GetExtension(imageFile.FileName)}";
+            imageName = $"{imageName}{DateTime.UtcNow:yymmddfff}{Path.GetExtension(imageFile.FileName)}";
             
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/images", imageName);
 

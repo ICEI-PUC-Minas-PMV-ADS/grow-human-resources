@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence
 {
-    public class CargoPersistence : ICargoPersistence
+    public class CargoPersistence : GlobalPersistence, ICargoPersistence
     {
 
         private readonly GHRContext _context;
 
-        public CargoPersistence(GHRContext context)
+        public CargoPersistence(GHRContext context) : base(context)
         {
             _context = context;
         }
-        public async Task<Cargo[]> GetAllCargosAsync()
+        public async Task<Cargo[]> GetAllCargosAsync(int userId, string visao)
         {
             IQueryable<Cargo> query = _context.Cargos;
 
@@ -29,7 +29,7 @@ namespace GHR.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Cargo[]> GetAllCargosByNomeCargoAsync(string nome)
+        public async Task<Cargo[]> GetAllCargosByNomeCargoAsync(int userId, string visao, string nome)
         {
             IQueryable<Cargo> query = _context.Cargos;
 
@@ -41,7 +41,7 @@ namespace GHR.Persistence
             return await query.ToArrayAsync();
         }
 
-        public async Task<Cargo> GetCargoByIdAsync(int cargoId)
+        public async Task<Cargo> GetCargoByIdAsync(int userId, string visao, int cargoId)
         {
             IQueryable<Cargo> query = _context.Cargos;
 

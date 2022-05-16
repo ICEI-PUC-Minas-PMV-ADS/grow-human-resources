@@ -6,18 +6,24 @@ using GHR.Application.Contracts;
 using GHR.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using GHR.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GHR.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class FuncionariosMetasController : ControllerBase
     {
         private readonly IFuncionarioMetaService _funcionarioMetaService;
-        public FuncionariosMetasController(IFuncionarioMetaService funcionarioMetaService)
+        private readonly IAccountService _acccountService;
+
+        public FuncionariosMetasController(IFuncionarioMetaService funcionarioMetaService,
+                                           IAccountService acccountService)
         {
             _funcionarioMetaService = funcionarioMetaService;
-
+            _acccountService = acccountService;
         }
 
         [HttpGet("{funcionarioId}")]
@@ -25,7 +31,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaService.GetMetasByFuncionarioIdAsync(funcionarioId);
+                var funcionarioMeta = await _funcionarioMetaService.GetMetasByFuncionarioIdAsync(User.GetUserId(), User.GetVisao(), funcionarioId);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -44,7 +50,7 @@ namespace GHR.API.Controllers
         {
             try 
             {
-                var funcionarioMeta = await _funcionarioMetaService.GetFuncionarioMetaAsync(funcionarioId, metaId);
+                var funcionarioMeta = await _funcionarioMetaService.GetFuncionarioMetaAsync(User.GetUserId(), User.GetVisao(), funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -63,7 +69,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaService.AddFuncionarioMeta(model);
+                var funcionarioMeta = await _funcionarioMetaService.AddFuncionarioMeta(User.GetUserId(), User.GetVisao(), model);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -80,7 +86,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaService.UpdateFuncionarioMeta(funcionarioId, metaId, model);
+                var funcionarioMeta = await _funcionarioMetaService.UpdateFuncionarioMeta(User.GetUserId(), User.GetVisao(), funcionarioId, metaId, model);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -98,11 +104,11 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaService.GetFuncionarioMetaAsync(funcionarioId, metaId);
+                var funcionarioMeta = await _funcionarioMetaService.GetFuncionarioMetaAsync(User.GetUserId(), User.GetVisao(), funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
-                return await _funcionarioMetaService.DeleteFuncionarioMeta(funcionarioId, metaId)
+                return await _funcionarioMetaService.DeleteFuncionarioMeta(User.GetUserId(), User.GetVisao(), funcionarioId, metaId)
                     ? Ok(new { message = "Excluído"}) 
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar meta de um funcionário.");
             }

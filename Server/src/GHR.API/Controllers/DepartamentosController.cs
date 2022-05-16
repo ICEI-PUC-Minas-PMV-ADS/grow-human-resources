@@ -6,18 +6,24 @@ using GHR.Application.Contracts;
 using GHR.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using GHR.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GHR.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DepartamentosController : ControllerBase
     {
         private readonly IDepartamentoService _departamentoService;
-        public DepartamentosController(IDepartamentoService departamentoService)
+        private readonly IAccountService _acccountService;
+
+        public DepartamentosController(IDepartamentoService departamentoService,
+                                       IAccountService acccountService)
         {
             _departamentoService = departamentoService;
-
+            _acccountService = acccountService;
         }
 
         [HttpGet]
@@ -25,7 +31,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamentos = await _departamentoService.GetAllDepartamentosAsync();
+                var departamentos = await _departamentoService.GetAllDepartamentosAsync(User.GetUserId(), User.GetVisao());
 
                 if (departamentos == null) return NoContent();
 
@@ -44,7 +50,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamento = await _departamentoService.GetDepartamentoByIdAsync(id);
+                var departamento = await _departamentoService.GetDepartamentoByIdAsync(User.GetUserId(), User.GetVisao(), id);
 
                 if (departamento == null) return NoContent();
 
@@ -62,7 +68,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamento = await _departamentoService.GetAllDepartamentosByNomeDepartamentoAsync(nome);
+                var departamento = await _departamentoService.GetAllDepartamentosByNomeDepartamentoAsync(User.GetUserId(), User.GetVisao(), nome);
 
                 if (departamento == null) return NoContent();
 
@@ -80,7 +86,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamento = await _departamentoService.AddDepartamento(model);
+                var departamento = await _departamentoService.AddDepartamento(User.GetUserId(), User.GetVisao(), model);
 
                 if (departamento == null) return NoContent();
 
@@ -97,7 +103,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamento = await _departamentoService.UpdateDepartamento(id, model);
+                var departamento = await _departamentoService.UpdateDepartamento(User.GetUserId(), User.GetVisao(), id, model);
 
                 if (departamento == null) return NoContent();
 
@@ -114,11 +120,11 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var departamento = await _departamentoService.GetDepartamentoByIdAsync(id);
+                var departamento = await _departamentoService.GetDepartamentoByIdAsync(User.GetUserId(), User.GetVisao(), id);
 
                 if (departamento == null) return NoContent();
 
-                return await _departamentoService.DeleteDepartamento(id)
+                return await _departamentoService.DeleteDepartamento(User.GetUserId(), User.GetVisao(), id)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar o departamento.");
             }

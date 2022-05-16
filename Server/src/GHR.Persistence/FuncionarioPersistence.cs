@@ -7,22 +7,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Context
 {
-    public class FuncionarioPersistence : IFuncionarioPersistence
+    public class FuncionarioPersistence : GlobalPersistence, IFuncionarioPersistence
     {
         private readonly GHRContext _context;
 
-        public FuncionarioPersistence(GHRContext context)
+        public FuncionarioPersistence(GHRContext context) : base(context)
         {
             _context = context;
         }
         //Funcionarios
-        public async Task<Funcionario[]> GetAllFuncionariosAsync(bool incluirMetas = false)
+        public async Task<Funcionario[]> GetAllFuncionariosAsync(int userId, string visao, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
-                .Include(f => f.Cargo)
-                .Include(f => f.Departamento)
-                .Include(f => f.Supervisor)
-                .Include(f => f.Login);
+                .Include(c => c.Cargo)
+                .Include(d => d.Departamento)
+                .Include(u => u.User);
 
             if (incluirMetas)
             {
@@ -30,6 +29,9 @@ namespace GHR.Persistence.Context
                     .Include(fm => fm.FuncionariosMetas)
                     .ThenInclude(m => m.Meta);
             }
+
+            if (visao.Contains("RH"))
+                query = query.Where(f => f.UserId == userId);
 
             query = query
                 .AsNoTracking()
@@ -38,13 +40,12 @@ namespace GHR.Persistence.Context
             return await query.ToArrayAsync();
         }
 
-        public async Task<Funcionario[]> GetAllFuncionariosByNomeCompletoAsync(string nome, bool incluirMetas = false)
+        public async Task<Funcionario[]> GetAllFuncionariosByNomeCompletoAsync(int userId, string visao, string nome, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
                 .Include(c => c.Cargo)
                 .Include(d => d.Departamento)
-                .Include(s => s.Supervisor)
-                .Include(l => l.Login);
+                .Include(u => u.User);
 
             if (incluirMetas)
             {
@@ -52,21 +53,24 @@ namespace GHR.Persistence.Context
                     .Include(fm => fm.FuncionariosMetas)
                     .ThenInclude(m => m.Meta);
             }
+
+            query = !visao.Contains("RH") 
+                  ? query.Where(f => f.UserId == userId && f.User.NomeCompleto.ToLower().Contains(nome.ToLower())) 
+                  : query.Where(f => f.User.NomeCompleto.ToLower().Contains(nome.ToLower()));
 
             query = query
                 .AsNoTracking()
-                .OrderBy(f => f.Id)
-                .Where(f => f.NomeCompleto.ToLower().Contains(nome.ToLower()));
+                .OrderBy(f => f.Id);
+
 
             return await query.ToArrayAsync();
         }
-        public async Task<Funcionario> GetFuncionarioByIdAsync(int funcionarioId, bool incluirMetas = false)
+        public async Task<Funcionario> GetFuncionarioByIdAsync(int userId, string visao, int funcionarioId, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
-                .Include(f => f.Cargo)
-                .Include(f => f.Departamento)
-                .Include(f => f.Supervisor)
-                .Include(f => f.Login);
+                .Include(c => c.Cargo)
+                .Include(d => d.Departamento)
+                .Include(u => u.User);
 
             if (incluirMetas)
             {
@@ -74,6 +78,10 @@ namespace GHR.Persistence.Context
                     .Include(fm => fm.FuncionariosMetas)
                     .ThenInclude(m => m.Meta);
             }
+
+            query = !visao.Contains("RH")
+                  ? query.Where(f => f.UserId == userId && f.Id == funcionarioId)
+                  : query.Where(f => f.Id == funcionarioId);
 
             query = query
                 .AsNoTracking()

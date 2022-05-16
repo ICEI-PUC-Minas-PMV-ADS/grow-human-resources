@@ -3,14 +3,16 @@ using System;
 using GHR.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    partial class GHRContextModelSnapshot : ModelSnapshot
+    [Migration("20220515135146_adicionandoIdentity")]
+    partial class adicionandoIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,9 +223,6 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Visao")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

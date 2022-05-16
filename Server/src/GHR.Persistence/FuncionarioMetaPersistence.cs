@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Context
 {
-    public class FuncionarioMetaPersistence : IFuncionarioMetaPersistence
+    public class FuncionarioMetaPersistence : GlobalPersistence, IFuncionarioMetaPersistence
     {
         private readonly GHRContext _context;
 
-        public FuncionarioMetaPersistence(GHRContext context)
+        public FuncionarioMetaPersistence(GHRContext context) : base (context)
         {
             _context = context;
         }
         //Funcionarios
-        public async Task<FuncionarioMeta[]> GetMetasByFuncionarioIdAsync(int funcionarioId)
+        public async Task<FuncionarioMeta[]> GetMetasByFuncionarioIdAsync(int userId, string visao, int funcionarioId)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas               
                             .Include(f => f.Funcionario)
@@ -30,7 +30,7 @@ namespace GHR.Persistence.Context
             return await query.ToArrayAsync();
     
         }
-        public async Task<FuncionarioMeta> GetFuncionarioMetaAsync(int funcionarioId, int metaId)
+        public async Task<FuncionarioMeta> GetFuncionarioMetaAsync(int userId, string visao, int funcionarioId, int metaId)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
                 .Include(m => m.Meta)

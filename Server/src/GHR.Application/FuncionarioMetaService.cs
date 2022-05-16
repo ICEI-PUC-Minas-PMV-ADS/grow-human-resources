@@ -25,7 +25,7 @@ namespace GHR.Application
             _funcionarioMetaPersistence = funcionarioMetaPersistence;
             _mapper = mapper;
         }
-        public async Task<FuncionarioMetaDto> AddFuncionarioMeta(FuncionarioMetaDto model)
+        public async Task<FuncionarioMetaDto> AddFuncionarioMeta(int userId, string visao, FuncionarioMetaDto model)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace GHR.Application
                 _globalPersistence.Add<FuncionarioMeta>(funcionarioMeta);
                 if (await _globalPersistence.SaveChangeAsync())
                 {
-                    var funcionarioMetaRetorno = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
+                    var funcionarioMetaRetorno = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(userId, visao, funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
 
                     return _mapper.Map<FuncionarioMetaDto>(funcionarioMetaRetorno);
                 }
@@ -47,11 +47,11 @@ namespace GHR.Application
             }
         }
 
-        public async Task<FuncionarioMetaDto> UpdateFuncionarioMeta(int funcionarioId, int metaId, FuncionarioMetaDto model)
+        public async Task<FuncionarioMetaDto> UpdateFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId, FuncionarioMetaDto model)
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(funcionarioId, metaId);
+                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync( userId,  visao, funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return null;
 
@@ -64,7 +64,7 @@ namespace GHR.Application
 
                 if (await _globalPersistence.SaveChangeAsync())
                 {
-                    var funcionarioMetaRetorno = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
+                    var funcionarioMetaRetorno = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync( userId,  visao, funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
 
                     return _mapper.Map<FuncionarioMetaDto>(funcionarioMetaRetorno);
                 }
@@ -76,11 +76,11 @@ namespace GHR.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> DeleteFuncionarioMeta(int funcionarioId, int metaId)
+        public async Task<bool> DeleteFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId)
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(funcionarioId, metaId);
+                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync( userId,  visao, funcionarioId, metaId);
 
                 if (funcionarioMeta == null) throw new Exception("Funcionário/Meta não encontrado para exclusão");
                 
@@ -98,11 +98,11 @@ namespace GHR.Application
 
            } 
 
-        public async Task<FuncionarioMetaDto[]> GetMetasByFuncionarioIdAsync(int funcionarioId)
+        public async Task<FuncionarioMetaDto[]> GetMetasByFuncionarioIdAsync(int userId, string visao, int funcionarioId)
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaPersistence.GetMetasByFuncionarioIdAsync(funcionarioId);
+                var funcionarioMeta = await _funcionarioMetaPersistence.GetMetasByFuncionarioIdAsync( userId,  visao, funcionarioId);
 
                 if (funcionarioMeta == null) return null;
 
@@ -116,11 +116,11 @@ namespace GHR.Application
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<FuncionarioMetaDto> GetFuncionarioMetaAsync(int funcionarioId, int metaId)
+        public async Task<FuncionarioMetaDto> GetFuncionarioMetaAsync(int userId,  string visao, int funcionarioId, int metaId)
         {
             try
             {
-                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync(funcionarioId, metaId);
+                var funcionarioMeta = await _funcionarioMetaPersistence.GetFuncionarioMetaAsync( userId,  visao, funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return null;
 

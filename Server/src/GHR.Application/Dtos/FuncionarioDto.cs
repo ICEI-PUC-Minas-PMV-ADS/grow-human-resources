@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using GHR.Domain.Identity;
 
 namespace GHR.Application.Dtos
 {
@@ -15,15 +16,6 @@ namespace GHR.Application.Dtos
       MinLength(4, ErrorMessage = "O campo {0} deve conter no mínimo 4 caracteres."),
       MaxLength(50, ErrorMessage = "O campo {0} deve conter no máximo 50 caracteres")]
       public string NomeCompleto { get; set; }
-
-      [Display(Name = "e-mail"), 
-      Required(ErrorMessage = "O campo {0} é obrigatório."),
-      EmailAddress(ErrorMessage = "Campo {0} inválido.")]
-            public string Email { get; set; }
-
-      [Required(ErrorMessage = "O campo {0} é obrigatório."),
-      Phone(ErrorMessage = "O campo {0} está inválido")]
-      public string Telefone { get; set; }
 
       [Display(Name = "Salário"), Required(ErrorMessage = "O campo {0} é obrigatório."),
       Range(100, 9999999999, ErrorMessage = "O campo {0} não pode ser inferior a R$ 100,00")]
@@ -59,15 +51,10 @@ namespace GHR.Application.Dtos
       Required(ErrorMessage = "É necessário informa um {0}.")]
       public int SupervisorId { get; set; }
 
-      public SupervisorDto Supervisor { get; set; }
-
-      [Display(Name = "Login"),
-      Required(ErrorMessage = "É necessário informa um {0}.")] 
-      public int LoginId { get; set; }
-
-      public LoginDto Login { get; set; }
 
       public IEnumerable<MetaDto> Metas { get; set; }
+      public int UserId { get; set; }
+      public User User { get; set; }
 
     }
 }

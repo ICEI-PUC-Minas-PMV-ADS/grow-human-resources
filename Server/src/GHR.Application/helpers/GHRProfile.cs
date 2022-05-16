@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GHR.Application.Dtos;
 using GHR.Domain;
+using GHR.Domain.Identity;
 
 namespace GHR.Application.helpers
 {
@@ -15,10 +16,12 @@ namespace GHR.Application.helpers
             CreateMap<Cargo, CargoDto>().ReverseMap();
             CreateMap<Departamento, DepartamentoDto>().ReverseMap();
             CreateMap<Funcionario, FuncionarioDto>().ReverseMap();
-            CreateMap<Login, LoginDto>().ReverseMap();
             CreateMap<Meta, MetaDto>().ReverseMap();
-            CreateMap<Supervisor, SupervisorDto>().ReverseMap();
             CreateMap<FuncionarioMeta, FuncionarioMetaDto>().ReverseMap();
+            
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<User, UserLoginDto>().ReverseMap();
+            CreateMap<User, UserUpdateDto>().ReverseMap();
         }
     }
 }

@@ -6,11 +6,11 @@ using GHR.Domain;
 
 namespace GHR.Persistence.Contracts
 {
-    public interface IDepartamentoPersistence
+    public interface IDepartamentoPersistence : IGlobalPersistence 
     {
         //Funcionarios
-        Task<Departamento[]> GetAllDepartamentosByNomeDepartamentoAsync(string nome);
-        Task<Departamento[]> GetAllDepartamentosAsync();
-        Task<Departamento> GetDepartamentoByIdAsync(int departamentoId);
+        Task<Departamento[]> GetAllDepartamentosByNomeDepartamentoAsync(int userId, string visao, string nome);
+        Task<Departamento[]> GetAllDepartamentosAsync(int userId, string visao);
+        Task<Departamento> GetDepartamentoByIdAsync(int userId, string visao, int departamentoId);
     }
 }

@@ -6,17 +6,24 @@ using GHR.Application.Contracts;
 using GHR.Application.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using GHR.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GHR.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class MetasController : ControllerBase
     {
         private readonly IMetaService _metaService;
-        public MetasController(IMetaService metaService)
+        private readonly IAccountService _acccountService;
+
+        public MetasController(IMetaService metaService,
+                               IAccountService acccountService)
         {
             _metaService = metaService;
+            _acccountService = acccountService;
         }
 
         [HttpGet]
@@ -24,7 +31,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var metas = await _metaService.GetAllMetasAsync(true);
+                var metas = await _metaService.GetAllMetasAsync(User.GetUserId(), User.GetVisao(), true);
 
                 if (metas == null) return NoContent();
 
@@ -43,7 +50,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var meta = await _metaService.GetMetaByIdAsync(id, true);
+                var meta = await _metaService.GetMetaByIdAsync(User.GetUserId(), User.GetVisao(), id, true);
 
                 if (meta == null) return NoContent();
 
@@ -62,7 +69,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var metas = await _metaService.GetAllMetasByNomeMetaAsync(nome, true);
+                var metas = await _metaService.GetAllMetasByNomeMetaAsync(User.GetUserId(), User.GetVisao(), nome, true);
 
                 if (metas == null) return NoContent();
 
@@ -80,7 +87,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var metas = await _metaService.GetAllMetasByDescricaoMetaAsync(descricao, true);
+                var metas = await _metaService.GetAllMetasByDescricaoMetaAsync(User.GetUserId(), User.GetVisao(), descricao, true);
 
                 if (metas == null) return NoContent();
 
@@ -98,7 +105,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var metas = await _metaService.GetAllMetasByMetaCumpridaAsync(metaCumprida, true);
+                var metas = await _metaService.GetAllMetasByMetaCumpridaAsync(User.GetUserId(), User.GetVisao(), metaCumprida, true);
 
                 if (metas == null) return NoContent();
 
@@ -116,7 +123,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var metas = await _metaService.GetAllMetasByMetaAprovadaAsync(metaAprovada, true);
+                var metas = await _metaService.GetAllMetasByMetaAprovadaAsync(User.GetUserId(), User.GetVisao(), metaAprovada, true);
 
                 if (metas == null) return NoContent();
 
@@ -134,7 +141,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var meta = await _metaService.AddMeta(model);
+                var meta = await _metaService.AddMeta(User.GetUserId(), User.GetVisao(), model);
 
                 if (meta == null) return NoContent();
 
@@ -152,7 +159,7 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var meta = await _metaService.UpdateMeta(id, model);
+                var meta = await _metaService.UpdateMeta(User.GetUserId(), User.GetVisao(), id, model);
 
                 if (meta == null) return NoContent();
 
@@ -169,11 +176,11 @@ namespace GHR.API.Controllers
         {
             try
             {
-                var meta = await _metaService.GetMetaByIdAsync(id, true);
+                var meta = await _metaService.GetMetaByIdAsync(User.GetUserId(), User.GetVisao(), id, true);
 
                 if (meta == null) return NoContent();
 
-                return await _metaService.DeleteMeta(id)
+                return await _metaService.DeleteMeta(User.GetUserId(), User.GetVisao(), id)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar a meta.");
             }
