@@ -6,9 +6,11 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+
 using GHR.Application.Contracts;
 using GHR.Application.Dtos;
 using GHR.Domain.Identity;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -38,7 +40,6 @@ namespace GHR.Application
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Actor, user.Visao.ToString())
             };
 
             var roles = await _userManager.GetRolesAsync(user);

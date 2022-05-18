@@ -1,5 +1,4 @@
-import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -7,13 +6,12 @@ import { take } from 'rxjs/operators'
 
 import { Departamento } from '../models/Departamento';
 
-@Injectable(
-  //{ providedIn: 'root' }
-)
+import { environment } from './../../environments/environment';
+@Injectable()
 export class DepartamentoService {
 
   public baseURL = environment.apiURL + 'api/departamentos'
-
+  
   constructor(private http: HttpClient) { }
 
   public getDepartamentos(): Observable<Departamento[]> {

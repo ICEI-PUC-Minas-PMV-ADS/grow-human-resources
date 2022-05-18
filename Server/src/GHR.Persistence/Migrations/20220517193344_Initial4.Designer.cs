@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    [Migration("20220515135146_adicionandoIdentity")]
-    partial class adicionandoIdentity
+    [Migration("20220517193344_Initial4")]
+    partial class Initial4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,8 +182,8 @@ namespace GHR.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Funcao")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Funcao")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ImagemUrl")
                         .HasColumnType("TEXT");
@@ -222,6 +222,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Visao")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

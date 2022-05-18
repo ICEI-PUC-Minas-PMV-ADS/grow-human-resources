@@ -5,9 +5,7 @@ import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { FuncionarioMeta } from '../models/FuncionarioMeta';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FuncionarioMetaService {
   public baseURL = environment.apiURL + 'api/funcionariosMetas'
 

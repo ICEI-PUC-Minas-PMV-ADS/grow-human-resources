@@ -7,9 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import { Funcionario } from '../models/Funcionario';
 
-@Injectable(
-  //{ providedIn: 'root' }
-)
+@Injectable()
 export class FuncionarioService {
 
   public baseURL = environment.apiURL +  'api/funcionarios'

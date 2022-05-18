@@ -17,13 +17,13 @@ namespace GHR.API.Controllers
     public class MetasController : ControllerBase
     {
         private readonly IMetaService _metaService;
-        private readonly IAccountService _acccountService;
+        private readonly IAccountService _accountService;
 
         public MetasController(IMetaService metaService,
-                               IAccountService acccountService)
+                               IAccountService accountService)
         {
             _metaService = metaService;
-            _acccountService = acccountService;
+            _accountService = accountService;
         }
 
         [HttpGet]

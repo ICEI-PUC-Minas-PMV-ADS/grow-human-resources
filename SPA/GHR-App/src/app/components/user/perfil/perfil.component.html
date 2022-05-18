@@ -6,7 +6,7 @@
 ></app-titulo>
 
 <div class="card rounded shadow-sm p-2">
-  <form [formGroup]="form!">
+  <form [formGroup]="form!" (ngSubmit)="onSubmit()">
     <p>Form value: {{form.value | json}}</p>
     <p>Form status: {{form.status | json}}</p>
     <div class="row ">
@@ -20,15 +20,14 @@
                   src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
                   name="aboutme" width="120" height="120" class="rounded-circle">
               </a>
-              <div class="h4 text-center">@UserName</div>
+              <div class="h4 text-center">@{{f.userName.value}}</div>
             </div>
           </div>
 
           <div class="card-body bg-light">
-            <div class="h7 text-bold pb-1"><b>Nome:</b> Miracles Lee Cross</div>
+            <div class="h7 text-bold pb-1"><b>Nome:</b>{{f.nomeCompleto.value}}</div>
             <div class="h7">
-              Developer of web applications, JavaScript, PHP, Java, Python, Ruby, Java, Node.js,
-              etc.
+              {{f.descricao.value}}
             </div>
           </div>
           <div class="card-footer">
@@ -56,32 +55,18 @@
         <div class="form-row d-md-flex">
           <div class="form-group col-md-4 p-1">
             <label>Cargo</label>
-            <select class="form-control"
-              [ngClass]="validarCampo(f.cargo)"
+            <input type="text" class="form-control"
               formControlName="cargo"
-            >
-              <option value=""></option>
-              <option value="0">Não Quero</option>
-              <option value="Senhorita">Tecnólogo(a)</option>
-              <option value="Senhorita">Bacharel</option>
-              <option value="Senhorita">Especialista</option>
-              <option value="Senhorita">Pós Graduado(a)</option>
-              <option value="Senhorita">Mestre</option>
-              <option value="Senhorita">Doutor(a)</option>
-              <option value="Senhorita">Pós Doc</option>
-            </select>
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.cargo, "")}}
-            </div>
+              disabled>
           </div>
           <div class="form-group col-md-8 p-1">
             <label>Nome</label>
             <input type="text" class="form-control"
-              [ngClass]="validarCampo(f.nome)"
-              formControlName="nome"
+              [ngClass]="validarCampo(f.nomeCompleto)"
+              formControlName="nomeCompleto"
             />
             <div class="invalid-feedback">
-              {{retornarValidacao(f.nome, "")}}
+              {{retornarValidacao(f.nomeCompleto, "")}}
             </div>
           </div>
         </div>
@@ -99,31 +84,31 @@
           <div class="form-group col-sm-3 p-1">
             <label>Telefone</label>
             <input type="text" class="form-control"
-              [ngClass]="validarCampo(f.telefone)"
-              formControlName="telefone"
+              [ngClass]="validarCampo(f.phoneNumber)"
+              formControlName="phoneNumber"
             />
+            <div class="invalid-feedback">
+              {{retornarValidacao(f.phoneNumber, "")}}
+            </div>
           </div>
           <div class="form-group col-sm-3 p-1">
             <label>Data Admissão</label>
             <input type="text" class="form-control"
-              [ngClass]="validarCampo(f.dataAdmissao)"
               formControlName="dataAdmissao"
+              disabled
             >
-            <div class="invalid-feedback">
-              {{retornarValidacao(f.dataAdmissao, "")}}
-            </div>
           </div>
         </div>
 
         <div class="form-row d-md-flex">
           <div class="form-group col p-1">
-            <label>Sobre Mim</label>
+            <label>Mini Currículo</label>
             <textarea name="euMesmo"  class="form-control"
-              [ngClass]="validarCampo(f.sobreMim)"
-              formControlName="sobreMim">
+              [ngClass]="validarCampo(f.descricao)"
+              formControlName="descricao">
             </textarea>
             <div class="invalid-feedback">
-              {{retornarValidacao(f.sobreMim, "")}}
+              {{retornarValidacao(f.descricao, "")}}
             </div>
           </div>
         </div>
@@ -135,20 +120,20 @@
           <div class="form-group col-md-6 p-1">
             <label>Senha</label>
             <input type="password" class="form-control"
-              [ngClass]="validarCampo(f.senha)"
-              formControlName="senha">
+              [ngClass]="validarCampo(f.password)"
+              formControlName="password">
             <div class="invalid-feedback">
-              {{retornarValidacao(f.senha, "")}}
+              {{retornarValidacao(f.password, "")}}
             </div>
           </div>
           <div class="form-group col-md-6 p-1">
             <label>Confirmar Senha</label>
             <input type="password" class="form-control"
-              [ngClass]="validarCampo(f.confirmarSenha)"
-              formControlName="confirmarSenha"
+              [ngClass]="validarCampo(f.confirmarPassword)"
+              formControlName="confirmarPassword"
             />
             <div class="invalid-feedback">
-              {{retornarValidacao(f.confirmarSenha, "Confirmar Senha")}}
+              {{retornarValidacao(f.confirmarPassword, "Confirmar Senha")}}
             </div>
           </div>
         </div>
@@ -159,75 +144,11 @@
         <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
           Cancelar
         </button>
-        <button class="btn btn-success m-1" [disabled]="!form.valid">
-          <span class="spinner-border spinner-border-sm mr-1"></span>
+        <button type="submit" class="btn btn-success m-1" [disabled]="!form.valid">
+          <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
           Salvar
         </button>
       </div>
     </div>
   </form>
 </div>
-<!--
-    <header>
-        <div class="cabeçalho">
-            <img src="src/img/ghr.png" alt="GHR" width="60px" height="60px" >
-
-        </div>
-    </header>
-
-
-    <aside>
-      <div class="perfil">
-        <h3> Perfil </h3>
-     </div>
-      <div class="editar">
-        <b> <a class="link" href="#" target="_self">Editar</a> </b>
-      </div>
-      <div class="fotodeperfil">
-          <img src="src/img/perfil.png" alt="foto de perfil" width="150px" height="150px">
-      </div>
-     </aside>
-
-     <main  class="formularios">
-         <form class="informaçõespessoais">
-         <div class="titulo"> <b>Informações pessoais</b><hr width="50%"></div> <br>
-        <div>
-            <input type="text" placeholder="Nome completo*" required id="nome" />
-        </div><br>
-        <div>
-            <input type="text"placeholder="Departamento*"  required id="Departamento" />
-            <input type="text"placeholder="Setor*"  required id="Setor" />
-        </div><br>
-        <div>
-            <input type="text"placeholder="CPF*" id="CPF" />
-        </div><br>
-        <div>
-            <input type="E-mail"placeholder="E-mail" id="E-mail" />
-        </div>
-    </form>
-
-    <form class="InformaçõesdeContato">
-        <div class="titulo"><b> Informações de contato</b><hr width="18%"></div> <br>
-        <div>
-            <input type="text" placeholder="Endereço*" required id="Endereço" />
-        </div><br>
-        <div>
-            <input type="text"placeholder="DDD*"  required id="DDD" />
-            <input type="text"placeholder="Telefone*"  required id="Telefone" />
-        </div><br>
-        <div>
-            <input type="text"placeholder="CPF*" id="CPF" />
-        </div><br>
-        <div>
-            <input type="E-mail"placeholder="E-mail" id="E-mail" />
-        </div>
-
-    </form>
-     </main>
-    <footer>
-       <div class="Voltar">
-        <b> <a class="link" href="#" target="_self">Voltar</a> </b>
-      </div>
-    </footer>
-  -->
-

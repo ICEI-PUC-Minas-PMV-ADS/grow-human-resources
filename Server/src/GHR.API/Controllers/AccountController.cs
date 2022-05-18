@@ -56,7 +56,14 @@ namespace GHR.API.Controllers
                 var userRetorno = await _accountService.CreateAccountAsync(userDto);
 
                 if (userRetorno != null)
-                    return Ok(userRetorno);
+                    return Ok(new
+                    {
+                        userName = userRetorno.UserName,
+                        nomeCompleto = userRetorno.NomeCompleto,
+                        funcao = userRetorno.Funcao,
+                        visao = userRetorno.Visao,
+                        token = _tokenService.CreateToken(userRetorno).Result
+                    });
 
             return BadRequest("Conta não cadastrada, tente novamente!");
             }
@@ -70,15 +77,15 @@ namespace GHR.API.Controllers
 
         [HttpPost("Login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(UserLoginDto userLogin)
+        public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             try
             {
-                var user = await _accountService.GetUserByUserNameAsync(userLogin.UserName);
+                var user = await _accountService.GetUserByUserNameAsync(userLoginDto.UserName);
 
                 if (user == null) return Unauthorized("Conta não cadastrada!");
 
-                var result = await _accountService.CheckUserPasswordAsync(user, userLogin.Password);
+                var result = await _accountService.CheckUserPasswordAsync(user, userLoginDto.Password);
 
                 if (!result.Succeeded)
                     return Unauthorized("Conta ou senha inválidos!");
@@ -86,6 +93,8 @@ namespace GHR.API.Controllers
                 return Ok(new {
                     userName = user.UserName,
                     nomeCompleto = user.NomeCompleto,
+                    funcao = user.Funcao,
+                    visao = user.Visao,
                     token = _tokenService.CreateToken(user).Result
                 });
             }
@@ -101,6 +110,11 @@ namespace GHR.API.Controllers
         {
             try
             {
+                if (userUpdateDto.UserName != User.GetUserName())
+                {
+                    return Unauthorized("Conta inválida para atualizacao");
+                }
+
                 var user = await _accountService.GetUserByUserNameAsync(User.GetUserName());
 
                 if (user == null)
@@ -111,7 +125,14 @@ namespace GHR.API.Controllers
                 if (userRetorno == null)
                     return NoContent();
 
-                return Ok(userRetorno);
+                return Ok(new
+                {
+                    userName = userRetorno.UserName,
+                    nomeCompleto = userRetorno.NomeCompleto,
+                    funcao = userRetorno.Funcao,
+                    visao = userRetorno.Visao,
+                    token = _tokenService.CreateToken(userRetorno).Result
+                });
             }
             catch (Exception ex)
             {

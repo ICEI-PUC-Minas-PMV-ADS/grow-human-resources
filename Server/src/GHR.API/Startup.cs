@@ -76,7 +76,8 @@ namespace GHR.API
             services
                 .AddControllers()
                 .AddJsonOptions(
-                        options => options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+                        options => options.JsonSerializerOptions.Converters
+                            .Add(new JsonStringEnumConverter())
                     )
                 .AddNewtonsoftJson(
                     options => options.SerializerSettings.ReferenceLoopHandling =

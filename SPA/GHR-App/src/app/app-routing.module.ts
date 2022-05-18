@@ -1,3 +1,4 @@
+import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -10,7 +11,6 @@ import { FuncionariosComponent } from './components/funcionarios/funcionarios.co
 import { LoginComponent } from './components/user/login/login.component';
 import { MetasComponent } from './components/metas/metas.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { SupervisoresComponent } from './components/supervisores/supervisores.component';
 import { UserComponent } from './components/user/user.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
@@ -19,71 +19,69 @@ import { MetaDetalheComponent } from './components/metas/meta-Detalhe/meta-Detal
 import { CargoDetalheComponent } from './components/cargos/cargo-detalhe/cargo-detalhe.component';
 import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista.component';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 const routes: Routes = [
-  {
-    path: 'user', component: UserComponent,
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  
+  { path: '',
+    runGuardsAndResolvers: 'always',
+    canActivate: [AuthGuard],
+    children: [
+
+      { path: 'user', redirectTo: 'user/perfil', pathMatch: 'full' },
+      { path: 'user/perfil', component: PerfilComponent },
+    
+      { path: 'funcionarios', redirectTo: 'funcionarios/lista', pathMatch: 'full' },
+      { path: 'funcionarios', component: FuncionariosComponent,
+        children: [
+          { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
+          { path: 'detalhe', component: FuncionarioDetalheComponent },
+          { path: 'lista', component: FuncionarioListaComponent },
+          { path: 'meta/:id', component: FuncionarioMetaComponent }
+        ]
+      },
+    
+      { path: 'departamentos', redirectTo: 'departamentos/lista', pathMatch: 'full' },
+      { path: 'departamentos', component: DepartamentosComponent,
+        children: [
+          { path: 'detalhe/:id', component: DepartamentoDetalheComponent },
+          { path: 'detalhe', component: DepartamentoDetalheComponent },
+          { path: 'lista', component: DepartamentoListaComponent }
+        ]
+      },
+      
+      { path: 'metas', redirectTo: 'metas/lista', pathMatch: 'full' },
+      { path: 'metas', component: MetasComponent,
+        children: [
+          { path: 'detalhe/:id', component: MetaDetalheComponent },
+          { path: 'detalhe', component: MetaDetalheComponent },
+          { path: 'lista', component: MetaListaComponent }
+        ]
+      },
+      
+      { path: 'cargos', redirectTo: 'cargos/lista', pathMatch: 'full' },
+      { path: 'cargos', component: CargosComponent,
+        children: [
+          { path: 'detalhe/:id', component: CargoDetalheComponent },
+          { path: 'detalhe', component: CargoDetalheComponent },
+          { path: 'lista', component: CargoListaComponent }
+        ]
+      },
+    ]
+  },
+  
+  { path: 'user', component: UserComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'cadastro', component: CadastroComponent }
     ]
   },
-
-  {
-    path: 'user/perfil', component: PerfilComponent
-  },
-
-  { path: 'funcionarios', redirectTo: 'funcionarios/lista', pathMatch: 'full' },
-
-  {
-    path: 'funcionarios', component: FuncionariosComponent,
-    children: [
-      { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
-      { path: 'detalhe', component: FuncionarioDetalheComponent },
-      { path: 'lista', component: FuncionarioListaComponent },
-      { path: 'meta/:id', component: FuncionarioMetaComponent }
-    ]
-  },
-
-  { path: 'departamentos', redirectTo: 'departamentos/lista', pathMatch: 'full' },
-
-  {
-    path: 'departamentos', component: DepartamentosComponent,
-    children: [
-      { path: 'detalhe/:id', component: DepartamentoDetalheComponent },
-      { path: 'detalhe', component: DepartamentoDetalheComponent },
-      { path: 'lista', component: DepartamentoListaComponent }
-    ]
-  },
-
-  { path: 'metas', redirectTo: 'metas/lista', pathMatch: 'full' },
-
-  {
-    path: 'metas', component: MetasComponent,
-    children: [
-      { path: 'detalhe/:id', component: MetaDetalheComponent },
-      { path: 'detalhe', component: MetaDetalheComponent },
-      { path: 'lista', component: MetaListaComponent }
-    ]
-  },
-
-  { path: 'cargos', redirectTo: 'cargos/lista', pathMatch: 'full' },
-
-  {
-    path: 'cargos', component: CargosComponent,
-    children: [
-      { path: 'detalhe/:id', component: CargoDetalheComponent },
-      { path: 'detalhe', component: CargoDetalheComponent },
-      { path: 'lista', component: CargoListaComponent }
-    ]
-  },
-
-  { path: 'cargos', component: CargosComponent },
-  { path: 'supervisores', component: SupervisoresComponent },
-  { path: '', redirectTo: 'user/login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'user/login', pathMatch: 'full' }
-
+  
+  { path: 'home', component: HomeComponent },
+  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  
 ];
 
 @NgModule({

@@ -17,13 +17,13 @@ namespace GHR.API.Controllers
     public class CargosController : ControllerBase
     {
         private readonly ICargoService _cargoService;
-        private readonly IAccountService acccountService;
+        private readonly IAccountService _accountService;
 
         public CargosController(ICargoService cargoService,
-                                IAccountService acccountService)
+                                IAccountService accountService)
         {
             _cargoService = cargoService;
-            this.acccountService = acccountService;
+            _accountService = accountService;
         }
 
         [HttpGet]

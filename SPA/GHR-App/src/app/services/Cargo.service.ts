@@ -5,9 +5,7 @@ import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Cargo } from '../models/Cargo';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class CargoService {
 
   public baseURL = environment.apiURL + 'api/cargos'

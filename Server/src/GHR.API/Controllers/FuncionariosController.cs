@@ -20,15 +20,15 @@ namespace GHR.API.Controllers
     {
         private readonly IFuncionarioService _funcionarioService;
         public readonly IWebHostEnvironment _hostEnvironment;
-        private readonly IAccountService _acccountService;
+        private readonly IAccountService _accountService;
 
         public FuncionariosController(
             IFuncionarioService funcionarioService,
             IWebHostEnvironment hostEnvironment,
-            IAccountService acccountService)
+            IAccountService accountService)
         {
             _hostEnvironment = hostEnvironment;
-            _acccountService = acccountService;
+            _accountService = accountService;
             _funcionarioService = funcionarioService;
 
         }

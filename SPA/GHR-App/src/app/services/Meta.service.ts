@@ -7,9 +7,7 @@ import { environment } from 'src/environments/environment';
 
 import { Meta } from '../models/Meta';
 
-@Injectable(
-  //{ providedIn: 'root' }
-)
+@Injectable()
 export class MetaService {
 
   public baseURL = environment.apiURL + 'api/metas'

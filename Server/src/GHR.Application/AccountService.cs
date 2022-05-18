@@ -42,27 +42,28 @@ namespace GHR.Application
             catch (System.Exception ex)
             {
                 
-                throw new Exception($"Erro ao tentar verificar passwaord. Erro: {ex.Message}");
+                throw new Exception($"Erro ao verificar passwaord. Erro: {ex.Message}");
             }
         }
 
-        public async Task<UserDto> CreateAccountAsync(UserDto userDto)
+        public async Task<UserUpdateDto> CreateAccountAsync(UserDto userDto)
         {
             try
             {
-                var user = _mapper.Map < User>(userDto);
+                var user = _mapper.Map<User>(userDto);
                 var result = await _userManager.CreateAsync(user, userDto.Password);
 
                 if (result.Succeeded) {
-                    var userToReturn = _mapper.Map<UserDto>(user);
+                    var userToReturn = _mapper.Map<UserUpdateDto>(user);
                     return userToReturn;
                 }
+
                 return null;
             }
             catch (System.Exception ex)
             {
 
-                throw new Exception($"Erro ao tentar criar conta. Erro: {ex.Message}");
+                throw new Exception($"Erro ao criar conta. Erro: {ex.Message}");
             }
         }
 
@@ -92,12 +93,14 @@ namespace GHR.Application
                 var user = await _userPersistence.GetUserByUserNameAsync(userUpdateDto.UserName);
 
                 if (user == null) return null;
+                    
+                userUpdateDto.Id = user.Id;
 
                 _mapper.Map(userUpdateDto, user);
 
                 var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
-                var resutl = await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
+                await _userManager.ResetPasswordAsync(user, token, userUpdateDto.Password);
 
                 _userPersistence.Update<User>(user);
 
@@ -120,7 +123,7 @@ namespace GHR.Application
         {
             try
             {
-                return await _userManager.Users
+                return await _userManager.Users                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
                                          .AnyAsync(
                                              user => user.UserName == userName.ToLower()
                                          );
@@ -128,7 +131,7 @@ namespace GHR.Application
             catch (System.Exception ex)
             {
 
-                throw new Exception($"Erro ao verificar se usuário existe. Erro: {ex.Message}");
+                throw new Exception($"Erro ao verificar se a conta existe. Erro: {ex.Message}");
             }
         }
     }

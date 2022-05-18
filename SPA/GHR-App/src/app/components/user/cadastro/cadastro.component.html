@@ -6,79 +6,82 @@
         <div class="d-none d-md-block">
           <div class="text-center col-md-12 my-auto side-heder">
             <img class="imgCentral" src="../../../../assets/img/ghr-logo.jpg" alt="" >
-            <h2 class="shadow bg-dark text-white">Grow Human Resources</h2>
+            <div class="titulo shadow bg-dark text-white">Grow Human Resources</div>
           </div>
         </div>
   <!-- Figura Lateral Direita -->
 
 
-    <form class="row g-2" [formGroup]="form!">
+    <form class="p-2" [formGroup]="form!" (ngSubmit)="cadastrarConta()">
       <!-- <p>Form value: {{form.value | json}}</p>
       <p>Form status: {{form.status | json}}</p> -->
 	    <div class="pt-1">
-		    <h4 class="border-bottom">Cadastro de Usuário</h4>
+		    <h4 class="border-bottom">Cadastro de Conta</h4>
 	    </div>
     	<div class="form-row d-md-flex">
 		    <div class="form-group col-md-4 p-1">
-			    <label>Usuário</label>
+			    <label>Conta</label>
 			    <input type="text" class="form-control" placeholder="Insira seu código de usuário"
-            [ngClass]="validarCampo(f.usuario)"
-            formControlName="usuario"
+            [ngClass]="validarCampo(f.userName)"
+            formControlName="userName"
           />
           <div class="invalid-feedback">
-            {{retornarValidacao(f.usuario, "")}}
+            {{retornarValidacao(f.userName, "")}}
           </div>
 		    </div>
         <div class="form-group col-md-8 p-1">
 		    	<label>Nome</label>
 			    <input type="text" class="form-control" placeholder="Insira seu nome completo"
-            [ngClass]="validarCampo(f.nome)"
-            formControlName="nome"
+            [ngClass]="validarCampo(f.nomeCompleto)"
+            formControlName="nomeCompleto"
           />
           <div class="invalid-feedback">
-            {{retornarValidacao(f.nome, "")}}
+            {{retornarValidacao(f.nomeCompleto, "")}}
           </div>
         </div>
 	    </div>
-	    <div class="form-group p-1">
-		    <label for="">Email:</label>
-		    <input class="form-control" type="text" placeholder="Insira seu e-mail pessoal"
-          [ngClass]="validarCampo(f.email)"
-          formControlName="email"
-        />
-        <div class="invalid-feedback">
-          {{retornarValidacao(f.email, "")}}
+      <div class="form-row d-md-flex">
+        <div class="form-group col p-1">
+          <label for="">Email:</label>
+          <input class="form-control" type="text" placeholder="Insira seu e-mail pessoal"
+            [ngClass]="validarCampo(f.email)"
+            formControlName="email"
+          />
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.email, "")}}
+          </div>
         </div>
-	    </div>
+
+      </div>
     	<div class="form-row d-md-flex">
-		    <div class="form-group col-sm-6 p-1">
+		    <div class="form-group col-ms-12 col-md-6 p-1">
 			    <label for="">Senha:</label>
 			    <input class="form-control" type="password" placeholder="Digite uma Senha"
-            [ngClass]="validarCampo(f.senha)"
-            formControlName="senha"
+            [ngClass]="validarCampo(f.password)"
+            formControlName="password"
           />
           <div class="invalid-feedback">
-            {{retornarValidacao(f.senha, "")}}
+            {{retornarValidacao(f.password, "")}}
           </div>
 		    </div>
-		    <div class="form-group col-sm-6 p-1">
+		    <div class="form-group col-ms-12 col-md-6 p-1">
 			   <label for="">Confirmar Senha:</label>
 			   <input class="form-control" type="password" placeholder="Confirme a Senha"
-            [ngClass]="validarCampo(f.confirmarSenha)"
-            formControlName="confirmarSenha"
+            [ngClass]="validarCampo(f.confirmarPassowrd)"
+            formControlName="confirmarPassowrd"
           />
           <div class="invalid-feedback">
-            {{retornarValidacao(f.confirmarSenha, "Confirmar Senha")}}
+            {{retornarValidacao(f.confirmarPassowrd, "Confirmar Senha")}}
           </div>
 		    </div>
 	    </div>
+      <div class="d-flex row m-1">
+        <button class="btn btn-lg btn-success btn-block" [disabled]="!form.valid" type="submit">
+          Registar
+        </button>
+      </div>
     </form>
-    <div class="row px-3 pt-4">
-      <button class="btn btn-lg btn-success btn-block" [disabled]="!form.valid">
-        Registar
-      </button>
-    </div>
-    <hr>
+    <hr class="p-0 m-0">
     <div class="row ">
       <div class="d-flex">
         <div class="custom-control custom-checkbox">
@@ -94,7 +97,7 @@
     </div>
 
  <!-- Figura Lateral Direita -->
-    <div class="col-md-6 d-none d-lg-block">
+    <div class="col-md-6 d-none d-md-block">
       <div class="text-center col-md-12 my-auto side-heder">
         <img class="imgLateral" src="../../../../assets/img/ghr-rightImg.png" alt="" >
     </div>

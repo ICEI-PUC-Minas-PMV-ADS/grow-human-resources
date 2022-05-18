@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GHR.API.Extensions
 {
-    public static class ClaimPrincipalExtensions
+    public static class ClaimsPrincipalExtensions
     {
         public static string GetUserName(this ClaimsPrincipal user){
 
