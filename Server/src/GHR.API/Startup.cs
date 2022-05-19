@@ -3,21 +3,37 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json.Serialization;
-using AutoMapper;
 
 using GHR.Application;
-using GHR.Application.Contracts;
-using GHR.Domain.Identity;
-using GHR.Persistence;
-using GHR.Persistence.Context;
-using GHR.Persistence.Contexts;
-using GHR.Persistence.Contracts;
+using GHR.Application.Serices.Contracts.Metas;
+using GHR.Application.Services.Contracts.Cargos;
+using GHR.Application.Services.Contracts.Contas;
+using GHR.Application.Services.Contracts.Departamentos;
+using GHR.Application.Services.Contracts.Funcionarios;
+using GHR.Application.Services.Implements.Cargos;
+using GHR.Application.Services.Implements.Contas;
+using GHR.Application.Services.Implements.Departamentos;
+using GHR.Application.Services.Implements.Funcionarios;
+using GHR.Application.Services.Implements.Metas;
+using GHR.Domain.DataBase.Contas;
+using GHR.Persistence.Implements.Contracts.Metas;
+using GHR.Persistence.Interfaces.Contexts;
+using GHR.Persistence.Interfaces.Contracts.Cargos;
+using GHR.Persistence.Interfaces.Contracts.Contas;
+using GHR.Persistence.Interfaces.Contracts.Departamentos;
+using GHR.Persistence.Interfaces.Contracts.Funcionarios;
+using GHR.Persistence.Interfaces.Contracts.Global;
+using GHR.Persistence.Interfaces.Implements.Cargos;
+using GHR.Persistence.Interfaces.Implements.Contas;
+using GHR.Persistence.Interfaces.Implements.Departamentos;
+using GHR.Persistence.Interfaces.Implements.Funcionarios;
+using GHR.Persistence.Interfaces.Implements.Global;
+using GHR.Persistence.Interfaces.Implements.Metas;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,7 +61,7 @@ namespace GHR.API
                     context => context.UseSqlite(Configuration.GetConnectionString("Default")));
 
             services
-                .AddIdentityCore<User>(options =>
+                .AddIdentityCore<Conta>(options =>
                     {
                         options.Password.RequireDigit = false;
                         options.Password.RequireNonAlphanumeric = false;
@@ -53,10 +69,10 @@ namespace GHR.API
                         options.Password.RequireUppercase = false;
                         options.Password.RequiredLength = 6;
                     })
-                .AddRoles<Role>()
-                .AddRoleManager<RoleManager<Role>>()
-                .AddSignInManager<SignInManager<User>>()
-                .AddRoleValidator<RoleValidator<Role>>()
+                .AddRoles<Funcao>()
+                .AddRoleManager<RoleManager<Funcao>>()
+                .AddSignInManager<SignInManager<Conta>>()
+                .AddRoleValidator<RoleValidator<Funcao>>()
                 .AddEntityFrameworkStores<GHRContext>()
                 .AddDefaultTokenProviders();
 
@@ -91,7 +107,7 @@ namespace GHR.API
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<IMetaService, MetaService>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IContaService, ContaService>();
 
             services.AddScoped<ICargoPersistence, CargoPersistence>();
             services.AddScoped<IDepartamentoPersistence, DepartamentoPersistence>();
@@ -99,7 +115,7 @@ namespace GHR.API
             services.AddScoped<IFuncionarioPersistence, FuncionarioPersistence>();
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IMetaPersistence, MetaPersistence>();
-            services.AddScoped<IUserPersistence, UserPersistence>();
+            services.AddScoped<IContaPersistence, ContaPersistence>();
 
 
             services.AddCors();

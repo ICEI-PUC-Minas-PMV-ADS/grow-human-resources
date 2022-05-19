@@ -1,11 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using GHR.Application.Dtos;
-using GHR.Domain;
-using GHR.Domain.Identity;
+using GHR.Application.Dtos.Cargos;
+using GHR.Application.Dtos.Contas;
+using GHR.Application.Dtos.Departamentos;
+using GHR.Application.Dtos.Funcionarios;
+using GHR.Application.Dtos.Metas;
+using GHR.Domain.DataBase.Cargos;
+using GHR.Domain.DataBase.Contas;
+using GHR.Domain.DataBase.Departamentos;
+using GHR.Domain.DataBase.Funcionarios;
+using GHR.Domain.DataBase.Metas;
 
 namespace GHR.Application.helpers
 {
@@ -19,9 +22,9 @@ namespace GHR.Application.helpers
             CreateMap<Meta, MetaDto>().ReverseMap();
             CreateMap<FuncionarioMeta, FuncionarioMetaDto>().ReverseMap();
             
-            CreateMap<User, UserDto>().ReverseMap();
-            CreateMap<User, UserLoginDto>().ReverseMap();
-            CreateMap<User, UserUpdateDto>().ReverseMap();
+            CreateMap<Conta, ContaDto>().ReverseMap();
+            CreateMap<Conta, ContaLoginDto>().ReverseMap();
+            CreateMap<Conta, ContaAtualizarDto>().ReverseMap();
         }
     }
 }
