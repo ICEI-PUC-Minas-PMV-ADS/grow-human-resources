@@ -2,14 +2,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { Funcionario } from 'src/app/models/Funcionario';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
-import { Departamento } from 'src/app/models/Departamento';
-import { DepartamentoService } from 'src/app/services/departamento.service';
+import { Departamento } from 'src/app/models/departamentos/Departamento';
+import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 
 @Component({
   selector: 'app-departamento-detalhe',
@@ -21,7 +19,7 @@ export class DepartamentoDetalheComponent implements OnInit {
   form!: FormGroup;
   locale = 'pt-br';
   departamento = {} as Departamento;
-  estadoSalvar: string = "post";
+  estadoSalvar: string = "cadastrarDepatamento";
 
   get f(): any
   {
@@ -83,9 +81,9 @@ export class DepartamentoDetalheComponent implements OnInit {
     {
       this.spinner.show();
 
-      this.estadoSalvar = "put";
+      this.estadoSalvar = "alterarDepartamento";
 
-      this.departamentoService.getDepartamentoById(+eventoIdParam).subscribe(
+      this.departamentoService.recuperarDepartamentoById(+eventoIdParam).subscribe(
         (departamento: Departamento) =>
         {
           this.departamento = { ...departamento };
@@ -106,7 +104,7 @@ export class DepartamentoDetalheComponent implements OnInit {
 
     if (this.form.valid)
     {
-      this.departamento = (this.estadoSalvar === 'post')
+      this.departamento = (this.estadoSalvar === 'cadastrarDepatamento')
         ? { ...this.form.value }
         : { id: this.departamento.id, ...this.form.value };
 

@@ -1,19 +1,17 @@
-<div class="card rounded shadow-sm p-2">
+<div class="card rounded shadow-sm p-1">
 
   <div class="card-head text-center text-white bg-secondary">
     <H3>Formulário de Departamentos</H3>
   </div>
 
   <form class="row" [formGroup]="form!">
-    <p>Form value: {{form.value | json}}</p>
-    <p>Form status: {{form.status | json}}</p>
     <div>
 
       <div class="card-body bg-light ">
         <h4 class="border-bottom">Dados Departamento</h4>
 
         <div class="form-row d-md-flex">
-          <div class="form-group col-md-10 p-1">
+          <div class="form-group col-md-10 px-1">
             <label>Nome</label>
             <input type="text" class="form-control" placeholder="Nome Departamento"
               [ngClass]="validarCampo(f.nomeDepartamento)"
@@ -23,7 +21,7 @@
               {{retornarValidacao(f.nomeDepartamento, "")}}
             </div>
           </div>
-          <div class="form-group col-md-2 p-1 ">
+          <div class="form-group col-md-2 px-1">
             <label>Sigla</label>
             <input type="text" class="form-control" placeholder="Sigla Departamento"
               [ngClass]="validarCampo(f.siglaDepartamento)"
@@ -36,7 +34,7 @@
         </div>
       </div>
 
-      <div class="card-footer bg-dark p-0">
+      <div class="card-footer bg-secondary p-0">
  		    <div class="d-flex">
  			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
  				    Cancelar

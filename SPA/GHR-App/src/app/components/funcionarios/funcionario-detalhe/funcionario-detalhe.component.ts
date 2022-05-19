@@ -11,16 +11,16 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { Funcionario } from 'src/app/models/Funcionario';
-import { Departamento } from 'src/app/models/Departamento';
+import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
+import { Departamento } from 'src/app/models/departamentos/Departamento';
 
-import { FuncionarioService } from 'src/app/services/funcionario.service';
-import { DepartamentoService } from 'src/app/services/departamento.service';
+import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.service';
 
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 import { environment } from 'src/environments/environment';
-import { Cargo } from 'src/app/models/Cargo';
-import { CargoService } from 'src/app/services/Cargo.service';
+import { Cargo } from 'src/app/models/cargos/Cargo';
+import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
+import { CargoService } from 'src/app/services/cargos/Cargo.service';
 
 @Component({
   selector: 'app-funcionario-detalhe',
@@ -47,7 +47,7 @@ export class FuncionarioDetalheComponent implements OnInit {
   get modoEditar(): Boolean {
     return this.estadoSalvar === 'put';
   }
-  
+
   get bsConfig(): any
   {
     return {isAnimated: true, adaptivePosition: true, dateInputFormat: 'DD/MM/YYYY h:mm a', containerClass: 'theme-default'};
@@ -151,7 +151,7 @@ export class FuncionarioDetalheComponent implements OnInit {
         : { id: this.funcionario.id, ...this.form.value };
 
        console.log(this.funcionario.departamentoId)
-      this.funcionario.loginId = 1;
+ //     this.funcionario.loginId = 1;
       this.funcionario.supervisorId = 1;
 
       this.funcionarioService[this.estadoSalvar](this.funcionario).subscribe(
@@ -167,7 +167,7 @@ export class FuncionarioDetalheComponent implements OnInit {
   public ConsultarDepartametos(): void {
     this.spinner.show();
 
-    this.departamentoService.getDepartamentos().subscribe(
+    this.departamentoService.recuperarDepartamentos().subscribe(
       (departamentoRetorno: Departamento[]) => {
         this.departamentos = departamentoRetorno;
       },
@@ -177,11 +177,11 @@ export class FuncionarioDetalheComponent implements OnInit {
       }
     ).add(() => this.spinner.hide());
    }
-  
+
   public consultarCargos(): void  {
       this.spinner.show();
 
-      this.cargoService.getCargos().subscribe(
+      this.cargoService.recuperarCargos().subscribe(
         (cargoRetorno: Cargo[]) => {
           this.cargos = cargoRetorno;
         },
@@ -193,13 +193,13 @@ export class FuncionarioDetalheComponent implements OnInit {
       ).add(() => this.spinner.hide());
     }
 
- 
+
   public onFileChange(ev: any): void {
-    
+
     const reader = new FileReader();
 
     reader.onload = (event: any) => this.imagemUpload = event.target.result;
-    
+
     this.file = ev.target.files;
 
     reader.readAsDataURL(this.file[0]);
@@ -214,7 +214,7 @@ export class FuncionarioDetalheComponent implements OnInit {
       () => {
   //      this.router.navigate([`funcionarios/detalhe/${this.funcionarioId}`]);
         location.reload();
-        this.toastr.success("Foto Atualizada!", "Sucesso!");  
+        this.toastr.success("Foto Atualizada!", "Sucesso!");
       },
       (error: any) => {
         this.toastr.error('Falha ao atualziar foto', 'Erro!');

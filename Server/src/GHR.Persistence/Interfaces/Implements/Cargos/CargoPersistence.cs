@@ -23,8 +23,9 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
             IQueryable<Cargo> query = _context.Cargos;
 
             query = query
+                .Include(d => d.Departamentos)
                 .AsNoTracking()
-                .OrderBy(c => c.Id);
+                .OrderBy(c => c.NomeCargo);
 
             return await query.ToArrayAsync();
         }

@@ -7,14 +7,14 @@ import { ToastrService } from 'ngx-toastr';
 
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 
-import { Funcionario } from 'src/app/models/Funcionario';
-import { FuncionarioMeta } from 'src/app/models/FuncionarioMeta';
+import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
+import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
 import { Meta } from 'src/app/models/Meta';
 
-import { FuncionarioMetaService } from './../../../services/funcionarioMeta.service';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
 import { MetaService } from 'src/app/services/Meta.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.service';
+import { FuncionarioMetaService } from 'src/app/services/funcionarios/funcionarioMeta.service';
 
 @Component({
   selector: 'app-funcionario-meta',

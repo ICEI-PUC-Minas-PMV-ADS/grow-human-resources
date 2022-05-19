@@ -24,8 +24,8 @@ namespace GHR.API.Controllers.Contas
             _tokenService = tokenService;
         }
         
-        [HttpGet("GetUser")]
-        public async Task<IActionResult> GetUSer() {
+        [HttpGet("RecuperarConta")]
+        public async Task<IActionResult> RecuperarConta() {
             try
             {
                 var userName = User.RecuperarUserName();

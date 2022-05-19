@@ -1,21 +1,21 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Departamento } from 'src/app/models/Departamento';
-import { Funcionario } from 'src/app/models/Funcionario';
-import { DepartamentoService } from 'src/app/services/departamento.service';
 
+import { Departamento } from 'src/app/models/departamentos/Departamento';
+
+import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 @Component({
   selector: 'app-departamento-lista',
   templateUrl: './departamento-lista.component.html',
   styleUrls: ['./departamento-lista.component.scss']
 })
 export class DepartamentoListaComponent implements OnInit {
-  modalRef?: BsModalRef;
 
-
+  public modalRef?: BsModalRef;
   public departamentos: Departamento[] = [];
   public departamentosFiltrados: Departamento[] = [];
   public departamentoId = 0;
@@ -36,8 +36,11 @@ export class DepartamentoListaComponent implements OnInit {
   public filtrarDepartamentos(filtrarPor: string): Departamento[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.departamentos.filter(
-      (departamento: Departamento) => departamento.nomeDepartamento.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        departamento.siglaDepartamento.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      (departamento: Departamento) =>
+        departamento.nomeDepartamento
+          .toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        departamento.siglaDepartamento
+          .toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
@@ -56,7 +59,7 @@ export class DepartamentoListaComponent implements OnInit {
 
   public carregarDepartamentos(): void {
     this.spinner.show();
-    this.departamentoService.getDepartamentos().subscribe({
+    this.departamentoService.recuperarDepartamentos().subscribe({
       next: (departamentosRetorno: Departamento[]) => {
         this.departamentos = departamentosRetorno;
         this.departamentosFiltrados = this.departamentos;
@@ -74,7 +77,7 @@ export class DepartamentoListaComponent implements OnInit {
     this.modalRef?.hide();
     this.spinner.show();
 
-    this.departamentoService.deleteFuncionario(this.departamentoId).subscribe(
+    this.departamentoService.excluirFuncionario(this.departamentoId).subscribe(
       (retornoDelete: any) => {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Departamento excluído da base!", "Excluído!")

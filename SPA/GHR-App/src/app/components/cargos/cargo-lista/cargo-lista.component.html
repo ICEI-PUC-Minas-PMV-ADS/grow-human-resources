@@ -25,8 +25,7 @@
       <tr>
         <th class="d-none d-md-table-cell">#</th>
         <th>Cargo</th>
-        <th>Nível</th>
-        <th>Recursos Humanos?</th>
+        <th>Funcão</th>
         <th>Departamento</th>
         <th>Opções</th>
       </tr>
@@ -35,9 +34,8 @@
       <tr *ngFor="let cargo of cargosFiltrados" (click)="detalheCargo(cargo.id)" style="cursor: pointer">
         <td class="d-none d-md-table-cell">{{cargo.id}}</td>
         <td>{{cargo.nomeCargo}}</td>
-        <td>{{cargo.nivel}}</td>
-        <td>{{cargo.recursosHumanos}}</td>
-        <td>{{cargo.departamentoId}}</td>
+        <td>{{cargo.funcao}}</td>
+        <td>{{cargo.departamentos.nomeDepartamento}}</td>
         <td>
           <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, cargo.id)">
             <i class="fa fa-trash"></i>

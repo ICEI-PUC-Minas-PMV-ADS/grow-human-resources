@@ -19,38 +19,38 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CadastroComponent } from './components/user/cadastro/cadastro.component';
+import { CadastroComponent } from './components/conta/cadastro/cadastro.component';
 import { CargoDetalheComponent } from './components/cargos/cargo-detalhe/cargo-detalhe.component';
 import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista.component';
 import { CargosComponent } from './components/cargos/cargos.component';
+import { ContaComponent } from './components/conta/conta.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
 import { FuncionarioDetalheComponent } from './components/funcionarios/funcionario-detalhe/funcionario-detalhe.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
-import { LoginComponent } from './components/user/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/conta/login/login.component';
 import { MetaDetalheComponent } from './components/metas/meta-Detalhe/meta-Detalhe.component';
 import { MetaListaComponent } from './components/metas/meta-lista/meta-lista.component';
 import { MetasComponent } from './components/metas/metas.component';
 import { NavComponent } from './shared/nav/nav.component';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { SupervisoresComponent } from './components/supervisores/supervisores.component';
+import { PerfilComponent } from './components/conta/perfil/perfil.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
-import { UserComponent } from './components/user/user.component';
 
-import { AccountService } from 'src/app/services/Account.service';
-import { CargoService } from './services/Cargo.service';
-import { DepartamentoService } from './services/departamento.service';
+import { ContaService } from './services/contas/Conta.service';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
-import { FuncionarioService } from './services/funcionario.service';
+
 import { MetaService } from './services/Meta.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { HomeComponent } from './components/home/home.component';
+import { CargoService } from './services/cargos/Cargo.service';
+import { DepartamentoService } from './services/departamentos/departamento.service';
 
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { FuncionarioService } from './services/funcionarios/funcionario.service';
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
   declarations: [
@@ -59,6 +59,7 @@ defineLocale('pt-br', ptBrLocale);
     CargoDetalheComponent,
     CargoListaComponent,
     CargosComponent,
+    ContaComponent,
     DateTimeFormatPipe,
     DepartamentoDetalheComponent,
     DepartamentoListaComponent,
@@ -75,9 +76,7 @@ defineLocale('pt-br', ptBrLocale);
     MetasComponent,
     NavComponent,
     PerfilComponent,
-    SupervisoresComponent,
     TituloComponent,
-    UserComponent,
     FuncionarioMetaComponent
   ],
   imports: [
@@ -103,7 +102,7 @@ defineLocale('pt-br', ptBrLocale);
     BsDatepickerModule.forRoot(),
   ],
   providers: [
-    AccountService,
+    ContaService,
     DepartamentoService,
     CargoService,
     FuncionarioService,

@@ -1,4 +1,4 @@
-import { Funcionario } from "./Funcionario";
+import { Funcionario } from "./funcionarios/Funcionario";
 
 export interface Meta {
   id: number;

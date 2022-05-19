@@ -98,14 +98,14 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
 
-           } 
+        } 
 
         public async Task<FuncionarioDto[]> RecuperarFuncionariosAsync(int userId, string visao, bool incluirMetas = false)
         {
             try
             {
                 var funcionarios = await _funcionarioPersistence
-                    .RecuperarFuncionariosAsync( userId,  visao, incluirMetas);
+                    .RecuperarFuncionariosAsync(userId, visao, incluirMetas);
 
                 if (funcionarios == null) return null;
 

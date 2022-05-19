@@ -3,9 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Departamento } from 'src/app/models/Departamento';
 import { Meta } from 'src/app/models/Meta';
-import { DepartamentoService } from 'src/app/services/departamento.service';
 import { MetaService } from 'src/app/services/Meta.service';
 
 @Component({

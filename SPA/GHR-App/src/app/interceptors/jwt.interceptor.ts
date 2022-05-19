@@ -5,26 +5,29 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
-import { User } from '../models/identity/User';
-import { AccountService } from '../services/Account.service';
 import { take } from 'rxjs/operators';
+
+import { Conta } from '../models/contas/Conta';
+
+import { ContaService } from '../services/contas/Conta.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor(private accountService: AccountService) {}
+  constructor(private contaService: ContaService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let currentUser: User;
+    let contaAtual: Conta;
 
-    this.accountService.currentUser$.pipe(take(1)).subscribe(user => {
-      currentUser = user
+    this.contaService.contaAtual$.pipe(take(1)).subscribe(user => {
+      contaAtual = user
 
-      if (currentUser) {
+      if (contaAtual) {
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${currentUser.token}`
+            Authorization: `Bearer ${contaAtual.token}`
           }
         });
       }

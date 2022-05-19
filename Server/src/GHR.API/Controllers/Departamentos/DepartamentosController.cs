@@ -15,13 +15,10 @@ namespace GHR.API.Controllers.Departamentos
     public class DepartamentosController : ControllerBase
     {
         private readonly IDepartamentoService _departamentoService;
-        private readonly IContaService _contaService;
 
-        public DepartamentosController(IDepartamentoService departamentoService,
-                                       IContaService contaService)
+        public DepartamentosController(IDepartamentoService departamentoService)
         {
             _departamentoService = departamentoService;
-            _contaService = contaService;
         }
 
         [HttpGet]

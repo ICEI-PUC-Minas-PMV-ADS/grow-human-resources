@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Funcionario } from 'src/app/models/Funcionario';
-import { FuncionarioService } from 'src/app/services/funcionario.service';
+
+import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
+import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.service';
+
 
 @Component({
   selector: 'app-funcionario-lista',
@@ -31,13 +33,13 @@ export class FuncionarioListaComponent implements OnInit {
   }
 
   public set filtroLista(filtro: string) {
-    this.filtroListado = filtro;
+/*    this.filtroListado = filtro;
     this.funcionariosFiltrados = this.filtroLista
       ? this.filtrarFuncionarios(this.filtroLista)
-      : this.funcionarios;
+      : this.funcionarios; */
   }
 
-  public filtrarFuncionarios(filtrarPor: string): Funcionario[] {
+/*  public filtrarFuncionarios(filtrarPor: string): Funcionario[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.funcionarios.filter(
       (funcionario: Funcionario) => funcionario.nomeCompleto.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
@@ -45,7 +47,7 @@ export class FuncionarioListaComponent implements OnInit {
         funcionario.telefone.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
-
+*/
   constructor(
     private funcionarioService: FuncionarioService,
     private modalService: BsModalService,

@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GHR.Application.Dtos.Funcionarios
 {
-    public class Endereco
+    public class EnderecoDto
     {
       public int Id { get; set; }
 

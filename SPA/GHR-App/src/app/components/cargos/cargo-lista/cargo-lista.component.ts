@@ -12,9 +12,10 @@ import {
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { Cargo } from 'src/app/models/Cargo';
+import { Cargo } from 'src/app/models/cargos/Cargo';
 
-import { CargoService } from 'src/app/services/Cargo.service';
+import { CargoService } from 'src/app/services/cargos/Cargo.service';
+
 
 @Component({
   selector: 'app-cargo-lista',
@@ -33,12 +34,12 @@ export class CargoListaComponent implements OnInit {
   private filtroListado: string = '';
 
   public get filtroLista(): string {
- 
+
     return this.filtroListado;
   }
 
   public set filtroLista(filtro: string) {
- 
+
     this.filtroListado = filtro;
     this.cargosFiltrados = this.filtroLista
       ? this.filtrarCargos(this.filtroLista)
@@ -46,10 +47,13 @@ export class CargoListaComponent implements OnInit {
   }
 
   public filtrarCargos(filtrarPor: string): Cargo[] {
- 
+
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.cargos.filter(
-      (cargo: Cargo) => cargo.nomeCargo.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      (cargo: Cargo) =>
+        cargo.nomeCargo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        cargo.funcao.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        cargo.departamentos.nomeDepartamento.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
@@ -62,16 +66,16 @@ export class CargoListaComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    
+
     this.spinner.show();
     this.consultarCargos();
   }
 
   public consultarCargos(): void {
-    
+
     this.spinner.show();
-    
-    this.cargoService.getCargos().subscribe(
+
+    this.cargoService.recuperarCargos().subscribe(
       (cargosRetorno: Cargo[]) => {
         this.cargos = cargosRetorno;
         this.cargosFiltrados = this.cargos;},
@@ -80,23 +84,23 @@ export class CargoListaComponent implements OnInit {
         console.log(error);
       }).add(() => this.spinner.hide());
   }
-  
+
   openModal(event: any, template: TemplateRef<any>, cargoId: number): void {
-  
+
     event.stopPropagation();
-  
+
     this.cargoId = cargoId
-  
+
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirmar(): void {
-  
+
     this.modalRef?.hide();
-  
+
     this.spinner.show();
 
-    this.cargoService.deleteCargo(this.cargoId).subscribe(
+    this.cargoService.excluirCargo(this.cargoId).subscribe(
       (retornoDelete: any) => {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Cargo excluído da base!", "Excluído!")

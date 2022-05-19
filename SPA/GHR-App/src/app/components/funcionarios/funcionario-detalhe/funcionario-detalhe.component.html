@@ -1,14 +1,14 @@
-<div class="card rounded shadow-sm px-2 pb-2 mt-1">
+<div class="card rounded shadow-sm px-1 pb-1 mt-1">
   <form class="row" [formGroup]="form!">
     <div>
-      <div class="card-head text-center text-white bg-secondary p-1 mt-2  ">
+      <div class="card-head text-center text-white bg-secondary p-1 mt-1  ">
         <H3>Formulário de Funcionários</H3>
       </div>
       <div class="card-body bg-light ">
         <h4 class="border-bottom">Dados Pessoais</h4>
         <div class="row d-flex">
           <div class="form-group col-md-10">
-            
+
             <div class="form-row d-md-flex">
               <div class="form-group col-md-6 p-1">
                 <label>Nome</label>
@@ -30,7 +30,7 @@
                 </div>
               </div>
             </div>
-    
+
             <div class="form-row d-md-flex">
               <div class="form-group col-md-3 p-1 ">
                 <label>Telefone</label>
@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" disabled placeholder="Somente números">
               </div>
             </div>
-    
+
             <div class="form-row d-md-flex">
               <div class="form-group col-md-3 p-1">
                 <label>Data Expedição</label>
@@ -79,17 +79,17 @@
               </div>
             </div>
           </div>
-               
+
           <div class="col-md-2 mt-0 " *ngIf="modoEditar">
             <h4 class="border-bottom">Foto</h4>
             <div class=""  style=" cursor: pointer">
               <input type="file" #file (change)="onFileChange($event)" class="form-control is-invalid" style="display: none">
               <img class="preview-img image img-fluid  " [src]="imagemUpload"  (click)="file.click() " width="200" height="200"
               alt="Card iamge cap" tooltip="Upload de Nova Foto" >
-            </div>       
+            </div>
           </div>
           <h4 class="border-bottom mt-2">Endereço</h4>
-    
+
           <div class="form-row d-flex">
             <div class="form-group col-md-3 p-1">
                <label label>CEP</label>
@@ -104,7 +104,7 @@
                <input type="text" class="form-control" disabled placeholder="Número da Casa">
              </div>
           </div>
-    
+
           <div class="form-row d-flex">
             <div class="form-group col-md-3 p-1">
                <label label>Complemento</label>
@@ -119,7 +119,7 @@
                <input type="text" class="form-control" disabled placeholder="Nome Cidade">
              </div>
           </div>
-    
+
           <div class="form-row d-flex">
             <div class="form-group col-md-1 p-1">
               <label>UF</label>
@@ -138,9 +138,9 @@
                <input type="text" class="form-control" disabled placeholder="Complemento">
              </div>
           </div>
-    
+
           <h4 class="border-bottom mt-2">Empresa</h4>
-    
+
           <div class="form-row d-flex">
             <div class="form-group col-md-6 p-1">
                <label>e-mail Empresa</label>
@@ -157,7 +157,7 @@
                 </select>
                 <div class="invalid-feedback">
                   {{retornarValidacao(f.cargoId, "")}}
-                </div>      
+                </div>
              </div>
              <div class="form-group col-md-3 p-1">
                <label>Salário</label>
@@ -172,7 +172,7 @@
               </div>
              </div>
           </div>
-    
+
           <div class="form-row d-flex">
              <div class="form-group col-md-3 p-1">
                <label>Data Admissão</label>
@@ -207,7 +207,7 @@
                 </select>
                 <div class="invalid-feedback">
                   {{retornarValidacao(f.departamentoId, "")}}
-                </div>   
+                </div>
             </div>
             <div class="form-group col-md-3 p-1">
                <label>Supervisor</label>
@@ -215,7 +215,7 @@
                 formControlName="supervisorId" disabled>
              </div>
           </div>
-    
+
           <div class="form-row d-flex">
             <div class="form-group col-md-3 p-1">
                <label>Gerência Administrativa</label>
@@ -235,7 +235,7 @@
                formControlName="imagemURL" disabled>
             </div>
            </div>
-        </div> 
+        </div>
       </div>
       <div class="card-footer bg-dark p-0">
         <div class="d-flex">

@@ -20,15 +20,12 @@ namespace GHR.API.Controllers.Funcionarios
     {
         private readonly IFuncionarioService _funcionarioService;
         public readonly IWebHostEnvironment _hostEnvironment;
-        private readonly IContaService _contaService;
 
         public FuncionariosController(
             IFuncionarioService funcionarioService,
-            IWebHostEnvironment hostEnvironment,
-            IContaService contaService)
+            IWebHostEnvironment hostEnvironment)
         {
             _hostEnvironment = hostEnvironment;
-            _contaService = contaService;
             _funcionarioService = funcionarioService;
 
         }
@@ -38,6 +35,7 @@ namespace GHR.API.Controllers.Funcionarios
         {
             try
             {
+
                 var funcionarios = await _funcionarioService
                     .RecuperarFuncionariosAsync(User.RecuperarUserId(), User.RecuperarVisao(), true);
 

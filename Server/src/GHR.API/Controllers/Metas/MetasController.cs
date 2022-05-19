@@ -16,13 +16,10 @@ namespace GHR.API.Controllers.Metas
     public class MetasController : ControllerBase
     {
         private readonly IMetaService _metaService;
-        private readonly IContaService _contaService;
 
-        public MetasController(IMetaService metaService,
-                               IContaService contaService)
+        public MetasController(IMetaService metaService)
         {
             _metaService = metaService;
-            _contaService = contaService;
         }
 
         [HttpGet]

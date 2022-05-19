@@ -18,16 +18,16 @@ namespace  GHR.Domain.DataBase.Funcionarios
         public int? GerenteAdministrativoId { get; set; }
         public int? GerenteOperacionalId { get; set; }
         public int? DiretorId { get; set; }
-        public int CargoId { get; set; }
+        public int? CargoId { get; set; }
         public Cargo Cargos { get; set; }
-        public int DepartamentoId { get; set; }
+        public int? DepartamentoId { get; set; }
         public Departamento Departamentos { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public Conta Contas { get; set; }
-        public int EnderecoId { get; set; }
+        public int? EnderecoId { get; set; }
         public Endereco Enderecos { get; set; }
-        public int DadosPessoaisId { get; set; }
-        public DadoPessoal DadosPessoais { get; set; }
+        public int? DadosPessoaisId { get; set; }
+        public DadoPessoal DadosPessoais { get; set; }       
         public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
         public string ImagemURL { get; set; }
     }

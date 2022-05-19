@@ -1,7 +1,7 @@
-import { AccountService } from 'src/app/services/Account.service';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { User } from 'src/app/models/identity/User';
+import { Conta } from 'src/app/models/contas/Conta';
+import { ContaService } from 'src/app/services/contas/Conta.service';
 
 @Component({
   selector: 'app-nav',
@@ -12,38 +12,40 @@ export class NavComponent implements OnInit {
 
   isCollapsed = true;
   contaLogada = false;
-  userLogado = {} as User;
+  contaAtiva = {} as Conta;
+  visaoRH = false;
 
   constructor(
-    public accountService: AccountService,
+    public contaService: ContaService,
     private router: Router,
-  ) { 
+  ) {
     router.events.subscribe(
       (val) => {
         if (val instanceof NavigationEnd) {
-          this.accountService.currentUser$.subscribe(
+          this.contaService.contaAtual$.subscribe(
             (value) => {
               this.contaLogada = value !== null;
-              this.userLogado = { ...value } ;
-              console.log(value.visao);
+              this.contaAtiva = { ...value } ;
+              this.visaoRH = this.contaAtiva.visao.includes('RH');
+              console.log(this.contaLogada, this.contaAtiva, this.contaAtiva.visao);
+              console.log('Menu', this.contaAtiva.visao, this.visaoRH);
+            }
+            )
+          }
         }
-          )
-          console.log(this.contaLogada, this.userLogado, this.userLogado.visao );
-        }
-      }
-    )
+        )
   }
 
   ngOnInit() {
-    console.log(this.accountService.currentUser$);
+
   }
-  
+
   showMenu(): boolean {
-    return this.router.url !== '/user/login'
+    return this.router.url !== '/conta/login'
   }
-  
+
   logout(): void {
-    this.accountService.logout();
-    this.router.navigateByUrl('/user/login');
+    this.contaService.logout();
+    this.router.navigateByUrl('/conta/login');
   }
 }

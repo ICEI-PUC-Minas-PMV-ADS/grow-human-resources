@@ -2,16 +2,15 @@ import { AuthGuard } from './guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { CadastroComponent } from './components/user/cadastro/cadastro.component';
+import { CadastroComponent } from './components/conta/cadastro/cadastro.component';
 import { CargosComponent } from './components/cargos/cargos.component';
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
 import { FuncionarioDetalheComponent } from './components/funcionarios/funcionario-detalhe/funcionario-detalhe.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
-import { LoginComponent } from './components/user/login/login.component';
+import { LoginComponent } from './components/conta/login/login.component';
 import { MetasComponent } from './components/metas/metas.component';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { UserComponent } from './components/user/user.component';
+import { PerfilComponent } from './components/conta/perfil/perfil.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
 import { MetaListaComponent } from './components/metas/meta-lista/meta-lista.component';
@@ -20,19 +19,20 @@ import { CargoDetalheComponent } from './components/cargos/cargo-detalhe/cargo-d
 import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista.component';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 import { HomeComponent } from './components/home/home.component';
+import { ContaComponent } from './components/conta/conta.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  
+
   { path: '',
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
 
-      { path: 'user', redirectTo: 'user/perfil', pathMatch: 'full' },
-      { path: 'user/perfil', component: PerfilComponent },
-    
+      { path: 'conta', redirectTo: 'conta/perfil', pathMatch: 'full' },
+      { path: 'conta/perfil', component: PerfilComponent },
+
       { path: 'funcionarios', redirectTo: 'funcionarios/lista', pathMatch: 'full' },
       { path: 'funcionarios', component: FuncionariosComponent,
         children: [
@@ -42,7 +42,7 @@ const routes: Routes = [
           { path: 'meta/:id', component: FuncionarioMetaComponent }
         ]
       },
-    
+
       { path: 'departamentos', redirectTo: 'departamentos/lista', pathMatch: 'full' },
       { path: 'departamentos', component: DepartamentosComponent,
         children: [
@@ -51,7 +51,7 @@ const routes: Routes = [
           { path: 'lista', component: DepartamentoListaComponent }
         ]
       },
-      
+
       { path: 'metas', redirectTo: 'metas/lista', pathMatch: 'full' },
       { path: 'metas', component: MetasComponent,
         children: [
@@ -60,7 +60,7 @@ const routes: Routes = [
           { path: 'lista', component: MetaListaComponent }
         ]
       },
-      
+
       { path: 'cargos', redirectTo: 'cargos/lista', pathMatch: 'full' },
       { path: 'cargos', component: CargosComponent,
         children: [
@@ -71,17 +71,17 @@ const routes: Routes = [
       },
     ]
   },
-  
-  { path: 'user', component: UserComponent,
+
+  { path: 'conta', component: ContaComponent,
     children: [
       { path: 'login', component: LoginComponent },
       { path: 'cadastro', component: CadastroComponent }
     ]
   },
-  
+
   { path: 'home', component: HomeComponent },
   { path: '**', redirectTo: 'home', pathMatch: 'full' }
-  
+
 ];
 
 @NgModule({

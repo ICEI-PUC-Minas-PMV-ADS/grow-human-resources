@@ -1,6 +1,6 @@
-import { AccountService } from 'src/app/services/Account.service';
 import { Component } from '@angular/core';
-import { User } from './models/identity/User';
+import { Conta } from './models/contas/Conta';
+import { ContaService } from './services/contas/Conta.service';
 
 @Component({
   selector: 'app-root',
@@ -9,23 +9,23 @@ import { User } from './models/identity/User';
 })
 export class AppComponent {
   constructor(
-    private accountService: AccountService
+    private contaService: ContaService
   ) { }
-  
-  ngOnInit(): void{ 
-    this.setCurrentUser()
+
+  ngOnInit(): void{
+    this.definirContaAtual()
   }
 
-  public setCurrentUser(): void {
-    let user: User;
+  public definirContaAtual(): void {
+    let conta: Conta;
 
-    if (localStorage.getItem('user')) {
-      user = JSON.parse(localStorage.getItem('user') ?? '{}');
+    if (localStorage.getItem('conta')) {
+      conta = JSON.parse(localStorage.getItem('conta') ?? '{}');
     } else {
-      user = null
+      conta = null
     }
 
-    if (user)
-      this.accountService.setCurrentUser(user);
+    if (conta)
+      this.contaService.definirContaAtual(conta);
   }
 }

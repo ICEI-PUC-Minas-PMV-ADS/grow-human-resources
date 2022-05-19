@@ -18,13 +18,10 @@ namespace GHR.API.Controllers.Funcionarios
     public class FuncionariosMetasController : ControllerBase
     {
         private readonly IFuncionarioMetaService _funcionarioMetaService;
-        private readonly IContaService _contaService;
 
-        public FuncionariosMetasController(IFuncionarioMetaService funcionarioMetaService,
-                                           IContaService contaService)
+        public FuncionariosMetasController(IFuncionarioMetaService funcionarioMetaService)
         {
             _funcionarioMetaService = funcionarioMetaService;
-            _contaService = contaService;
         }
 
         [HttpGet("{funcionarioId}")]

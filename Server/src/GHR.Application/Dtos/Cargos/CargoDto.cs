@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using GHR.Domain.DataBase.Departamentos;
 
 namespace GHR.Application.Dtos.Cargos
 {
@@ -16,5 +17,6 @@ namespace GHR.Application.Dtos.Cargos
         Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public string Funcao { get; set; }
         public int DepartamentoId { get; set; }
+        public Departamento Departamentos { get; set; }
     }
 }

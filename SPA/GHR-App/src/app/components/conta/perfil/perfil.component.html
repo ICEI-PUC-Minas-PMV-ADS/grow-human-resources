@@ -1,0 +1,143 @@
+<app-titulo
+  [titulo]="'Perfil'"
+  [subtitulo]="'GHR - Grow Human Resource'"
+  [iconClass]="'fa fa-id-card'"
+  [botaoListar]="false"
+></app-titulo>
+
+<div class="card rounded shadow-sm p-1">
+  <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Perfil</H3>
+  </div>
+  <form [formGroup]="form!" (ngSubmit)="onSubmit()">
+    <div class="card-body bg-light">
+      <div class="row ">
+        <div class="col-lg-3 pt-1">
+          <div class="card bg-light">
+            <div class="card-header bg-dark">
+              <div class="align-self-center text-center pt-3">
+                <a>
+                  <img
+                    src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
+                    name="aboutme" width="120" height="120" class="rounded-circle">
+                </a>
+                <div class="h4 text-center">
+                  @{{f.userName.value}}
+                </div>
+              </div>
+            </div>
+            <div class="card-body bg-light">
+              <div class="h7 text-bold pb-1"><b>Nome:</b>{{f.nomeCompleto.value}}</div>
+              <div class="h7">
+                {{f.descricao.value}}
+              </div>
+            </div>
+            <div class="card-footer">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                 <div class="row">
+                   <div class="col-6 text-center border-right">
+                     <div class="h5">1342</div>
+                     <div class="h6 text-muted">Metas Cumpridas</div>
+                   </div>
+                   <div class="col-6 text-center">
+                     <div class="h5">1342</div>
+                     <div class="h6 text-muted">Metas não Cumpridas</div>
+                   </div>
+                 </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="form-group col-md-12">
+            <h3 class="border-bottom">Detalhe Perfil</h3>
+          </div>
+          <div class="form-row d-md-flex">
+            <div class="form-group col-md-5 p-1">
+              <label>Nome</label>
+              <input type="text " class="form-control p-1"
+              [ngClass]="validarCampo(f.nomeCompleto)"
+              formControlName="nomeCompleto"
+              />
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.nomeCompleto, "")}}
+              </div>
+            </div>
+            <div class="form-group col-sm-5 p-1">
+              <label>E-mail</label>
+              <input type="text" class="form-control"
+              [ngClass]="validarCampo(f.email)"
+              formControlName="email"
+              />
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.email, "")}}
+              </div>
+            </div>
+            <div class="form-group col-sm-2 p-1">
+              <label>Telefone</label>
+              <input type="text" class="form-control"
+              [ngClass]="validarCampo(f.phoneNumber)"
+              formControlName="phoneNumber"
+              />
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.phoneNumber, "")}}
+              </div>
+            </div>
+          </div>
+          <div class="form-row d-md-flex">
+            <div class="form-group col p-1">
+              <label>Mini Currículo</label>
+              <textarea name="euMesmo"  class="form-control"
+                [ngClass]="validarCampo(f.descricao)"
+                formControlName="descricao">
+              </textarea>
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.descricao, "")}}
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="pt-3 border-bottom">Mudar Senha</h3>
+            <p>Caso mude de senha, preencha os campos abaixo:</p>
+          </div>
+          <div class="form-row d-md-flex">
+            <div class="form-group col-md-6 p-1">
+              <label>Senha</label>
+              <input type="password" class="form-control"
+                [ngClass]="validarCampo(f.password)"
+                formControlName="password">
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.password, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-6 p-1">
+              <label>Confirmar Senha</label>
+              <input type="password" class="form-control"
+              [ngClass]="validarCampo(f.confirmarPassword)"
+              formControlName="confirmarPassword"
+              />
+              <div class="invalid-feedback">
+                {{retornarValidacao(f.confirmarPassword, "Confirmar Senha")}}
+              </div>
+            </div>
+          </div>
+          </div>
+      </div>
+    </div>
+      <div class="card-footer bg-dark">
+        <div class="d-flex">
+          <button class="btn btn-danger ms-auto m-0" (click)="limparFormulario()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-success m-0" [disabled]="!form.valid">
+            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+            Salvar
+          </button>
+        </div>
+      </div>
+  </form>
+</div>
+<!--    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p> -->

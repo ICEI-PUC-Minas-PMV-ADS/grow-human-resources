@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using GHR.API.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Cargos;
 using GHR.Application.Services.Contracts.Contas;
@@ -16,13 +15,10 @@ namespace GHR.API.Controllers.Cargos
     public class CargosController : ControllerBase
     {
         private readonly ICargoService _cargoService;
-        private readonly IContaService _contaService;
 
-        public CargosController(ICargoService cargoService,
-                                IContaService contaService)
+        public CargosController(ICargoService cargoService)
         {
             _cargoService = cargoService;
-            _contaService = contaService;
         }
 
         [HttpGet]

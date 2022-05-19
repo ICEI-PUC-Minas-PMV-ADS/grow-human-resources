@@ -33,6 +33,8 @@ namespace GHR.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartamentoId");
+
                     b.ToTable("Cargos");
                 });
 
@@ -260,13 +262,13 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CargoId")
+                    b.Property<int?>("CargoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ContasId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DadosPessoaisId")
+                    b.Property<int?>("DadosPessoaisId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DataAdmissao")
@@ -275,13 +277,13 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("DataDemissao")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DepartamentoId")
+                    b.Property<int?>("DepartamentoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("DiretorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("EnderecoId")
+                    b.Property<int?>("EnderecoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("FuncionarioAtivo")
@@ -302,7 +304,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<int?>("SupervisorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -478,6 +480,17 @@ namespace GHR.Persistence.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GHR.Domain.DataBase.Cargos.Cargo", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Departamentos.Departamento", "Departamentos")
+                        .WithMany()
+                        .HasForeignKey("DepartamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departamentos");
+                });
+
             modelBuilder.Entity("GHR.Domain.DataBase.Contas.ContaFuncao", b =>
                 {
                     b.HasOne("GHR.Domain.DataBase.Contas.Funcao", "Funcoes")
@@ -501,9 +514,7 @@ namespace GHR.Persistence.Migrations
                 {
                     b.HasOne("GHR.Domain.DataBase.Cargos.Cargo", "Cargos")
                         .WithMany()
-                        .HasForeignKey("CargoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CargoId");
 
                     b.HasOne("GHR.Domain.DataBase.Contas.Conta", "Contas")
                         .WithMany()
@@ -511,21 +522,15 @@ namespace GHR.Persistence.Migrations
 
                     b.HasOne("GHR.Domain.DataBase.Funcionarios.DadoPessoal", "DadosPessoais")
                         .WithMany()
-                        .HasForeignKey("DadosPessoaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DadosPessoaisId");
 
                     b.HasOne("GHR.Domain.DataBase.Departamentos.Departamento", "Departamentos")
                         .WithMany()
-                        .HasForeignKey("DepartamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DepartamentoId");
 
                     b.HasOne("GHR.Domain.DataBase.Funcionarios.Endereco", "Enderecos")
                         .WithMany()
-                        .HasForeignKey("EnderecoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EnderecoId");
 
                     b.Navigation("Cargos");
 

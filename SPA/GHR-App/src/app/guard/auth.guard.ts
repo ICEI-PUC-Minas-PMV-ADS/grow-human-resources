@@ -13,13 +13,13 @@ export class AuthGuard implements CanActivate {
   ) {
   }
   canActivate(): boolean {
-    
-    if (localStorage.getItem('user') !== null)
+
+    if (localStorage.getItem('conta') !== null)
       return true;
-    
+
     this.toastr.info('Conta não autenticada!')
-    this.router.navigate(['/user/login']);
+    this.router.navigate(['/conta/login']);
     return false;
   }
-  
+
 }
