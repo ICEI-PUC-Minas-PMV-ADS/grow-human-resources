@@ -11,7 +11,7 @@ namespace GHR.Application.Dtos.Funcionarios
       public int Id { get; set; }
 
       [Required(ErrorMessage = "O campo {0} é obrigatório.")]
-      public float CPF { get; set; }
+      public string CPF { get; set; }
 
       [Display(Name = "Título de Eleitor"), 
       Required(ErrorMessage = "O campo {0} é obrigatório.")]
@@ -20,29 +20,29 @@ namespace GHR.Application.Dtos.Funcionarios
       [Required(ErrorMessage = "O campo {0} é obrigatório.")]
       public string Identidade { get; set; }
 
-      [Display(Name = "Data Expedução"),
+      [Display(Name = "Data Expedição"),
       Required(ErrorMessage = "O campo {0} é obrigatório.")]
-      public string DataExpedicao { get; set; }
+      public string DataExpedicaoIdentidade { get; set; }
 
       [Display(Name = "Órgão Expedição"),
-      Required(ErrorMessage = "É necessário informa um {0}.")]
+      Required(ErrorMessage = "O campo {0} é obrigatório.")]
       public string OrgaoExpedicaoIdentidade { get; set; }
 
 
       [Display(Name = "UF Expedição"),
-      Required(ErrorMessage = "É necessário informa um {0}.")]
-      public string UfExpedicaoIdentidade { get; set; }
+      Required(ErrorMessage = "O campo {0} é obrigatório.")]
+      public string UfIdentidade { get; set; }
  
       [Display(Name = "Estado Civil"),
-      Required(ErrorMessage = "É necessário informa um {0}.")]
+      Required(ErrorMessage = "O campo {0} é obrigatório.")]
       public string EstadoCivil { get; set; }     
  
       [Display(Name = "Carteira de Trabalho"),
-      Required(ErrorMessage = "É necessário informa um {0}.")]
-      public string CArteiraTrabalho { get; set; }
+      Required(ErrorMessage = "O campo {0} é obrigatório.")]
+      public string CarteiraTrabalho { get; set; }
 
       [Display(Name = "Data Expedicao Carteira de Trabalho"),
-      Required(ErrorMessage = "É necessário informa um {0}.")] 
+      Required(ErrorMessage = "O campo {0} é obrigatório.")] 
       public string DataExpedicaoCarteiraTrabalho { get; set; }
     }
 }

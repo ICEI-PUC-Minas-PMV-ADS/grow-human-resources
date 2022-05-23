@@ -9,7 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { Conta } from '../models/contas/Conta';
+import { ContaAtiva } from '../models/contas/ContaAtiva';
 
 import { ContaService } from '../services/contas/Conta.service';
 
@@ -19,7 +19,7 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private contaService: ContaService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let contaAtual: Conta;
+    let contaAtual: ContaAtiva;
 
     this.contaService.contaAtual$.pipe(take(1)).subscribe(user => {
       contaAtual = user

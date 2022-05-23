@@ -73,7 +73,7 @@ export class FuncionarioListaComponent implements OnInit {
 
   public carregarFuncionarios(): void {
     this.spinner.show();
-    this.funcionarioService.getFuncionarios().subscribe({
+    this.funcionarioService.recuperarFuncionarios().subscribe({
       next: (funcionariosRetorno: Funcionario[]) => {
         this.funcionarios = funcionariosRetorno;
         this.funcionariosFiltrados = this.funcionarios;
@@ -92,7 +92,7 @@ export class FuncionarioListaComponent implements OnInit {
     this.modalRef?.hide();
     this.spinner.show();
 
-    this.funcionarioService.deleteFuncionario(this.funcionarioId).subscribe(
+    this.funcionarioService.excluirFuncionario(this.funcionarioId).subscribe(
       (retornoDelete: any) => {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Funcionário excluído da base!", "Excluído!")

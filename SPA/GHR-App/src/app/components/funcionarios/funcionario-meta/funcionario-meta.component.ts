@@ -87,7 +87,7 @@ export class FuncionarioMetaComponent implements OnInit {
 
     if (funcionarioIdParam !== null) {
       this.spinner.show();
-      this.funcionarioService.getFuncionarioById(+funcionarioIdParam).subscribe(
+      this.funcionarioService.recuperarFuncionarioPorId(+funcionarioIdParam).subscribe(
         (funcionario: Funcionario) => {
           this.funcionario = funcionario;
           this.form.patchValue(this.funcionario);
@@ -187,7 +187,7 @@ export class FuncionarioMetaComponent implements OnInit {
 
     this.spinner.show();
 
-    this.funcionarioService.getFuncionarioById(id).subscribe(
+    this.funcionarioService.recuperarFuncionarioPorId(id).subscribe(
       (funcioanrioRetorno: Funcionario) => {
         this.funcionario = { ...funcioanrioRetorno } ;
       },

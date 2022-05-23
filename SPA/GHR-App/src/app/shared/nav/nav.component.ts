@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Conta } from 'src/app/models/contas/Conta';
+import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { ContaService } from 'src/app/services/contas/Conta.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class NavComponent implements OnInit {
 
   isCollapsed = true;
   contaLogada = false;
-  contaAtiva = {} as Conta;
+  contaAtiva = {} as ContaAtiva;
   visaoRH = false;
 
   constructor(

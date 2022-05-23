@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Departamentos;
-using GHR.Application.Services.Contracts.Contas;
 using GHR.Application.Dtos.Departamentos;
 
 namespace GHR.API.Controllers.Departamentos

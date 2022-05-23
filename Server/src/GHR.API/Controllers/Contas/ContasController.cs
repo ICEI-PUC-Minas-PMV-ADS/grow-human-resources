@@ -18,7 +18,7 @@ namespace GHR.API.Controllers.Contas
         private readonly ITokenService _tokenService;
 
         public ContasController(IContaService contaService,
-                                 ITokenService tokenService)
+                                ITokenService tokenService)
         {
             _contaService = contaService;
             _tokenService = tokenService;
@@ -38,6 +38,36 @@ namespace GHR.API.Controllers.Contas
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
                     $"Falha ao recuperar a conta. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{userName}/userName")]
+        public async Task<IActionResult> RecuperarContaPorUserName(string userName) {
+            try
+            {
+                var user = await _contaService.RecuperarContaPorUserNameAsync(userName);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Falha ao recuperar a conta. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> RecuperarContaPorIdAsync(int id) {
+            try
+            {
+                var user = await _contaService.RecuperarContaPorIdAsync(id);
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Falha ao recuperar a conta por Id. Erro {ex.Message}");
             }
         }
 
@@ -103,6 +133,8 @@ namespace GHR.API.Controllers.Contas
             }
         }
 
+
+
         [HttpPut("AlterarConta")]
            public async Task<IActionResult> AlterarConta(ContaAtualizarDto contaAtualizarDto)
         {
@@ -118,7 +150,7 @@ namespace GHR.API.Controllers.Contas
                 if (conta == null)
                     return Unauthorized("Conta inválida");
 
-                var contaRetorno = await _contaService.AtualizarConta(contaAtualizarDto);
+                var contaRetorno = await _contaService.AlterarConta(contaAtualizarDto);
 
                 if (contaRetorno == null)
                     return NoContent();
@@ -131,6 +163,31 @@ namespace GHR.API.Controllers.Contas
                     visao = contaRetorno.Visao,
                     token = _tokenService.CriarToken(contaRetorno).Result
                 });
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Falha ao atualizar a conta. Erro {ex.Message}");
+            }
+        }
+        
+        [HttpPut("AtualizarConta")]
+           public async Task<IActionResult> AtualizarConta(ContaVisaoDto contaVisaoDto)
+        {
+            try
+            {
+                var conta = await _contaService.RecuperarContaPorIdAsync(contaVisaoDto.Id);
+
+                if (conta == null)
+                    return Unauthorized("Conta não encontrada");
+
+                var contaRetorno = await _contaService.AtualizarConta(contaVisaoDto);
+
+                if (contaRetorno == null)
+                    return NoContent();
+
+                return Ok(contaVisaoDto);
             }
             catch (Exception ex)
             {

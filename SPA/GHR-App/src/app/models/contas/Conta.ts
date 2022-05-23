@@ -1,11 +1,12 @@
-
 export class Conta {
-
+  id: number;
   userName: string;
-  email: string;
-  password: string;
-  nomeCompleto: string;
-  funcao: string;
-  visao: string;
-  token: string;
+  nomeCompleto: string ;
+  email: string ;
+  phoneNumber: string ;
+  funcao: string ;
+  visao: string ;
+  descricao: string ;
+  password: string ;
+  token: string ;
 }

@@ -10,7 +10,7 @@ namespace GHR.Domain.DataBase.Funcionarios
         public string OrgaoExpedicaoIdentidade { get; set; }
         public string UfIdentidade { get; set; }
         public string EstadoCivil { get; set; } 
-        public string CarteiraTrablho { get; set; }
+        public string CarteiraTrabalho { get; set; }
         public string DataExpedicaoCarteiraTrabalho { get; set; } 
     }
 }

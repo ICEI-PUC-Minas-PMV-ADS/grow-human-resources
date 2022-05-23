@@ -160,5 +160,24 @@ namespace GHR.Application.Services.Implements.Funcionarios
             }
         }
 
+        public async Task<FuncionarioDto> RecuperarFuncionarioPorContaIdAsync(int contaId)
+        {
+            try
+            {
+                var funcionario = await _funcionarioPersistence
+                    .RecuperarFuncionarioPorContaIdAsync(contaId);
+
+                if (funcionario == null) return null;
+
+                var funcionarioMapper = _mapper.Map<FuncionarioDto>(funcionario);
+
+                return funcionarioMapper;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

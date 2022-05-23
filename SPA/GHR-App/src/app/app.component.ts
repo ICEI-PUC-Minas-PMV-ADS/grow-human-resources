@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Conta } from './models/contas/Conta';
+import { ContaAtiva } from './models/contas/ContaAtiva';
 import { ContaService } from './services/contas/Conta.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   public definirContaAtual(): void {
-    let conta: Conta;
+    let conta: ContaAtiva;
 
     if (localStorage.getItem('conta')) {
       conta = JSON.parse(localStorage.getItem('conta') ?? '{}');

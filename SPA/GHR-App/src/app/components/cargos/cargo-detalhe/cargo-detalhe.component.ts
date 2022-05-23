@@ -87,7 +87,8 @@ export class CargoDetalheComponent implements OnInit {
 
       this.estadoSalvar = "put";
 
-      this.cargoService.recuperarCargoPorId(+cargoIdParam).subscribe(
+      this.cargoService
+        .recuperarCargoPorId(+cargoIdParam).subscribe(
         (cargo: Cargo) => {
           this.cargo = { ...cargo };
           this.form.patchValue(this.cargo);},

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Conta } from 'src/app/models/contas/Conta';
+import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { ContaService } from 'src/app/services/contas/Conta.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class TituloComponent implements OnInit {
   @Input() botaoListar = false;
 
   public contaLogada = false;
-  public contaAtiva = {} as Conta;
+  public contaAtiva = {} as ContaAtiva;
 
   constructor(
     private contaService: ContaService,

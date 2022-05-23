@@ -38,4 +38,5 @@ namespace GHR.Persistence.Interfaces.Implements.Contas
                                  .ToListAsync();
         }
     }
+
 }

@@ -11,5 +11,6 @@ namespace GHR.Application.Services.Contracts.Funcionarios
         Task<FuncionarioDto[]> RecuperarFuncionariosPorNomeCompletoAsync(int userId, string visao, string nome, bool incluirMetas = false);
         Task<FuncionarioDto[]> RecuperarFuncionariosAsync(int userId, string visao, bool incluirMetas = false);
         Task<FuncionarioDto> RecuperarFuncionarioPorIdAsync(int userId, string visao, int funcionarioId, bool incluirMetas = false);
+        Task<FuncionarioDto> RecuperarFuncionarioPorContaIdAsync(int contaId);
     }
 }

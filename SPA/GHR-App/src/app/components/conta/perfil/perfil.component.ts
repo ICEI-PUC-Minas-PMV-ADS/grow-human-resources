@@ -5,8 +5,8 @@ import { NavigationEnd, provideRoutes, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
+import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { Conta } from 'src/app/models/contas/Conta';
-import { ContaAlterar } from 'src/app/models/contas/ContaAlterar';
 
 import { ContaService } from 'src/app/services/contas/Conta.service';
 
@@ -18,9 +18,9 @@ import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 })
 export class PerfilComponent implements OnInit {
 
-  public contaAlterar = {} as ContaAlterar;
+  public conta = {} as Conta;
   public contaLogada = false;
-  public contaAtiva = {} as Conta;
+  public contaAtiva = {} as ContaAtiva;
 
   form: FormGroup;
 
@@ -93,10 +93,10 @@ export class PerfilComponent implements OnInit {
     this.spinner.show();
 
     this.contaService.recuperarConta().subscribe(
-      (userRetorno: ContaAlterar) => {
-        console.log(userRetorno);
-        this.contaAlterar = userRetorno;
-        this.form.patchValue(this.contaAlterar);
+      (contaConsulta: Conta) => {
+        console.log(contaConsulta);
+        this.conta = contaConsulta;
+        this.form.patchValue(this.conta);
         this.toastr.success("Consulta de conta realizada.", "Sucesso!");
       },
       (error) => {
@@ -110,11 +110,11 @@ export class PerfilComponent implements OnInit {
   }
   public atualizarConta() {
 
-    this.contaAlterar = { ...this.form.value };
+    this.conta = { ...this.form.value };
 
     this.spinner.show();
 
-    this.contaService.alterarConta(this.contaAlterar).subscribe(
+    this.contaService.alterarConta(this.conta).subscribe(
       () => this.toastr.success("Conta atualizada!", "Sucesso!"),
       (error) => {
         this.toastr.error(error.error);

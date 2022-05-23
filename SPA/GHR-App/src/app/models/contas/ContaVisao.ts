@@ -1,5 +1,5 @@
-export class ContaAlterar {
-
+export class ContaVisao {
+  id: number;
   userName: string;
   nomeCompleto: string ;
   email: string ;
@@ -7,6 +7,4 @@ export class ContaAlterar {
   funcao: string ;
   visao: string ;
   descricao: string ;
-  password: string ;
-  token: string ;
 }

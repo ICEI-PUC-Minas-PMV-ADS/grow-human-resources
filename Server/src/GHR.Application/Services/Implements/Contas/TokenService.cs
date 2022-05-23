@@ -17,7 +17,6 @@ namespace GHR.Application
 {
     public class TokenService : ITokenService
     {
-        private readonly IConfiguration _config;
         private readonly UserManager<Conta> _userManager;
         private readonly IMapper _mapper;
         public readonly SymmetricSecurityKey _key;
@@ -26,7 +25,6 @@ namespace GHR.Application
                             UserManager<Conta> userManager,
                             IMapper mapper)
         {
-            _config = config;
             _userManager = userManager;
             _mapper = mapper;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));

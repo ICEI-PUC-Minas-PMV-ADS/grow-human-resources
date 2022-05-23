@@ -84,5 +84,19 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
             return await query.FirstOrDefaultAsync();
         }
+        public async Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId)
+        {
+            IQueryable<Funcionario> query = _context.Funcionarios
+                .Include(ca => ca.Cargos)
+                .Include(d => d.Departamentos)
+                .Include(co => co.Contas)
+                .Include(e => e.Enderecos)
+                .Include(dp => dp.DadosPessoais)
+                .AsNoTracking()
+                .Where(f => f.UserId == contaId)
+                .OrderBy(f => f.Id);
+
+            return await query.FirstOrDefaultAsync();
+        }
     }
 }

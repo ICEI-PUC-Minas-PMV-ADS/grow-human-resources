@@ -29,6 +29,7 @@ import { DepartamentoListaComponent } from './components/departamentos/departame
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
 import { FuncionarioDetalheComponent } from './components/funcionarios/funcionario-detalhe/funcionario-detalhe.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
+import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/conta/login/login.component';
@@ -39,18 +40,21 @@ import { NavComponent } from './shared/nav/nav.component';
 import { PerfilComponent } from './components/conta/perfil/perfil.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 
-import { ContaService } from './services/contas/Conta.service';
-import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 
 import { MetaService } from './services/Meta.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { DateFormatPipe } from './helpers/DateFormat.pipe';
 
 import { CargoService } from './services/cargos/Cargo.service';
+import { ContaService } from './services/contas/Conta.service';
+import { DadosPessoaisService } from './services/funcionarios/dadosPessoais.service';
 import { DepartamentoService } from './services/departamentos/departamento.service';
+import { EnderecoService } from './services/funcionarios/endereco.service';
+import { FuncionarioService } from './services/funcionarios/funcionario.service';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { FuncionarioService } from './services/funcionarios/funcionario.service';
+
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
   declarations: [
@@ -60,6 +64,7 @@ defineLocale('pt-br', ptBrLocale);
     CargoListaComponent,
     CargosComponent,
     ContaComponent,
+    DateFormatPipe,
     DateTimeFormatPipe,
     DepartamentoDetalheComponent,
     DepartamentoListaComponent,
@@ -77,7 +82,6 @@ defineLocale('pt-br', ptBrLocale);
     NavComponent,
     PerfilComponent,
     TituloComponent,
-    FuncionarioMetaComponent
   ],
   imports: [
     AppRoutingModule,
@@ -102,9 +106,11 @@ defineLocale('pt-br', ptBrLocale);
     BsDatepickerModule.forRoot(),
   ],
   providers: [
-    ContaService,
-    DepartamentoService,
     CargoService,
+    ContaService,
+    DadosPessoaisService,
+    DepartamentoService,
+    EnderecoService,
     FuncionarioService,
     MetaService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

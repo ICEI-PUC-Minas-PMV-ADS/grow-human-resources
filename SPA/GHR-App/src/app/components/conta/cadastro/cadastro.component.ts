@@ -3,7 +3,7 @@ import { AbstractControl, AbstractControlOptions, FormControl } from '@angular/f
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
-import { Conta } from 'src/app/models/contas/Conta';
+import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { Router } from '@angular/router';
 import { ContaService } from 'src/app/services/contas/Conta.service';
 
@@ -14,7 +14,7 @@ import { ContaService } from 'src/app/services/contas/Conta.service';
 })
 export class CadastroComponent implements OnInit {
 
-  conta = {} as Conta;
+  contaCadastro = {} as ContaAtiva;
 
   form!: FormGroup;
 
@@ -72,9 +72,9 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrarConta(): void {
-    this.conta = { ...this.form.value };
-    console.log(this.conta)
-    this.accountService.cadastrarConta(this.conta).subscribe(
+    this.contaCadastro = { ...this.form.value };
+    console.log(this.contaCadastro)
+    this.accountService.cadastrarConta(this.contaCadastro).subscribe(
       () => this.router.navigateByUrl('/home'),
       (error: any) => {
         this.toastr.error(error.error, "Erro!");

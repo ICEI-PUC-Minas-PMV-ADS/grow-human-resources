@@ -29,6 +29,5 @@ namespace  GHR.Domain.DataBase.Funcionarios
         public int? DadosPessoaisId { get; set; }
         public DadoPessoal DadosPessoais { get; set; }       
         public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
-        public string ImagemURL { get; set; }
     }
 }

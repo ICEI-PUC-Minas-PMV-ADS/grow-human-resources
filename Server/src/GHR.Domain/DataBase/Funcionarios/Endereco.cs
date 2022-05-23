@@ -17,5 +17,6 @@ namespace GHR.Domain.DataBase.Funcionarios
         public string UF { get; set; }
         public string Pais { get; set; }
         public string CaixaPostal { get; set; }
+        public string ComplementoEndereco { get; set; }
     }
 }

@@ -1,4 +1,3 @@
-import { NumberValueAccessor } from "@angular/forms";
 import { Cargo } from "../cargos/Cargo";
 import { Conta } from "../contas/Conta";
 import { Departamento } from "../departamentos/Departamento";
@@ -6,7 +5,7 @@ import { Meta } from "../Meta";
 import { DadoPessoal } from "./DadoPessoal";
 import { Endereco } from "./Endereco";
 
-export interface Funcionario {
+export class Funcionario {
   id: number;
   salario: number;
   dataAdmissao?: string;
@@ -16,11 +15,11 @@ export interface Funcionario {
   gerenteAdministrativoId: number;
   gerenteOperacionaId: number;
   diretorId: number;
-  carogId: NumberValueAccessor;
+  cargoId: number;
   cargos: Cargo;
   departamentoId: number;
   departamentos: Departamento;
-  contaId: number;
+  userId: number;
   contas: Conta;
   enderecoId: number;
   enderecos: Endereco;

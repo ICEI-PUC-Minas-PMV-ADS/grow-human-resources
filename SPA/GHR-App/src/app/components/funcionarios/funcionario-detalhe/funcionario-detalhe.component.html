@@ -1,255 +1,529 @@
-<div class="card rounded shadow-sm px-1 pb-1 mt-1">
-  <form class="row" [formGroup]="form!">
-    <div>
-      <div class="card-head text-center text-white bg-secondary p-1 mt-1  ">
-        <H3>Formulário de Funcionários</H3>
-      </div>
-      <div class="card-body bg-light ">
-        <h4 class="border-bottom">Dados Pessoais</h4>
-        <div class="row d-flex">
-          <div class="form-group col-md-10">
+<div class="card rounded shadow-sm p-1 m-0">
+  <div class="card-head text-center text-white bg-secondary ">
+    <H3 >Formulário de Funcionários</H3>
+  </div>
+  <div class="card-body bg-light m-0 p-0">
+    <div class="card bg-light pt-1 m-0 ">
 
-            <div class="form-row d-md-flex">
-              <div class="form-group col-md-6 p-1">
-                <label>Nome</label>
-                <input type="text" class="form-control" placeholder="Nome Completo"
-                  [ngClass]="validarCampo(f.nomeCompleto)"
-                  formControlName="nomeCompleto">
-                <div class="invalid-feedback">
-                  {{retornarValidacao(f.nomeCompleto, "")}}
+      <form class="row m-1" [formGroup]="formConta" (submit)="salvarConta()">
+
+        <div  class="card-header m-0 p-0" ngClass="{{(modoEditar)? 'd-none':'d-block'}}">
+          <div class="row d-flex p-0">
+            <div class="form-group">
+              <div class="form-row d-md-flex">
+                <div  class="flex-fill pr-3" >
+                  <div class="input-group mb-2 ">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text mr-1">Pesquisa:</div>
+                    </div>
+                    <input type="text"
+                      class="form-control"
+                      placeholder="Conta"
+                      formControlName="contaPesquisa">
+                  </div>
                 </div>
-              </div>
-              <div class="form-group col-md-6 p-1 ">
-                <label>e-mail Pessoal</label>
-                <input type="text" class="form-control" placeholder="fulanodetal@email.com.br"
-                  [ngClass]="validarCampo(f.email)"
-                  formControlName="email"
-                >
-                <div class="invalid-feedback">
-                  {{retornarValidacao(f.email, "")}}
+                <div  class="ms-auto">
+                  <a class="d-flex btn btn-outline-success" (click)="consultarConta()">
+                    <i class="fa fa-magnifying-glass my-1"  tooltip="Pesquisar" ></i>
+                  </a>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            <div class="form-row d-md-flex">
-              <div class="form-group col-md-3 p-1 ">
-                <label>Telefone</label>
-                <input type="text" class="form-control" placeholder="(99) 9999-9999"
-                  [ngClass]="validarCampo(f.telefone)"
-                  formControlName="telefone"
-                >
-                <div class="invalid-feedback">
-                  {{retornarValidacao(f.telefone, "")}}
-                </div>
-              </div>
-              <div class="form-group col-md-3 p-1">
-                <label>CPF</label>
-                <input type="text" class="form-control" disabled placeholder="999.999.999-99">
-              </div>
-              <div class="form-group col-md-3 p-1">
-                <label>Título de Eleitor</label>
-                <input type="text" class="form-control" disabled placeholder="Somente números">
-              </div>
-              <div class="form-group col-md-3 p-1">
-                <label>Identidade</label>
-                <input type="text" class="form-control" disabled placeholder="Somente números">
+        <div  class="card-body" ngClass="{{(modoEditar)? !ativarConsultaConta: ativarConsultaConta}}">
+          <h4 class="border-bottom m-0">Dados da Conta</h4>
+
+          <div class="form-row d-flex">
+            <div class="form-group col-md-3 p-1">
+              <label>Conta</label>
+              <input type="text"
+                class="form-control"
+                placeholder="Conta"
+                formControlName="userName"
+                readonly="true">
+            </div>
+            <div class="form-group col-md-5 p-1">
+              <label>Nome</label>
+              <input type="text"
+                class="form-control "
+                placeholder="Nome Completo"
+                formControlName="nomeCompleto"
+                [readonly]="protegerCampoConta"
+                [ngClass]="validarCampo(ctrConta.nomeCompleto)">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrConta.nomeCompleto, "")}}
               </div>
             </div>
+            <div class="form-group col-md-4 p-1 ">
+              <label>e-mail</label>
+              <input type="text"
+                class="form-control"
+                placeholder="fulanodetal@email.com.br"
+                formControlName="email"
+                [readonly]="protegerCampoConta"
+                [ngClass]="validarCampo(ctrConta.email)">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrConta.email, "")}}
+              </div>
+            </div>
+          </div>
+          <div  class="form-row d-flex">
+            <div class="form-group col-md-3 p-1 ">
+              <label>Telefone</label>
+              <input type="text"
+                class="form-control"
+                placeholder="(99) 9999-9999"
+                formControlName="phoneNumber"
+                [readonly]="protegerCampoConta"
+                [ngClass]="validarCampo(ctrConta.phoneNumber)">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrConta.phoneNumber, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Visão</label>
+              <select class="form-select form-control"
+                aria-label="Default select example"
+                formControlName="visao"
+                [ngClass]="validarCampo(ctrConta.visao)">
+                <option value="Funcionário" [disabled]="protegerCampoConta">Funcionário</option>
+                <option value="Funcionário RH " [disabled]="protegerCampoConta">Funcionário RH</option>
+                <option value="Supervisor" [disabled]="protegerCampoConta">Supervisor</option>
+                <option value="Supervisor RH" [disabled]="protegerCampoConta">Supervisor RH</option>
+                <option value="Gerente" [disabled]="protegerCampoConta">Gerente</option>
+                <option value="Gerente RH" [disabled]="protegerCampoConta">Gerente RH</option>
+                <option value="Diretor" [disabled]="protegerCampoConta">Ditetor</option>
+                <option value="Diretor RH" [disabled]="protegerCampoConta">Diretor RH</option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrConta.visao, "")}}
+              </div>
+            </div>
+          </div>
+        </div>
 
-            <div class="form-row d-md-flex">
-              <div class="form-group col-md-3 p-1">
-                <label>Data Expedição</label>
-                    <input type="text" class="form-control" disabled placeholder="dd/mm/aaaa">
+        <div class="card-footer bg-dark p-0"  ngClass="{{ativarConsultaConta}}">
+          <div class="d-flex">
+            <button class="btn btn-success m-1 ms-auto" [disabled]="!formConta.valid || protegerCampoConta" (click)="salvarConta()">
+              Prosseguir
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <form class="row m-1" [formGroup]="formFuncionario" (submit)="salvarFuncionario()">
+        <div  class="card-body" ngClass="{{ativarFuncionario}}">
+          <h4 class="border-bottom mt-2">Dados Pessoais</h4>
+
+          <div class="form-row d-md-flex">
+
+            <div class="form-group col-md-3 p-1">
+              <label>CPF</label>
+              <input type="text"
+                class="form-control"
+                placeholder="999.999.999-99"
+                [ngClass]="validarCampo(ctrF.CPF)"
+                formControlName="CPF">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.CPF, "")}}
               </div>
-              <div class="form-group col-md-3 p-1">
-                <label>Órgão Expedição</label>
-                <input type="text" class="form-control" disabled placeholder="Órgão Expedição">
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Título de Eleitor</label>
+              <input type="text"
+                class="form-control"
+                placeholder="somente números"
+                [ngClass]="validarCampo(ctrF.tituloEleitor)"
+                formControlName="tituloEleitor">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.tituloEleitor, "")}}
               </div>
-              <div class="form-group col-md-2 p-1">
-                <label>UF</label>
-                <input type="text" class="form-control" disabled placeholder="UF">
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Identidade</label>
+              <input type="text"
+                class="form-control"
+                [ngClass]="validarCampo(ctrF.identidade)"
+                formControlName="identidade">
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.identidade, "")}}
               </div>
-              <div class="form-group col-md-2 p-1">
-                <label>Estado Civil</label>
-                <input type="text" class="form-control" disabled placeholder="Civil">
-              </div>
-              <div class="form-group col-md-2 p-1">
-                <label>Dependentes?</label>
-                <input type="text" class="form-control" disabled placeholder="Dependentes">
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Data Expedição</label>
+              <input type="text"
+                class="form-control"
+                placeholder="dd/mm/aaaa"
+                [ngClass]="validarCampo(ctrF.dataExpedicaoIdentidade)"
+                formControlName="dataExpedicaoIdentidade"
+                bsDatepicker
+                [bsConfig]="bsConfig"
+                value="{{dadosPessoais.dataExpedicaoIdentidade | DateFormat}}"
+                >
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.dataExpedicaoIdentidade, "")}}
               </div>
             </div>
           </div>
 
-          <div class="col-md-2 mt-0 " *ngIf="modoEditar">
-            <h4 class="border-bottom">Foto</h4>
-            <div class=""  style=" cursor: pointer">
-              <input type="file" #file (change)="onFileChange($event)" class="form-control is-invalid" style="display: none">
-              <img class="preview-img image img-fluid  " [src]="imagemUpload"  (click)="file.click() " width="200" height="200"
-              alt="Card iamge cap" tooltip="Upload de Nova Foto" >
+          <div class="form-row d-md-flex">
+            <div class="form-group col-md-3 p-1">
+              <label>Órgão Expedição</label>
+              <input type="text"
+                class="form-control"
+                placeholder="Órgão Expedição"
+                [ngClass]="validarCampo(ctrF.orgaoExpedicaoIdentidade)"
+                formControlName="orgaoExpedicaoIdentidade">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.orgaoExpedicaoIdentidade, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>UF</label>
+              <select class="form-select form-control"
+                aria-label="Default select example"
+                formControlName="UfIdentidade"
+                [ngClass]="validarCampo(ctrF.UfIdentidade)">
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Cerá</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.UfIdentidade, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Estado Civil</label>
+              <select class="form-select form-control"
+                aria-label="Default select example"
+                formControlName="estadoCivil"
+                [ngClass]="validarCampo(ctrF.estadoCivil)">
+                <option value="Não Informado">Não Informado</option>
+                <option value="Solteiro">Solteiro</option>
+                <option value="Divorciado">Divorciado</option>
+                <option value="Casado">Casado</option>
+                <option value="Outros">Outros</option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.estadoCivil, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>C.T.</label>
+              <input type="text"
+                class="form-control"
+                placeholder="C.T."
+                [ngClass]="validarCampo(ctrF.carteiraTrabalho)"
+                formControlName="carteiraTrabalho">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.carteiraTrabalho, "")}}
+              </div>
             </div>
           </div>
+
+          <div class="form-row d-md-flex">
+            <div class="form-group col-md-3 p-1">
+              <label>Data Expedição</label>
+              <input type="text"
+                class="form-control"
+                placeholder="dd/mm/aaaa"
+                [ngClass]="validarCampo(ctrF.dataExpedicaoCarteiraTrabalho)"
+                formControlName="dataExpedicaoCarteiraTrabalho"
+                bsDatepicker
+                [bsConfig]="bsConfig"
+                value="{{dadosPessoais.dataExpedicaoCarteiraTrabalho | DateFormat}}"
+                >
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.dataExpedicaoCarteiraTrabalho, "")}}
+              </div>
+            </div>
+          </div>
+
           <h4 class="border-bottom mt-2">Endereço</h4>
 
           <div class="form-row d-flex">
             <div class="form-group col-md-3 p-1">
                <label label>CEP</label>
-               <input type="text" class="form-control" disabled placeholder="Somente números">
+               <input type="text"
+                class="form-control"
+                placeholder="Somente números"
+                [ngClass]="validarCampo(ctrF.CEP)"
+                formControlName="CEP">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.CEP, "")}}
+              </div>
              </div>
              <div class="form-group col-md-6 p-1">
                <label label>Rua</label>
-               <input type="text" class="form-control" disabled placeholder="Nome da rua">
-             </div>
+               <input type="text"
+                class="form-control"
+                placeholder="Nome da rua"
+                [ngClass]="validarCampo(ctrF.logradouro)"
+                formControlName="logradouro">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.logradouro, "")}}
+              </div>
+            </div>
             <div class="form-group col-md-3 p-1">
                <label label>Número</label>
-               <input type="text" class="form-control" disabled placeholder="Número da Casa">
+               <input type="text"
+                class="form-control"
+                placeholder="Número da casa"
+                [ngClass]="validarCampo(ctrF.numero)"
+                formControlName="numero">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.numero, "")}}
+              </div>
              </div>
           </div>
 
           <div class="form-row d-flex">
-            <div class="form-group col-md-3 p-1">
+            <div class="form-group col-md-2 p-1">
                <label label>Complemento</label>
-               <input type="text" class="form-control" disabled placeholder="Casa/Apto/Andar">
+               <input type="text"
+                class="form-control"
+                placeholder="Casa/Apto/Andar"
+                [ngClass]="validarCampo(ctrF.complemento)"
+                formControlName="complemento">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.complemento, "")}}
+              </div>
              </div>
-             <div class="form-group col-md-6 p-1">
+             <div class="form-group col-md-5 p-1">
                <label label>Bairro</label>
-               <input type="text" class="form-control" disabled placeholder="Nome do Bairro">
+               <input type="text"
+                class="form-control"
+                placeholder="Nome do Bairro"
+                [ngClass]="validarCampo(ctrF.bairro)"
+                formControlName="bairro">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.bairro, "")}}
+              </div>
              </div>
-            <div class="form-group col-md-3 p-1">
+            <div class="form-group col-md-5 p-1">
                <label label>Cidade</label>
-               <input type="text" class="form-control" disabled placeholder="Nome Cidade">
+               <input type="text"
+                class="form-control"
+                placeholder="Nome Cidade"
+                [ngClass]="validarCampo(ctrF.cidade)"
+                formControlName="cidade">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.cidade, "")}}
+              </div>
              </div>
           </div>
 
           <div class="form-row d-flex">
-            <div class="form-group col-md-1 p-1">
+            <div class="form-group col-md-2 p-1">
               <label>UF</label>
-               <input type="text" class="form-control" disabled placeholder="UF">
+               <select class="form-select form-control"
+                aria-label="Default select example"
+                placeholder="UF"
+                formControlName="uf"
+                [ngClass]="validarCampo(ctrF.uf)">
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Cerá</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.uf, "")}}
+              </div>
              </div>
             <div class="form-group col-md-2 p-1">
                <label label>País</label>
-               <input type="text" class="form-control" disabled placeholder="País">
+               <input type="text"
+                class="form-control"
+                placeholder="País"
+                [ngClass]="validarCampo(ctrF.pais)"
+                formControlName="pais">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.pais, "")}}
+              </div>
              </div>
-             <div class="form-group col-md-3 p-1">
+             <div class="form-group col-md-2 p-1">
                <label label>Caixa Postal</label>
-               <input type="text" class="form-control" disabled placeholder="Caixa Postal">
+               <input type="text"
+                class="form-control"
+                placeholder="Caixa Postal"
+                [ngClass]="validarCampo(ctrF.caixaPostal)"
+                formControlName="caixaPostal">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.caixaPostal, "")}}
+              </div>
              </div>
             <div class="form-group col-md-6 p-1">
-               <label label>Complemento</label>
-               <input type="text" class="form-control" disabled placeholder="Complemento">
-             </div>
+               <label label>Complemento Endereço</label>
+               <input type="text"
+                class="form-control"
+                placeholder="Complemento Endereco"
+                [ngClass]="validarCampo(ctrF.complementoEndereco)"
+                formControlName="complementoEndereco">
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.complementoEndereco, "")}}
+              </div>
+            </div>
           </div>
 
           <h4 class="border-bottom mt-2">Empresa</h4>
 
           <div class="form-row d-flex">
-            <div class="form-group col-md-6 p-1">
-               <label>e-mail Empresa</label>
-               <input type="text" class="form-control" disabled  placeholder="@br.growhumanresource.com">
-             </div>
-             <div class="form-group col-md-3 p-1">
-                <label>Cargo</label>
-                <select class="form-select form-control" aria-label="Default select example"
-                  formControlName="cargoId"
-                  [ngClass]="validarCampo(f.cargoId)">
-                  <option *ngFor='let cargo of cargos'
-                    value={{cargo.id}}>{{cargo.nomeCargo}}
-                  </option>
-                </select>
-                <div class="invalid-feedback">
-                  {{retornarValidacao(f.cargoId, "")}}
-                </div>
-             </div>
-             <div class="form-group col-md-3 p-1">
-               <label>Salário</label>
-               <input class="form-control"
-                [ngClass]="validarCampo(f.salario)"
+            <div class="form-group col-md-3 p-1">
+             <label>Departamento</label>
+              <select typer="number" class="form-select form-control" aria-label="Default select example"
+                formControlName="departamentoId"
+                [ngClass]="validarCampo(ctrF.departamentoId)">
+                <option *ngFor='let departamento of departamentos'
+                  value={{departamento.id}}>{{departamento.nomeDepartamento}}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.departamentoId, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Cargo</label>
+              <select typer="number" class="form-select form-control" aria-label="Default select example"
+                formControlName="cargoId"
+                [ngClass]="validarCampo(ctrF.cargoId)">
+                <option *ngFor='let cargo of cargos'
+                  value={{cargo.id}}>{{cargo.nomeCargo}}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                {{retornarValidacao(ctrF.cargoId, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Data Admissão</label>
+              <input type="text" class="form-control" placeholder="Informe a data admissão"
+              [ngClass]="validarCampo(ctrF.dataAdmissao)"
+              formControlName="dataAdmissao"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              value="{{funcionario.dataAdmissao | DateTimeFormat}}"
+              >
+              <div  class="invalid-feedback">
+                {{retornarValidacao(ctrF.dataAdmissao, "")}}
+              </div>
+            </div>
+            <div class="form-group col-md-3 p-1">
+              <label>Data Desligamento</label>
+              <input type="text" class="form-control" placeholder="Informe a data desligamento"
+              formControlName="dataDemissao"
+              [ngClass]="validarCampo(ctrF.dataDemissao)"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              value="{{funcionario.dataDemissao | DateTimeFormat}}">
+            </div>
+          </div>
+
+          <div class="form-row d-flex">
+            <div class="form-group col-md-2 p-1">
+              <label>Salário</label>
+              <input class="form-control"
+                [ngClass]="validarCampo(ctrF.salario)"
                 currencyMask
                 [options]="{prefix: 'R$ ', thousands: '.', decimal: ','}"
                 formControlName="salario"
               >
               <div class="invalid-feedback">
-                {{retornarValidacao(f.salario, "")}}
-              </div>
-             </div>
-          </div>
-
-          <div class="form-row d-flex">
-             <div class="form-group col-md-3 p-1">
-               <label>Data Admissão</label>
-               <input type="text" class="form-control" placeholder="Informe a data admissão"
-               [ngClass]="validarCampo(f.dataAdmissao)"
-               formControlName="dataAdmissao"
-               bsDatepicker
-               [bsConfig]="bsConfig"
-               value="{{funcionario.dataAdmissao | DateTimeFormat}}"
-               >
-              <div  class="invalid-feedback">
-                {{retornarValidacao(f.dataAdmissao, "")}}
+                {{retornarValidacao(ctrF.salario, "")}}
               </div>
             </div>
-             <div class="form-group col-md-3 p-1">
-               <label>Data Desligamento</label>
-               <input type="text" class="form-control" placeholder="Informe a data desligamento"
-                formControlName="dataDemissao"
-                [ngClass]="validarCampo(f.dataDemissao)"
-                bsDatepicker
-                [bsConfig]="bsConfig"
-                value="{{funcionario.dataDemissao | DateTimeFormat}}">
+            <div class="form-group col-md-2 p-1">
+              <label>Supervisor</label>
+              <input type="number" class="form-control" readonly="true" placeholder="Supervisor"
+               formControlName="supervisorId" >
             </div>
             <div class="form-group col-md-3 p-1">
-              <label>Departamento</label>
-                <select class="form-select form-control" aria-label="Default select example"
-                  formControlName="departamentoId"
-                  [ngClass]="validarCampo(f.departamentoId)">
-                  <option *ngFor='let departamento of departamentos'
-                    value={{departamento.id}}>{{departamento.nomeDepartamento}}
-                  </option>
-                </select>
-                <div class="invalid-feedback">
-                  {{retornarValidacao(f.departamentoId, "")}}
-                </div>
-            </div>
-            <div class="form-group col-md-3 p-1">
-               <label>Supervisor</label>
-                             <input type="text" class="form-control"
-                formControlName="supervisorId" disabled>
-             </div>
-          </div>
-
-          <div class="form-row d-flex">
-            <div class="form-group col-md-3 p-1">
-               <label>Gerência Administrativa</label>
-               <input type="text" class="form-control" disabled placeholder="Gerência Administrativa">
+              <label>Gerência Administrativa</label>
+              <input type="number" class="form-control" readonly="true" placeholder="Gerência Administrativa"
+                formControlName="gerenteAdministrativoId">
             </div>
             <div class="form-group col-md-3 p-1 ">
-               <label>Gerência Operacional</label>
-               <input type="text" class="form-control" disabled placeholder="Gerência de Operações">
+              <label>Gerência Operacional</label>
+              <input type="number" class="form-control" readonly="true" placeholder="Gerência de Operações"
+                formControlName="gerenteOperacionaId">
             </div>
-            <div class="form-group col-md-3 p-1">
-               <label>Diretoria</label>
-             <input type="text" class="form-control" disabled placeholder="Diretoria">
-             </div>
-            <div class="form-group col-md-3 p-1">
-               <label>Caminho Imagem</label>
-               <input type="text" class="form-control" placeholder="URL da foto"
-               formControlName="imagemURL" disabled>
+            <div class="form-group col-md-2 p-1">
+             <label>Diretoria</label>
+             <input type="number" class="form-control" readonly="true" placeholder="Diretoria"
+              formControlName="diretorId" >
             </div>
-           </div>
+            <div class="form-group col-md-2 p-1">
+             <label>Id</label>
+             <input type="number" class="form-control" readonly="true" placeholder="Diretoria"
+              formControlName="userId" >
+            </div>
+          </div>
+
+          <div class="card-footer bg-dark p-0">
+            <div class="d-flex">
+              <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+                Cancelar
+              </button>
+              <button class="btn btn-success m-1" [disabled]="!formFuncionario.valid" tyep="submit">
+                Salvar
+              </button>
+            </div>
+          </div>
+
         </div>
-      </div>
-      <div class="card-footer bg-dark p-0">
-        <div class="d-flex">
-          <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
-            Cancelar
-          </button>
-          <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
-            <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
-              Salvar
-          </button>
-        </div>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
-    <p>Form value: {{form.value | json}}</p>
-    <p>Form status: {{form.status | json}}</p>
+
+    <p>Form value: {{formFuncionario.value | json}}</p>
+    <p>Form status: {{formFuncionario.status | json}}</p>

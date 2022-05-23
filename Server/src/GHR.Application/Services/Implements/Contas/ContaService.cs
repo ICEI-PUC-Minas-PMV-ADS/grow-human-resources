@@ -70,6 +70,26 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
+        public async Task<ContaAtualizarDto> RecuperarContaPorIdAsync(int userId)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorIdAsync(userId);
+
+                if (conta == null) return null;
+
+                var ContaAtualizarDto = _mapper.Map<ContaAtualizarDto>(conta);
+
+                return ContaAtualizarDto;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception($"Falha ao recuperar conta por userId. Erro: {ex.Message}");
+            }
+        }
+
+
         public async Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName)
         {
             try
@@ -89,7 +109,7 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaAtualizarDto> AtualizarConta(ContaAtualizarDto contaAtualizarDto)
+        public async Task<ContaAtualizarDto> AlterarConta(ContaAtualizarDto contaAtualizarDto)
         {
             try
             {
@@ -119,7 +139,7 @@ namespace GHR.Application.Services.Implements.Contas
             {
 
                 throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
-            }
+            }    
         }
 
         public async Task<bool> VerificarContaExiste(string userName)
@@ -135,6 +155,35 @@ namespace GHR.Application.Services.Implements.Contas
 
                 throw new Exception($"Falha ao verificar se a conta existe. Erro: {ex.Message}");
             }
+        }
+
+        public async Task<ContaVisaoDto> AtualizarConta(ContaVisaoDto contaVisaoDto)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorIdAsync(contaVisaoDto.Id);
+
+                if (conta == null) return null;
+                    
+                contaVisaoDto.Id = conta.Id;
+
+                _mapper.Map(contaVisaoDto, conta);
+
+                _contaPersistence.Alterar<Conta>(conta);
+
+                if (await _contaPersistence.SalvarAsync()) {
+                    var contaRetorno = await _contaPersistence.RecuperarContaPorIdAsync(conta.Id);
+
+                    return _mapper.Map<ContaVisaoDto>(contaRetorno);
+                }
+
+                return null;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
+            }    
         }
     }
 }

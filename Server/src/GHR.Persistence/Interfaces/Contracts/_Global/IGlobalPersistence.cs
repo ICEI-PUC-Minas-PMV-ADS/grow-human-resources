@@ -10,5 +10,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Global
         void Excluir<T>(T entity) where T : class;
         void ExcluirIntervalo<T>(T[] entity) where T : class;
         Task<bool> SalvarAsync();
+        
     }
 }

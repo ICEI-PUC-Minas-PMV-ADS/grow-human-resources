@@ -9,5 +9,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Funcionarios
         Task<Funcionario[]> RecuperarFuncionariosPorNomeCompletoAsync(int userId, string visao, string nome, bool incluirMetas = false);
         Task<Funcionario[]> RecuperarFuncionariosAsync(int userId, string visao, bool incluirMetas = false);
         Task<Funcionario> RecuperarFuncionarioPorIdAsync(int userId, string visao, int funcionarioId, bool incluirMetas = false);
+        Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId);
     }
 }

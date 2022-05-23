@@ -108,6 +108,9 @@ namespace GHR.API
             services.AddScoped<IMetaService, MetaService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IContaService, ContaService>();
+            services.AddScoped<IFuncionarioDadoPessoalService, FuncionarioDadoPessoalService>();
+            services.AddScoped<IFuncionarioEnderecoService, FuncionarioEnderecoService>();
+
 
             services.AddScoped<ICargoPersistence, CargoPersistence>();
             services.AddScoped<IDepartamentoPersistence, DepartamentoPersistence>();
@@ -116,7 +119,8 @@ namespace GHR.API
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IMetaPersistence, MetaPersistence>();
             services.AddScoped<IContaPersistence, ContaPersistence>();
-
+            services.AddScoped<IFuncionarioDadoPessoalPersistence, FuncionarioDadoPessoalPersistence>();
+            services.AddScoped<IFuncionarioEnderecoPersistence, FuncionarioEnderecoPersistence>();
 
             services.AddCors();
             services.AddSwaggerGen(options =>
@@ -172,8 +176,8 @@ namespace GHR.API
 
             app.UseStaticFiles(new StaticFileOptions() {
 
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
-                RequestPath = new PathString("/Resources")
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Recursos")),
+                RequestPath = new PathString("/Recursos")
             });
 
             app.UseEndpoints(endpoints =>

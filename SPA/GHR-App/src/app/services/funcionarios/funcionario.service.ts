@@ -15,52 +15,56 @@ export class FuncionarioService {
 
   constructor(private http: HttpClient) { }
 
-  public getFuncionarios(): Observable<Funcionario[]> {
+  public recuperarFuncionarios(): Observable<Funcionario[]> {
     return this.http
       .get<Funcionario[]>(this.baseURL)
       .pipe(take(1));
   }
 
-  public getFuncionariosByNomeCompleto(nome: string): Observable<Funcionario[]> {
+  public recuperarFuncionariosPorNomeCompleto(nome: string): Observable<Funcionario[]> {
     return this.http
       .get<Funcionario[]>(`${this.baseURL}/${nome}/nome`)
       .pipe(take(1));
   }
 
-  public getFuncionarioById(id: number): Observable<Funcionario> {
+  public recuperarFuncionarioPorId(id: number): Observable<Funcionario> {
     return this.http
       .get<Funcionario>(`${this.baseURL}/${id}`)
       .pipe(take(1));
   }
+  public recuperarFuncionarioPorContaId(contaId: number): Observable<Funcionario> {
+    return this.http
+      .get<Funcionario>(`${this.baseURL}/${contaId}/contaId`)
+      .pipe(take(1));
+  }
 
-  public post(funcionario: Funcionario): Observable<Funcionario> {
+  public criarFuncionario(funcionario: Funcionario): Observable<Funcionario> {
     return this.http
       .post<Funcionario>(this.baseURL, funcionario)
       .pipe(take(1));
   }
 
-  public put(funcionario: Funcionario): Observable<Funcionario> {
+  public salvarFuncionario(funcionario: Funcionario): Observable<Funcionario> {
     return this.http
       .put<Funcionario>(`${this.baseURL}/${funcionario.id}`, funcionario)
       .pipe(take(1));
   }
 
-  public deleteFuncionario(id: number): Observable<any> {
+  public excluirFuncionario(id: number): Observable<any> {
     return this.http
       .delete<string>(`${this.baseURL}/${id}`)
       .pipe(take(1));
   }
 
   public postUpload(funcionarioId: number, file: File): Observable<Funcionario> {
-
     const fileToUpload = file[0] as File;
     const formData = new FormData();
 
-    formData.append('file', fileToUpload, 'foto.jpg');
-    console.log(formData, fileToUpload,   )
+    formData.append('file', fileToUpload);
+    console.log('formdata', formData, fileToUpload )
 
     return this.http
-      .post<Funcionario>(`${this.baseURL}/upload-image/${funcionarioId}`, formData)
+      .post<Funcionario>(`${this.baseURL}/salvar-imagem/${funcionarioId}`, formData)
       .pipe(take(1));
   }
 }

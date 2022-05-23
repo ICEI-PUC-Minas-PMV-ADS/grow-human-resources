@@ -21,10 +21,13 @@ namespace GHR.Application.helpers
             CreateMap<Funcionario, FuncionarioDto>().ReverseMap();
             CreateMap<Meta, MetaDto>().ReverseMap();
             CreateMap<FuncionarioMeta, FuncionarioMetaDto>().ReverseMap();
+            CreateMap<DadoPessoal, DadoPessoalDto>().ReverseMap();
+            CreateMap<Endereco, EnderecoDto>().ReverseMap();
             
             CreateMap<Conta, ContaDto>().ReverseMap();
             CreateMap<Conta, ContaLoginDto>().ReverseMap();
             CreateMap<Conta, ContaAtualizarDto>().ReverseMap();
+            CreateMap<Conta, ContaVisaoDto>().ReverseMap();
         }
     }
 }

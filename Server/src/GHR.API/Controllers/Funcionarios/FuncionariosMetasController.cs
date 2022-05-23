@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using GHR.API.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Funcionarios;
-using GHR.Application.Services.Contracts.Contas;
 using GHR.Application.Dtos.Funcionarios;
 
 namespace GHR.API.Controllers.Funcionarios

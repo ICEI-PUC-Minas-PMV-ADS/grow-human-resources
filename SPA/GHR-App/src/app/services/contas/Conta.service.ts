@@ -1,3 +1,4 @@
+import { ContaVisao } from './../../models/contas/ContaVisao';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -6,13 +7,13 @@ import { map, take } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
+import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { Conta } from 'src/app/models/contas/Conta';
-import { ContaAlterar } from 'src/app/models/contas/ContaAlterar';
 
 @Injectable()
 export class ContaService {
 
-  private origemContaAtual = new ReplaySubject<Conta>(1);
+  private origemContaAtual = new ReplaySubject<ContaAtiva>(1);
 
   public contaAtual$ = this.origemContaAtual.asObservable();
 
@@ -22,9 +23,9 @@ export class ContaService {
 
   public cadastrarConta(model: any): Observable<void> {
     return this.http
-      .post<Conta>(this.baseURL + 'cadastrarconta', model)
+      .post<ContaAtiva>(this.baseURL + 'cadastrarconta', model)
       .pipe(take(1),
-        map((contaRetorno: Conta) => {
+        map((contaRetorno: ContaAtiva) => {
             const conta = contaRetorno;
 
             if(conta) {
@@ -34,7 +35,7 @@ export class ContaService {
       );
   }
 
-  public definirContaAtual(conta: Conta): void {
+  public definirContaAtual(conta: ContaAtiva): void {
     localStorage.setItem('conta', JSON.stringify(conta));
     this.origemContaAtual.next(conta);
   }
@@ -48,9 +49,9 @@ export class ContaService {
   public login(model: any): Observable<void> {
 
     return this.http
-      .post<Conta>(this.baseURL + 'login', model)
+      .post<ContaAtiva>(this.baseURL + 'login', model)
       .pipe(take(1),
-        map((contaRetorno: Conta) => {
+        map((contaRetorno: ContaAtiva) => {
           const conta = contaRetorno;
           if(conta) {
             this.definirContaAtual(conta);
@@ -60,15 +61,32 @@ export class ContaService {
       );
   }
 
-  public recuperarConta(): Observable<ContaAlterar> {
+  public recuperarConta(): Observable<Conta> {
     return this.http
-      .get<ContaAlterar>(this.baseURL + 'recuperarConta').pipe(take(1));
+      .get<Conta>(this.baseURL + 'recuperarConta').pipe(take(1));
   }
 
-  public alterarConta(model: ContaAlterar): Observable<void> {
-    return this.http.put<ContaAlterar>(this.baseURL + 'alterarConta', model).pipe(take(1),
-      map((user: ContaAlterar) => {
-        this.definirContaAtual(user);
-    }));
+  public recuperarContaPorUserName(userName: string): Observable<Conta> {
+    return this.http
+      .get<Conta>(this.baseURL + `${userName}/userName`).pipe(take(1));
   }
+
+  public recuperarContaPorId(id: number): Observable<Conta> {
+    return this.http
+      .get<Conta>(this.baseURL + `${id}`).pipe(take(1));
+  }
+  
+  public alterarConta(model: Conta): Observable<void> {
+    return this.http.put<Conta>(this.baseURL + 'alterarConta', model).pipe(take(1),
+      map((user: Conta) => {
+        this.definirContaAtual(user);
+      }));
+  }
+
+  public atualizarConta(model: ContaVisao): Observable<any> {
+    return this.http
+      .put<Conta>(this.baseURL + 'atualizarConta', model)
+      .pipe(take(1));
+  }
+
 }

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Conta } from 'src/app/models/contas/Conta';
 
 import { ContaLogin } from 'src/app/models/contas/ContaLogin';
 
@@ -16,7 +15,7 @@ import { ContaService } from 'src/app/services/contas/Conta.service';
 })
 export class LoginComponent implements OnInit {
 
-  public model = {} as ContaLogin;
+  public contaLogin = {} as ContaLogin;
 
   constructor(
     private contaService: ContaService,
@@ -30,7 +29,7 @@ export class LoginComponent implements OnInit {
   public login(): void {
     this.spinner.show();
 
-    this.contaService.login(this.model).subscribe(
+    this.contaService.login(this.contaLogin).subscribe(
       () => {
         this.router.navigateByUrl('/home');
       },

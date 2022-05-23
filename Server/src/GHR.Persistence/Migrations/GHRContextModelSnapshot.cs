@@ -61,9 +61,6 @@ namespace GHR.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ImagemUrl")
-                        .HasColumnType("TEXT");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
 
@@ -189,7 +186,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("CPF")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CarteiraTrablho")
+                    b.Property<string>("CarteiraTrabalho")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataExpedicaoCarteiraTrabalho")
@@ -237,6 +234,9 @@ namespace GHR.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Complemento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ComplementoEndereco")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Logradouro")
@@ -294,9 +294,6 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<int?>("GerenteOperacionalId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("ImagemURL")
-                        .HasColumnType("TEXT");
 
                     b.Property<float>("Salario")
                         .HasColumnType("REAL");

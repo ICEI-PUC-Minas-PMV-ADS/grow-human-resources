@@ -7,7 +7,6 @@ namespace GHR.Domain.DataBase.Contas
     {
         public string NomeCompleto { get; set; }
         public string Visao { get; set; }
-        public string ImagemUrl { get; set; }
         public string Descricao { get; set; }
         public IEnumerable<ContaFuncao> ContasFuncoes { get; set; }
     }

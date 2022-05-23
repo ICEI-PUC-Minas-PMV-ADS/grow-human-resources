@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Cargos;
-using GHR.Application.Services.Contracts.Contas;
 using GHR.Application.Dtos.Cargos;
 
 namespace GHR.API.Controllers.Cargos
