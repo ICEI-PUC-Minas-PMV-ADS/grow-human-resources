@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
             (value) => {
               this.contaLogada = value !== null;
               this.contaAtiva = { ...value } ;
-              this.visaoRH = this.contaAtiva.visao.includes('RH');
+              this.visaoRH = this.contaAtiva.visao?.includes('RH');
               console.log(this.contaLogada, this.contaAtiva, this.contaAtiva.visao);
               console.log('Menu', this.contaAtiva.visao, this.visaoRH);
             }

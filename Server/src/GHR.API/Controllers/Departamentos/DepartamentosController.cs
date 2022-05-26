@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Departamentos;
 using GHR.Application.Dtos.Departamentos;
+using GHR.Persistence.Models;
+using GHR.API.Extensions;
 
 namespace GHR.API.Controllers.Departamentos
 {
@@ -21,14 +23,19 @@ namespace GHR.API.Controllers.Departamentos
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> RecuperarDepartamentos([FromQuery]PaginaParametros paginaParametros)
         {
             try
             {
                 var departamentos = await _departamentoService
-                    .RecuperarDepartamentosAsync();
+                    .RecuperarDepartamentosAsync(paginaParametros);
 
                 if (departamentos == null) return NoContent();
+
+                Response.CriarPaginacao(departamentos.PaginaAtual, 
+                    departamentos.TamanhoDaPagina, 
+                    departamentos.ContadorTotal, 
+                    departamentos.TotalDePaginas);
 
                 return Ok(departamentos);
             }
@@ -41,7 +48,7 @@ namespace GHR.API.Controllers.Departamentos
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> RecuperarDepartamentoPorId(int id)
         {
             try
             {
@@ -60,27 +67,8 @@ namespace GHR.API.Controllers.Departamentos
             }
         }
 
-        [HttpGet("{nome}/nome")]
-        public async Task<IActionResult> GetByNome(string nome)
-        {
-            try
-            {
-                var departamento = await _departamentoService
-                    .RecuperarDepartamentosPorNomeDepartamentoAsync(nome);
-
-                if (departamento == null) return NoContent();
-
-                return Ok(departamento);
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar departamentos. Erro: {ex.Message}");
-            }
-        }
-        [HttpPost]
-        public async Task<IActionResult> Post(DepartamentoDto model)
+         [HttpPost]
+        public async Task<IActionResult> CriarDepartamento(DepartamentoDto model)
         {
             try
             {
@@ -97,7 +85,7 @@ namespace GHR.API.Controllers.Departamentos
             }
         }
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, DepartamentoDto model)
+        public async Task<IActionResult> SalvarDepartamento(int id, DepartamentoDto model)
         {
             try
             {
@@ -115,7 +103,7 @@ namespace GHR.API.Controllers.Departamentos
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> ExcluirDepartamento(int id)
         {
             try
             {

@@ -21,7 +21,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{enderecoId}")]
-        public async Task<IActionResult> GetById(int enderecoId)
+        public async Task<IActionResult> RecuperarEnderecoPorId(int enderecoId)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(EnderecoDto model)
+        public async Task<IActionResult> CriarEndereco(EnderecoDto model)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpPut("{enderecoId}")]
-        public async Task<IActionResult> Put(int enderecoId, EnderecoDto model)
+        public async Task<IActionResult> AlterarEndereco(int enderecoId, EnderecoDto model)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{enderecoId}")]
-        public async Task<IActionResult> Delete(int enderecoId)
+        public async Task<IActionResult> ExcluirEndereco(int enderecoId)
         {
             try
             {

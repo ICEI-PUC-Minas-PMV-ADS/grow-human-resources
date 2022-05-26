@@ -44,13 +44,13 @@ namespace GHR.Application.Dtos.Funcionarios
       
 //      [Display(Name = "Conta"),
 //     Required(ErrorMessage = "É necessário informa um {0}.")]
-      public int UserId { get; set; }
+      public int ContaId { get; set; }
       public Conta Contas { get; set; }
 
 
  //     [Display(Name = "Endereco"),
  //     Required(ErrorMessage = "É necessário informa um {0}.")]
-      public int EndrecoId { get; set; }
+      public int EnderecoId { get; set; }
       public Endereco   Enderecos { get; set; }
 
 

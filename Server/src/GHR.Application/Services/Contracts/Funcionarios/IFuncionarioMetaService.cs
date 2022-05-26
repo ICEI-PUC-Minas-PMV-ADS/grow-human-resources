@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
 using GHR.Application.Dtos.Funcionarios;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.Services.Contracts.Funcionarios
 {
     public interface IFuncionarioMetaService
     {
-        Task<FuncionarioMetaDto> CriarFuncionarioMeta(int userId, string visao, FuncionarioMetaDto model);
-        Task<FuncionarioMetaDto> AlterarFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId, FuncionarioMetaDto model);
-        Task<bool> ExcluirFuncionarioMeta(int userId, string visao, int funcionarioId, int metaId);
-        Task<FuncionarioMetaDto[]> RecuperarMetasPorFuncionarioIdAsync(int userId, string visao, int funcionarioId);
-        Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int userId, string visao, int funcionarioId, int metaId);
+        Task<FuncionarioMetaDto> CriarFuncionarioMeta(FuncionarioMetaDto model);
+        Task<FuncionarioMetaDto> AlterarFuncionarioMeta( int funcionarioId, int metaId, FuncionarioMetaDto model);
+        Task<bool> ExcluirFuncionarioMeta(int funcionarioId, int metaId);
+        Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros);
+        Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId);
     }
 }

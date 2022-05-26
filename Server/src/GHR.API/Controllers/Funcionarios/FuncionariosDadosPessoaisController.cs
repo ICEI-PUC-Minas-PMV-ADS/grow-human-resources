@@ -21,7 +21,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{dadoPessoalId}")]
-        public async Task<IActionResult> GetById(int dadoPessoalId)
+        public async Task<IActionResult> RecuperarDadosPessoaisPorId(int dadoPessoalId)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(DadoPessoalDto model)
+        public async Task<IActionResult> CriarDadosPessoais(DadoPessoalDto model)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpPut("{dadoPessoalId}")]
-        public async Task<IActionResult> Put(int dadoPessoalId, DadoPessoalDto model)
+        public async Task<IActionResult> SalvarDadosPessoais(int dadoPessoalId, DadoPessoalDto model)
         {
             try
             {
@@ -78,7 +78,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{dadoPessoalId}")]
-        public async Task<IActionResult> Delete(int dadoPessoalId)
+        public async Task<IActionResult> ExcluirDados(int dadoPessoalId)
         {
             try
             {

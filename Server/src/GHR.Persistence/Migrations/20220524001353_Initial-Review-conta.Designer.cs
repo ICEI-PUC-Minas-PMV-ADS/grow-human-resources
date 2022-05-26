@@ -3,14 +3,16 @@ using System;
 using GHR.Persistence.Interfaces.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    partial class GHRContextModelSnapshot : ModelSnapshot
+    [Migration("20220524001353_Initial-Review-conta")]
+    partial class InitialReviewconta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

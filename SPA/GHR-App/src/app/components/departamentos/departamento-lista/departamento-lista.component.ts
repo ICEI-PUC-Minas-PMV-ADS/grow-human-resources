@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { Departamento } from 'src/app/models/departamentos/Departamento';
+import { Paginacao, ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
 
 import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 @Component({
@@ -18,30 +21,31 @@ export class DepartamentoListaComponent implements OnInit {
   public modalRef?: BsModalRef;
   public departamentos: Departamento[] = [];
   public departamentosFiltrados: Departamento[] = [];
+  public paginacao = {} as Paginacao;
   public departamentoId = 0;
 
-  private filtroListado: string = '';
+  alteracaoTermoBusca: Subject<string> = new Subject<string>();
 
-  public get filtroLista(): string {
-    return this.filtroListado;
-  }
+  public filtrarDepartamentos(event: any): void {
+    if (this.alteracaoTermoBusca.observers.length === 0) {
+      this.spinner.show();
 
-  public set filtroLista(filtro: string) {
-    this.filtroListado = filtro;
-    this.departamentosFiltrados = this.filtroLista
-      ? this.filtrarDepartamentos(this.filtroLista)
-      : this.departamentos;
-  }
-
-  public filtrarDepartamentos(filtrarPor: string): Departamento[] {
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.departamentos.filter(
-      (departamento: Departamento) =>
-        departamento.nomeDepartamento
-          .toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        departamento.siglaDepartamento
-          .toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    );
+      this.alteracaoTermoBusca
+        .pipe(debounceTime(1500))
+        .subscribe(
+          filtrarPor => {
+          this.departamentoService
+            .recuperarDepartamentos(this.paginacao.paginaAtual, this.paginacao.itensPorPagina, filtrarPor)
+            .subscribe(
+              (departamentosRetorno: ResultadoPaginacao<Departamento[]>) => {
+                this.departamentos = departamentosRetorno.resultado;
+                this.paginacao = departamentosRetorno.paginacao;},
+              (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'))
+            .add(() => this.spinner.hide());
+          }
+        )
+    }
+    this.alteracaoTermoBusca.next(event.value);
   }
 
   constructor(
@@ -59,25 +63,37 @@ export class DepartamentoListaComponent implements OnInit {
 
   public carregarDepartamentos(): void {
     this.spinner.show();
-    this.departamentoService.recuperarDepartamentos().subscribe({
-      next: (departamentosRetorno: Departamento[]) => {
-        this.departamentos = departamentosRetorno;
-        this.departamentosFiltrados = this.departamentos;
-      },
-      error: (error: any) => this.toastr.error('Falha ao carregar os departamentos', 'Erro!'),
-    }).add(() => this.spinner.hide());
+
+    this.departamentoService
+      .recuperarDepartamentos(this.paginacao.paginaAtual,
+        this.paginacao.itensPorPagina)
+      .subscribe(
+        (departamentosRetorno: ResultadoPaginacao<Departamento[]>) => {
+          this.departamentos = departamentosRetorno.resultado;
+          this.paginacao = departamentosRetorno.paginacao;},
+      (error: any) => this.toastr.error('Falha ao carregar os departamentos', 'Erro!'),)
+    .add(() => this.spinner.hide());
+
   }
+
   openModal(event: any, template: TemplateRef<any>, departamentoId: number): void {
     event.stopPropagation();
     this.departamentoId= departamentoId
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+    public paginaAlterada(event): void {
+    this.paginacao.paginaAtual = event.page;
+    console.log("page", event.page);
+    this.carregarDepartamentos();
+  }
+
+
   confirmar(): void {
     this.modalRef?.hide();
     this.spinner.show();
 
-    this.departamentoService.excluirFuncionario(this.departamentoId).subscribe(
+    this.departamentoService.excluirDepartamento(this.departamentoId).subscribe(
       (retornoDelete: any) => {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Departamento excluído da base!", "Excluído!")

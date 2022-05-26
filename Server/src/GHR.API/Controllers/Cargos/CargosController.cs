@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Cargos;
 using GHR.Application.Dtos.Cargos;
+using GHR.Persistence.Models;
+using GHR.API.Extensions;
 
 namespace GHR.API.Controllers.Cargos
 {
@@ -21,13 +23,18 @@ namespace GHR.API.Controllers.Cargos
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> RecuperarCargos([FromQuery]PaginaParametros paginaParametros)
         {
             try
             {
-                var cargos = await _cargoService.RecuperarCargosAsync();
+                var cargos = await _cargoService.RecuperarCargosAsync(paginaParametros);
 
                 if (cargos == null) return NoContent();
+
+                Response.CriarPaginacao(cargos.PaginaAtual, 
+                    cargos.TamanhoDaPagina, 
+                    cargos.ContadorTotal, 
+                    cargos.TotalDePaginas);
 
                 return Ok(cargos);
             }
@@ -40,7 +47,7 @@ namespace GHR.API.Controllers.Cargos
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> RecuperarCargosPorId(int id)
         {
             try
             {
@@ -58,25 +65,6 @@ namespace GHR.API.Controllers.Cargos
             }
         }
 
-        [HttpGet("{nome}/nome")]
-        public async Task<IActionResult> GetByNome(string nome)
-        {
-            try
-            {
-                var cargos = await _cargoService.RecuperarCargosPorNomeCargoAsync(nome);
-
-                if (cargos == null) return NoContent();
-
-                return Ok(cargos);
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Erro ao tentar recuperar cargos. Erro: {ex.Message}");
-            }
-        }
-        
         [HttpPost]
         public async Task<IActionResult> Post(CargoDto model)
         {
@@ -97,7 +85,7 @@ namespace GHR.API.Controllers.Cargos
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, CargoDto model)
+        public async Task<IActionResult> SalvarCargo(int id, CargoDto model)
         {
             try
             {
@@ -115,7 +103,7 @@ namespace GHR.API.Controllers.Cargos
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> ExcluirCargo(int id)
         {
             try
             {

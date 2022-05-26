@@ -15,6 +15,7 @@ import { Departamento } from 'src/app/models/departamentos/Departamento';
 
 import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 import { CargoService } from 'src/app/services/cargos/Cargo.service';
+import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
 
 @Component({
   selector: 'app-cargo-detalhe',
@@ -122,18 +123,16 @@ export class CargoDetalheComponent implements OnInit {
 
   public consultarDepartamento(): void
   {
-      this.spinner.show();
+    this.spinner.show();
 
-      this.departamentoService.recuperarDepartamentos().subscribe(
-        (departamentoRetorno: Departamento[]) =>
-        {
-          this.departamentos = departamentoRetorno;
-        },
-        (error: any) =>
-        {
+    this.departamentoService
+      .recuperarDepartamentos()
+      .subscribe(
+        (departamentoRetorno: ResultadoPaginacao<Departamento[]>) =>{
+          this.departamentos = departamentoRetorno.resultado;},
+        (error: any) => {
           this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
-          console.error(error);
-        }
+          console.error(error); }
       ).add(() => this.spinner.hide());
     }
 }

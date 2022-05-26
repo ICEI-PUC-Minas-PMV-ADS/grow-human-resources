@@ -6,6 +6,7 @@ using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Implements.Global;
 
 using Microsoft.EntityFrameworkCore;
+using GHR.Persistence.Models;
 
 namespace GHR.Persistence.Interfaces.Implements.Cargos
 {
@@ -18,28 +19,19 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
         {
             _context = context;
         }
-        public async Task<Cargo[]> RecuperarCargosAsync()
+        public async Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros)
         {
-            IQueryable<Cargo> query = _context.Cargos;
-
-            query = query
-                .Include(d => d.Departamentos)
-                .AsNoTracking()
-                .OrderBy(c => c.NomeCargo);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<Cargo[]> RecuperarCargosPorNomeCargoAsync(string nome)
-        {
-            IQueryable<Cargo> query = _context.Cargos;
+            IQueryable<Cargo> query = _context.Cargos
+                .Include(d => d.Departamentos);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.NomeCargo.ToLower().Contains(nome.ToLower()));
+                .Where(c => c.NomeCargo.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                            c.Funcao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                            c.Departamentos.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()));
 
-            return await query.ToArrayAsync();
+            return await PaginaLista<Cargo>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
         }
 
         public async Task<Cargo> RecuperarCargoPorIdAsync(int cargoId)

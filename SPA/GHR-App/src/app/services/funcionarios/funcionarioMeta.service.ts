@@ -1,10 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
+
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
+
 import { environment } from 'src/environments/environment';
 
+import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
 
 @Injectable()
 export class FuncionarioMetaService {
@@ -12,33 +16,79 @@ export class FuncionarioMetaService {
 
   constructor(private http: HttpClient) { }
 
-  public getMetasByFuncionarioId(funcionarioId: number): Observable<FuncionarioMeta[]> {
-     console.log("console func.", `${this.baseURL}/${funcionarioId}`)
+  public recuperarFuncionariosMetas(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<FuncionarioMeta[]>> {
+
+    const resultadoPaginacao: ResultadoPaginacao<FuncionarioMeta[]> = new ResultadoPaginacao<FuncionarioMeta[]>();
+
+    let params = new HttpParams;
+
+    if (pagina != null && itensPorPagina != null) {
+      params = params.append('numeroDaPagina', pagina.toString());
+      params = params.append('tamanhoDaPagina', itensPorPagina.toString());
+    };
+
+    console.log("termo", termo)
+    if (termo != null && termo != '')
+      params = params.append('termo', termo);
+
     return this.http
-      .get<FuncionarioMeta[]>(`${this.baseURL}/${funcionarioId}`)
-      .pipe(take(1));
+      .get<FuncionarioMeta[]>(this.baseURL, {observe: 'response', params})
+      .pipe(
+        take(1),
+        map((response) => {          resultadoPaginacao.resultado = response.body;
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
+          }
+          return resultadoPaginacao;
+        }));
   }
 
-  public getMeta(funcionarioId: number, metaId: number): Observable<FuncionarioMeta> {
+  public recuperarMetasPorFuncionarioId(funcionarioId: number, pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<FuncionarioMeta[]>> {
+
+    const resultadoPaginacao: ResultadoPaginacao<FuncionarioMeta[]> = new ResultadoPaginacao<FuncionarioMeta[]>();
+
+    let params = new HttpParams;
+
+    if (pagina != null && itensPorPagina != null) {
+      params = params.append('numeroDaPagina', pagina.toString());
+      params = params.append('tamanhoDaPagina', itensPorPagina.toString());
+    };
+
+    console.log("termo", termo)
+    if (termo != null && termo != '')
+      params = params.append('termo', termo);
+
     return this.http
-      .get<FuncionarioMeta>(`${this.baseURL}/${funcionarioId}/${metaId}/meta`)
-      .pipe(take(1));
+      .get<FuncionarioMeta[]>(`${this.baseURL}/${funcionarioId}`, {observe: 'response', params})
+      .pipe(
+        take(1),
+        map((response) => {          resultadoPaginacao.resultado = response.body;
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
+          }
+          return resultadoPaginacao;
+        }));
   }
 
-  public post(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
+  public recuperarFuncionarioIdMetaId(funcionarioId: number, metaId:number): Observable<any> {
+    return this.http
+      .get<string>(`${this.baseURL}/${funcionarioId}/${metaId}`)
+      .pipe(take(1));
+  }
+  public criarFuncionarioMeta(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
 
     return this.http
       .post<FuncionarioMeta>(this.baseURL, funcionarioMeta)
       .pipe(take(1));
   }
 
-  public put(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
+  public salvarFuncionarioMeta(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
     return this.http
       .put<FuncionarioMeta>(`${this.baseURL}/${funcionarioMeta.funcionarioId}/${funcionarioMeta.metaId}`, funcionarioMeta)
       .pipe(take(1));
   }
 
-  public deleteFuncionarioMeta(funcionarioId: number, metaId:number): Observable<any> {
+  public excluirFuncionarioMeta(funcionarioId: number, metaId:number): Observable<any> {
     return this.http
       .delete<string>(`${this.baseURL}/${funcionarioId}/${metaId}`)
       .pipe(take(1));

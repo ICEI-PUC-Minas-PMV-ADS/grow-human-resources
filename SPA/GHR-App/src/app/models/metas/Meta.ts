@@ -1,6 +1,6 @@
-import { Funcionario } from "./funcionarios/Funcionario";
+import { Funcionario } from "../funcionarios/Funcionario";
 
-export interface Meta {
+export class Meta {
   id: number;
   supervisorId: number;
   nomeMeta: string;

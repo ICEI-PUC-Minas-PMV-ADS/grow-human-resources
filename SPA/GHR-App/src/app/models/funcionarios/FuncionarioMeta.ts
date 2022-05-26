@@ -1,8 +1,8 @@
-import { Meta } from "@angular/platform-browser";
+import { Meta } from "../metas/Meta";
 import { Funcionario } from "./Funcionario";
 
 
-export interface FuncionarioMeta {
+export class FuncionarioMeta {
   metaId: number;
   meta: Meta;
   funcionarioId: number;

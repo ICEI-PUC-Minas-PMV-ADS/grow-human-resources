@@ -8,8 +8,8 @@
         </div>
         <input type="text"
           class="form-control"
-          placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
-          [(ngModel)]="filtroLista"
+          placeholder="Pesquisar por Cargo, Funcao e Departamento"
+          (input)="filtrarCargos($event.target)"
         >
       </div>
     </div>
@@ -31,7 +31,7 @@
       </tr>
     </thead>
     <tbody *ngIf="cargos && cargos.length">
-      <tr *ngFor="let cargo of cargosFiltrados" (click)="detalheCargo(cargo.id)" style="cursor: pointer">
+      <tr *ngFor="let cargo of cargos" (click)="detalheCargo(cargo.id)" style="cursor: pointer">
         <td class="d-none d-md-table-cell">{{cargo.id}}</td>
         <td>{{cargo.nomeCargo}}</td>
         <td>{{cargo.funcao}}</td>
@@ -51,6 +51,22 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [totalItems]="paginacao.totalItens"
+      [itemsPerPage]="paginacao.itensPorPagina"
+      [(ngModel)]="paginacao.paginaAtual"
+      [align]="true"
+      (pageChanged)="paginaAlterada($event)"
+      pageBtnClass="btn"
+
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;">
+
+    </pagination>
+  </div>
 </div>
 <!-- Modal -->
 <ng-template #template>

@@ -1,7 +1,7 @@
 import { Cargo } from "../cargos/Cargo";
 import { Conta } from "../contas/Conta";
 import { Departamento } from "../departamentos/Departamento";
-import { Meta } from "../Meta";
+import { Meta } from "../metas/Meta";
 import { DadoPessoal } from "./DadoPessoal";
 import { Endereco } from "./Endereco";
 
@@ -19,7 +19,7 @@ export class Funcionario {
   cargos: Cargo;
   departamentoId: number;
   departamentos: Departamento;
-  userId: number;
+  contaId: number;
   contas: Conta;
   enderecoId: number;
   enderecos: Endereco;

@@ -75,7 +75,7 @@ export class ContaService {
     return this.http
       .get<Conta>(this.baseURL + `${id}`).pipe(take(1));
   }
-  
+
   public alterarConta(model: Conta): Observable<void> {
     return this.http.put<Conta>(this.baseURL + 'alterarConta', model).pipe(take(1),
       map((user: Conta) => {

@@ -4,6 +4,7 @@ using GHR.Domain.DataBase.Funcionarios;
 using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Contracts.Funcionarios;
 using GHR.Persistence.Interfaces.Implements.Global;
+using GHR.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Interfaces.Implements.Funcionarios
@@ -17,7 +18,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             _context = context;
         }
         //Funcionarios
-        public async Task<FuncionarioMeta[]> RecuperarMetasPorFuncionarioIdAsync(int userId, string visao, int funcionarioId)
+        public async Task<PaginaLista<FuncionarioMeta>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas               
                             .Include(f => f.Funcionario)
@@ -28,10 +29,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
                     .OrderBy(fm => fm.MetaId)
                     .Where(fm => fm.FuncionarioId == funcionarioId);
             
-            return await query.ToArrayAsync();
+            return await PaginaLista<FuncionarioMeta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
     
         }
-        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaAsync(int userId, string visao, int funcionarioId, int metaId)
+        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaAsync(int funcionarioId, int metaId)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
                 .Include(m => m.Meta)

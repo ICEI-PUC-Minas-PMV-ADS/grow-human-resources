@@ -9,6 +9,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -41,8 +42,6 @@ import { PerfilComponent } from './components/conta/perfil/perfil.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 
 
-import { MetaService } from './services/Meta.service';
-
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
 import { DateFormatPipe } from './helpers/DateFormat.pipe';
 
@@ -54,6 +53,8 @@ import { EnderecoService } from './services/funcionarios/endereco.service';
 import { FuncionarioService } from './services/funcionarios/funcionario.service';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { MetaService } from './services/metas/Meta.service';
+import { FuncionarioMetaService } from './services/funcionarios/funcionarioMeta.service';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -95,6 +96,7 @@ defineLocale('pt-br', ptBrLocale);
     ModalModule.forRoot(),
     NgxCurrencyModule,
     NgxSpinnerModule,
+    PaginationModule.forRoot(),
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
@@ -103,7 +105,6 @@ defineLocale('pt-br', ptBrLocale);
       progressBar: true
     }),
     TooltipModule.forRoot(),
-    BsDatepickerModule.forRoot(),
   ],
   providers: [
     CargoService,
@@ -112,6 +113,7 @@ defineLocale('pt-br', ptBrLocale);
     DepartamentoService,
     EnderecoService,
     FuncionarioService,
+    FuncionarioMetaService,
     MetaService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
   ],

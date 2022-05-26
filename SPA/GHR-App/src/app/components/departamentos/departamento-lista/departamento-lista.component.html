@@ -8,8 +8,8 @@
         </div>
         <input type="text"
           class="form-control"
-          placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
-          [(ngModel)]="filtroLista"
+          placeholder="Pesquisar por Departamento e Sigla"
+          (input)="filtrarDepartamentos($event.target)"
         >
       </div>
     </div>
@@ -24,13 +24,13 @@
     <thead class="table-dark">
       <tr>
         <th class="d-none d-md-table-cell">#</th>
-        <th>Depatamento</th>
+        <th>Departamento</th>
         <th >Sigla</th>
         <th>Opções</th>
       </tr>
     </thead>
     <tbody *ngIf="departamentos && departamentos.length">
-      <tr *ngFor="let departamento of departamentosFiltrados" (click)="detalheDepartamento(departamento.id)" style="cursor: pointer">
+      <tr *ngFor="let departamento of departamentos" (click)="detalheDepartamento(departamento.id)" style="cursor: pointer">
         <td class="d-none d-md-table-cell">{{departamento.id}}</td>
         <td>{{departamento.nomeDepartamento}}</td>
         <td>{{departamento.siglaDepartamento}}</td>
@@ -49,6 +49,22 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [totalItems]="paginacao.totalItens"
+      [itemsPerPage]="paginacao.itensPorPagina"
+      [(ngModel)]="paginacao.paginaAtual"
+      [align]="true"
+      (pageChanged)="paginaAlterada($event)"
+      pageBtnClass="btn"
+
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;">
+
+    </pagination>
+  </div>
 </div>
 <!-- Modal -->
 <ng-template #template>

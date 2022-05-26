@@ -6,6 +6,7 @@ using GHR.Application.Services.Contracts.Funcionarios;
 using GHR.Domain.DataBase.Funcionarios;
 using GHR.Persistence.Interfaces.Contracts.Funcionarios;
 using GHR.Persistence.Interfaces.Contracts.Global;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.Services.Implements.Funcionarios
 {
@@ -24,7 +25,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
             _funcionarioPersistence = funcionarioPersistence;
             _mapper = mapper;
         }
-        public async Task<FuncionarioDto> CriarFuncionarios(int userId, string visao, FuncionarioDto model)
+        public async Task<FuncionarioDto> CriarFuncionarios(FuncionarioDto model)
         {
             try
             {
@@ -34,7 +35,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var funcionarioRetorno = await _funcionarioPersistence
-                        .RecuperarFuncionarioPorIdAsync( userId,  visao, funcionario.Id, false);
+                        .RecuperarFuncionarioPorIdAsync(funcionario.Id, false);
 
                     return _mapper.Map<FuncionarioDto>(funcionarioRetorno);
                 }
@@ -47,12 +48,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
             }
         }
 
-        public async Task<FuncionarioDto> AlterarFuncionario(int userId, string visao, int funcionarioId, FuncionarioDto model)
+        public async Task<FuncionarioDto> AlterarFuncionario(int funcionarioId, FuncionarioDto model)
         {
             try
             {
                 var funcionario = await _funcionarioPersistence
-                    .RecuperarFuncionarioPorIdAsync( userId,  visao, funcionarioId, false);
+                    .RecuperarFuncionarioPorIdAsync(funcionarioId, false);
 
                 if (funcionario == null) return null;
 
@@ -65,7 +66,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var funcionarioRetorno = await _funcionarioPersistence
-                        .RecuperarFuncionarioPorIdAsync( userId,  visao, funcionario.Id, false);
+                        .RecuperarFuncionarioPorIdAsync( funcionario.Id, false);
 
                     return _mapper.Map<FuncionarioDto>(funcionarioRetorno);
                 }
@@ -77,12 +78,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> ExcluirFuncionario(int userId, string visao, int funcionarioId)
+        public async Task<bool> ExcluirFuncionario( int funcionarioId)
         {
             try
             {
                 var funcionario = await _funcionarioPersistence
-                    .RecuperarFuncionarioPorIdAsync( userId,  visao, funcionarioId, false);
+                    .RecuperarFuncionarioPorIdAsync( funcionarioId, false);
 
                 if (funcionario == null) throw new Exception("Funcionário não encontrado para exclusão");
                 
@@ -100,16 +101,21 @@ namespace GHR.Application.Services.Implements.Funcionarios
 
         } 
 
-        public async Task<FuncionarioDto[]> RecuperarFuncionariosAsync(int userId, string visao, bool incluirMetas = false)
+        public async Task<PaginaLista<FuncionarioDto>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false)
         {
             try
             {
                 var funcionarios = await _funcionarioPersistence
-                    .RecuperarFuncionariosAsync(userId, visao, incluirMetas);
+                    .RecuperarFuncionariosAsync(paginaParametros, incluirMetas);
 
                 if (funcionarios == null) return null;
 
-                var funcionariosMapper = _mapper.Map<FuncionarioDto[]>(funcionarios);
+                var funcionariosMapper = _mapper.Map<PaginaLista<FuncionarioDto>>(funcionarios);
+
+                funcionariosMapper.PaginaAtual = funcionarios.PaginaAtual;
+                funcionariosMapper.TotalDePaginas = funcionarios.TotalDePaginas;
+                funcionariosMapper.TamanhoDaPagina = funcionarios.TamanhoDaPagina;
+                funcionariosMapper.ContadorTotal = funcionarios.ContadorTotal;
 
                 return funcionariosMapper;
             }
@@ -120,32 +126,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
             }
         }
 
-        public async Task<FuncionarioDto[]> RecuperarFuncionariosPorNomeCompletoAsync(int userId, string visao, string nome, bool incluirMetas = false)
-        {
-            try
-            {
-                var funcionarios = await _funcionarioPersistence
-                    .RecuperarFuncionariosPorNomeCompletoAsync( userId,  visao, nome, incluirMetas);
-
-                if (funcionarios == null) return null;
-
-                var funcionariosMapper = _mapper.Map<FuncionarioDto[]>(funcionarios);
-
-                return funcionariosMapper;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<FuncionarioDto> RecuperarFuncionarioPorIdAsync(int userId, string visao, int funcionarioId, bool incluirMetas = false)
+        public async Task<FuncionarioDto> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false)
         {
             try
             {
                 var funcionario = await _funcionarioPersistence
-                    .RecuperarFuncionarioPorIdAsync( userId,  visao, funcionarioId, incluirMetas);
+                    .RecuperarFuncionarioPorIdAsync( funcionarioId, incluirMetas);
 
                 if (funcionario == null) return null;
 

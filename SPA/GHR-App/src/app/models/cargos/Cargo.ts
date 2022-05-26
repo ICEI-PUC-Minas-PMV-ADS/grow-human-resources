@@ -1,6 +1,6 @@
 import { Departamento } from "../departamentos/Departamento";
 
-export interface Cargo {
+export class Cargo {
   id: number;
   nomeCargo: string;
   funcao: string;

@@ -1,10 +1,17 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Meta } from 'src/app/models/Meta';
-import { MetaService } from 'src/app/services/Meta.service';
+
+import { debounceTime } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
+import { Meta } from 'src/app/models/metas/Meta';
+import { Paginacao, ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+
+import { MetaService } from 'src/app/services/metas/Meta.service';
 
 @Component({
   selector: 'app-meta-lista',
@@ -16,28 +23,31 @@ export class MetaListaComponent implements OnInit {
 
 
   public metas: Meta[] = [];
-  public metasFiltrados: Meta[] = [];
+  public paginacao = {} as Paginacao;
   public metaId = 0;
 
-  private filtroListado: string = '';
+  alteracaoTermoBusca: Subject<string> = new Subject<string>();
 
-  public get filtroLista(): string {
-    return this.filtroListado;
-  }
+  public filtrarMetas(event: any): void {
+    if (this.alteracaoTermoBusca.observers.length === 0) {
+      this.spinner.show();
 
-  public set filtroLista(filtro: string) {
-    this.filtroListado = filtro;
-    this.metasFiltrados = this.filtroLista
-      ? this.filtrarMetas(this.filtroLista)
-      : this.metas;
-  }
-
-  public filtrarMetas(filtrarPor: string): Meta[] {
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.metas.filter(
-      (meta: Meta) => meta.nomeMeta.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        meta.descricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    );
+      this.alteracaoTermoBusca
+        .pipe(debounceTime(1500))
+        .subscribe(
+          filtrarPor => {
+          this.metaService
+            .recuperarMetas(this.paginacao.paginaAtual, this.paginacao.itensPorPagina, filtrarPor)
+            .subscribe(
+              (MetasRetorno: ResultadoPaginacao<Meta[]>) => {
+                this.metas = MetasRetorno.resultado;
+                this.paginacao = MetasRetorno.paginacao;},
+              (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'))
+            .add(() => this.spinner.hide());
+          }
+        )
+    }
+    this.alteracaoTermoBusca.next(event.value);
   }
 
   constructor(
@@ -49,19 +59,23 @@ export class MetaListaComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
+    this.paginacao = { paginaAtual: 1, itensPorPagina: 3, totalItens: 4 } as Paginacao;
     this.carregarMetas();
     this.spinner.show();
   }
 
   public carregarMetas(): void {
     this.spinner.show();
-    this.metaService.getMetas().subscribe({
-      next: (metasRetorno: Meta[]) => {
-        this.metas = metasRetorno;
-        this.metasFiltrados = this.metas;
-      },
-      error: (error: any) => this.toastr.error('Falha ao carregar as metas', 'Erro!'),
-    }).add(() => this.spinner.hide());
+    this.metaService
+      .recuperarMetas(this.paginacao.paginaAtual,
+        this.paginacao.itensPorPagina)
+      .subscribe(
+        (metasRetorno: ResultadoPaginacao<Meta[]>) => {
+          this.metas = metasRetorno.resultado;
+          console.log("func", this.metas)
+          this.paginacao = metasRetorno.paginacao;},
+        (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'))
+      .add(() => this.spinner.hide());
   }
   openModal(event: any, template: TemplateRef<any>, metaId: number): void {
     event.stopPropagation();
@@ -69,11 +83,17 @@ export class MetaListaComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+  public paginaAlterada(event): void {
+    this.paginacao.paginaAtual = event.page;
+    console.log("page", event.page);
+    this.carregarMetas();
+    }
+
   confirmar(): void {
     this.modalRef?.hide();
     this.spinner.show();
 
-    this.metaService.deleteMeta(this.metaId).subscribe(
+    this.metaService.excluirMeta(this.metaId).subscribe(
       (retornoDelete: any) => {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Meta excluída da base!", "Excluído!")

@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
-import { Meta } from 'src/app/models/Meta';
-import { MetaService } from 'src/app/services/Meta.service';
+import { Meta } from 'src/app/models/metas/Meta';
+import { MetaService } from 'src/app/services/metas/Meta.service';
 
 @Component({
   selector: 'app-meta-Detalhe',
@@ -87,7 +87,7 @@ export class MetaDetalheComponent implements OnInit {
 
       this.estadoSalvar = "put";
 
-      this.metaService.getMetaById(+metaIdParam).subscribe(
+      this.metaService.recuperarMetaPorId(+metaIdParam).subscribe(
         (meta: Meta) =>
         {
           this.meta = { ...meta };

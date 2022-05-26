@@ -70,7 +70,7 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaAtualizarDto> RecuperarContaPorIdAsync(int userId)
+        public async Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId)
         {
             try
             {
@@ -78,9 +78,9 @@ namespace GHR.Application.Services.Implements.Contas
 
                 if (conta == null) return null;
 
-                var ContaAtualizarDto = _mapper.Map<ContaAtualizarDto>(conta);
+                var contaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
 
-                return ContaAtualizarDto;
+                return contaVisaoDto;
             }
             catch (System.Exception ex)
             {

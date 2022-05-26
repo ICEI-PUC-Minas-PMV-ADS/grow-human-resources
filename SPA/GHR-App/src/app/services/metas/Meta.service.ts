@@ -1,24 +1,25 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators'
 
-import { Departamento } from 'src/app/models/departamentos/Departamento';
+import { Meta } from 'src/app/models/metas/Meta';
 
 import { environment } from 'src/environments/environment';
 
 import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
-@Injectable()
-export class DepartamentoService {
 
-  public baseURL = environment.apiURL + 'api/departamentos'
+@Injectable()
+export class MetaService {
+
+  public baseURL = environment.apiURL + 'api/metas'
 
   constructor(private http: HttpClient) { }
 
-  public recuperarDepartamentos(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<Departamento[]>> {
+  public recuperarMetas(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<Meta[]>> {
 
-    const resultadoPaginacao: ResultadoPaginacao<Departamento[]> = new ResultadoPaginacao<Departamento[]>();
+    const resultadoPaginacao: ResultadoPaginacao<Meta[]> = new ResultadoPaginacao<Meta[]>();
 
     let params = new HttpParams;
 
@@ -32,36 +33,39 @@ export class DepartamentoService {
       params = params.append('termo', termo);
 
     return this.http
-      .get<Departamento[]>(this.baseURL, {observe: 'response', params})
+      .get<Meta[]>(this.baseURL, {observe: 'response', params})
       .pipe(
         take(1),
-        map((response) => {          resultadoPaginacao.resultado = response.body;
+        map((response) => {
+          resultadoPaginacao.resultado = response.body;
+
           if (response.headers.has('Paginacao')) {
             resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
           }
+
           return resultadoPaginacao;
         }));
   }
 
-  public recuperarDepartamentoById(id: number): Observable<Departamento> {
+  public recuperarMetaPorId(id: number): Observable<Meta> {
     return this.http
-      .get<Departamento>(`${this.baseURL}/${id}`)
+      .get<Meta>(`${this.baseURL}/${id}`)
       .pipe(take(1));
   }
 
-  public criarDepatamento(departamento: Departamento): Observable<Departamento> {
+  public criarMeta(meta: Meta): Observable<Meta> {
     return this.http
-      .post<Departamento>(this.baseURL, departamento)
+      .post<Meta>(this.baseURL, meta)
       .pipe(take(1));
   }
 
-  public alterarDepartamento(departamento: Departamento): Observable<Departamento> {
+  public SalvarMeta(meta: Meta): Observable<Meta> {
     return this.http
-      .put<Departamento>(`${this.baseURL}/${departamento.id}`, departamento)
+      .put<Meta>(`${this.baseURL}/${meta.id}`, meta)
       .pipe(take(1));
   }
 
-  public excluirDepartamento(id: number): Observable<any> {
+  public excluirMeta(id: number): Observable<any> {
     return this.http
       .delete<string>(`${this.baseURL}/${id}`)
       .pipe(take(1));

@@ -6,6 +6,7 @@ using GHR.Application.Services.Contracts.Departamentos;
 using GHR.Domain.DataBase.Departamentos;
 using GHR.Persistence.Interfaces.Contracts.Departamentos;
 using GHR.Persistence.Interfaces.Contracts.Global;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.Services.Implements.Departamentos
 {
@@ -70,36 +71,21 @@ namespace GHR.Application.Services.Implements.Departamentos
             }
         }
 
-        public async Task<DepartamentoDto[]> RecuperarDepartamentosAsync()
+        public async Task<PaginaLista<DepartamentoDto>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros)
         {
             try
             {
                 var departamentos = await _departamentoPersistence
-                    .RecuperarDepartamentosAsync();
+                    .RecuperarDepartamentosAsync(paginaParametros);
 
                 if (departamentos == null) return null;
 
-                var departamentosMapper = _mapper.Map<DepartamentoDto[]>(departamentos);
+                var departamentosMapper = _mapper.Map<PaginaLista<DepartamentoDto>>(departamentos);
 
-                return departamentosMapper;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<DepartamentoDto[]> RecuperarDepartamentosPorNomeDepartamentoAsync(string nome)
-        {
-            try
-            {
-                var departamentos = await _departamentoPersistence
-                    .RecuperarDepartamentosPorNomeDepartamentoAsync(nome);
-
-                if (departamentos == null) return null;
-
-                var departamentosMapper = _mapper.Map<DepartamentoDto[]>(departamentos);
+                departamentosMapper.PaginaAtual = departamentos.PaginaAtual;
+                departamentosMapper.TotalDePaginas = departamentos.TotalDePaginas;
+                departamentosMapper.TamanhoDaPagina = departamentos.TamanhoDaPagina;
+                departamentosMapper.ContadorTotal = departamentos.ContadorTotal;
 
                 return departamentosMapper;
             }

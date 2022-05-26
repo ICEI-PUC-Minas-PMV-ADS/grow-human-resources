@@ -1,10 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators'
+import { map, take } from 'rxjs/operators'
+
 import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
+
 import { environment } from 'src/environments/environment';
+
+import { ResultadoPaginacao } from './../../models/paginacao/paginacao';
 
 
 
@@ -15,16 +19,34 @@ export class FuncionarioService {
 
   constructor(private http: HttpClient) { }
 
-  public recuperarFuncionarios(): Observable<Funcionario[]> {
-    return this.http
-      .get<Funcionario[]>(this.baseURL)
-      .pipe(take(1));
-  }
+  public recuperarFuncionarios(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<Funcionario[]>> {
 
-  public recuperarFuncionariosPorNomeCompleto(nome: string): Observable<Funcionario[]> {
+    const resultadoPaginacao: ResultadoPaginacao<Funcionario[]> = new ResultadoPaginacao<Funcionario[]>();
+
+    let params = new HttpParams;
+
+    if (pagina != null && itensPorPagina != null) {
+      params = params.append('numeroDaPagina', pagina.toString());
+      params = params.append('tamanhoDaPagina', itensPorPagina.toString());
+    };
+
+    console.log("termo", termo)
+    if (termo != null && termo != '')
+      params = params.append('termo', termo);
+
     return this.http
-      .get<Funcionario[]>(`${this.baseURL}/${nome}/nome`)
-      .pipe(take(1));
+      .get<Funcionario[]>(this.baseURL, {observe: 'response', params})
+      .pipe(
+        take(1),
+        map((response) => {
+          resultadoPaginacao.resultado = response.body;
+
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
+          }
+
+          return resultadoPaginacao;
+        }));
   }
 
   public recuperarFuncionarioPorId(id: number): Observable<Funcionario> {

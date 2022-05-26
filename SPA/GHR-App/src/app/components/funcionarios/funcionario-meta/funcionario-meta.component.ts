@@ -1,7 +1,9 @@
+import { Paginacao, ResultadoPaginacao } from './../../../models/paginacao/paginacao';
+import { ActivatedRoute} from '@angular/router';
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import {  FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
@@ -9,12 +11,11 @@ import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 
 import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
-import { Meta } from 'src/app/models/Meta';
+import { Meta } from 'src/app/models/metas/Meta';
 
-import { MetaService } from 'src/app/services/Meta.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.service';
 import { FuncionarioMetaService } from 'src/app/services/funcionarios/funcionarioMeta.service';
+import { MetaService } from 'src/app/services/metas/Meta.service';
 
 @Component({
   selector: 'app-funcionario-meta',
@@ -31,6 +32,7 @@ export class FuncionarioMetaComponent implements OnInit {
   public funcionarioMeta = {} as FuncionarioMeta;
   public funcionarioMetas = [] as FuncionarioMeta[];
   public estadoSalvar: string = "post";
+  public paginacao = {} as Paginacao;
 
   get f(): any
   {
@@ -84,19 +86,22 @@ export class FuncionarioMetaComponent implements OnInit {
   public consultarFuncionario(): void {
 
     const funcionarioIdParam = this.activatedRouter.snapshot.paramMap.get('id');
-
+    console.log("func id", funcionarioIdParam);
     if (funcionarioIdParam !== null) {
       this.spinner.show();
-      this.funcionarioService.recuperarFuncionarioPorId(+funcionarioIdParam).subscribe(
-        (funcionario: Funcionario) => {
-          this.funcionario = funcionario;
-          this.form.patchValue(this.funcionario);
-        },
-        (error: any) => {
-          this.toastr.error("Não foi possível carregar a página de funcionário", "Erro!");
-          console.error(error);
-        }
-      ).add(() => this.spinner.hide());
+      this.funcionarioService
+        .recuperarFuncionarioPorId(+funcionarioIdParam)
+        .subscribe(
+          (funcionario: Funcionario) => {
+            console.log("func", funcionario)
+            this.funcionario = funcionario;
+            this.form.patchValue(this.funcionario);
+            this.form.patchValue(this.funcionario.contas);
+          },
+          (error: any) => {
+            this.toastr.error("Não foi possível carregar a página de metas por funcionario", "Erro!");
+            console.error(error);}      )
+        .add(() => this.spinner.hide());
     };
 
   }
@@ -105,14 +110,16 @@ export class FuncionarioMetaComponent implements OnInit {
 
     this.spinner.show();
 
-    this.metaService.getMetas().subscribe(
-      (metas: Meta[]) => {
-        this.metas = metas;
-      },
-      (error: any) => {
-        console.error(error);
-        this.toastr.error('Falha ao recuperar metas', "Erro!");
-      }).add(() => this.spinner.hide());
+    this.metaService
+      .recuperarMetas(this.paginacao.paginaAtual, this.paginacao.itensPorPagina)
+      .subscribe(
+        (metasRetorno: ResultadoPaginacao<Meta[]>) => {
+          this.metas = metasRetorno.resultado;
+          this.paginacao = metasRetorno.paginacao;},
+        (error: any) => {
+          console.error(error);
+          this.toastr.error('Falha ao recuperar metas', "Erro!");})
+      .add(() => this.spinner.hide());
   }
 
   public validarCampo(campoForm: FormControl): any {
@@ -128,17 +135,18 @@ export class FuncionarioMetaComponent implements OnInit {
   public consultarMeta(): void {
 
     this.spinner.show();
+    console.log("Id Meta", this.form.get('id').value)
 
-    this.metaService.getMetaById(this.form.get('id').value).subscribe(
-      (metaRetorno: Meta) => {
-        this.meta = metaRetorno;
-        this.form.patchValue(this.meta);
-      },
-      (error: any) => {
-        console.error(error);
-        this.toastr.error('Falha ao recuperar metas', "Erro!");
-      }).add(() => this.spinner.hide());
-
+    this.metaService
+      .recuperarMetaPorId(this.form.get('id').value)
+      .subscribe(
+        (metaRetorno: Meta) => {
+          this.meta = metaRetorno;
+          this.form.patchValue(this.meta);},
+        (error: any) => {
+          console.error(error);
+          this.toastr.error('Falha ao recuperar metas', "Erro!");})
+      .add(() => this.spinner.hide());
   }
 
   public consultarMetasPorFuncionario(): void {
@@ -149,17 +157,19 @@ export class FuncionarioMetaComponent implements OnInit {
     {
       this.spinner.show();
 
-      this.funcionarioMetaService.getMetasByFuncionarioId(+funcionarioIdParam).subscribe(
-        (funcionarioMetas: FuncionarioMeta[]) => {
-          this.funcionarioMetas = funcionarioMetas;
-          console.log(this.funcionarioMetas)
-        },
-        (error: any) =>
-        {
-          this.toastr.error("Não foi possível carregar a página de metas por funcionário", "Erro!");
-          console.error(error);
-        }
-      ).add(() => this.spinner.hide());
+      this.funcionarioMetaService
+        .recuperarMetasPorFuncionarioId(
+          +funcionarioIdParam,
+          this.paginacao.paginaAtual,
+          this.paginacao.itensPorPagina)
+        .subscribe(
+          (funcionarioMetasRetorno: ResultadoPaginacao<FuncionarioMeta[]>) => {
+          this.funcionarioMetas = funcionarioMetasRetorno.resultado;
+            this.paginacao = funcionarioMetasRetorno.paginacao;},
+          (error: any) => {
+            this.toastr.error("Não foi possível carregar a página de metas por funcionário", "Erro!");
+            console.error(error);})
+        .add(() => this.spinner.hide());
     }
   }
 
@@ -205,7 +215,7 @@ export class FuncionarioMetaComponent implements OnInit {
 
     this.spinner.show();
 
-    this.metaService.getMetaById(id).subscribe(
+    this.metaService.recuperarMetaPorId(id).subscribe(
       (metaRetorno: Meta) => {
         this.meta = { ...metaRetorno };
       },
@@ -223,18 +233,19 @@ export class FuncionarioMetaComponent implements OnInit {
 
     this.spinner.show();
 
-    this.funcionarioMetaService.getMeta(this.funcionario.id, this.meta.id).subscribe(
-      (funcionarioMetaRetorno: FuncionarioMeta) => {
-        this.funcionarioMeta = funcionarioMetaRetorno;
-        this.estadoSalvar = "put";
-console.log(this.funcionarioMeta.metaId, "inout")
-      },
-      (error: any) => {
-       console.error(error);
-        this.toastr.error("Falha ao recuperar FuncionarioMeta", "Error")
-      }
-    ).add(() => this.spinner.hide());
-        console.log(this.funcionarioMeta.metaId, "out")
+    this.funcionarioMetaService
+      .recuperarFuncionarioIdMetaId(this.funcionario.id, this.meta.id)
+      .subscribe(
+        (funcionarioMetaRetorno: FuncionarioMeta) => {
+          this.funcionarioMeta = funcionarioMetaRetorno;
+          this.estadoSalvar = "put";
+          console.log(this.funcionarioMeta.metaId, "inout");},
+        (error: any) => {
+          console.error(error);
+          this.toastr.error("Falha ao recuperar FuncionarioMeta", "Error");})
+      .add(() => this.spinner.hide());
+
+      console.log(this.funcionarioMeta.metaId, "out")
   }
 
   public gravarFuncionarioMeta(): void {
@@ -268,23 +279,29 @@ console.log(this.funcionarioMeta.metaId, "inout")
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
+  public paginaAlterada(event): void {
+    this.paginacao.paginaAtual = event.page;
+    console.log("page", event.page);
+    this.consultarMetasPorFuncionario();
+  }
+
   confirmar(): void {
     this.modalRef?.hide();
     this.spinner.show();
     console.log("confirm", this.funcionarioMeta.funcionarioId, this.funcionarioMeta.metaId);
-    this.funcionarioMetaService.deleteFuncionarioMeta(this.funcionarioMeta.funcionarioId, this.funcionarioMeta.metaId).subscribe(
-      (retornoDelete: any) => {
-        if (retornoDelete.message === "Excluído") {
-          this.toastr.success("Funcionário excluído da base!", "Excluído!")
-          this.spinner.hide();
-          location.reload();
-        };
-      },
-      (error: any) => {
-        this.toastr.error(`Falha ao excluir funcionário/meta`, 'Erro!');
-        console.error(error);
-      }
-    ).add(() => this.spinner.hide());
+    this.funcionarioMetaService
+      .excluirFuncionarioMeta(this.funcionarioMeta.funcionarioId, this.funcionarioMeta.metaId)
+      .subscribe(
+        (retornoDelete: any) => {
+          if (retornoDelete.message === "Excluído") {
+            this.toastr.success("Funcionário excluído da base!", "Excluído!")
+            this.spinner.hide();
+            location.reload();
+          };},
+        (error: any) => {
+          this.toastr.error(`Falha ao excluir funcionário/meta`, 'Erro!');
+         console.error(error);})
+      .add(() => this.spinner.hide());
   }
 
   recusar(): void {

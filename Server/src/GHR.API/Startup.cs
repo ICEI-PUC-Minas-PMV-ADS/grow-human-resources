@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 using GHR.Application;
-using GHR.Application.Serices.Contracts.Metas;
+using GHR.Application.Services.Contracts.Metas;
 using GHR.Application.Services.Contracts.Cargos;
 using GHR.Application.Services.Contracts.Contas;
 using GHR.Application.Services.Contracts.Departamentos;

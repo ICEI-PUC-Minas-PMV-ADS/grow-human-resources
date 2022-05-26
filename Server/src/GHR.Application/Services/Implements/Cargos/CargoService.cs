@@ -6,6 +6,7 @@ using GHR.Application.Services.Contracts.Cargos;
 using GHR.Domain.DataBase.Cargos;
 using GHR.Persistence.Interfaces.Contracts.Cargos;
 using GHR.Persistence.Interfaces.Contracts.Global;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.Services.Implements.Cargos
 {
@@ -68,37 +69,21 @@ namespace GHR.Application.Services.Implements.Cargos
                 throw new Exception(ex.Message);
             }
         }
-
-        public async Task<CargoDto[]> RecuperarCargosAsync()
+        public async Task<PaginaLista<CargoDto>> RecuperarCargosAsync(PaginaParametros paginaParametros)
         {
             try
             {
                 var cargos = await _cargoPersistence
-                    .RecuperarCargosAsync();
+                    .RecuperarCargosAsync(paginaParametros);
 
                 if (cargos == null) return null;
 
-                var cargosMapper = _mapper.Map<CargoDto[]>(cargos);
+                var cargosMapper = _mapper.Map<PaginaLista<CargoDto>>(cargos);
 
-                return cargosMapper;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
-        }
-
-        public async Task<CargoDto[]> RecuperarCargosPorNomeCargoAsync(string nome)
-        {
-            try
-            {
-                var cargos = await _cargoPersistence
-                    .RecuperarCargosPorNomeCargoAsync(nome);
-
-                if (cargos == null) return null;
-
-                var cargosMapper = _mapper.Map<CargoDto[]>(cargos);
+                cargosMapper.PaginaAtual = cargos.PaginaAtual;
+                cargosMapper.TotalDePaginas = cargos.TotalDePaginas;
+                cargosMapper.TamanhoDaPagina = cargos.TamanhoDaPagina;
+                cargosMapper.ContadorTotal = cargos.ContadorTotal;
 
                 return cargosMapper;
             }

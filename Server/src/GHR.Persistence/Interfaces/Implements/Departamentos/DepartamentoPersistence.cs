@@ -5,6 +5,7 @@ using GHR.Domain.DataBase.Departamentos;
 using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Contracts.Departamentos;
 using GHR.Persistence.Interfaces.Implements.Global;
+using GHR.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Interfaces.Implements.Departamentos
@@ -18,27 +19,17 @@ namespace GHR.Persistence.Interfaces.Implements.Departamentos
         {
             _context = context;
         }
-        public async Task<Departamento[]> RecuperarDepartamentosAsync()
-        {
-            IQueryable<Departamento> query = _context.Departamentos;
-
-            query = query
-                .AsNoTracking()
-                .OrderBy(f => f.Id);
-
-            return await query.ToArrayAsync();
-        }
-
-        public async Task<Departamento[]> RecuperarDepartamentosPorNomeDepartamentoAsync(string nome)
+        public async Task<PaginaLista<Departamento>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros)
         {
             IQueryable<Departamento> query = _context.Departamentos;
 
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.NomeDepartamento.ToLower().Contains(nome.ToLower()));
+                .Where(d => d.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                            d.SiglaDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()));
 
-            return await query.ToArrayAsync();
+            return await PaginaLista<Departamento>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
         }
 
         public async Task<Departamento> RecuperarDepartamentoPorIdAsync(int departamentoId)

@@ -3,18 +3,20 @@
   <div  class="d-flex">
     <div  class="flex-fill pr-3" >
       <div class="input-group mb-2 ">
-        <div class="input-group-prepend">
+        <div class="input-group-prepend" >
           <div class="input-group-text mr-2">Filtro:</div>
         </div>
         <input type="text"
           class="form-control"
           placeholder="Pesquisar por NomeCompleto, e-mail e telefone"
-          [(ngModel)]="filtroLista"
-        >
+          (input)="filtrarFuncionarios($event.target)"
+          [readonly]="(visaoRH)? false : true">
       </div>
     </div>
     <div  class="ms-auto">
-      <a class="d-flex btn btn-outline-success" routerLink="/funcionarios/detalhe">
+      <a class="d-flex btn btn-outline-success "
+        [ngClass]="(visaoRH)? 'enabled' : 'disabled'"
+        routerLink="/funcionarios/detalhe">
           <i class="fa fa-plus-circle my-1"  tooltip="Novo" ></i>
        </a>
     </div>
@@ -23,12 +25,10 @@
   <table class="table table-striped table-hover">
     <thead class="table-dark">
       <tr>
-        <th class="d-none d-md-table-cell">
-          <button type="button" class="btn btn-outline-light btn-sm"
-            (click)="alternarImagem()"
-          >
+        <th class="d-none d-md-table-cell ">
+          <button type="button" class="btn btn-outline-light btn-sm d-none"
+            (click)="alternarImagem()">
             <b>
-
               <i class="{{exibirImg ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
             </b>
           </button>
@@ -44,7 +44,7 @@
       </tr>
     </thead>
     <tbody *ngIf="funcionarios && funcionarios.length">
-      <tr *ngFor="let funcionario of funcionariosFiltrados" >
+      <tr *ngFor="let funcionario of funcionarios" >
         <td class="d-none d-md-table-cell">
           <img [collapse]="exibirImg"
             [isAnimated]="true"
@@ -56,14 +56,14 @@
         <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
           {{funcionario.id}}
         </td>
-        <td (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
-          {{funcionario.nomeCompleto}}
+        <td (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer" >
+          {{funcionario.contas?.nomeCompleto}}
         </td>
         <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
-          {{funcionario.email}}
+          {{funcionario.contas?.email}}
         </td>
         <td (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
-          {{funcionario.telefone}}
+          {{funcionario.contas?.phoneNumber}}
         </td>
         <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
           {{funcionario.salario}}
@@ -75,12 +75,16 @@
           {{funcionario.cargoId}}
         </td>
         <td>
-          <button type="button" class="btn btn-outline-info btn-sm m-1" tooltip="Metas" (click)="funcionarioMeta(funcionario.id)">
-            <i class="fa fa-medal"></i>
-          </button>
-          <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionario.id)">
-            <i class="fa fa-trash"></i>
-          </button>
+          <div  class="d-flex">
+            <button type="button" class="btn btn-outline-info btn-sm m-1" tooltip="Metas" (click)="funcionarioMeta(funcionario.id)">
+              <i class="fa fa-medal"></i>
+            </button>
+            <button type="button"
+              [ngClass]="(visaoRH)? 'd-block' : 'd-none'"
+              class="btn btn-outline-danger btn-sm m-1" tooltip="Excluir" (click)="openModal($event, template, funcionario.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -92,6 +96,22 @@
       </tr>
     </tfoot>
   </table>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [totalItems]="paginacao.totalItens"
+      [itemsPerPage]="paginacao.itensPorPagina"
+      [(ngModel)]="paginacao.paginaAtual"
+      [align]="true"
+      (pageChanged)="paginaAlterada($event)"
+      pageBtnClass="btn"
+
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;">
+
+    </pagination>
+  </div>
 </div>
 <!-- Modal -->
 <ng-template #template>

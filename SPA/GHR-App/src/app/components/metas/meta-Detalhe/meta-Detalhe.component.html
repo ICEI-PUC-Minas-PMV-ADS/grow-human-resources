@@ -1,12 +1,11 @@
-<div class="card rounded shadow-sm p-2">
+<div class="card rounded shadow-sm p-1">
 
   <div class="card-head text-center text-white bg-secondary">
     <H3>Formulário de Metas</H3>
   </div>
 
   <form class="row" [formGroup]="form!">
-    <p>Form value: {{form.value | json}}</p>
-    <p>Form status: {{form.status | json}}</p>
+
     <div>
 
       <div class="card-body bg-light ">
@@ -130,3 +129,5 @@
     </div>
   </form>
  </div>
+    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p>

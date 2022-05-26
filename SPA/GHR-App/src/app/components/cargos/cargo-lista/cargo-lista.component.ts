@@ -11,8 +11,11 @@ import {
 } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { Cargo } from 'src/app/models/cargos/Cargo';
+import { Paginacao, ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
 
 import { CargoService } from 'src/app/services/cargos/Cargo.service';
 
@@ -29,32 +32,31 @@ export class CargoListaComponent implements OnInit {
 
   public cargos: Cargo[] = [];
   public cargosFiltrados: Cargo[] = [];
+  public paginacao = {} as Paginacao;
   public cargoId = 0;
 
-  private filtroListado: string = '';
+  alteracaoTermoBusca: Subject<string> = new Subject<string>();
 
-  public get filtroLista(): string {
+  public filtrarCargos(event: any): void {
+    if (this.alteracaoTermoBusca.observers.length === 0) {
+      this.spinner.show();
 
-    return this.filtroListado;
-  }
-
-  public set filtroLista(filtro: string) {
-
-    this.filtroListado = filtro;
-    this.cargosFiltrados = this.filtroLista
-      ? this.filtrarCargos(this.filtroLista)
-      : this.cargos;
-  }
-
-  public filtrarCargos(filtrarPor: string): Cargo[] {
-
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.cargos.filter(
-      (cargo: Cargo) =>
-        cargo.nomeCargo.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        cargo.funcao.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-        cargo.departamentos.nomeDepartamento.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    );
+      this.alteracaoTermoBusca
+        .pipe(debounceTime(1500))
+        .subscribe(
+          filtrarPor => {
+          this.cargoService
+            .recuperarCargos(this.paginacao.paginaAtual, this.paginacao.itensPorPagina, filtrarPor)
+            .subscribe(
+              (cargosRetorno: ResultadoPaginacao<Cargo[]>) => {
+                this.cargos = cargosRetorno.resultado;
+                this.paginacao = cargosRetorno.paginacao;},
+              (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'))
+            .add(() => this.spinner.hide());
+          }
+        )
+    }
+    this.alteracaoTermoBusca.next(event.value);
   }
 
   constructor(
@@ -66,23 +68,27 @@ export class CargoListaComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-
+    this.paginacao = { paginaAtual: 1, itensPorPagina: 3, totalItens: 10 } as Paginacao;
     this.spinner.show();
-    this.consultarCargos();
+    this.carregarCargos();
   }
 
-  public consultarCargos(): void {
+  public carregarCargos(): void {
 
     this.spinner.show();
 
-    this.cargoService.recuperarCargos().subscribe(
-      (cargosRetorno: Cargo[]) => {
-        this.cargos = cargosRetorno;
-        this.cargosFiltrados = this.cargos;},
+    this.cargoService
+      .recuperarCargos(
+        this.paginacao.paginaAtual,
+        this.paginacao.itensPorPagina)
+      .subscribe(
+      (cargosRetorno: ResultadoPaginacao<Cargo[]>) => {
+        this.cargos = cargosRetorno.resultado;
+        this.paginacao = cargosRetorno.paginacao;},
       (error: any) => {
         this.toastr.error('Falha ao carregar os cargos', 'Erro!');
-        console.log(error);
-      }).add(() => this.spinner.hide());
+        console.log(error);})
+      .add(() => this.spinner.hide());
   }
 
   openModal(event: any, template: TemplateRef<any>, cargoId: number): void {
@@ -93,6 +99,13 @@ export class CargoListaComponent implements OnInit {
 
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
+
+  public paginaAlterada(event): void {
+    this.paginacao.paginaAtual = event.page;
+    console.log("page", event.page);
+    this.carregarCargos();
+  }
+
 
   confirmar(): void {
 
@@ -105,7 +118,7 @@ export class CargoListaComponent implements OnInit {
         if (retornoDelete.message === "Excluído") {
           this.toastr.success("Cargo excluído da base!", "Excluído!")
           this.spinner.hide();
-          this.consultarCargos();
+          this.carregarCargos();
         }},
       (error: any) => {
         this.toastr.error(`Falha ao excluir departamento ${this.cargoId}`, 'Erro!');

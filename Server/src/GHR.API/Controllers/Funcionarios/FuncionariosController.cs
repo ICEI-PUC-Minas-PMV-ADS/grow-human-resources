@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Funcionarios;
 using GHR.API.Extensions;
 using GHR.Application.Dtos.Funcionarios;
+using GHR.Persistence.Models;
+
 
 namespace GHR.API.Controllers.Funcionarios
 {
@@ -23,15 +26,20 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet]
-        public async Task<IActionResult> RecuperarFuncionarios()
+        public async Task<IActionResult> RecuperarFuncionarios([FromQuery]PaginaParametros paginaParametros)
         {
             try
             {
 
                 var funcionarios = await _funcionarioService
-                    .RecuperarFuncionariosAsync(User.RecuperarUserId(), User.RecuperarVisao(), true);
+                    .RecuperarFuncionariosAsync(paginaParametros, true);
 
                 if (funcionarios == null) return NoContent();
+
+                Response.CriarPaginacao(funcionarios.PaginaAtual, 
+                    funcionarios.TamanhoDaPagina, 
+                    funcionarios.ContadorTotal, 
+                    funcionarios.TotalDePaginas);
 
                 return Ok(funcionarios);
             }
@@ -49,7 +57,7 @@ namespace GHR.API.Controllers.Funcionarios
             try
             {
                 var funcionario = await _funcionarioService
-                    .RecuperarFuncionarioPorIdAsync(User.RecuperarUserId(), User.RecuperarVisao(), id, true);
+                    .RecuperarFuncionarioPorIdAsync(id, true);
 
                 if (funcionario == null) return NoContent();
 
@@ -81,33 +89,13 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
 
-        [HttpGet("{nome}/nome")]
-        public async Task<IActionResult> RecuperarFuncionarioPorNome(string nome)
-        {
-            try
-            {
-                var funcionario = await _funcionarioService
-                .RecuperarFuncionariosPorNomeCompletoAsync(User.RecuperarUserId(), User.RecuperarVisao(), nome, true);
-
-                if (funcionario == null) return NoContent();
-
-                return Ok(funcionario);
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError, 
-                    $"Erro ao tentar recuperar funcionários. Erro: {ex.Message}");
-            }
-        }   
-
         [HttpPost]
         public async Task<IActionResult> CriarFuncionario(FuncionarioDto model)
         {
             try
             {
                 var funcionario = await _funcionarioService
-                    .CriarFuncionarios(User.RecuperarUserId(), User.RecuperarVisao(), model);
+                    .CriarFuncionarios( model);
 
                 if (funcionario == null) return NoContent();
 
@@ -128,7 +116,7 @@ namespace GHR.API.Controllers.Funcionarios
             try
             {
                 var funcionario = await _funcionarioService
-                    .AlterarFuncionario(User.RecuperarUserId(), User.RecuperarVisao(), id, model);
+                    .AlterarFuncionario(id, model);
 
                 if (funcionario == null) return NoContent();
 
@@ -147,12 +135,12 @@ namespace GHR.API.Controllers.Funcionarios
             try
             {
                 var funcionario = await _funcionarioService
-                    .RecuperarFuncionarioPorIdAsync(User.RecuperarUserId(), User.RecuperarVisao(), id, true);
+                    .RecuperarFuncionarioPorIdAsync(id, true);
 
                 if (funcionario == null) return NoContent();
 
                 
-                if (await _funcionarioService.ExcluirFuncionario(User.RecuperarUserId(), User.RecuperarVisao(), id)){
+                if (await _funcionarioService.ExcluirFuncionario( id)){
                     return Ok(new { message = "Excluído" });
                 }
                     throw new Exception("Ocorreu ma falaha ao tentar deletar o funcionario.");

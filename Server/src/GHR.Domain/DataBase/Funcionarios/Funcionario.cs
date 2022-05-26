@@ -22,7 +22,7 @@ namespace  GHR.Domain.DataBase.Funcionarios
         public Cargo Cargos { get; set; }
         public int? DepartamentoId { get; set; }
         public Departamento Departamentos { get; set; }
-        public int? UserId { get; set; }
+        public int? ContaId { get; set; }
         public Conta Contas { get; set; }
         public int? EnderecoId { get; set; }
         public Endereco Enderecos { get; set; }

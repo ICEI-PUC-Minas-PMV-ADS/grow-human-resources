@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using GHR.Application.Dtos.Departamentos;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.Services.Contracts.Departamentos
 {
@@ -8,8 +9,7 @@ namespace GHR.Application.Services.Contracts.Departamentos
         Task<DepartamentoDto> CriarDepartamento(DepartamentoDto model);
         Task<DepartamentoDto> AlterarDepartamento(int departamentoId, DepartamentoDto model);
         Task<bool> ExcluirDepartamento( int departamentoId);
-        Task<DepartamentoDto[]> RecuperarDepartamentosPorNomeDepartamentoAsync( string nome);
-        Task<DepartamentoDto[]> RecuperarDepartamentosAsync();
+        Task<PaginaLista<DepartamentoDto>> RecuperarDepartamentosAsync( PaginaParametros paginaParametros);
         Task<DepartamentoDto> RecuperarDepartamentoPorIdAsync(int departamentoId);
     }
 }

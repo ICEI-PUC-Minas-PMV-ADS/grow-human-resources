@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { take } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
 import { Cargo } from 'src/app/models/cargos/Cargo';
+import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
 
 import { environment } from 'src/environments/environment';
 
@@ -15,21 +16,36 @@ export class CargoService {
 
   constructor(private http: HttpClient) { }
 
-  public recuperarCargos(): Observable<Cargo[]> {
+  public recuperarCargos(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<Cargo[]>> {
+
+    const resultadoPaginacao: ResultadoPaginacao<Cargo[]> = new ResultadoPaginacao<Cargo[]>();
+
+    let params = new HttpParams;
+
+    if (pagina != null && itensPorPagina != null) {
+      params = params.append('numeroDaPagina', pagina.toString());
+      params = params.append('tamanhoDaPagina', itensPorPagina.toString());
+    };
+
+    console.log("termo", termo)
+    if (termo != null && termo != '')
+      params = params.append('termo', termo);
+
     return this.http
-      .get<Cargo[]>(this.baseURL)
-      .pipe(take(1));
+      .get<Cargo[]>(this.baseURL, {observe: 'response', params})
+      .pipe(
+        take(1),
+        map((response) => {          resultadoPaginacao.resultado = response.body;
+          if (response.headers.has('Paginacao')) {
+            resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
+          }
+          return resultadoPaginacao;
+        }));
   }
 
   public recuperarCargosporNomeCargo(nome: string): Observable<Cargo[]> {
     return this.http
       .get<Cargo[]>(`${this.baseURL}/${nome}/nome`)
-      .pipe(take(1));
-  }
-
-  public recuperarCargosPorDescricaoMeta(descricao: string): Observable<Cargo[]> {
-    return this.http
-      .get<Cargo[]>(`${this.baseURL}/${descricao}/descricao`)
       .pipe(take(1));
   }
 

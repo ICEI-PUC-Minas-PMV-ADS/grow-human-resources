@@ -9,6 +9,7 @@ using GHR.Domain.DataBase.Contas;
 using GHR.Domain.DataBase.Departamentos;
 using GHR.Domain.DataBase.Funcionarios;
 using GHR.Domain.DataBase.Metas;
+using GHR.Persistence.Models;
 
 namespace GHR.Application.helpers
 {
@@ -23,7 +24,7 @@ namespace GHR.Application.helpers
             CreateMap<FuncionarioMeta, FuncionarioMetaDto>().ReverseMap();
             CreateMap<DadoPessoal, DadoPessoalDto>().ReverseMap();
             CreateMap<Endereco, EnderecoDto>().ReverseMap();
-            
+
             CreateMap<Conta, ContaDto>().ReverseMap();
             CreateMap<Conta, ContaLoginDto>().ReverseMap();
             CreateMap<Conta, ContaAtualizarDto>().ReverseMap();

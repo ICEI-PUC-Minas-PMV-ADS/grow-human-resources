@@ -17,7 +17,7 @@
             <label>Nome</label>
             <input type="text" class="form-control disabled"
               formControlName="nomeCompleto"
-              disabled>
+             readonly="true">
           </div>
           <div class="form-group col-md-3 p-1">
  				    <label>Data Admissão</label>
@@ -25,7 +25,7 @@
              [ngClass]="validarCampo(f.dataAdmissao)"
              formControlName="dataAdmissao"
              value="{{funcionario.dataAdmissao | DateTimeFormat}}"
-             disabled>
+             readonly="true">
           </div>
  			    <div class="form-group col-md-3 p-1">
  				    <label>Data Desligamento</label>
@@ -33,7 +33,7 @@
               formControlName="dataDemissao"
               [ngClass]="validarCampo(f.dataDemissao)"
               value="{{funcionario.dataDemissao | DateTimeFormat}}"
-              disabled>
+              readonly="true">
           </div>
         </div>
         <h4 class="border-bottom mx-2 mt-2 mb-0">Meta Filtro</h4>
@@ -65,13 +65,13 @@
                   <input type="text"
                   class="form-control"
                   formControlName="nomeMeta"
-                  disabled>
+                  readonly="true">
                 </div>
                 <div class="form-group col-md-3 p-1">
                   <label>Meta Cumprida?</label>
                   <select class="form-select disabed" aria-label="Default select example"
                   formControlName="metaCumprida"
-                  disabled>
+                  readonly="true">
                     <option value="false">Não</option>
                     <option option value="true">Sim</option>
                   </select>
@@ -82,7 +82,7 @@
                     formControlName="inicioPlanejado"
                     [ngClass]="validarCampo(fMeta.inicioPlanejado)"
                     value="{{meta.inicioPlanejado | DateTimeFormat}}"
-                    disabled>
+                    readonly="true">
                 </div>
               </div>
               <div class="form-row d-md-flex">
@@ -92,7 +92,7 @@
                     formControlName="fimPlanejado"
                     [ngClass]="validarCampo(fMeta.fimPlanejado)"
                     value="{{meta.fimPlanejado | DateTimeFormat}}"
-                    disabled>
+                    readonly="true">
                 </div>
                 <div class="form-group col-md-3 p-1">
                   <label>Início Realizado</label>
@@ -100,7 +100,7 @@
                     formControlName="inicioRealizado"
                     [ngClass]="validarCampo(fMeta.inicioRealizado)"
                     value="{{meta.inicioRealizado | DateTimeFormat}}"
-                    disabled>
+                    readonly="true">
                 </div>
                 <div class="form-group col-md-3 p-1">
                   <label>Fim Realizado</label>
@@ -108,18 +108,18 @@
                     formControlName="fimRealizado"
                     [ngClass]="validarCampo(fMeta.fimRealizado)"
                     value="{{meta.fimRealizado | DateTimeFormat}}"
-                    disabled>
+                    readonly="true">
                 </div>
                 <div class="form-group col-md-3 p-1">
                   <label>Supervisor</label>
                   <input type="text" class="form-control"
                     formControlName="supervisorId"
                     [ngClass]="validarCampo(fMeta.supervisorId)"
-                    disabled>
+                    readonly="true">
                 </div>
               </div>
               <div class="form-row d-md-flex">
-                <div class="card-footer col bg-dark">
+                <div class="card-footer col bg-secondary">
                   <div class="d-flex ">
                     <button class="btn btn-success p-1 ms-auto" [disabled]="!form.valid" (click)="associarFuncionarioMeta()">
                       Associar Meta
@@ -184,6 +184,22 @@
     </tr>
   </tfoot>
 </table>
+  <div class="d-flex justify-content-center">
+    <pagination
+      [totalItems]="paginacao.totalItens"
+      [itemsPerPage]="paginacao.itensPorPagina"
+      [(ngModel)]="paginacao.paginaAtual"
+      [align]="true"
+      (pageChanged)="paginaAlterada($event)"
+      pageBtnClass="btn"
+
+      previousText="&lsaquo;"
+      nextText="&rsaquo;"
+      firstText="&laquo;"
+      lastText="&raquo;">
+
+    </pagination>
+  </div>
 
 <!-- Modal -->
 <ng-template #template>

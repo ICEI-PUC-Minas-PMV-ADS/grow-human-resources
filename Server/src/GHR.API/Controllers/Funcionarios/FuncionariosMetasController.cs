@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using GHR.API.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using GHR.Application.Services.Contracts.Funcionarios;
 using GHR.Application.Dtos.Funcionarios;
+using GHR.Persistence.Models;
+using GHR.API.Extensions;
 
 namespace GHR.API.Controllers.Funcionarios
 {
@@ -23,14 +23,19 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{funcionarioId}")]
-        public async Task<IActionResult> GetById(int funcionarioId)
+        public async Task<IActionResult> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, [FromQuery]PaginaParametros paginaParametros)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarMetasPorFuncionarioIdAsync(User.RecuperarUserId(), User.RecuperarVisao(), funcionarioId);
+                    .RecuperarMetasPorFuncionarioIdAsync(funcionarioId, paginaParametros);
 
                 if (funcionarioMeta == null) return NoContent();
+
+                Response.CriarPaginacao(funcionarioMeta.PaginaAtual, 
+                    funcionarioMeta.TamanhoDaPagina, 
+                    funcionarioMeta.ContadorTotal, 
+                    funcionarioMeta.TotalDePaginas);
 
                 return Ok(funcionarioMeta.ToArray());
             }
@@ -43,12 +48,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{funcionarioId}/{metaId}/meta")]
-        public async Task<IActionResult> GetByFuncionarioMeta(int funcionarioId, int metaId)
+        public async Task<IActionResult> RecuperarFuncionarioMetaAsync(int funcionarioId, int metaId)
         {
             try 
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarFuncionarioMetaPorIdAsync(User.RecuperarUserId(), User.RecuperarVisao(), funcionarioId, metaId);
+                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -63,12 +68,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
        
         [HttpPost]
-        public async Task<IActionResult> Post(FuncionarioMetaDto model)
+        public async Task<IActionResult> CriarFuncioanrioMeta(FuncionarioMetaDto model)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .CriarFuncionarioMeta(User.RecuperarUserId(), User.RecuperarVisao(), model);
+                    .CriarFuncionarioMeta( model);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -81,12 +86,12 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpPut("{funcionarioId}/{metaId}")]
-        public async Task<IActionResult> Put(int funcionarioId, int metaId, FuncionarioMetaDto model)
+        public async Task<IActionResult> AlterarFuncionarioMeta(int funcionarioId, int metaId, FuncionarioMetaDto model)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .AlterarFuncionarioMeta(User.RecuperarUserId(), User.RecuperarVisao(), funcionarioId, metaId, model);
+                    .AlterarFuncionarioMeta(funcionarioId, metaId, model);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -100,16 +105,16 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{funcionarioId}/{metaId}")]
-        public async Task<IActionResult> Delete(int funcionarioId, int metaId)
+        public async Task<IActionResult> ExcluirFuncionarioMetaAsync(int funcionarioId, int metaId)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarFuncionarioMetaPorIdAsync(User.RecuperarUserId(), User.RecuperarVisao(), funcionarioId, metaId);
+                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
-                return await _funcionarioMetaService.ExcluirFuncionarioMeta(User.RecuperarUserId(), User.RecuperarVisao(), funcionarioId, metaId)
+                return await _funcionarioMetaService.ExcluirFuncionarioMeta(funcionarioId, metaId)
                     ? Ok(new { message = "Excluído"}) 
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar meta de um funcionário.");
             }

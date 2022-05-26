@@ -4,6 +4,7 @@ using GHR.Domain.DataBase.Funcionarios;
 using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Contracts.Funcionarios;
 using GHR.Persistence.Interfaces.Implements.Global;
+using GHR.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Interfaces.Implements.Funcionarios
@@ -16,7 +17,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             _context = context;
         }
-        public async Task<Funcionario[]> RecuperarFuncionariosAsync(int userId, string visao, bool incluirMetas = false)
+        public async Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
                 .Include(ca => ca.Cargos)
@@ -34,12 +35,15 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
             query = query
                 .AsNoTracking()
+                .Where(f => f.Contas.NomeCompleto.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                            f.Contas.Email.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                            f.Contas.PhoneNumber.ToLower().Contains(paginaParametros.Termo.ToLower()))
                 .OrderBy(f => f.Id);
 
-            return await query.ToArrayAsync(); 
+            return await PaginaLista<Funcionario>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
         }
 
-        public async Task<Funcionario[]> RecuperarFuncionariosPorNomeCompletoAsync(int userId, string visao, string nome, bool incluirMetas = false)
+        public async Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
                 .Include(ca => ca.Cargos)
@@ -57,29 +61,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
             query = query
                 .AsNoTracking()
-                .OrderBy(f => f.Id);
-
-
-            return await query.ToArrayAsync();
-        }
-        public async Task<Funcionario> RecuperarFuncionarioPorIdAsync(int userId, string visao, int funcionarioId, bool incluirMetas = false)
-        {
-            IQueryable<Funcionario> query = _context.Funcionarios
-                .Include(ca => ca.Cargos)
-                .Include(d => d.Departamentos)
-                .Include(co => co.Contas)
-                .Include(e => e.Enderecos)
-                .Include(dp => dp.DadosPessoais);
-
-            if (incluirMetas)
-            {
-                query = query
-                    .Include(fm => fm.FuncionariosMetas)
-                    .ThenInclude(m => m.Meta);
-            }
-
-            query = query
-                .AsNoTracking()
+                .Where(f => f.Id == funcionarioId)
                 .OrderBy(f => f.Id);
 
             return await query.FirstOrDefaultAsync();
@@ -93,7 +75,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
                 .Include(e => e.Enderecos)
                 .Include(dp => dp.DadosPessoais)
                 .AsNoTracking()
-                .Where(f => f.UserId == contaId)
+                .Where(f => f.ContaId == contaId)
                 .OrderBy(f => f.Id);
 
             return await query.FirstOrDefaultAsync();

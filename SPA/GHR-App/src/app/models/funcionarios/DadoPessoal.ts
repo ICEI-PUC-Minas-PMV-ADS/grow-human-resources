@@ -1,10 +1,11 @@
+import { DateTimeFormatPipe } from './../../helpers/DateTimeFormat.pipe';
 export class DadoPessoal {
   id: number;
-  CPF: string;
+  cpf: string;
   tituloEleitor: string;
   identidade: string;
-  dataExpedicaoIdentidade: string;
-  orgaoExpedicaoIdentidade: string;
+  dataExpedicaoIdentidade: Date;
+  orgaoExpedicaoIdentidade: Date
   UfIdentidade: string;
   estadoCivil: string;
   carteiraTrabalho: string;
