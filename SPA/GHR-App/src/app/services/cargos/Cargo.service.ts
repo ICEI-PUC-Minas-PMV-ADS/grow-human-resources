@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { map, take } from 'rxjs/operators';
 
 import { Cargo } from 'src/app/models/cargos/Cargo';
-import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 import { environment } from 'src/environments/environment';
 

@@ -10,35 +10,33 @@ import { ContaService } from 'src/app/services/contas/Conta.service';
 })
 export class TituloComponent implements OnInit {
 
+  public contaLogada = false;
+  public contaAtiva = {} as ContaAtiva;
+
   @Input() titulo: string | undefined;
   @Input() subtitulo = "GROW";
   @Input() iconClass = 'fa fa-user';
   @Input() botaoListar = false;
+  @Input() visao = '';
 
-  public contaLogada = false;
-  public contaAtiva = {} as ContaAtiva;
 
   constructor(
     private contaService: ContaService,
     private router: Router
   ) {
         router.events.subscribe(
-      (val) => {
-        if (val instanceof NavigationEnd) {
+      (verificarConta) => {
+        if (verificarConta instanceof NavigationEnd) {
           this.contaService.contaAtual$.subscribe(
-            (value) => {
-              this.contaLogada = value !== null;
-              this.contaAtiva = { ...value } ;
-              console.log("UserLoged", value?.visao);
+            (contaAtvia) => {
+              this.contaLogada = contaAtvia !== null;
+              this.contaAtiva = { ...contaAtvia } ;})
         }
-          )
-          console.log(this.contaLogada, this.contaAtiva, this.contaAtiva.visao );
-        }
-      }
-    )
+      })
    }
 
   ngOnInit(): void {
+    this.visao = this.contaAtiva.visao;
   }
   listar(): void {
     this.router.navigate([`${this.titulo.toLocaleLowerCase()}/lista`]);

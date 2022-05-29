@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { Departamento } from 'src/app/models/departamentos/Departamento';
-import { Paginacao, ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { Paginacao, ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 @Component({

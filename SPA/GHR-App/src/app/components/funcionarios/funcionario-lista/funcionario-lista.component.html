@@ -26,7 +26,7 @@
     <thead class="table-dark">
       <tr>
         <th class="d-none d-md-table-cell ">
-          <button type="button" class="btn btn-outline-light btn-sm d-none"
+          <button type="button" class="btn btn-outline-light btn-sm "
             (click)="alternarImagem()">
             <b>
               <i class="{{exibirImg ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
@@ -48,7 +48,7 @@
         <td class="d-none d-md-table-cell">
           <img [collapse]="exibirImg"
             [isAnimated]="true"
-            [src]="exibirImagem(funcionario.imagemURL)" alt=""
+            [src]="exibirImagem(funcionario.contas?.imagemURL)" alt=""
             [style.width.px]="larguraImg"
             [style.margin.px]="margemImg"
           >

@@ -59,6 +59,7 @@
   </table>
   <div class="d-flex justify-content-center">
     <pagination
+      [boundaryLinks]="true"
       [totalItems]="paginacao.totalItens"
       [itemsPerPage]="paginacao.itensPorPagina"
       [(ngModel)]="paginacao.paginaAtual"

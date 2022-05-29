@@ -8,7 +8,7 @@ import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
 
 import { environment } from 'src/environments/environment';
 
-import { ResultadoPaginacao } from './../../models/paginacao/paginacao';
+import { ResultadoPaginacao } from '../../models/suporte/paginacao/paginacao';
 
 
 

@@ -8,5 +8,6 @@ export class Conta {
   visao: string ;
   descricao: string ;
   password: string ;
-  token: string ;
+  token: string;
+  imagemURL: string;
 }

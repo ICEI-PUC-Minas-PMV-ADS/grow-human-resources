@@ -27,21 +27,24 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
+
     this.spinner.show();
 
-    this.contaService.login(this.contaLogin).subscribe(
-      () => {
-        this.router.navigateByUrl('/home');
-      },
-      (error: any) => {
-        if (error.status = 401)
-        this.toastr.error('Conta ou senha inválidos.', 'Erro!');
-        else {
-          console.error(error);
-          this.toastr.error('Falha ao realizar login.', 'Erro!');
-        }
-      }
-      ).add(() => this.spinner.hide())
+    this.contaService
+      .login(this.contaLogin)
+      .subscribe(
+        () => this.router.navigateByUrl('/home'),
+
+        (error: any) => {
+
+          if (error.status = 401)
+            this.toastr.error('Conta ou senha inválidos.', 'Erro!');
+          else {
+            console.error(error);
+            this.toastr.error('Falha ao realizar login.', 'Erro!');
+          }})
+
+      .add(() => this.spinner.hide())
 
       //window.location.reload();
   }

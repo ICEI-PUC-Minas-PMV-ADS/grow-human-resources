@@ -6,5 +6,6 @@ export class ContaVisao {
   phoneNumber: string ;
   funcao: string ;
   visao: string ;
-  descricao: string ;
+  descricao: string;
+  imagemURL: string;
 }

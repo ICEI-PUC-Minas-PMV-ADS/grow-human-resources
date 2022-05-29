@@ -1,4 +1,4 @@
-import { Paginacao, ResultadoPaginacao } from './../../../models/paginacao/paginacao';
+import { Paginacao, ResultadoPaginacao } from '../../../models/suporte/paginacao/paginacao';
 import { ActivatedRoute} from '@angular/router';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';

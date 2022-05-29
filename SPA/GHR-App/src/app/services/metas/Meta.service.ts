@@ -8,7 +8,7 @@ import { Meta } from 'src/app/models/metas/Meta';
 
 import { environment } from 'src/environments/environment';
 
-import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 @Injectable()
 export class MetaService {

@@ -15,7 +15,7 @@ import { Departamento } from 'src/app/models/departamentos/Departamento';
 
 import { DepartamentoService } from 'src/app/services/departamentos/departamento.service';
 import { CargoService } from 'src/app/services/cargos/Cargo.service';
-import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 @Component({
   selector: 'app-cargo-detalhe',
@@ -89,14 +89,18 @@ export class CargoDetalheComponent implements OnInit {
       this.estadoSalvar = "put";
 
       this.cargoService
-        .recuperarCargoPorId(+cargoIdParam).subscribe(
-        (cargo: Cargo) => {
-          this.cargo = { ...cargo };
-          this.form.patchValue(this.cargo);},
-        (error: any) => {
-          this.toastr.error("Não foi possível carregar os dados de cargos", "Erro!");
-          console.error(error);
-        }).add(() => this.spinner.hide());
+        .recuperarCargoPorId(+cargoIdParam)
+        .subscribe(
+          (cargo: Cargo) => {
+
+            this.cargo = { ...cargo };
+            this.form.patchValue(this.cargo);},
+
+          (error: any) => {
+            this.toastr.error("Não foi possível carregar os dados de cargos", "Erro!");
+            console.error(error);})
+
+        .add(() => this.spinner.hide());
     }
   }
 
@@ -110,14 +114,16 @@ export class CargoDetalheComponent implements OnInit {
         ? { ...this.form.value }
         : { id: this.cargo.id, ...this.form.value };
 
+      this.cargoService[this.estadoSalvar](this.cargo)
+        .subscribe(
+          () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
 
-      console.log(this.cargo.departamentoId, this.cargo, this.estadoSalvar)
-      this.cargoService[this.estadoSalvar](this.cargo).subscribe(
-        () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
-        (error: any) => {
-          this.toastr.error("Erro ao salvar alterações.", "Erro!");
-          console.error(error);
-        }).add(() => this.spinner.hide());
+          (error: any) => {
+
+            this.toastr.error("Erro ao salvar alterações.", "Erro!");
+            console.error(error);})
+
+        .add(() => this.spinner.hide());
     };
   }
 
@@ -129,10 +135,15 @@ export class CargoDetalheComponent implements OnInit {
       .recuperarDepartamentos()
       .subscribe(
         (departamentoRetorno: ResultadoPaginacao<Departamento[]>) =>{
+
           this.departamentos = departamentoRetorno.resultado;},
+
+
         (error: any) => {
+
           this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
-          console.error(error); }
-      ).add(() => this.spinner.hide());
+          console.error(error); })
+
+      .add(() => this.spinner.hide());
     }
 }

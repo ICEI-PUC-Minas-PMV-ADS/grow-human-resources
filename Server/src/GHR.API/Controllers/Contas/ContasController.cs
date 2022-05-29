@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using GHR.API.Extensions;
+using GHR.API.Helpers;
 using GHR.Application.Dtos.Contas;
 using GHR.Application.Services.Contracts.Contas;
 using Microsoft.AspNetCore.Authorization;
@@ -16,12 +17,15 @@ namespace GHR.API.Controllers.Contas
     {
         private readonly IContaService _contaService;
         private readonly ITokenService _tokenService;
-
+        private readonly IUtilUpload _utilUpload;
+        private readonly string _destino = "Fotos";
         public ContasController(IContaService contaService,
+                                IUtilUpload utilUpload,
                                 ITokenService tokenService)
         {
             _contaService = contaService;
             _tokenService = tokenService;
+            _utilUpload = utilUpload;
         }
         
         [HttpGet("RecuperarConta")]
@@ -133,8 +137,6 @@ namespace GHR.API.Controllers.Contas
             }
         }
 
-
-
         [HttpPut("AlterarConta")]
            public async Task<IActionResult> AlterarConta(ContaAtualizarDto contaAtualizarDto)
         {
@@ -196,6 +198,35 @@ namespace GHR.API.Controllers.Contas
                     $"Falha ao atualizar a conta. Erro {ex.Message}");
             }
         }
-        
+
+        [HttpPost("upload-imagem")]
+        public async Task<IActionResult> UploadImagem()
+        {
+            try
+            {
+                var conta = await _contaService.RecuperarContaPorIdAsync(User.RecuperarUserId());
+
+                if (conta == null) return NoContent();
+
+                var file = Request.Form.Files[0];
+
+                if (file.Length > 0) {
+                    _utilUpload.ExcluirImagem(conta.ImagemURL, _destino);
+                    conta.ImagemURL = await _utilUpload.SalvarImagem(file, _destino);
+                }
+
+                var contaRetorno = await _contaService.AtualizarConta(conta);
+
+                return Ok(conta);
+
+            }
+         catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Falha ao atualizar a foto. Erro {ex.Message}");
+            }
+        }
+
     }
 }

@@ -8,7 +8,7 @@ import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
 
 import { environment } from 'src/environments/environment';
 
-import { ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 @Injectable()
 export class FuncionarioMetaService {

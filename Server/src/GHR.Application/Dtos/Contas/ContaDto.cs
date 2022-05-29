@@ -13,5 +13,6 @@ namespace GHR.Application.Dtos.Contas
         public string NomeCompleto { get; set; }
         public string Funcao { get; set; }
         public string Visao { get; set; }
+        public string ImagemURL { get; set; }
     }
 }

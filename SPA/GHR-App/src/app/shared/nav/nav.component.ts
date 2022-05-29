@@ -20,21 +20,16 @@ export class NavComponent implements OnInit {
     private router: Router,
   ) {
     router.events.subscribe(
-      (val) => {
-        if (val instanceof NavigationEnd) {
+      (verificarConta) => {
+        if (verificarConta instanceof NavigationEnd) {
           this.contaService.contaAtual$.subscribe(
-            (value) => {
-              this.contaLogada = value !== null;
-              this.contaAtiva = { ...value } ;
-              this.visaoRH = this.contaAtiva.visao?.includes('RH');
-              console.log(this.contaLogada, this.contaAtiva, this.contaAtiva.visao);
-              console.log('Menu', this.contaAtiva.visao, this.visaoRH);
-            }
-            )
-          }
+            (contaAtiva) => {
+              this.contaLogada = contaAtiva !== null;
+              this.contaAtiva = { ...contaAtiva } ;
+              this.visaoRH = this.contaAtiva.visao?.includes('RH') ;})
         }
-        )
-  }
+      })
+    }
 
   ngOnInit() {
 

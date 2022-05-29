@@ -61,6 +61,9 @@ namespace GHR.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ImagemURL")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
 
@@ -294,6 +297,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<int?>("GerenteOperacionalId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ImagemURL")
+                        .HasColumnType("TEXT");
 
                     b.Property<float>("Salario")
                         .HasColumnType("REAL");

@@ -29,6 +29,7 @@ using GHR.Persistence.Interfaces.Implements.Departamentos;
 using GHR.Persistence.Interfaces.Implements.Funcionarios;
 using GHR.Persistence.Interfaces.Implements.Global;
 using GHR.Persistence.Interfaces.Implements.Metas;
+using GHR.API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -110,6 +111,7 @@ namespace GHR.API
             services.AddScoped<IContaService, ContaService>();
             services.AddScoped<IFuncionarioDadoPessoalService, FuncionarioDadoPessoalService>();
             services.AddScoped<IFuncionarioEnderecoService, FuncionarioEnderecoService>();
+            services.AddScoped<IUtilUpload, UtilUpload>();
 
 
             services.AddScoped<ICargoPersistence, CargoPersistence>();

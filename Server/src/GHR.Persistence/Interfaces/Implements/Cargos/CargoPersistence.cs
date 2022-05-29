@@ -27,9 +27,10 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.NomeCargo.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                            c.Funcao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                            c.Departamentos.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()));
+                .Where(c => c.Id > 0 && 
+                    (c.NomeCargo.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                     c.Funcao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                     c.Departamentos.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
 
             return await PaginaLista<Cargo>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
         }

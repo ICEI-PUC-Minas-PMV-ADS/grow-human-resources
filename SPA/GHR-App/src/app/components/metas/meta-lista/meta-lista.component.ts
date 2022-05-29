@@ -9,7 +9,7 @@ import { debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { Meta } from 'src/app/models/metas/Meta';
-import { Paginacao, ResultadoPaginacao } from 'src/app/models/paginacao/paginacao';
+import { Paginacao, ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 import { MetaService } from 'src/app/services/metas/Meta.service';
 

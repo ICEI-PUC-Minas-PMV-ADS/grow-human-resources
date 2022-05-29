@@ -11,6 +11,7 @@ import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 import { NgxCurrencyModule } from 'ngx-currency';
@@ -28,7 +29,11 @@ import { ContaComponent } from './components/conta/conta.component';
 import { DepartamentoDetalheComponent } from './components/departamentos/departamento-detalhe/departamento-detalhe.component';
 import { DepartamentoListaComponent } from './components/departamentos/departamento-lista/departamento-lista.component';
 import { DepartamentosComponent } from './components/departamentos/departamentos.component';
+import { FuncionarioContaComponent } from './components/funcionarios/funcionario-detalhe/funcionario-conta/funcionario-conta.component';
+import { FuncionarioDadosPessoaisComponent } from './components/funcionarios/funcionario-detalhe/funcionario-dados-pessoais/funcionario-dados-pessoais.component';
 import { FuncionarioDetalheComponent } from './components/funcionarios/funcionario-detalhe/funcionario-detalhe.component';
+import { FuncionarioEmpresaComponent } from './components/funcionarios/funcionario-detalhe/funcionario-empresa/funcionario-empresa.component';
+import { FuncionarioEnderecoComponent } from './components/funcionarios/funcionario-detalhe/funcionario-endereco/funcionario-endereco.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
@@ -39,6 +44,7 @@ import { MetaListaComponent } from './components/metas/meta-lista/meta-lista.com
 import { MetasComponent } from './components/metas/metas.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { PerfilComponent } from './components/conta/perfil/perfil.component';
+import { PerfilDetalheComponent } from './components/conta/perfil/perfil-detalhe/perfil-detalhe.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
 
 
@@ -55,6 +61,7 @@ import { FuncionarioService } from './services/funcionarios/funcionario.service'
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MetaService } from './services/metas/Meta.service';
 import { FuncionarioMetaService } from './services/funcionarios/funcionarioMeta.service';
+import { PerfilSenhaComponent } from './components/conta/perfil/perfil-senha/perfil-senha.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -70,19 +77,25 @@ defineLocale('pt-br', ptBrLocale);
     DepartamentoDetalheComponent,
     DepartamentoListaComponent,
     DepartamentosComponent,
+    FuncionarioContaComponent,
     FuncionarioDetalheComponent,
+    FuncionarioEmpresaComponent,
+    FuncionarioEnderecoComponent,
     FuncionarioListaComponent,
     FuncionarioMetaComponent,
     FuncionariosComponent,
     HomeComponent,
     LoginComponent,
     PerfilComponent,
+    PerfilDetalheComponent,
     MetaDetalheComponent,
     MetaListaComponent,
     MetasComponent,
     NavComponent,
     PerfilComponent,
+    PerfilSenhaComponent,
     TituloComponent,
+    FuncionarioDadosPessoaisComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -98,6 +111,7 @@ defineLocale('pt-br', ptBrLocale);
     NgxSpinnerModule,
     PaginationModule.forRoot(),
     ReactiveFormsModule,
+    TabsModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

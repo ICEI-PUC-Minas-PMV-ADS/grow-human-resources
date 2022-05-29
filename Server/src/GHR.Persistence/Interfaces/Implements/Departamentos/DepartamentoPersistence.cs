@@ -26,8 +26,9 @@ namespace GHR.Persistence.Interfaces.Implements.Departamentos
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                            d.SiglaDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()));
+                .Where(d => d.Id > 0 && 
+                    (d.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                     d.SiglaDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
 
             return await PaginaLista<Departamento>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
         }
@@ -39,7 +40,7 @@ namespace GHR.Persistence.Interfaces.Implements.Departamentos
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.Id == departamentoId);
+                .Where(d => d.Id == departamentoId && d.Id > 0);
 
             return await query.FirstOrDefaultAsync();
         }

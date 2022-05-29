@@ -56,7 +56,6 @@ export class ContaService {
           if(conta) {
             this.definirContaAtual(conta);
           }
-          console.log('login', conta)
         })
       );
   }
@@ -89,4 +88,14 @@ export class ContaService {
       .pipe(take(1));
   }
 
+  public salvarImagem(file: File): Observable<ContaVisao> {
+    const salvarArquivo = file[0] as File;
+    const formData = new FormData();
+
+    formData.append('file', salvarArquivo);
+
+    return this.http
+      .post<ContaVisao>(`${this.baseURL}upload-imagem`, formData)
+      .pipe(take(1));
+  }
 }

@@ -17,8 +17,11 @@ import { DepartamentoService } from 'src/app/services/departamentos/departamento
 export class DepartamentoDetalheComponent implements OnInit {
 
   form!: FormGroup;
+
   locale = 'pt-br';
+
   departamento = {} as Departamento;
+
   estadoSalvar: string = "cadastrarDepatamento";
 
   get f(): any
@@ -32,30 +35,29 @@ export class DepartamentoDetalheComponent implements OnInit {
     private departamentoService: DepartamentoService,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService)
-  {
-  }
+  {   }
 
 
   ngOnInit(): void
   {
+
     this.carregarDepartamento();
     this.validation();
+
   }
+
   public validation(): void
   {
-    this.form = this.fb.group(
-      {
+
+    this.form = this.fb.group( {
         nomeDepartamento: ['', [
           Validators.required,
           Validators.minLength(4),
-          Validators.maxLength(50)
-        ]],
+          Validators.maxLength(50)]],
         siglaDepartamento: ['', [
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(5)
-        ]],
-      });
+          Validators.maxLength(5)]],});
   }
 
   public limparFormulario(): void
@@ -65,12 +67,14 @@ export class DepartamentoDetalheComponent implements OnInit {
 
   public validarCampo(campoForm: FormControl): any
   {
-    return ValidadorFormularios.verificarErroCampo(campoForm);
+    return ValidadorFormularios
+      .verificarErroCampo(campoForm);
   }
 
   public retornarValidacao(nomeCampo: FormControl, nomeElemento: string): any
   {
-    return ValidadorFormularios.retornarMensagemErro(nomeCampo, nomeElemento);
+    return ValidadorFormularios
+      .retornarMensagemErro(nomeCampo, nomeElemento);
   }
 
   public carregarDepartamento(): void
@@ -83,38 +87,39 @@ export class DepartamentoDetalheComponent implements OnInit {
 
       this.estadoSalvar = "alterarDepartamento";
 
-      this.departamentoService.recuperarDepartamentoById(+eventoIdParam).subscribe(
-        (departamento: Departamento) =>
-        {
-          this.departamento = { ...departamento };
-          this.form.patchValue(this.departamento);
-        },
-        (error: any) =>
-        {
-          this.toastr.error("Não foi possível carregar a página de departamento", "Erro!");
-          console.error(error);
-        }
-      ).add(() => this.spinner.hide());
+      this.departamentoService
+        .recuperarDepartamentoById(+eventoIdParam)
+        .subscribe(
+          (departamento: Departamento) => {
+            this.departamento = departamento;
+            this.form.patchValue(this.departamento);},
+
+          (error: any) => {
+            this.toastr.error("Não foi possível carregar a página de departamento", "Erro!");
+            console.error(error); })
+
+        .add(() => this.spinner.hide());
     }
   }
 
-  public salvarAlteracao(): void
-  {
+  public salvarAlteracao(): void   {
+
     this.spinner.show();
 
-    if (this.form.valid)
-    {
+    if (this.form.valid)     {
       this.departamento = (this.estadoSalvar === 'cadastrarDepatamento')
         ? { ...this.form.value }
         : { id: this.departamento.id, ...this.form.value };
 
-      this.departamentoService[this.estadoSalvar](this.departamento).subscribe(
-        () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
-        (error: any) => {
-          console.error(error);
-          this.toastr.error("Erro ao salvar alterações.", "Erro!");
-        }
-      ).add(() => this.spinner.hide());
+      this.departamentoService[this.estadoSalvar](this.departamento)
+        .subscribe(
+          () => this.toastr.success("Alterações salvas com sucesso!", "Salvo!"),
+
+          (error: any) => {
+
+            console.error(error);
+            this.toastr.error("Erro ao salvar alterações.", "Erro!"); })
+        .add(() => this.spinner.hide());
     };
   }
 }

@@ -6,8 +6,8 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 
 import { ContaAtiva } from '../models/contas/ContaAtiva';
 
@@ -32,6 +32,12 @@ export class JwtInterceptor implements HttpInterceptor {
         });
       }
     });
-    return next.handle(request);
+    return next.handle(request)
+      .pipe(catchError(error => {
+        if (error) {
+          localStorage.removeItem('conta');
+        }
+        return throwError(error);
+      }));
   }
 }

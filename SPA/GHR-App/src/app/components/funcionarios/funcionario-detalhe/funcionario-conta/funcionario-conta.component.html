@@ -1,0 +1,104 @@
+<form class="row m-0 p-1 bg-white" [formGroup]="form" (submit)="salvarConta()">
+  <div class="card d-flex m-0 p-0 bg-light">
+    <div  class="card-header m-1 p-1 bg-light" ngClass="{{(!visaoRH || modoEditar)? 'd-none':'d-block'}}">
+      <div class="input-group mb-3 mt-1">
+        <div class="input-group-text mr-1">Pesquisa:</div>
+        <input type="text"
+              class="form-control"
+              placeholder="Conta"
+              formControlName="contaPesquisa">
+        <div  class="ms-auto">
+          <a class="d-flex btn btn-outline-success" (click)="consultarConta()">
+            <i class="fa fa-magnifying-glass my-1"  tooltip="Pesquisar" ></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div  class="card-body  bg-light m-0 " >
+      <div class="form-row m-0">
+        <div class="form-group col-12 p-1 m-0">
+          <h5 class="border-bottom m-0 p-0">Dados da Conta</h5>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 col-12 p-1">
+          <label>Conta</label>
+          <input type="text"
+          class="form-control"
+          placeholder="Conta"
+          formControlName="userName"
+          readonly="true">
+        </div>
+        <div class="form-group col-md-5 col-12 p-1">
+          <label>Nome</label>
+          <input type="text"
+          class="form-control "
+          placeholder="Nome Completo"
+          formControlName="nomeCompleto"
+          [readonly]="protegerCampoConta"
+          [ngClass]="validarCampo(ctrConta.nomeCompleto)">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrConta.nomeCompleto, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-4 p-1 ">
+          <label>e-mail</label>
+          <input type="text"
+          class="form-control"
+          placeholder="fulanodetal@email.com.br"
+          formControlName="email"
+          [readonly]="protegerCampoConta"
+          [ngClass]="validarCampo(ctrConta.email)">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrConta.email, "")}}
+          </div>
+        </div>
+      </div>
+      <div  class="form-row d-flex">
+        <div class="form-group col-md-3 p-1 ">
+          <label>Telefone</label>
+          <input type="text"
+          class="form-control"
+          placeholder="(99) 9999-9999"
+          formControlName="phoneNumber"
+          [readonly]="protegerCampoConta"
+          [ngClass]="validarCampo(ctrConta.phoneNumber)">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrConta.phoneNumber, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Visão</label>
+          <select class="form-select form-control"
+          aria-label="Default select example"
+          formControlName="visao"
+          [ngClass]="validarCampo(ctrConta.visao)">
+            <option value="Funcionário" [disabled]="protegerCampoConta">Funcionário</option>
+            <option value="Funcionário RH " [disabled]="protegerCampoConta">Funcionário RH</option>
+            <option value="Supervisor" [disabled]="protegerCampoConta">Supervisor</option>
+            <option value="Supervisor RH" [disabled]="protegerCampoConta">Supervisor RH</option>
+            <option value="Gerente" [disabled]="protegerCampoConta">Gerente</option>
+            <option value="Gerente RH" [disabled]="protegerCampoConta">Gerente RH</option>
+            <option value="Diretor" [disabled]="protegerCampoConta">Ditetor</option>
+            <option value="Diretor RH" [disabled]="protegerCampoConta">Diretor RH</option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrConta.visao, "")}}
+          </div>
+       </div>
+      </div>
+    </div>
+    <div class="card-footer bg-secondary p-0">
+      <div class="d-flex " >
+        <button type="submit"
+            class="btn btn-success m-1 ms-auto"
+            [disabled]="!form.valid || protegerCampoConta">
+          Prosseguir
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!-- <p>Form value: {{form.value | json}}</p>
+<p>Form status: {{form.status | json}}</p> -->

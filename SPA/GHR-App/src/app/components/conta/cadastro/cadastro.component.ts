@@ -41,17 +41,14 @@ export class CadastroComponent implements OnInit {
       userName: ['', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(15)
-      ]],
+        Validators.maxLength(15)]],
       nomeCompleto: ['', [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(50)
-      ]],
+        Validators.maxLength(50)]],
       email: ['', [
         Validators.required,
-        Validators.email
-      ]],
+        Validators.email ]],
       password: ['', [
         Validators.required,
         Validators.minLength(6)]],
@@ -72,14 +69,17 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrarConta(): void {
+
     this.contaCadastro = { ...this.form.value };
-    console.log(this.contaCadastro)
-    this.accountService.cadastrarConta(this.contaCadastro).subscribe(
-      () => this.router.navigateByUrl('/home'),
-      (error: any) => {
-        this.toastr.error(error.error, "Erro!");
-        console.log(error);
-        }
-    )
+
+    this.accountService
+      .cadastrarConta(this.contaCadastro)
+      .subscribe(
+        () => this.router.navigateByUrl('/home'),
+
+        (error: any) => {
+
+          this.toastr.error(error.error, "Erro!");
+          console.log(error);  })
   }
 }
