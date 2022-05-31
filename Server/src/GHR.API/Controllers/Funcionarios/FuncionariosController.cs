@@ -152,5 +152,26 @@ namespace GHR.API.Controllers.Funcionarios
                     $"Erro ao tentar excluir funcionário {id}. Erro: {ex.Message}");
             }
         }
+        
+        [HttpGet("{departamentoId}/deptoId")]
+        public async Task<IActionResult> RecuperarFuncionarioPorDepartamentoCargo(int departamentoId)
+        {
+            try
+            {
+
+                var funcionarios = await _funcionarioService
+                    .RecuperarFuncionarioPorDepartamentoIdAsync(departamentoId);
+
+                if (funcionarios == null) return NoContent();
+
+                return Ok(funcionarios);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar funcionário por departamento / cargo. Erro: {ex.Message}");
+            }
+        }
     }
 }

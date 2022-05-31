@@ -47,6 +47,26 @@ namespace GHR.API.Controllers.Metas
             }
         }
 
+        [HttpGet("ativas")]
+        public async Task<IActionResult> RecuperarMetasAtivas()
+        {
+            try
+            {
+                var metas = await _metaService
+                    .RecuperarMetasAtivasAsync();
+
+                if (metas == null) return NoContent();
+
+                return Ok(metas);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao tentar recuperar metas. Erro: {ex.Message}");
+            }
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> RecuperarMetaPorId(int id)
         {

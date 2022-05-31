@@ -5,10 +5,10 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
+import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 import { environment } from 'src/environments/environment';
 
-import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 @Injectable()
 export class FuncionarioMetaService {
@@ -70,11 +70,12 @@ export class FuncionarioMetaService {
         }));
   }
 
-  public recuperarFuncionarioIdMetaId(funcionarioId: number, metaId:number): Observable<any> {
+  public recuperarFuncionarioIdMetaId(funcionarioId: number, metaId:number): Observable<FuncionarioMeta> {
     return this.http
-      .get<string>(`${this.baseURL}/${funcionarioId}/${metaId}`)
+      .get<FuncionarioMeta>(`${this.baseURL}/${funcionarioId}/${metaId}/meta`)
       .pipe(take(1));
   }
+
   public criarFuncionarioMeta(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
 
     return this.http

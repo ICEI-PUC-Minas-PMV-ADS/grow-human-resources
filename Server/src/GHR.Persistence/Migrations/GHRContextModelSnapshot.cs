@@ -166,6 +166,12 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Diretor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gerente")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("MetaId")
                         .HasColumnType("INTEGER");
 
@@ -173,6 +179,9 @@ namespace GHR.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SiglaDepartamento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Supervisor")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

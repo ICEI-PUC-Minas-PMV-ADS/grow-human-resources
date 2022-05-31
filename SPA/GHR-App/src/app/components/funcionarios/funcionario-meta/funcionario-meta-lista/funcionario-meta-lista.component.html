@@ -1,0 +1,111 @@
+<div  class="card rounded shadow-sm p-1 bg-light">
+
+  <div  class="d-flex">
+    <div  class="flex-fill pr-1" >
+      <div class="input-group mb-2 ">
+        <div class="input-group-prepend">
+          <div class="input-group-text mr-2">Filtro:</div>
+        </div>
+        <input type="text"
+          class="form-control"
+          placeholder="Pesquisar por Meta e Descrição"
+          (input)="filtrarMetas($event.target)"
+        >
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="funcionarioMetas && funcionarioMetas.length" class="row mt-2">
+    <div class="col-md-4 mb-6 d-flex align-itens-stretch"
+      *ngFor="let funcionarioMeta of funcionarioMetas" >
+      <div class="card m-0 p-0">
+          <div class="align-self-center text-center pt-1">
+            <img
+              [src]="imagemURL + funcionario.contas?.imagemURL"
+              class="rounded-circle"
+              width="120" height="120">
+              <div class="h4 text-center">
+                @{{funcionario.contas?.userName}}
+              </div>
+        </div>
+        <div class="card-body bg-light">
+          <div class="h7 text-bold pb-1">
+            <b>Nome: </b>{{funcionario.contas?.nomeCompleto}}
+          </div>
+          <div class="h7 text-bold pb-1">
+            <b>email: </b>{{funcionario.contas?.email}}
+          </div>
+          <div class="h7 text-bold pb-1">
+            <b>Telefone: </b>{{funcionario.contas?.phoneNumber}}
+          </div>
+          <div class="h7">
+            <b>Meta: </b>{{funcionarioMeta.meta?.nomeMeta}}
+          </div>
+          <div class="h7">
+            <b>Descricao: </b>{{funcionarioMeta.meta?.descricao}}
+          </div>
+            <div class="h7">
+            <b>Meta Aprovada? </b>{{(funcionarioMeta.meta?.metaAprovada) ? "Sim" : "Não"}}
+          </div>
+          <div class="h7">
+            <b>Meta Cumprida? </b>{{(funcionarioMeta.meta?.metaCumprida) ? "Sim" : "Não"}}
+          </div>
+          <div class="h7">
+            <b>Início Planejado: </b>{{funcionarioMeta.meta?.inicioPlanejado | DateTimeFormat}}
+          </div>
+          <div class="h7">
+            <b>Fim Planejado: </b>{{funcionarioMeta.meta?.fimPlanejado | DateTimeFormat}}
+          </div>
+          <div class="h7">
+            <b>Início Realizado: </b>{{funcionarioMeta.meta?.inicioRealizado | DateTimeFormat}}
+          </div>
+          <div class="h7">
+            <b>Fim Realizado: </b>{{funcionarioMeta.meta?.fimRealizado | DateTimeFormat}}
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item bg-white">
+            <div class="row">
+              <div class="col-6 text-center border-right">
+                <div class="h5">1342</div>
+                <div class="h6 text-muted">Metas Cumpridas</div>
+              </div>
+              <div class="col-6 text-center">
+                <div class="h5">1342</div>
+                <div class="h6 text-muted">Metas não Cumpridas</div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div class="card-footer bg-secondary p-0">
+          <div class="d-flex " *ngIf="iniciar">
+            <button class="btn btn-success m-1 ms-auto" (click)="iniciarMeta(funcionarioMeta.metaId)">
+             Iniciar Meta
+            </button>
+          <div class="d-flex " *ngIf="!iniciar">
+            <button class="btn btn-success m-1 ms-auto" (click)="finalizarMeta(funcionarioMeta.metaId)">
+             Finalizar Meta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <pagination
+    [totalItems]="paginacao.totalItens"
+    [itemsPerPage]="paginacao.itensPorPagina"
+    [(ngModel)]="paginacao.paginaAtual"
+    [align]="true"
+    (pageChanged)="paginaAlterada($event)"
+    pageBtnClass="btn"
+
+    previousText="&lsaquo;"
+    nextText="&rsaquo;"
+    firstText="&laquo;"
+    lastText="&raquo;">
+
+  </pagination>
+</div>

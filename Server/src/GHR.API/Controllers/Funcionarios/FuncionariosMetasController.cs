@@ -126,4 +126,5 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
     }
+    
 }

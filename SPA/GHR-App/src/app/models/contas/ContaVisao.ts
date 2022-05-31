@@ -7,5 +7,5 @@ export class ContaVisao {
   funcao: string ;
   visao: string ;
   descricao: string;
-  imagemURL: string;
+
 }

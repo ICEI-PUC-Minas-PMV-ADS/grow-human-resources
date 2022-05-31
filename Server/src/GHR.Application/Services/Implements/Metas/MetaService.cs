@@ -126,6 +126,27 @@ namespace GHR.Application.Services.Implements.Metas
             }
         }
 
+        public async Task<MetaDto[]> RecuperarMetasAtivasAsync()
+        {
+            try
+            {
+                var metas = await _metaPersistence
+                    .RecuperarMetasAtivasAsync();
+
+                if (metas == null) return null;
+
+                var metasMapper = _mapper.Map<MetaDto[]>(metas);
+
+                return metasMapper;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
+        }
+
         public async Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false)
         {
             try

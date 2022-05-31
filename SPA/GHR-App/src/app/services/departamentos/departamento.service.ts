@@ -49,7 +49,7 @@ export class DepartamentoService {
       .pipe(take(1));
   }
 
-  public criarDepatamento(departamento: Departamento): Observable<Departamento> {
+  public cadastrarDepartamento(departamento: Departamento): Observable<Departamento> {
     return this.http
       .post<Departamento>(this.baseURL, departamento)
       .pipe(take(1));

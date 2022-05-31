@@ -47,6 +47,13 @@ export class MetaService {
         }));
   }
 
+   public recuperarMetasAtivas(): Observable<Meta[]> {
+
+    return this.http
+      .get<Meta[]>(this.baseURL + "/ativas")
+      .pipe(take(1));
+   }
+
   public recuperarMetaPorId(id: number): Observable<Meta> {
     return this.http
       .get<Meta>(`${this.baseURL}/${id}`)

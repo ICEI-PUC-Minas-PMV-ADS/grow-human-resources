@@ -2,7 +2,7 @@ export class Paginacao {
   paginaAtual: number;
   itensPorPagina: number;
   totalItens: number;
-  totalDePaginaS: number;
+  totalDePaginas: number;
 }
 
 export class ResultadoPaginacao<T> {

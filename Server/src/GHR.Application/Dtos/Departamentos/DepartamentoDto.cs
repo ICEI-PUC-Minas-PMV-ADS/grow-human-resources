@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using GHR.Domain.DataBase.Funcionarios;
 
 namespace GHR.Application.Dtos.Departamentos
 {
@@ -15,8 +16,11 @@ namespace GHR.Application.Dtos.Departamentos
         [Display(Name = "Sigla"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
         MinLength(2, ErrorMessage = "O campo {0} deve conter no mínimo 2 caracteres."),
-        MaxLength(5, ErrorMessage = "O campo {0} deve conter no máximo 5 caracteres")]
+        MaxLength(7, ErrorMessage = "O campo {0} deve conter no máximo 5 caracteres")]
         public string SiglaDepartamento { get; set; }
         public int MetaId { get; set; }
+        public string Diretor { get; set; }
+        public string Gerente { get; set; }    
+        public string Supervisor { get; set; }        
     }
 }

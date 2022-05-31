@@ -11,5 +11,6 @@ namespace GHR.Application.Services.Contracts.Metas
         Task<bool> ExcluirMeta(int metaId);
         Task<PaginaLista<MetaDto>> RecuperarMetasAsync(PaginaParametros paginaParametros, bool incluirFuncionarios = false);
         Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false);
+        Task<MetaDto[]> RecuperarMetasAtivasAsync();
     }
 }

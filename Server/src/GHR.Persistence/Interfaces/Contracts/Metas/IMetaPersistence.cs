@@ -14,5 +14,6 @@ namespace GHR.Persistence.Implements.Contracts.Metas
         //Metas
         Task<PaginaLista<Meta>> RecuperarMetasAsync(PaginaParametros paginaParametros, bool incluirFuncionarios = false);
         Task<Meta> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false);   
+        Task<Meta[]> RecuperarMetasAtivasAsync();
     }
 }

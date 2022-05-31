@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GHR.Application.Dtos.Funcionarios;
@@ -158,6 +159,25 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 var funcionarioMapper = _mapper.Map<FuncionarioDto>(funcionario);
 
                 return funcionarioMapper;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public async Task<FuncionarioDto[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId)
+        {
+            try
+            {
+                var funcionarios = await _funcionarioPersistence
+                    .RecuperarFuncionarioPorDepartamentoIdAsync(departamentoId);
+
+                if (funcionarios == null) return null;
+
+                var funcionariosMapper = _mapper.Map<FuncionarioDto[]>(funcionarios);
+
+                return funcionariosMapper;
             }
             catch (Exception ex)
             {

@@ -1,219 +1,36 @@
-<div class="card rounded shadow-sm p-2 bg-light">
-<!-- Cabeçaljo do formulário -->
-  <div class="card-head text-center text-white bg-secondary">
-    <H3>Formulário de Funcionários x Metas</H3>
-  </div>
-  <form class="row" [formGroup]="form!">
-    <!--    <p>Form value: {{form.value | json}}</p>
-      <p>Form status: {{form.status | json}}</p> -->
-      <div class="card-body bg-white">
-        <tabset>
-          <tab heading="Basic title" id="tab1">Basic content
-            
-          </tab>
-          <tab heading="Basic Title 1">Basic content 1</tab>
-          <tab heading="Basic Title 2">Basic content 2</tab>
-        </tabset>
-      </div>
-    <div>
 
-      <div class="card-body bg-white ">
-        <h4 class="border-bottom">Dados do Funcionário</h4>
+<div class="container">
+  <div class="card rounded shadow-sm p-1 m-0 bg-light">
 
-        <div class="form-row d-md-flex">
-          <div class="form-group col-md-6 p-1">
-            <label>Nome</label>
-            <input type="text" class="form-control disabled"
-              formControlName="nomeCompleto"
-             readonly="true">
-          </div>
-          <div class="form-group col-md-3 p-1">
- 				    <label>Data Admissão</label>
- 				    <input type="text" class="form-control"
-             [ngClass]="validarCampo(f.dataAdmissao)"
-             formControlName="dataAdmissao"
-             value="{{funcionario.dataAdmissao | DateTimeFormat}}"
-             readonly="true">
-          </div>
- 			    <div class="form-group col-md-3 p-1">
- 				    <label>Data Desligamento</label>
- 				    <input type="text" class="form-control"
-              formControlName="dataDemissao"
-              [ngClass]="validarCampo(f.dataDemissao)"
-              value="{{funcionario.dataDemissao | DateTimeFormat}}"
-              readonly="true">
-          </div>
-        </div>
-        <h4 class="border-bottom mx-2 mt-2 mb-0">Meta Filtro</h4>
-        <div class="form-row">
-          <div class="row p-2">
-            <div class="form-group">
-              <div class="input-group px-3 py-2">
-                <label class="input-group-text">Selecione uma meta: </label>
-                <select class="form-select" aria-label="Default select example"
-                  formControlName="id">
-                  <option *ngFor='let meta of metas'
-                    value={{meta.id}}>{{meta.nomeMeta}}</option>
-                  </select>
-                  <button class="btn btn-outline-success p-1"
-                  (click)="consultarMeta()">
-                  <b>Consultar</b>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-row d-md-flex ">
-          <div class="row col py-0 px-5">
-            <div class="bg-light">
-              <h4 class="border-bottom mt-3">Meta:</h4>
-              <div class="form-row d-md-flex">
-                <div class="form-group col-md-6 p-1">
-                  <label>Nome Meta</label>
-                  <input type="text"
-                  class="form-control"
-                  formControlName="nomeMeta"
-                  readonly="true">
-                </div>
-                <div class="form-group col-md-3 p-1">
-                  <label>Meta Cumprida?</label>
-                  <select class="form-select disabed" aria-label="Default select example"
-                  formControlName="metaCumprida"
-                  readonly="true">
-                    <option value="false">Não</option>
-                    <option option value="true">Sim</option>
-                  </select>
-                </div>
-                <div class="form-group col-md-3 p-1">
-                  <label>Início Planejado</label>
-                  <input type="text" class="form-control"
-                    formControlName="inicioPlanejado"
-                    [ngClass]="validarCampo(fMeta.inicioPlanejado)"
-                    value="{{meta.inicioPlanejado | DateTimeFormat}}"
-                    readonly="true">
-                </div>
-              </div>
-              <div class="form-row d-md-flex">
-                <div class="form-group col-md-3 p-1">
-                  <label>Fim Planejado</label>
-                  <input type="text" class="form-control"
-                    formControlName="fimPlanejado"
-                    [ngClass]="validarCampo(fMeta.fimPlanejado)"
-                    value="{{meta.fimPlanejado | DateTimeFormat}}"
-                    readonly="true">
-                </div>
-                <div class="form-group col-md-3 p-1">
-                  <label>Início Realizado</label>
-                  <input type="text" class="form-control"
-                    formControlName="inicioRealizado"
-                    [ngClass]="validarCampo(fMeta.inicioRealizado)"
-                    value="{{meta.inicioRealizado | DateTimeFormat}}"
-                    readonly="true">
-                </div>
-                <div class="form-group col-md-3 p-1">
-                  <label>Fim Realizado</label>
-                  <input type="text" class="form-control"
-                    formControlName="fimRealizado"
-                    [ngClass]="validarCampo(fMeta.fimRealizado)"
-                    value="{{meta.fimRealizado | DateTimeFormat}}"
-                    readonly="true">
-                </div>
-                <div class="form-group col-md-3 p-1">
-                  <label>Supervisor</label>
-                  <input type="text" class="form-control"
-                    formControlName="supervisorId"
-                    [ngClass]="validarCampo(fMeta.supervisorId)"
-                    readonly="true">
-                </div>
-              </div>
-              <div class="form-row d-md-flex">
-                <div class="card-footer col bg-secondary">
-                  <div class="d-flex ">
-                    <button class="btn btn-success p-1 ms-auto" [disabled]="!form.valid" (click)="associarFuncionarioMeta()">
-                      Associar Meta
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="card-head text-center text-white bg-secondary">
+      <H3>Formulário de Metas por Funcionários</H3>
     </div>
-  </form>
-</div>
 
-<div  class="d-flex">
-  <div  class="p-3 mt-2" >
-    <h4 class="border-bottom">Lista de Metas Por Funcionario</h4>
+    <div class="m-0 p-0 bg-white">
+      <tabset>
+        <tab>
+          <ng-template tabHeading>
+            <i class="fa fa-id-badge m-1"></i>
+            <span>funcionario</span>
+          </ng-template>
+          <app-funcionario-meta-conta></app-funcionario-meta-conta>
+        </tab>
+        <tab *ngIf="visaoRH">
+          <ng-template tabHeading>
+            <i class="fa fa-bullseye m-1"></i>
+            <span>Associar Metas</span>
+          </ng-template>
+          <app-funcionario-meta-associar  [formsParametros]="formsParametros"></app-funcionario-meta-associar>
+        </tab>
+        <tab>
+          <ng-template tabHeading>
+            <i class="fa fa-list m-1"></i>
+            <span>Lista</span>
+          </ng-template>
+          <app-funcionario-meta-lista></app-funcionario-meta-lista>
+        </tab>
+      </tabset>
+    </div>
+
   </div>
 </div>
-
-<table class="table table-striped table-hover">
-  <thead class="table-dark">
-    <tr>
-      <th class="d-none d-md-table-cell">#</th>
-      <th>Nome Meta</th>
-      <th class="d-none d-md-table-cell">Meta Cumprida</th>
-      <th>Inicio Planejado</th>
-      <th class="d-none d-md-table-cell">Fim Planejado</th>
-      <th>Opções</th>
-    </tr>
-  </thead>
-  <tbody *ngIf="funcionarioMetas && funcionarioMetas.length">
-    <tr *ngFor="let funcionarioMeta of funcionarioMetas" >
-      <td class="d-none d-md-table-cell">
-        {{funcionarioMeta.metaId}}
-      </td>
-      <td>
-        {{funcionarioMeta.meta.nomeMeta}}
-      </td>
-      <td class="d-none d-md-table-cell" >
-        {{funcionarioMeta.metaCumprida}}
-      </td>
-      <td>
-        {{funcionarioMeta.meta.inicioPlanejado}}
-      </td>
-      <td class="d-none d-md-table-cell">
-        {{funcionarioMeta.meta.fimPlanejado}}
-      </td>
-      <td>
-        <button type="button" class="btn btn-outline-danger btn-sm" tooltip="Excluir" (click)="openModal($event, template, funcionarioMeta.funcionarioId, funcionarioMeta.metaId)">
-          <i class="fa fa-trash"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot *ngIf="!funcionarioMetas.length">
-    <tr>
-      <td colspan="8" class="text-center" >
-        <h4>Nenhuma meta encontrada!</h4>
-      </td>
-    </tr>
-  </tfoot>
-</table>
-  <div class="d-flex justify-content-center">
-    <pagination
-      [totalItems]="paginacao.totalItens"
-      [itemsPerPage]="paginacao.itensPorPagina"
-      [(ngModel)]="paginacao.paginaAtual"
-      [align]="true"
-      (pageChanged)="paginaAlterada($event)"
-      pageBtnClass="btn"
-
-      previousText="&lsaquo;"
-      nextText="&rsaquo;"
-      firstText="&laquo;"
-      lastText="&raquo;">
-
-    </pagination>
-  </div>
-
-<!-- Modal -->
-<ng-template #template>
-  <div class="modal-body text-center">
-    <p>Confirma a exclusão desta meta?</p>
-    <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
-    <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
-  </div>
-</ng-template>

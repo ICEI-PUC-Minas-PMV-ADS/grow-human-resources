@@ -26,7 +26,9 @@ export class NavComponent implements OnInit {
             (contaAtiva) => {
               this.contaLogada = contaAtiva !== null;
               this.contaAtiva = { ...contaAtiva } ;
-              this.visaoRH = this.contaAtiva.visao?.includes('RH') ;})
+              this.visaoRH = this.contaAtiva.visao?.includes('Diretor RH') ||
+                             this.contaAtiva.visao?.includes('masterRH');
+            })
         }
       })
     }

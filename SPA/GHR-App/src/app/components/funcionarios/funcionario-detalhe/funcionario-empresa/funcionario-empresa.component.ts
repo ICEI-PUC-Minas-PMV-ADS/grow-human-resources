@@ -77,6 +77,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
     this.carregarCargos();
     this.carregarDepartametos();
     this.carregarFuncionario();
+    console.log("selected", this.form.get("departamentoId").valueChanges)
   }
 
   public validarFormularios(): void {
@@ -88,10 +89,10 @@ export class FuncionarioEmpresaComponent implements OnInit {
       dataAdmissao: ['', Validators.required],
       dataDemissao: [null],
       departamentoId: ['', Validators.required],
-      supervisorId: [0],
-      gerenteAdministrativoId: [0],
+      supervisor: [],
+      gerente: [],
       gerenteOperacionaId: [0],
-      diretorId: [0],
+      diretor: [],
       contaId: [0],
       enderecoId: [],
       dadosPessoaisId: [], });
@@ -103,11 +104,11 @@ export class FuncionarioEmpresaComponent implements OnInit {
     this.spinner.show();
 
     this.cargoService
-      .recuperarCargos()
+      .recuperarCargos(1, 100)
       .subscribe(
         (cargos: ResultadoPaginacao<Cargo[]>) => {
-
-          this.cargos = cargos.resultado;},
+          this.cargos = cargos.resultado;
+          console.log(cargos)},
 
         (error: any) => {
 
@@ -138,7 +139,8 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   public carregarFuncionario(): void {
 
-    this.funcionarioId  = +this.routerActivated.snapshot.paramMap.get('id');
+    this.funcionarioId = +this.routerActivated.snapshot.paramMap.get('id');
+
 
     if (this.funcionarioId !== null && this.funcionarioId !== 0) {
 
@@ -150,7 +152,11 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
           (funcionario: Funcionario) => {
             this.funcionario = funcionario;
-            this.form.patchValue(funcionario)},
+            this.form.patchValue(funcionario.departamentos)
+            this.form.patchValue(funcionario)
+            console.log("func", this.form.patchValue,  funcionario)
+          },
+
 
           (error: any) => {
             this.toastr.error("Não foi possível carregar a página de funcionário.", "Errro!");
@@ -162,11 +168,14 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
   public salvarFuncionario(): void {
 
+    this.funcionarioId = +this.routerActivated.snapshot.paramMap.get('id');
+
+
     this.spinner.show();
 
     if (this.form.valid) {
-
       this.funcionario = { ...this.form.value };
+      console.log("DataAdm", this.funcionario)
 
       this.funcionarioService
         .salvarFuncionario(this.funcionario)
@@ -199,4 +208,10 @@ export class FuncionarioEmpresaComponent implements OnInit {
   this.funcionario = funcionario;
   }
 
+  public onClickDeptoId(event: any): void {
+
+    this.cargos = this.cargos.filter(
+      c => c.departamentoId === +event.value)
+      console.log("selected", this.cargos, event.value)
+    }
 }

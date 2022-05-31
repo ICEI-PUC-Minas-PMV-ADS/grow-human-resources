@@ -10,5 +10,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Funcionarios
         Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false);
         Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false);
         Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId);
+        Task<Funcionario[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId);
     }
 }

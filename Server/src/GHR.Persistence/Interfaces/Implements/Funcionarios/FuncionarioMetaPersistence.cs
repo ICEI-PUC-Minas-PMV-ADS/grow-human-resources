@@ -27,8 +27,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             query = query
                     .AsNoTracking()
                     .OrderBy(fm => fm.MetaId)
-                    .Where(fm => fm.FuncionarioId == funcionarioId);
-            
+                    .Where(fm => fm.FuncionarioId == funcionarioId &&
+                                 (fm.Meta.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                                  fm.Meta.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))) ;
+
             return await PaginaLista<FuncionarioMeta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
     
         }

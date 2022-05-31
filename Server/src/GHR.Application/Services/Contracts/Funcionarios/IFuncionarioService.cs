@@ -12,5 +12,6 @@ namespace GHR.Application.Services.Contracts.Funcionarios
         Task<PaginaLista<FuncionarioDto>> RecuperarFuncionariosAsync( PaginaParametros paginaParametros, bool incluirMetas = false);
         Task<FuncionarioDto> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false);
         Task<FuncionarioDto> RecuperarFuncionarioPorContaIdAsync(int contaId);
+        Task<FuncionarioDto[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId);
     }
 }

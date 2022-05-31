@@ -89,5 +89,11 @@ export class FuncionarioService {
       .post<Funcionario>(`${this.baseURL}/salvar-imagem/${funcionarioId}`, formData)
       .pipe(take(1));
   }
+
+  public recuperarFuncionarioPorDepartamentoId(departamentoId: number): Observable<Funcionario[]> {
+    return this.http
+      .get<Funcionario[]>(`${this.baseURL}/${departamentoId}/deptoId`)
+      .pipe(take(1));
+  }
 }
 

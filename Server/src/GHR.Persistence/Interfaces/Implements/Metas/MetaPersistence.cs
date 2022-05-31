@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GHR.Domain.DataBase.Metas;
@@ -59,5 +61,18 @@ namespace GHR.Persistence.Interfaces.Implements.Metas
 
             return await PaginaLista<Meta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
         }
+        
+        public async Task<Meta[]> RecuperarMetasAtivasAsync()
+        {
+            IQueryable<Meta> query = _context.Metas;
+
+            query = query
+                .AsNoTracking()
+                .Where(m => m.MetaAprovada && !m.MetaCumprida)
+                .OrderBy(m => m.Id);
+
+            return await query.ToArrayAsync();
+        }
     }
 }
+    

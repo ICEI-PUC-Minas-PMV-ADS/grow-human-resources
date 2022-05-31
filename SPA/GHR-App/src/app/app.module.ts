@@ -36,6 +36,7 @@ import { FuncionarioEmpresaComponent } from './components/funcionarios/funcionar
 import { FuncionarioEnderecoComponent } from './components/funcionarios/funcionario-detalhe/funcionario-endereco/funcionario-endereco.component';
 import { FuncionarioListaComponent } from './components/funcionarios/funcionario-lista/funcionario-lista.component';
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
+import { FuncionarioMetaAssociarComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-associar/funcionario-meta-associar.component';
 import { FuncionariosComponent } from './components/funcionarios/funcionarios.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/conta/login/login.component';
@@ -62,6 +63,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { MetaService } from './services/metas/Meta.service';
 import { FuncionarioMetaService } from './services/funcionarios/funcionarioMeta.service';
 import { PerfilSenhaComponent } from './components/conta/perfil/perfil-senha/perfil-senha.component';
+import { FuncionarioMetaContaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-conta/funcionario-meta-conta.component';
+import { FuncionarioMetaListaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-lista/funcionario-meta-lista.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -82,7 +85,10 @@ defineLocale('pt-br', ptBrLocale);
     FuncionarioEmpresaComponent,
     FuncionarioEnderecoComponent,
     FuncionarioListaComponent,
+    FuncionarioMetaAssociarComponent,
     FuncionarioMetaComponent,
+    FuncionarioMetaContaComponent,
+    FuncionarioMetaListaComponent,
     FuncionariosComponent,
     HomeComponent,
     LoginComponent,

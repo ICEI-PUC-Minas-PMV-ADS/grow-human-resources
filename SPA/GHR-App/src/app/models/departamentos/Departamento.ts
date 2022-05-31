@@ -3,4 +3,8 @@ export class Departamento {
   nomeDepartamento: string;
   siglaDepartamento: string;
   metaId?: number;
+  diretorId: number;
+  diretor: string;
+  gerente: string;
+  supervisor: string;
 }
