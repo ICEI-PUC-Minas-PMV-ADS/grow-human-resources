@@ -35,7 +35,7 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(catchError(error => {
         if (error) {
-          localStorage.removeItem('conta');
+ //         localStorage.removeItem('conta');
         }
         return throwError(error);
       }));

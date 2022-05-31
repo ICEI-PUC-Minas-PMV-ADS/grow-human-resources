@@ -19,59 +19,100 @@
     <div class="col-md-4 mb-6 d-flex align-itens-stretch"
       *ngFor="let funcionarioMeta of funcionarioMetas" >
       <div class="card m-0 p-0">
-          <div class="align-self-center text-center pt-1">
-            <img
-              [src]="imagemURL + funcionario.contas?.imagemURL"
-              class="rounded-circle"
-              width="120" height="120">
-              <div class="h4 text-center">
-                @{{funcionario.contas?.userName}}
-              </div>
-        </div>
-        <div class="card-body bg-light">
-          <div class="h7 text-bold pb-1">
-            <b>Nome: </b>{{funcionario.contas?.nomeCompleto}}
-          </div>
-          <div class="h7 text-bold pb-1">
-            <b>email: </b>{{funcionario.contas?.email}}
-          </div>
-          <div class="h7 text-bold pb-1">
-            <b>Telefone: </b>{{funcionario.contas?.phoneNumber}}
-          </div>
+        <div class="card-header bg-info">
           <div class="h7">
             <b>Meta: </b>{{funcionarioMeta.meta?.nomeMeta}}
           </div>
-          <div class="h7">
-            <b>Descricao: </b>{{funcionarioMeta.meta?.descricao}}
+
+        </div>
+          <div class="align-self-center text-center pt-1">
+            <img
+              [src]="imagemURL"
+              class="rounded-circle"
+              width="100" height="100">
+              <div class="h6 text-center">
+                @{{funcionario.contas?.userName}}
+              </div>
+              <div class="h6 text-center">
+                {{funcionario.contas?.nomeCompleto}}
+              </div>
+        </div>
+        <div class="card-body bg-light">
+          <div class="h7 text-center">
+            <b>Descricao da Meta </b>
           </div>
-            <div class="h7">
-            <b>Meta Aprovada? </b>{{(funcionarioMeta.meta?.metaAprovada) ? "Sim" : "Não"}}
+          <div class="h7 ">
+            {{funcionarioMeta.meta?.descricao}}
           </div>
-          <div class="h7">
-            <b>Meta Cumprida? </b>{{(funcionarioMeta.meta?.metaCumprida) ? "Sim" : "Não"}}
+          <div class="dropdown-divider"></div>
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              <b>Aprovada? </b>
+            </div>
+            <div class="h7 col-6 text-center">
+              <b>Cumprida? </b>
+            </div>
           </div>
-          <div class="h7">
-            <b>Início Planejado: </b>{{funcionarioMeta.meta?.inicioPlanejado | DateTimeFormat}}
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              {{(funcionarioMeta.meta?.metaAprovada) ? "Sim" : "Não"}}
+            </div>
+            <div class="h7 col-6 text-center">
+              {{(funcionarioMeta.meta?.metaCumprida) ? "Sim" : "Não"}}
+            </div>
           </div>
-          <div class="h7">
-            <b>Fim Planejado: </b>{{funcionarioMeta.meta?.fimPlanejado | DateTimeFormat}}
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              <b>Início Planejado: </b>
+            </div>
+            <div class="h7 col-6 text-center">
+              <b>Fim Planejado: </b>
+            </div>
           </div>
-          <div class="h7">
-            <b>Início Realizado: </b>{{funcionarioMeta.meta?.inicioRealizado | DateTimeFormat}}
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              {{funcionarioMeta.meta?.inicioPlanejado | DateTimeFormat}}
+            </div>
+            <div class="h7 col-6 text-center">
+              {{funcionarioMeta.meta?.fimPlanejado | DateTimeFormat}}
+            </div>
           </div>
-          <div class="h7">
-            <b>Fim Realizado: </b>{{funcionarioMeta.meta?.fimRealizado | DateTimeFormat}}
+
+          <div class="dropdown-divider"></div>
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              <b>Início Realizado: </b>
+            </div>
+            <div class="h7 col-6 text-center">
+              <b>Fim Realizado: </b>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="h7 col-6 text-center">
+              {{funcionarioMeta.meta?.inicioRealizado | DateTimeFormat}}
+            </div>
+            <div class="h7 col-6 text-center">
+              {{funcionarioMeta.meta?.fimRealizado | DateTimeFormat}}
+            </div>
           </div>
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item bg-white">
             <div class="row">
               <div class="col-6 text-center border-right">
-                <div class="h5">1342</div>
+                <div class="h5">{{TotalMetasCumpridas}}</div>
                 <div class="h6 text-muted">Metas Cumpridas</div>
               </div>
               <div class="col-6 text-center">
-                <div class="h5">1342</div>
+                <div class="h5">{{TotalMetasNaoCumpridas}}</div>
                 <div class="h6 text-muted">Metas não Cumpridas</div>
               </div>
             </div>

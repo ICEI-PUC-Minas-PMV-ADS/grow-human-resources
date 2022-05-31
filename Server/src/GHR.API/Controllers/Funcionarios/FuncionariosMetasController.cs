@@ -85,13 +85,14 @@ namespace GHR.API.Controllers.Funcionarios
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar adicionar funcionários. Erro: {ex.Message}");
             }
         }
-        [HttpPut("{funcionarioId}/{metaId}")]
-        public async Task<IActionResult> AlterarFuncionarioMeta(int funcionarioId, int metaId, FuncionarioMetaDto model)
+
+        [HttpPut]
+        public async Task<IActionResult> AlterarFuncionarioMeta(FuncionarioMetaDto model)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaService
-                    .AlterarFuncionarioMeta(funcionarioId, metaId, model);
+                    .AlterarFuncionarioMeta(model);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -104,6 +105,7 @@ namespace GHR.API.Controllers.Funcionarios
                 $"Erro ao tentar alterar metas de um funcionário. Erro: {ex.Message}");
             }
         }
+
         [HttpDelete("{funcionarioId}/{metaId}")]
         public async Task<IActionResult> ExcluirFuncionarioMetaAsync(int funcionarioId, int metaId)
         {

@@ -336,16 +336,16 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("MetaId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("FimAcordado")
+                    b.Property<string>("FimAcordado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimRealizado")
+                    b.Property<string>("FimRealizado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioAcordado")
+                    b.Property<string>("InicioAcordado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioRealizado")
+                    b.Property<string>("InicioRealizado")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("MetaCumprida")
@@ -370,16 +370,16 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimPlanejado")
+                    b.Property<string>("FimPlanejado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimRealizado")
+                    b.Property<string>("FimRealizado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioPlanejado")
+                    b.Property<string>("InicioPlanejado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioRealizado")
+                    b.Property<string>("InicioRealizado")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("MetaAprovada")

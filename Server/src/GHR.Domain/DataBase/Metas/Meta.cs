@@ -15,10 +15,10 @@ namespace GHR.Domain.DataBase.Metas
         public string Descricao { get; set; }
         public Boolean MetaCumprida { get; set; }
         public Boolean MetaAprovada { get; set; }
-        public DateTime? InicioPlanejado { get; set; }
-        public DateTime? FimPlanejado { get; set; }
-        public DateTime? InicioRealizado { get; set; }
-        public DateTime? FimRealizado { get; set; }
+        public string InicioPlanejado { get; set; }
+        public string FimPlanejado { get; set; }
+        public string InicioRealizado { get; set; }
+        public string FimRealizado { get; set; }
         public IEnumerable<FuncionarioMeta> FuncionariosMetas { get; set; }
     }
 }

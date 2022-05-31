@@ -13,10 +13,10 @@ namespace GHR.Domain.DataBase.Funcionarios
         public int FuncionarioId { get; set; }
         public Funcionario Funcionario { get; set; }
         public Boolean MetaCumprida { get; set; }
-        public DateTime? InicioAcordado { get; set; }
-        public DateTime? FimAcordado { get; set; }
-        public DateTime? InicioRealizado { get; set; }
-        public DateTime? FimRealizado { get; set; }
+        public string InicioAcordado { get; set; }
+        public string FimAcordado { get; set; }
+        public string InicioRealizado { get; set; }
+        public string FimRealizado { get; set; }
         public string Supervisor { get; set; }
     }
 }

@@ -85,7 +85,7 @@ export class FuncionarioMetaService {
 
   public salvarFuncionarioMeta(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
     return this.http
-      .put<FuncionarioMeta>(`${this.baseURL}/${funcionarioMeta.funcionarioId}/${funcionarioMeta.metaId}`, funcionarioMeta)
+      .put<FuncionarioMeta>(this.baseURL, funcionarioMeta)
       .pipe(take(1));
   }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GHR.Persistence.Migrations
 {
-    public partial class InitialFuncionarios2 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,8 +31,8 @@ namespace GHR.Persistence.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NomeCompleto = table.Column<string>(type: "TEXT", nullable: true),
                     Visao = table.Column<string>(type: "TEXT", nullable: true),
-                    ImagemUrl = table.Column<string>(type: "TEXT", nullable: true),
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
+                    ImagemURL = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -66,7 +66,7 @@ namespace GHR.Persistence.Migrations
                     OrgaoExpedicaoIdentidade = table.Column<string>(type: "TEXT", nullable: true),
                     UfIdentidade = table.Column<string>(type: "TEXT", nullable: true),
                     EstadoCivil = table.Column<string>(type: "TEXT", nullable: true),
-                    CarteiraTrablho = table.Column<string>(type: "TEXT", nullable: true),
+                    CarteiraTrabalho = table.Column<string>(type: "TEXT", nullable: true),
                     DataExpedicaoCarteiraTrabalho = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
@@ -82,7 +82,10 @@ namespace GHR.Persistence.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     NomeDepartamento = table.Column<string>(type: "TEXT", nullable: true),
                     SiglaDepartamento = table.Column<string>(type: "TEXT", nullable: true),
-                    MetaId = table.Column<int>(type: "INTEGER", nullable: true)
+                    MetaId = table.Column<int>(type: "INTEGER", nullable: true),
+                    Diretor = table.Column<string>(type: "TEXT", nullable: true),
+                    Gerente = table.Column<string>(type: "TEXT", nullable: true),
+                    Supervisor = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -103,7 +106,8 @@ namespace GHR.Persistence.Migrations
                     Cidade = table.Column<string>(type: "TEXT", nullable: true),
                     UF = table.Column<string>(type: "TEXT", nullable: true),
                     Pais = table.Column<string>(type: "TEXT", nullable: true),
-                    CaixaPostal = table.Column<string>(type: "TEXT", nullable: true)
+                    CaixaPostal = table.Column<string>(type: "TEXT", nullable: true),
+                    ComplementoEndereco = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,10 +126,10 @@ namespace GHR.Persistence.Migrations
                     Descricao = table.Column<string>(type: "TEXT", nullable: true),
                     MetaCumprida = table.Column<bool>(type: "INTEGER", nullable: false),
                     MetaAprovada = table.Column<bool>(type: "INTEGER", nullable: false),
-                    InicioPlanejado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FimPlanejado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    InicioRealizado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FimRealizado = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    InicioPlanejado = table.Column<string>(type: "TEXT", nullable: true),
+                    FimPlanejado = table.Column<string>(type: "TEXT", nullable: true),
+                    InicioRealizado = table.Column<string>(type: "TEXT", nullable: true),
+                    FimRealizado = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -273,20 +277,18 @@ namespace GHR.Persistence.Migrations
                     GerenteAdministrativoId = table.Column<int>(type: "INTEGER", nullable: true),
                     GerenteOperacionalId = table.Column<int>(type: "INTEGER", nullable: true),
                     DiretorId = table.Column<int>(type: "INTEGER", nullable: true),
-                    CargoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DepartamentoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ContasId = table.Column<int>(type: "INTEGER", nullable: true),
-                    EnderecoId = table.Column<int>(type: "INTEGER", nullable: false),
-                    DadosPessoaisId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ImagemURL = table.Column<string>(type: "TEXT", nullable: true)
+                    CargoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    DepartamentoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    ContaId = table.Column<int>(type: "INTEGER", nullable: true),
+                    EnderecoId = table.Column<int>(type: "INTEGER", nullable: true),
+                    DadosPessoaisId = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Funcionarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_AspNetUsers_ContasId",
-                        column: x => x.ContasId,
+                        name: "FK_Funcionarios_AspNetUsers_ContaId",
+                        column: x => x.ContaId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -295,25 +297,25 @@ namespace GHR.Persistence.Migrations
                         column: x => x.CargoId,
                         principalTable: "Cargos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Funcionarios_DadosPessoais_DadosPessoaisId",
                         column: x => x.DadosPessoaisId,
                         principalTable: "DadosPessoais",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Funcionarios_Departamentos_DepartamentoId",
                         column: x => x.DepartamentoId,
                         principalTable: "Departamentos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Funcionarios_Enderecos_EnderecoId",
                         column: x => x.EnderecoId,
                         principalTable: "Enderecos",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -323,11 +325,11 @@ namespace GHR.Persistence.Migrations
                     MetaId = table.Column<int>(type: "INTEGER", nullable: false),
                     FuncionarioId = table.Column<int>(type: "INTEGER", nullable: false),
                     MetaCumprida = table.Column<bool>(type: "INTEGER", nullable: false),
-                    InicioAcordado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FimAcordado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    InicioRealizado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FimRealizado = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    SupervisorId = table.Column<int>(type: "INTEGER", nullable: true)
+                    InicioAcordado = table.Column<string>(type: "TEXT", nullable: true),
+                    FimAcordado = table.Column<string>(type: "TEXT", nullable: true),
+                    InicioRealizado = table.Column<string>(type: "TEXT", nullable: true),
+                    FimRealizado = table.Column<string>(type: "TEXT", nullable: true),
+                    Supervisor = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -394,9 +396,9 @@ namespace GHR.Persistence.Migrations
                 column: "CargoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_ContasId",
+                name: "IX_Funcionarios_ContaId",
                 table: "Funcionarios",
-                column: "ContasId");
+                column: "ContaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionarios_DadosPessoaisId",

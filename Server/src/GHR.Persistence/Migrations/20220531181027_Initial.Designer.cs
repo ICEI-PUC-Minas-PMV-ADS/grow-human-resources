@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GHR.Persistence.Migrations
 {
     [DbContext(typeof(GHRContext))]
-    [Migration("20220519213142_Initial-Funcionarios+4")]
-    partial class InitialFuncionarios4
+    [Migration("20220531181027_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,7 +63,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ImagemUrl")
+                    b.Property<string>("ImagemURL")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
@@ -168,6 +168,12 @@ namespace GHR.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Diretor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gerente")
+                        .HasColumnType("TEXT");
+
                     b.Property<int?>("MetaId")
                         .HasColumnType("INTEGER");
 
@@ -175,6 +181,9 @@ namespace GHR.Persistence.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SiglaDepartamento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Supervisor")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -191,7 +200,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("CPF")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CarteiraTrablho")
+                    b.Property<string>("CarteiraTrabalho")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DataExpedicaoCarteiraTrabalho")
@@ -241,6 +250,9 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("Complemento")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ComplementoEndereco")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Logradouro")
                         .HasColumnType("TEXT");
 
@@ -267,7 +279,7 @@ namespace GHR.Persistence.Migrations
                     b.Property<int?>("CargoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ContasId")
+                    b.Property<int?>("ContaId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("DadosPessoaisId")
@@ -297,23 +309,17 @@ namespace GHR.Persistence.Migrations
                     b.Property<int?>("GerenteOperacionalId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ImagemURL")
-                        .HasColumnType("TEXT");
-
                     b.Property<float>("Salario")
                         .HasColumnType("REAL");
 
                     b.Property<int?>("SupervisorId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CargoId");
 
-                    b.HasIndex("ContasId");
+                    b.HasIndex("ContaId");
 
                     b.HasIndex("DadosPessoaisId");
 
@@ -332,23 +338,23 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("MetaId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("FimAcordado")
+                    b.Property<string>("FimAcordado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimRealizado")
+                    b.Property<string>("FimRealizado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioAcordado")
+                    b.Property<string>("InicioAcordado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioRealizado")
+                    b.Property<string>("InicioRealizado")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("MetaCumprida")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Supervisor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("FuncionarioId", "MetaId");
 
@@ -366,16 +372,16 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimPlanejado")
+                    b.Property<string>("FimPlanejado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("FimRealizado")
+                    b.Property<string>("FimRealizado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioPlanejado")
+                    b.Property<string>("InicioPlanejado")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("InicioRealizado")
+                    b.Property<string>("InicioRealizado")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("MetaAprovada")
@@ -520,7 +526,7 @@ namespace GHR.Persistence.Migrations
 
                     b.HasOne("GHR.Domain.DataBase.Contas.Conta", "Contas")
                         .WithMany()
-                        .HasForeignKey("ContasId");
+                        .HasForeignKey("ContaId");
 
                     b.HasOne("GHR.Domain.DataBase.Funcionarios.DadoPessoal", "DadosPessoais")
                         .WithMany()

@@ -1,3 +1,4 @@
+import { DateTimeFormatPipe } from './../../../../helpers/DateTimeFormat.pipe';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -16,6 +17,7 @@ import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.se
 import { FuncionarioMetaService } from 'src/app/services/funcionarios/funcionarioMeta.service';
 import { MetaService } from 'src/app/services/metas/Meta.service';
 import { environment } from 'src/environments/environment';
+import { Constants } from 'src/app/util/constants';
 
 @Component({
   selector: 'app-funcionario-meta-lista',
@@ -35,9 +37,13 @@ export class FuncionarioMetaListaComponent implements OnInit {
   public funcionarioMetas = [] as FuncionarioMeta[];
   public paginacao = {} as Paginacao;
 
+  public TotalMetasNaoCumpridas = 0;
+  public TotalMetasCumpridas = 0;
+
   public imagemURL = environment.apiURL + 'recursos/fotos/'
 
   public iniciar = true;
+
 
   constructor(
     private activatedRouter: ActivatedRoute,
@@ -90,6 +96,9 @@ export class FuncionarioMetaListaComponent implements OnInit {
           (funcionario: Funcionario) => {
             console.log("func", funcionario)
             this.funcionario = funcionario;
+            this.imagemURL = (this.funcionario.contas.imagemURL !== '' && this.funcionario.contas.imagemURL !== null)
+              ? environment.apiURL + 'recursos/fotos/' + this.funcionario.contas.imagemURL
+              : "../../../../assets/img/semImagem.jfif";
           },
           (error: any) => {
             this.toastr.error("Não foi possível carregar a página de metas por funcionario", "Erro!");
@@ -116,6 +125,16 @@ export class FuncionarioMetaListaComponent implements OnInit {
           (funcionarioMetasRetorno: ResultadoPaginacao<FuncionarioMeta[]>) => {
             this.funcionarioMetas = funcionarioMetasRetorno.resultado;
             this.paginacao = funcionarioMetasRetorno.paginacao;
+            this.TotalMetasNaoCumpridas = this.funcionarioMetas.filter(
+              (metasNaoCumpridas) => metasNaoCumpridas.metaCumprida == false
+            ).length;
+            this.TotalMetasCumpridas = this.funcionarioMetas.filter(
+              (metasNaoCumpridas) => metasNaoCumpridas.metaCumprida == true
+            ).length;
+            console.log("metas", funcionarioMetasRetorno)
+            console.log("cont", this.funcionarioMetas.filter(
+              (metasNaoCumpridas) => metasNaoCumpridas.metaCumprida == false
+            ).length);
           },
           (error: any) => {
             this.toastr.error("Não foi possível carregar a página de metas por funcionário", "Erro!");
@@ -149,7 +168,8 @@ export class FuncionarioMetaListaComponent implements OnInit {
         .subscribe(
           (funcionarioMeta: FuncionarioMeta) => {
             this.funcionarioMeta = funcionarioMeta;
-            this.funcionarioMeta.inicioRealizado = new Date().toLocaleString();
+            this.funcionarioMeta.inicioRealizado = new Date(Date.now()).toString();
+            console.log(this.funcionarioMeta)
             this.funcionarioMetaService
               .salvarFuncionarioMeta(this.funcionarioMeta)
               .subscribe(

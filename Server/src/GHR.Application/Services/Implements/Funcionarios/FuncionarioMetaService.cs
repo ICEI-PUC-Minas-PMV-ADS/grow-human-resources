@@ -49,19 +49,16 @@ namespace GHR.Application.Services.Implements.Funcionarios
             }
         }
 
-        public async Task<FuncionarioMetaDto> AlterarFuncionarioMeta(int funcionarioId, int metaId, FuncionarioMetaDto model)
+        public async Task<FuncionarioMetaDto> AlterarFuncionarioMeta(FuncionarioMetaDto model)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionarioMetaAsync(funcionarioId, metaId);
+                    .RecuperarFuncionarioMetaAsync(model.FuncionarioId, model.MetaId);
 
                 if (funcionarioMeta == null) return null;
 
-                model.FuncionarioId = funcionarioMeta.FuncionarioId;
-                model.MetaId = funcionarioMeta.MetaId;
-
-                _mapper.Map(model, funcionarioMeta);
+                 _mapper.Map(model, funcionarioMeta);
 
                 _globalPersistence.Alterar<FuncionarioMeta>(funcionarioMeta);
 

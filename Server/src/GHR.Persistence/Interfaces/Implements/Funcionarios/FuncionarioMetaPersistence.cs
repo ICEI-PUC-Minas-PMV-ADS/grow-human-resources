@@ -49,5 +49,6 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             return await query.FirstOrDefaultAsync();
 
         }
+
     }
 }
