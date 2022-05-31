@@ -17,6 +17,6 @@ namespace GHR.Domain.DataBase.Funcionarios
         public DateTime? FimAcordado { get; set; }
         public DateTime? InicioRealizado { get; set; }
         public DateTime? FimRealizado { get; set; }
-        public int? SupervisorId { get; set; }
+        public string Supervisor { get; set; }
     }
 }

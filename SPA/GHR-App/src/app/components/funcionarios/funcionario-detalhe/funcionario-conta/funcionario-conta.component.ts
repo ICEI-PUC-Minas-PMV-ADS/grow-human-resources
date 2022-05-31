@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 
+import { Conta } from 'src/app/models/contas/Conta';
 import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { ContaVisao } from 'src/app/models/contas/ContaVisao';
 import { DadoPessoal } from 'src/app/models/funcionarios/DadoPessoal';
@@ -30,10 +31,11 @@ export class FuncionarioContaComponent implements OnInit {
   public form: FormGroup;
 
   public contaAtiva = {} as ContaAtiva;
+  public contaVisao = {} as ContaVisao;
   public visaoRH = false;
 
   public funcionario = {} as Funcionario;
-  public contaPesquisa = {} as ContaVisao;
+  public contaPesquisa = {} as Conta;
   public dadosPessoais = {} as DadoPessoal;
   public enderecos = {} as Endereco;
 
@@ -152,15 +154,15 @@ export class FuncionarioContaComponent implements OnInit {
       this.contaService
         .recuperarContaPorUserName(this.form.get('contaPesquisa').value)
         .subscribe(
-          (contaVisao: ContaVisao) => {
+          (conta: Conta) => {
 
-            if (contaVisao == null) {
+            if (conta == null) {
 
               this.toastr.info("Conta não encontrada.", "Informação!");
 
             } else {
 
-              this.contaPesquisa = contaVisao ;
+              this.contaPesquisa = conta ;
               this.form.patchValue(this.contaPesquisa);
               this.consultarFuncionarioDaConta();
 
@@ -213,14 +215,14 @@ export class FuncionarioContaComponent implements OnInit {
 
     if (this.form.valid) {
 
-      this.contaPesquisa = { id: this.contaPesquisa.id, ...this.form.value };
+      this.contaVisao = { id: this.contaPesquisa.id, ...this.form.value };
 
       this.contaService
-        .atualizarConta(this.contaPesquisa)
+        .atualizarConta(this.contaVisao)
         .subscribe(
           (contaVisao: ContaVisao) => {
 
-            this.contaPesquisa = contaVisao;
+            this.contaVisao = contaVisao;
             this.protegerCampoConta = true;
             this.form.get("contaOk").setValue(true);
             this.router.navigate([`funcionarios/detalhe/${this.funcionario.id}`]);},

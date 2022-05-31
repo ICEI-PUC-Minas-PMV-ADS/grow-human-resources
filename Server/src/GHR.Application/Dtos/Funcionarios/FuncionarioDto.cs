@@ -60,6 +60,5 @@ namespace GHR.Application.Dtos.Funcionarios
        public DadoPessoal DadosPessoais { get; set; }
 
       public IEnumerable<MetaDto> Metas { get; set; }
-      public string ImagemURL { get; set; }
        }
 }

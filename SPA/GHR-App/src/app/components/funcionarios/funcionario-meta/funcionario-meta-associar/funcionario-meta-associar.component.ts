@@ -198,10 +198,10 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
     this.funcionarioMeta.funcionarioId = funcionarioId;
     this.funcionarioMeta.metaCumprida = this.meta.metaCumprida;
     this.funcionarioMeta.inicioAcordado = this.meta.inicioPlanejado;
-    this.funcionarioMeta.fimAcordado = this.meta.fimPlanejado;
+    this.funcionarioMeta.fimAcordado = this.meta.fimPlanejado;107110
     this.funcionarioMeta.inicioRealizado = this.meta.inicioRealizado;
     this.funcionarioMeta.fimRealizado = this.meta.fimRealizado;
-    this.funcionarioMeta.supervisorId = 0;
+    this.funcionarioMeta.supervisor = this.form.get('supervisor').value;
 
     this.funcionarioMetaService
       .criarFuncionarioMeta(this.funcionarioMeta)

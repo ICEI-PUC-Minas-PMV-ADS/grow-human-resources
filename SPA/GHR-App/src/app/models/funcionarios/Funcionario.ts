@@ -25,6 +25,5 @@ export class Funcionario {
   enderecos: Endereco;
   dadosPessoaisId: number;
   dadosPessoais: DadoPessoal;
-  imagemURL: string;
   funcionarioMetas: Meta[];
 }

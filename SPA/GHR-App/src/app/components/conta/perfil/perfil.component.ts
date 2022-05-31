@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
-import { Conta } from 'src/app/models/contas/Conta';
+import { ContaVisao } from 'src/app/models/contas/ContaVisao';
 
 import { ContaService } from 'src/app/services/contas/Conta.service';
 import { environment } from 'src/environments/environment';
@@ -16,8 +16,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
+  public contaVisao = {} as ContaVisao;
 
-  public conta = {} as Conta;
 
   public imagemURL = '../../../../assets/img/semImagem.jfif';
 
@@ -35,11 +35,11 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  public recuperarValorForm(conta: Conta): void {
+  public recuperarValorForm(contaVisao: ContaVisao): void {
 
-    this.conta = conta;
-    this.imagemURL = (conta.imagemURL !== '' && conta.imagemURL !== null)
-      ? environment.apiURL + 'recursos/fotos/' + conta.imagemURL
+    this.contaVisao = contaVisao;
+    this.imagemURL = (contaVisao.imagemURL !== '' && contaVisao.imagemURL !== null)
+      ? environment.apiURL + 'recursos/fotos/' + contaVisao.imagemURL
       : "../../../../assets/img/semImagem.jfif";
   }
 

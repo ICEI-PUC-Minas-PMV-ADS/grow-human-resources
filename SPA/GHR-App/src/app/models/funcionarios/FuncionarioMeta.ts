@@ -12,5 +12,5 @@ export class FuncionarioMeta {
   fimAcordado?: string;
   inicioRealizado: string;
   fimRealizado: string;
-  supervisorId: number;
+  supervisor: string;
 }

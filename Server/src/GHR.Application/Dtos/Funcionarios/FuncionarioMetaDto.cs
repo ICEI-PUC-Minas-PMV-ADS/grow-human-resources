@@ -24,7 +24,7 @@ namespace GHR.Application.Dtos.Funcionarios
       
       public DateTime? FimRealizado { get; set; }
       
-      public int? SupervisorId { get; set; }
+      public string Supervisor { get; set; }
 
     }
 }
