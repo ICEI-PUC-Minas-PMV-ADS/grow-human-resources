@@ -1,3 +1,4 @@
+using System.Linq;
 using GHR.Domain.DataBase.Cargos;
 using GHR.Domain.DataBase.Contas;
 using GHR.Domain.DataBase.Departamentos;
@@ -49,9 +50,10 @@ namespace GHR.Persistence.Interfaces.Contexts
                 }
             );
 
-            modelBuilder.Entity<FuncionarioMeta>()
-                .HasKey(FM => new { FM.FuncionarioId, FM.MetaId });
+ //           modelBuilder.Entity<FuncionarioMeta>()
+ //               .HasKey(FM => new { FM.FuncionarioId, FM.MetaId });
 
         }
+
     }
 }

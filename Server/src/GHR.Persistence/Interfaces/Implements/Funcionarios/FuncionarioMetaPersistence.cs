@@ -31,6 +31,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
                                  (fm.Meta.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                                   fm.Meta.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))) ;
 
+            
             return await PaginaLista<FuncionarioMeta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
     
         }
@@ -50,5 +51,19 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
         }
 
+        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaPorIdUnicoAsync(int idUnico)
+        {
+            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
+                .Include(m => m.Meta)
+                .Include(f => f.Funcionario);
+
+            query = query
+                    .AsNoTracking()
+                    .OrderBy(fm => fm.MetaId)
+                    .Where(fm => fm.Id == idUnico);
+
+            return await query.FirstOrDefaultAsync();
+
+        }
     }
 }

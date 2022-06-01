@@ -114,6 +114,26 @@ namespace GHR.Application.Services.Implements.Cargos
             }
         }
 
+        public async Task<CargoDto[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId)
+        {
+            try
+            {
+                var cargo = await _cargoPersistence
+                    .RecuperarCargosPorDepartamentoIdAsync(departamentoId);
+
+                if (cargo == null) return null;
+
+                var cargoMapper = _mapper.Map<CargoDto[]>(cargo);
+
+                return cargoMapper;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<CargoDto> AlterarCargo(int cargoId, CargoDto model)
         {
             try

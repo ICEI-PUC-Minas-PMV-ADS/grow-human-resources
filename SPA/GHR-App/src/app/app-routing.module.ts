@@ -20,6 +20,7 @@ import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContaComponent } from './components/conta/conta.component';
+import { FuncionarioDetalheMetaComponent } from './components/funcionarios/funcionario-detalhe-meta/funcionario-detalhe-meta.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'funcionarios', redirectTo: 'funcionarios/lista', pathMatch: 'full' },
       { path: 'funcionarios', component: FuncionariosComponent,
         children: [
+          { path: 'detalhe/meta/:funcionarioId/:metaId', component: FuncionarioDetalheMetaComponent },
           { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
           { path: 'detalhe', component: FuncionarioDetalheComponent },
           { path: 'lista', component: FuncionarioListaComponent },

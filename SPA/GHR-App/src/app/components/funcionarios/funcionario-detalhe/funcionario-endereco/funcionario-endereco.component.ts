@@ -99,7 +99,6 @@ export class FuncionarioEnderecoComponent implements OnInit {
       .recuperarFuncionarioPorId(this.funcionarioId)
       .subscribe(
         (funcionario: Funcionario) => {
-
           this.form.patchValue(funcionario.enderecos)},
 
         (error: any) => {
@@ -122,12 +121,10 @@ export class FuncionarioEnderecoComponent implements OnInit {
         .salvarEndereco(this.endereco)
         .subscribe(
           (enderecoRetrono: Endereco) => {
-
             this.endereco = enderecoRetrono;
             this.toastr.success("Endereço atualizado.", "Sucesos!");},
 
           (error: any) => {
-
             console.error(error);
             this.toastr.error("Falha ao atualizar Endereço.", "Erro!");})
 

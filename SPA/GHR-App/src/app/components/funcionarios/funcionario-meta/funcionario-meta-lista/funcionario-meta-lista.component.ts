@@ -51,7 +51,8 @@ export class FuncionarioMetaListaComponent implements OnInit {
     private toastr: ToastrService,
     private funcionarioService: FuncionarioService,
     private metaService: MetaService,
-    private funcionarioMetaService: FuncionarioMetaService) {
+    private funcionarioMetaService: FuncionarioMetaService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -184,5 +185,8 @@ export class FuncionarioMetaListaComponent implements OnInit {
           })
         .add(() => this.spinner.hide());
     }
+  }
+  public funcionarioDetalheMeta(funcionarioId: number, metaId: number): void {
+    this.router.navigate([`funcionarios/detalhe/meta/${funcionarioId}/${metaId}`]);
   }
 }

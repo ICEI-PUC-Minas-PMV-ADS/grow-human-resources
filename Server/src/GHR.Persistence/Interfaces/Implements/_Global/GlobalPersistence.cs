@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Contracts.Global;
+using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Interfaces.Implements.Global
 {
@@ -20,6 +21,8 @@ namespace GHR.Persistence.Interfaces.Implements.Global
         public void Alterar<T>(T entity) where T : class
         {
             _context.Update(entity);
+
+            _context.Entry(entity).State = EntityState.Detached;
         }
         public void Excluir<T>(T entity) where T : class
         {

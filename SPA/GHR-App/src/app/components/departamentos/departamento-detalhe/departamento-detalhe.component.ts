@@ -137,7 +137,6 @@ export class DepartamentoDetalheComponent implements OnInit {
   public carregarFuncionariosPorDepartamentoId(): void {
     this.spinner.show();
     const departamentoIdParam = +this.router.snapshot.paramMap.get('id');
-    console.log("funcDiretor", this.funcionarios, departamentoIdParam);
 
     this.funcionarioService
       .recuperarFuncionarioPorDepartamentoId(+departamentoIdParam)
@@ -146,20 +145,17 @@ export class DepartamentoDetalheComponent implements OnInit {
           this.funcionarios = funcionarios;
           this.funcionariosDiretor = funcionarios.filter(
             f => f.cargos.funcao === 'Diretor');
-          console.log("funcDiretor", this.funcionariosDiretor);
           this.funcionariosGerente = funcionarios.filter(
             f => f.cargos.funcao === 'Gerente');
-          console.log("funcDiretor", this.funcionariosGerente);
           this.funcionariosSupervisor = funcionarios.filter(
             f => f.cargos.funcao === 'Supervisor');
-          console.log("funcDiretor", this.funcionariosSupervisor);
         },
         (error: any) => {
           this.toastr.error("Não foi possível carregar funcionario", "Erro!");
           console.error(error);
         })
 
-        .add(() => this.spinner.hide())
+      .add(() => this.spinner.hide())
   }
 }
 

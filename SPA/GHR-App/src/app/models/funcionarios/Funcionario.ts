@@ -10,11 +10,7 @@ export class Funcionario {
   salario: number;
   dataAdmissao?: string;
   dataDemissao?: string;
-  supervisorId: number;
   funcionarioAtivo: Boolean;
-  gerenteAdministrativoId: number;
-  gerenteOperacionaId: number;
-  diretorId: number;
   cargoId: number;
   cargos: Cargo;
   departamentoId: number;

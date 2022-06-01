@@ -29,25 +29,35 @@ namespace GHR.Application.Services.Implements.Contas
             _mapper = mapper;
             _contaPersistence = contaPersistence;
         }
-        public async Task<SignInResult> ValidarContaSenhaAsync(ContaAtualizarDto contaAtualizarDto, string password)
+
+        public async Task<ContaVisaoDto> AtualizarConta(ContaVisaoDto contaVisaoDto)
         {
             try
             {
-                var conta = await _userManager
-                    .Users
-                    .SingleOrDefaultAsync(conta =>
-                        conta.UserName == contaAtualizarDto.UserName.ToLower());
+                var conta = await _contaPersistence.RecuperarContaPorIdAsync(contaVisaoDto.Id);
 
-                return await _signInManager
-                    .CheckPasswordSignInAsync(conta, password, false);
+                if (conta == null) return null;
+                    
+                contaVisaoDto.Id = conta.Id;
+
+                _mapper.Map(contaVisaoDto, conta);
+
+                _contaPersistence.Alterar<Conta>(conta);
+
+                if (await _contaPersistence.SalvarAsync()) {
+                    var contaRetorno = await _contaPersistence.RecuperarContaPorIdAsync(conta.Id);
+
+                    return _mapper.Map<ContaVisaoDto>(contaRetorno);
+                }
+
+                return null;
             }
             catch (System.Exception ex)
             {
-                
-                throw new Exception($"Falha ao validar Conta e Senha. Erro: {ex.Message}");
-            }
-        }
 
+                throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
+            }    
+        }
         public async Task<ContaAtualizarDto> CriarContaAsync(ContaDto contaDto)
         {
             try
@@ -109,6 +119,25 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
+        public async Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorUserNameAsync(userName);
+
+                if (conta == null) return null;
+
+                var ContaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
+
+                return ContaVisaoDto;
+            }
+            catch (System.Exception ex)
+            {
+
+                throw new Exception($"Falha ao recuperar usuário por username. Erro: {ex.Message}");
+            }
+        }
+
         public async Task<ContaAtualizarDto> AlterarConta(ContaAtualizarDto contaAtualizarDto)
         {
             try
@@ -157,33 +186,23 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaVisaoDto> AtualizarConta(ContaVisaoDto contaVisaoDto)
+        public async Task<SignInResult> ValidarContaSenhaAsync(ContaAtualizarDto contaAtualizarDto, string password)
         {
             try
             {
-                var conta = await _contaPersistence.RecuperarContaPorIdAsync(contaVisaoDto.Id);
+                var conta = await _userManager
+                    .Users
+                    .SingleOrDefaultAsync(conta =>
+                        conta.UserName == contaAtualizarDto.UserName.ToLower());
 
-                if (conta == null) return null;
-                    
-                contaVisaoDto.Id = conta.Id;
-
-                _mapper.Map(contaVisaoDto, conta);
-
-                _contaPersistence.Alterar<Conta>(conta);
-
-                if (await _contaPersistence.SalvarAsync()) {
-                    var contaRetorno = await _contaPersistence.RecuperarContaPorIdAsync(conta.Id);
-
-                    return _mapper.Map<ContaVisaoDto>(contaRetorno);
-                }
-
-                return null;
+                return await _signInManager
+                    .CheckPasswordSignInAsync(conta, password, false);
             }
             catch (System.Exception ex)
             {
-
-                throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
-            }    
+                
+                throw new Exception($"Falha ao validar Conta e Senha. Erro: {ex.Message}");
+            }
         }
     }
 }

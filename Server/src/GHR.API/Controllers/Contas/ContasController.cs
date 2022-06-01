@@ -28,13 +28,13 @@ namespace GHR.API.Controllers.Contas
             _utilUpload = utilUpload;
         }
         
-        [HttpGet("RecuperarConta")]
-        public async Task<IActionResult> RecuperarConta() {
+        [HttpGet("RecuperarContaAtiva")]
+        public async Task<IActionResult> RecuperarContaAtiva() {
             try
             {
                 var userName = User.RecuperarUserName();
 
-                var user = await _contaService.RecuperarContaPorUserNameAsync(userName);
+                var user = await _contaService.RecuperarContaAtivaAsync(userName);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace GHR.API.Controllers.Contas
 
                 var contaRetorno = await _contaService.AtualizarConta(conta);
 
-                return Ok(conta);
+                return Ok(contaRetorno);
 
             }
          catch (Exception ex)

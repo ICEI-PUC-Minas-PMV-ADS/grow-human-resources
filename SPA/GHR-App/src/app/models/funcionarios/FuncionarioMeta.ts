@@ -3,6 +3,7 @@ import { Funcionario } from "./Funcionario";
 
 
 export class FuncionarioMeta {
+  id: number;
   metaId: number;
   meta: Meta;
   funcionarioId: number;

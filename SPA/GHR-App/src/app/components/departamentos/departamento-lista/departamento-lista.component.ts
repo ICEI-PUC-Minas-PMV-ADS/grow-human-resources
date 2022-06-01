@@ -76,20 +76,19 @@ export class DepartamentoListaComponent implements OnInit {
 
   }
 
-  openModal(event: any, template: TemplateRef<any>, departamentoId: number): void {
+  public openModal(event: any, template: TemplateRef<any>, departamentoId: number): void {
     event.stopPropagation();
     this.departamentoId= departamentoId
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-    public paginaAlterada(event): void {
+  public paginaAlterada(event): void {
     this.paginacao.paginaAtual = event.page;
-    console.log("page", event.page);
     this.carregarDepartamentos();
   }
 
 
-  confirmar(): void {
+  public confirmar(): void {
     this.modalRef?.hide();
     this.spinner.show();
 
@@ -108,11 +107,11 @@ export class DepartamentoListaComponent implements OnInit {
     ).add(() => this.spinner.hide());
   }
 
-  recusar(): void {
+  public recusar(): void {
     this.modalRef?.hide();
   }
 
-  detalheDepartamento(id: number): void {
+  public detalheDepartamento(id: number): void {
     this.router.navigate([`departamentos/detalhe/${id}`]);
   }
 }

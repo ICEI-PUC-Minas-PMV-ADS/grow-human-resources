@@ -15,5 +15,6 @@ namespace GHR.Application.Dtos.Contas
         public string Visao { get; set; }
         public string Descricao { get; set; }
         public string ImagemURL { get; set; }
+        public string PhoneNumber { get; set; }
     }
 }

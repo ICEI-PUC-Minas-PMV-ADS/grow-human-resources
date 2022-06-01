@@ -8,18 +8,17 @@ namespace GHR.Application.Dtos.Metas
     public class MetaDto
     {
         public int Id { get; set; }
-        public int SupervisorId { get; set; }
-        
+        public string Supervisor { get; set; }
         [Display(Name = "Meta"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
         MinLength(4, ErrorMessage = "O campo {0} deve conter no mínimo 4 caracteres."),
-        MaxLength(50, ErrorMessage = "O campo {0} deve conter no máximo 50 caracteres")]       
+        MaxLength(100, ErrorMessage = "O campo {0} deve conter no máximo 100 caracteres")]       
         public string NomeMeta { get; set; }
 
         [Display(Name = "Descricao Meta"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
-        MinLength(50, ErrorMessage = "O campo {0} deve conter no mínimo 50 caracteres."),
-        MaxLength(500, ErrorMessage = "O campo {0} deve conter no máximo 500 caracteres")]
+        MinLength(30, ErrorMessage = "O campo {0} deve conter no mínimo 30 caracteres."),
+        MaxLength(1500, ErrorMessage = "O campo {0} deve conter no máximo 1500 caracteres")]
         public string Descricao { get; set; }
 
         [Display(Name = "Meta Cumprida?"),

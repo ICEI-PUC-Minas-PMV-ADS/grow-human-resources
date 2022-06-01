@@ -65,6 +65,7 @@ import { FuncionarioMetaService } from './services/funcionarios/funcionarioMeta.
 import { PerfilSenhaComponent } from './components/conta/perfil/perfil-senha/perfil-senha.component';
 import { FuncionarioMetaContaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-conta/funcionario-meta-conta.component';
 import { FuncionarioMetaListaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-lista/funcionario-meta-lista.component';
+import { FuncionarioDetalheMetaComponent } from './components/funcionarios/funcionario-detalhe-meta/funcionario-detalhe-meta.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -82,6 +83,7 @@ defineLocale('pt-br', ptBrLocale);
     DepartamentosComponent,
     FuncionarioContaComponent,
     FuncionarioDetalheComponent,
+    FuncionarioDetalheMetaComponent,
     FuncionarioEmpresaComponent,
     FuncionarioEnderecoComponent,
     FuncionarioListaComponent,

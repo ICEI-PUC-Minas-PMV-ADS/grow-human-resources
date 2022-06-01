@@ -65,6 +65,26 @@ namespace GHR.API.Controllers.Cargos
             }
         }
 
+        [HttpGet("{DepartamentoId}/departamentoId")]
+        public async Task<IActionResult> RecuperarCargosPorDepartamentoId(int departamentoId)
+        {
+            try
+            {
+                var cargo = await _cargoService
+                .RecuperarCargosPorDepartamentoIdAsync(departamentoId);
+
+                if (cargo == null) return NoContent();
+
+                return Ok(cargo);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, 
+                $"Erro ao tentar recuperar cargo por departamentoId. Erro: {ex.Message}");
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post(CargoDto model)
         {

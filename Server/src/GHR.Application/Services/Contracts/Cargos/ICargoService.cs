@@ -11,5 +11,6 @@ namespace GHR.Application.Services.Contracts.Cargos
         Task<bool> ExcluirCargo(int cargoId);
         Task<PaginaLista<CargoDto>> RecuperarCargosAsync(PaginaParametros paginaParametros);
         Task<CargoDto> RecuperarCargoPorIdAsync(int cargoId);
+        Task<CargoDto[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId);
     } 
 }

@@ -2,7 +2,7 @@ import { Funcionario } from "../funcionarios/Funcionario";
 
 export class Meta {
   id: number;
-  supervisorId: number;
+  supervisor: string;
   nomeMeta: string;
   descricao: string;
   metaCumprida: boolean;

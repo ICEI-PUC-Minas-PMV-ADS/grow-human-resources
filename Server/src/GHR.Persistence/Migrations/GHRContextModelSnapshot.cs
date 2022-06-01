@@ -292,26 +292,14 @@ namespace GHR.Persistence.Migrations
                     b.Property<int?>("DepartamentoId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("DiretorId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int?>("EnderecoId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("FuncionarioAtivo")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("GerenteAdministrativoId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int?>("GerenteOperacionalId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<float>("Salario")
                         .HasColumnType("REAL");
-
-                    b.Property<int?>("SupervisorId")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -330,10 +318,8 @@ namespace GHR.Persistence.Migrations
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.FuncionarioMeta", b =>
                 {
-                    b.Property<int>("FuncionarioId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("MetaId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("FimAcordado")
@@ -341,6 +327,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<string>("FimRealizado")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("InicioAcordado")
                         .HasColumnType("TEXT");
@@ -351,10 +340,15 @@ namespace GHR.Persistence.Migrations
                     b.Property<bool>("MetaCumprida")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("MetaId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Supervisor")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("FuncionarioId", "MetaId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuncionarioId");
 
                     b.HasIndex("MetaId");
 
@@ -391,11 +385,8 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("NomeMeta")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SupervisorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Supervisor")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

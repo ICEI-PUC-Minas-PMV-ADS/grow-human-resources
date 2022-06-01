@@ -74,10 +74,8 @@ export class FuncionarioEmpresaComponent implements OnInit {
     this.protegerCampoFuncionario = (this.visaoRH) ? false : true;
 
     this.validarFormularios();
-    this.carregarCargos();
     this.carregarDepartametos();
     this.carregarFuncionario();
-    console.log("selected", this.form.get("departamentoId").valueChanges)
   }
 
   public validarFormularios(): void {
@@ -98,26 +96,6 @@ export class FuncionarioEmpresaComponent implements OnInit {
       dadosPessoaisId: [], });
 
   }
-
-  public carregarCargos(): void  {
-
-    this.spinner.show();
-
-    this.cargoService
-      .recuperarCargos(1, 100)
-      .subscribe(
-        (cargos: ResultadoPaginacao<Cargo[]>) => {
-          this.cargos = cargos.resultado;
-          console.log(cargos)},
-
-        (error: any) => {
-
-          this.toastr.error("Não foi possível carregar os cargos", "Erro!");
-          console.error(error);})
-
-      .add(() => this.spinner.hide());
-    }
-
   public carregarDepartametos(): void {
 
     this.spinner.show();
@@ -126,11 +104,9 @@ export class FuncionarioEmpresaComponent implements OnInit {
       .recuperarDepartamentos()
       .subscribe(
         (departamentoRetorno: ResultadoPaginacao<Departamento[]>) => {
-
           this.departamentos = departamentoRetorno.resultado;},
 
         (error: any) => {
-
           this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
           console.error(error);})
 
@@ -141,9 +117,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
     this.funcionarioId = +this.routerActivated.snapshot.paramMap.get('id');
 
-
     if (this.funcionarioId !== null && this.funcionarioId !== 0) {
-
       this.spinner.show();
 
       this.funcionarioService
@@ -154,9 +128,8 @@ export class FuncionarioEmpresaComponent implements OnInit {
             this.funcionario = funcionario;
             this.form.patchValue(funcionario.departamentos)
             this.form.patchValue(funcionario)
-            console.log("func", this.form.patchValue,  funcionario)
+            this.recuperarCargosPorDepartamentoId(funcionario.departamentoId);
           },
-
 
           (error: any) => {
             this.toastr.error("Não foi possível carregar a página de funcionário.", "Errro!");
@@ -166,7 +139,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
       };
     }
 
-  public salvarFuncionario(): void {
+  public salvarDadosEmpresa(): void {
 
     this.funcionarioId = +this.routerActivated.snapshot.paramMap.get('id');
 
@@ -175,43 +148,56 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
     if (this.form.valid) {
       this.funcionario = { ...this.form.value };
-      console.log("DataAdm", this.funcionario)
 
       this.funcionarioService
         .salvarFuncionario(this.funcionario)
         .subscribe(
-
           (funcionario: Funcionario) => {
-
             this.funcionario = funcionario;
             this.form.patchValue(this.funcionario);
-            this.toastr.success("Funcionario atualizado!", "Sucesso!") },
+            this.toastr.success("Dados da Empresa atualizado!", "Sucesso!")
+          },
 
           (error: any) => {
-
             console.error(error);
-            this.toastr.error("Falha ao atualizar Funcionario.", "Erro!");})
+            this.toastr.error("Falha ao atualizar Dados da Empresa.", "Erro!");})
 
         .add(() => this.spinner.hide())
      }
    }
 
   public validarCampo(campoForm: FormControl): any {
-    return ValidadorFormularios.verificarErroCampo(campoForm);
+    return ValidadorFormularios
+      .verificarErroCampo(campoForm);
   }
 
   public retornarValidacao(nomeCampo: FormControl, nomeElemento: string): any {
-    return ValidadorFormularios.retornarMensagemErro(nomeCampo, nomeElemento);
+    return ValidadorFormularios
+      .retornarMensagemErro(nomeCampo, nomeElemento);
   }
 
   public recuperarValorForm(funcionario: Funcionario): void {
-  this.funcionario = funcionario;
+    this.funcionario = funcionario;
   }
 
   public onClickDeptoId(event: any): void {
+    this.recuperarCargosPorDepartamentoId(+event.value);
+  }
 
-    this.cargos = this.cargos.filter(
-      c => c.departamentoId === +event.value)
-      console.log("selected", this.cargos, event.value)
+  public recuperarCargosPorDepartamentoId(departamentoId: number): void {
+    this.spinner.show
+
+    this.cargoService
+      .recuperarCargosPorDepartamentoId(departamentoId)
+      .subscribe(
+        (cargos: Cargo[]) => {
+          this.cargos = cargos;
+        },
+        (error: any) => {
+          this.toastr.error("Falha ao recuperar cargos por departamento.", "Erro!");
+          console.error(error);
+        })
+
+      .add(() => this.spinner.hide());
     }
 }

@@ -27,7 +27,6 @@ export class CargoService {
       params = params.append('tamanhoDaPagina', itensPorPagina.toString());
     };
 
-    console.log("termo", termo)
     if (termo != null && termo != '')
       params = params.append('termo', termo);
 
@@ -52,6 +51,12 @@ export class CargoService {
   public recuperarCargoPorId(id: number): Observable<Cargo> {
     return this.http
       .get<Cargo>(`${this.baseURL}/${id}`)
+      .pipe(take(1));
+  }
+
+  public recuperarCargosPorDepartamentoId(departamentoId: number): Observable<Cargo[]> {
+    return this.http
+      .get<Cargo[]>(`${this.baseURL}/${departamentoId}/departamentoId`)
       .pipe(take(1));
   }
 

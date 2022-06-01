@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit {
 
   contaCadastro = {} as ContaAtiva;
 
-  form!: FormGroup;
+  form: FormGroup;
 
   get f(): any {
     return this.form.controls;
@@ -31,6 +31,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
   this.validation();
   }
+
   public validation(): void {
 
     const formOptions: AbstractControlOptions = {
@@ -61,11 +62,13 @@ export class CadastroComponent implements OnInit {
   }
 
   validarCampo(campoForm: FormControl): any {
-    return ValidadorFormularios.verificarErroCampo(campoForm);
+    return ValidadorFormularios
+      .verificarErroCampo(campoForm);
   }
 
   retornarValidacao(nomeCampo: FormControl, nomeElemento: string): any {
-    return ValidadorFormularios.retornarMensagemErro(nomeCampo, nomeElemento);
+    return ValidadorFormularios
+      .retornarMensagemErro(nomeCampo, nomeElemento);
   }
 
   cadastrarConta(): void {
@@ -78,7 +81,6 @@ export class CadastroComponent implements OnInit {
         () => this.router.navigateByUrl('/home'),
 
         (error: any) => {
-
           this.toastr.error(error.error, "Erro!");
           console.log(error);  })
   }

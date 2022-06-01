@@ -26,7 +26,7 @@ namespace GHR.Persistence.Interfaces.Implements.Departamentos
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.Id > 0 && 
+                .Where(d => d.Id > 1 && 
                     (d.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      d.SiglaDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
 

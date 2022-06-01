@@ -58,7 +58,6 @@ export class FuncionarioMetaContaComponent implements OnInit {
         .recuperarFuncionarioPorId(+funcionarioIdParam)
         .subscribe(
           (funcionario: Funcionario) => {
-            console.log("func", funcionario)
             this.funcionario = funcionario;
             this.form.patchValue(this.funcionario);
             this.form.patchValue(this.funcionario.contas)

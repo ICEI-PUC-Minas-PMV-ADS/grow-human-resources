@@ -125,8 +125,9 @@ export class FuncionarioDadosPessoaisComponent implements OnInit {
         .salvarDadoPessoal(this.dadosPessoais)
         .subscribe(
           (dadosPessoais: DadoPessoal) => {
-
-            this.dadosPessoais = dadosPessoais},
+            this.dadosPessoais = dadosPessoais
+            this.toastr.success("Dados Pessoais atualizados!", "Sucesso!")
+          },
 
           (error: any) => {
             console.error(error);

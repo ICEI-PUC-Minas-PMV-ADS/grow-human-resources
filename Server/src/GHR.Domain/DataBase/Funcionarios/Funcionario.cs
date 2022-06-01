@@ -14,10 +14,6 @@ namespace  GHR.Domain.DataBase.Funcionarios
         public string DataAdmissao { get; set; }
         public string DataDemissao { get; set; }
         public Boolean FuncionarioAtivo { get; set; }
-        public int? SupervisorId { get; set; }
-        public int? GerenteAdministrativoId { get; set; }
-        public int? GerenteOperacionalId { get; set; }
-        public int? DiretorId { get; set; }
         public int? CargoId { get; set; }
         public Cargo Cargos { get; set; }
         public int? DepartamentoId { get; set; }

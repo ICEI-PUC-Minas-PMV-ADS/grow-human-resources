@@ -35,9 +35,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
             query = query
                 .AsNoTracking()
-                .Where(f => f.Contas.NomeCompleto.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                            f.Contas.Email.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                            f.Contas.PhoneNumber.ToLower().Contains(paginaParametros.Termo.ToLower()))
+                .Where(f => f.Id > 1 &&
+                            (f.Contas.NomeCompleto.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                             f.Contas.Email.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                             f.Contas.PhoneNumber.ToLower().Contains(paginaParametros.Termo.ToLower())))
                 .OrderBy(f => f.Id);
 
             return await PaginaLista<Funcionario>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
@@ -61,7 +62,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
 
             query = query
                 .AsNoTracking()
-                .Where(f => f.Id == funcionarioId)
+                .Where(f => f.Id > 1 && f.Id == funcionarioId)
                 .OrderBy(f => f.Id);
 
             return await query.FirstOrDefaultAsync();
@@ -90,7 +91,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
                 .Include(e => e.Enderecos)
                 .Include(dp => dp.DadosPessoais)
                 .AsNoTracking()
-                .Where(f => f.DepartamentoId == departamentoId)
+                .Where(f => f.Id > 1 && f.DepartamentoId == departamentoId)
                 .OrderBy(f => f.Id);
 
             return await query.ToArrayAsync();

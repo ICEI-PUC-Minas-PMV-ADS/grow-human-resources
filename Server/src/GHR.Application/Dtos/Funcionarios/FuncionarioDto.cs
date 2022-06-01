@@ -27,11 +27,6 @@ namespace GHR.Application.Dtos.Funcionarios
  //     Required(ErrorMessage = "O campo {0} é obrigatório.")]
       public Boolean FuncionarioAtivo { get; set; }
 
-      public int SupervisorId { get; set; }
-      public int GerenteAdministrativoId { get; set; }
-      public int GerenteOperacionalId { get; set; }      
-      public int DiretorId { get; set; }
-
  //     [Display(Name = "Cargo"),
  //     Required(ErrorMessage = "É necessário informa um {0}.")] 
       public int CargoId { get; set; }

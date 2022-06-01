@@ -8,7 +8,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
 
 import { Conta } from 'src/app/models/contas/Conta';
-import { ContaAtiva } from 'src/app/models/contas/ContaAtiva';
 import { ContaVisao } from 'src/app/models/contas/ContaVisao';
 import { DadoPessoal } from 'src/app/models/funcionarios/DadoPessoal';
 import { Endereco } from 'src/app/models/funcionarios/Endereco';
@@ -30,7 +29,6 @@ export class FuncionarioContaComponent implements OnInit {
 
   public form: FormGroup;
 
-  public contaAtiva = {} as ContaAtiva;
   public contaVisao = {} as ContaVisao;
   public visaoRH = false;
 
@@ -60,30 +58,14 @@ export class FuncionarioContaComponent implements OnInit {
     private routerActivated: ActivatedRoute,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService
-    ) {
-        router.events.subscribe(
-          (verificaContaAtiva) => {
-            if (verificaContaAtiva instanceof NavigationEnd) {
-              this.contaService
-                .contaAtual$
-                .subscribe(
-                  (value) => {
-                    this.contaAtiva = { ...value };
-                    this.visaoRH = this.contaAtiva.visao?.includes('RH');})
-            }})
-      }
+    ) { }
 
   ngOnInit(): void {
 
     this.validarFormularios();
+    this.carregarContaAtiva();
 
-
-    this.protegerCampoConta = (this.visaoRH) ? false : true;
-
-    this.form.get("visaoRhLogado").setValue(this.visaoRH);
-    this.form.get("contaOk").setValue(false)
-
-    this.funcionarioId  = +this.routerActivated.snapshot.paramMap.get('id');
+    this.funcionarioId = +this.routerActivated.snapshot.paramMap.get('id');
 
     if (this.funcionarioId !== null && this.funcionarioId !== 0) {
 
@@ -114,10 +96,23 @@ export class FuncionarioContaComponent implements OnInit {
     this.verificarFormulario();
   }
 
-  public verificarFormulario(): void {
-    this.form.valueChanges.subscribe(
-      () => this.changeFormValue.emit({ ... this.form.value })
-    )
+  public carregarContaAtiva(): void {
+    this.spinner.show();
+
+    this.contaService
+      .recuperarContaAtiva()
+      .subscribe(
+        (conta: Conta) => {
+          this.visaoRH = conta.visao.includes('RH');
+          this.protegerCampoConta = (this.visaoRH) ? false : true;
+          this.form.get("visaoRhLogado").setValue(this.visaoRH);
+          this.form.get("contaOk").setValue(false)
+        },
+        (error: any) => {
+          this.toastr.error("Falha ao subir a cotna ativa.", "Erro!");
+          console.error(error);
+        })
+      .add(() => this.spinner.hide())
   }
 
   public carregarFuncionario(): void {
@@ -127,17 +122,21 @@ export class FuncionarioContaComponent implements OnInit {
       .recuperarFuncionarioPorId(this.funcionarioId)
       .subscribe(
         (funcionario: Funcionario) => {
-
           this.funcionario = funcionario;
           this.contaPesquisa = funcionario.contas;
-          this.form.patchValue(this.contaPesquisa);},
-
+          this.form.patchValue(this.contaPesquisa);
+        },
         (error: any) => {
-
           this.toastr.error("Erro ao consultar funcionário.", "Errro!");
           console.error(error);    })
 
       .add(() => this.spinner.hide());
+  }
+
+  public verificarFormulario(): void {
+    this.form.valueChanges.subscribe(
+      () => this.changeFormValue.emit({ ... this.form.value })
+    )
   }
 
   public consultarConta(): void {
@@ -149,19 +148,17 @@ export class FuncionarioContaComponent implements OnInit {
     if (!this.form.get('contaPesquisa').value) {
       this.toastr.info("Conta para pesquisa não iformada.", "Informação!");
       this.spinner.hide();
-    } else {
 
+    } else {
       this.contaService
         .recuperarContaPorUserName(this.form.get('contaPesquisa').value)
         .subscribe(
           (conta: Conta) => {
 
             if (conta == null) {
-
               this.toastr.info("Conta não encontrada.", "Informação!");
 
             } else {
-
               this.contaPesquisa = conta ;
               this.form.patchValue(this.contaPesquisa);
               this.consultarFuncionarioDaConta();
@@ -169,12 +166,10 @@ export class FuncionarioContaComponent implements OnInit {
             };},
 
           (error) => {
-
             console.error(error);
             this.toastr.error("Falha na carga de usuário", "Erro!");})
 
         .add(() => this.spinner.hide());
-
     }
   }
 
@@ -188,21 +183,17 @@ export class FuncionarioContaComponent implements OnInit {
         (funcionario: Funcionario) => {
 
           if (funcionario == null) {
-
             this.salvarFuncionario()
 
           } else {
-
             this.modoEditar = true
             this.funcionario = funcionario
             this.toastr.success("Conta validada, dados do funcionario liberados!", "Sucesso!");
             this.router.navigate([`funcionarios/detalhe/${this.funcionario.id}`]);
             this.form.get("contaOk").setValue(true);
-
           }},
 
         (error: any) => {
-
           this.toastr.error("Não foi possível carregar a página de funcionário.", "Errro!");
           console.error(error);})
 
@@ -225,10 +216,11 @@ export class FuncionarioContaComponent implements OnInit {
             this.contaVisao = contaVisao;
             this.protegerCampoConta = true;
             this.form.get("contaOk").setValue(true);
-            this.router.navigate([`funcionarios/detalhe/${this.funcionario.id}`]);},
+            this.router.navigate([`funcionarios/detalhe/${this.funcionario.id}`]);
+            this.toastr.success("Dados da conta atualizado!", "Sucesso!")
+          },
 
           (error: any) => {
-
             this.toastr.error("Erro ao salvar alterações.", "Erro!");
             console.error(error);})
 
@@ -252,12 +244,10 @@ export class FuncionarioContaComponent implements OnInit {
       .criarDadoPessoal(this.dadosPessoais)
       .subscribe(
         (dadosPessoais: DadoPessoal) => {
-
           this.dadosPessoais = dadosPessoais;
           this.criarEndereco();},
 
         (error: any) => {
-
           console.error(error);
           this.toastr.error("Falha ao atualizar Dados Pessoais.", "Erro!");})
 
@@ -272,7 +262,6 @@ export class FuncionarioContaComponent implements OnInit {
       .criarEndereco(this.enderecos)
       .subscribe(
         (endereco: Endereco) => {
-
           this.enderecos = endereco
           this.criarFuncionario();},
 
@@ -291,8 +280,8 @@ export class FuncionarioContaComponent implements OnInit {
       ...this.form.value};
 
     this.funcionario.contaId = this.contaPesquisa.id;
-    this.funcionario.cargoId = 0;
-    this.funcionario.departamentoId = 0;
+    this.funcionario.cargoId = 1;
+    this.funcionario.departamentoId = 1;
 
     this.funcionarioService
       .criarFuncionario(this.funcionario)

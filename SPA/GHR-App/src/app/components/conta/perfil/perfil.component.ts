@@ -1,6 +1,4 @@
-import { FuncionarioService } from 'src/app/services/funcionarios/funcionario.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +7,7 @@ import { ContaVisao } from 'src/app/models/contas/ContaVisao';
 
 import { ContaService } from 'src/app/services/contas/Conta.service';
 import { environment } from 'src/environments/environment';
+import { Conta } from 'src/app/models/contas/Conta';
 
 @Component({
   selector: 'app-perfil',
@@ -16,6 +15,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent implements OnInit {
+
   public contaVisao = {} as ContaVisao;
 
 
@@ -26,29 +26,37 @@ export class PerfilComponent implements OnInit {
   constructor(
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
-    private contaService: ContaService,
-    private funcionarioService: FuncionarioService,
-    private router: Router
-  ) {}
+    private contaService: ContaService) {
+
+  }
 
   ngOnInit() {
-
+    this.carregarContaAtiva();
   }
 
   public recuperarValorForm(contaVisao: ContaVisao): void {
 
     this.contaVisao = contaVisao;
-    this.imagemURL = (contaVisao.imagemURL !== '' && contaVisao.imagemURL !== null)
-      ? environment.apiURL + 'recursos/fotos/' + contaVisao.imagemURL
-      : "../../../../assets/img/semImagem.jfif";
   }
 
+  public carregarContaAtiva(): void {
+
+    this.contaService
+      .recuperarContaAtiva()
+      .subscribe(
+        (conta: Conta) => {
+          this.contaVisao = { ...conta };
+          this.imagemURL = (conta.imagemURL !== '' && conta.imagemURL !== null)
+            ? environment.apiURL + 'recursos/fotos/' + conta.imagemURL
+            : "../../../../assets/img/semImagem.jfif";
+        })
+  }
 
   public alterarImagem(event: any): void {
     const reader = new FileReader();
 
     reader.onload = (event: any) => this.imagemURL = event.target.result;
-
+    console.log("Reader", reader)
     this.file = event.target.files;
 
     reader.readAsDataURL(this.file[0]);
@@ -58,7 +66,7 @@ export class PerfilComponent implements OnInit {
 
   private uploadImagem(): void {
     this.spinner.show();
-
+    console.log("this.file", this.file, this.contaVisao)
     this.contaService
       .salvarImagem(this.file)
       .subscribe(
@@ -66,7 +74,8 @@ export class PerfilComponent implements OnInit {
 
         (error: any) => {
           this.toastr.error("Falha ao fazer upload da imagem.", "Erro!");
-          console.error(error);})
+          console.error(error);
+        })
 
       .add(() => this.spinner.hide());
    }

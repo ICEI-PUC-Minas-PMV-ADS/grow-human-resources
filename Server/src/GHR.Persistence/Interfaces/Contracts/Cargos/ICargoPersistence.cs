@@ -9,5 +9,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Cargos
     {
         Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros);
         Task<Cargo> RecuperarCargoPorIdAsync(int cargoId);
+        Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId);
     }
 }

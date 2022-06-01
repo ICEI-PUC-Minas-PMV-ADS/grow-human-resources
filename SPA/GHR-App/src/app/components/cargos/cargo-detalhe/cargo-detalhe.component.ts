@@ -25,10 +25,10 @@ import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 
 export class CargoDetalheComponent implements OnInit {
 
-  form!: FormGroup;
-  locale = 'pt-br';
-  cargo = {} as Cargo;
-  estadoSalvar: string = "post";
+  public form: FormGroup;
+  public locale = 'pt-br';
+  public cargo = {} as Cargo;
+  public estadoSalvar: string = "post";
   public departamentos: Departamento[] = [];
 
   get f(): any {

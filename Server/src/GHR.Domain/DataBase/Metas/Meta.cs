@@ -9,8 +9,7 @@ namespace GHR.Domain.DataBase.Metas
     public class Meta
     {
         public int Id { get; set; }
-        public int SupervisorId { get; set; }
-        public int UserId { get; set; }
+        public string Supervisor { get; set; }
         public string NomeMeta { get; set; }
         public string Descricao { get; set; }
         public Boolean MetaCumprida { get; set; }

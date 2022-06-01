@@ -18,6 +18,7 @@ namespace GHR.Persistence.Interfaces.Implements.Contas
         {
             _context = context;
         }
+        
         public async Task<Conta> RecuperarContaPorIdAsync(int id)
         {
             return await _context.Users

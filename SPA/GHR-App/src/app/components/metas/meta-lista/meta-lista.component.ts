@@ -26,7 +26,7 @@ export class MetaListaComponent implements OnInit {
   public paginacao = {} as Paginacao;
   public metaId = 0;
 
-  alteracaoTermoBusca: Subject<string> = new Subject<string>();
+  public alteracaoTermoBusca: Subject<string> = new Subject<string>();
 
   public filtrarMetas(event: any): void {
     if (this.alteracaoTermoBusca.observers.length === 0) {
@@ -59,25 +59,26 @@ export class MetaListaComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.paginacao = { paginaAtual: 1, itensPorPagina: 3, totalItens: 4 } as Paginacao;
     this.carregarMetas();
     this.spinner.show();
   }
 
   public carregarMetas(): void {
     this.spinner.show();
+
     this.metaService
       .recuperarMetas(this.paginacao.paginaAtual,
         this.paginacao.itensPorPagina)
       .subscribe(
         (metasRetorno: ResultadoPaginacao<Meta[]>) => {
           this.metas = metasRetorno.resultado;
-          console.log("func", this.metas)
           this.paginacao = metasRetorno.paginacao;},
         (error: any) => this.toastr.error('Falha ao carregar os funcionários', 'Erro!'))
+
       .add(() => this.spinner.hide());
   }
-  openModal(event: any, template: TemplateRef<any>, metaId: number): void {
+
+  public openModal(event: any, template: TemplateRef<any>, metaId: number): void {
     event.stopPropagation();
     this.metaId= metaId
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
@@ -85,11 +86,10 @@ export class MetaListaComponent implements OnInit {
 
   public paginaAlterada(event): void {
     this.paginacao.paginaAtual = event.page;
-    console.log("page", event.page);
     this.carregarMetas();
     }
 
-  confirmar(): void {
+  public confirmar(): void {
     this.modalRef?.hide();
     this.spinner.show();
 

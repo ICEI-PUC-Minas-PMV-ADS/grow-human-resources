@@ -27,7 +27,7 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.Id > 0 && 
+                .Where(c => c.Id > 1 && 
                     (c.NomeCargo.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      c.Funcao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      c.Departamentos.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
@@ -45,6 +45,18 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
                 .Where(c => c.Id == cargoId);
 
             return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId)
+        {
+            IQueryable<Cargo> query = _context.Cargos;
+
+            query = query
+                .AsNoTracking()
+                .OrderBy(c => c.Id)
+                .Where(c => c.DepartamentoId == departamentoId);
+
+            return await query.ToArrayAsync();
         }
     }  
 }

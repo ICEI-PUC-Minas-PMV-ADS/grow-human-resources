@@ -33,10 +33,12 @@ export class LoginComponent implements OnInit {
     this.contaService
       .login(this.contaLogin)
       .subscribe(
-        () => this.router.navigateByUrl('/home'),
+        () => {
+          window.location.reload
+          this.router.navigateByUrl('/home')
+        },
 
         (error: any) => {
-
           if (error.status = 401)
             this.toastr.error('Conta ou senha inválidos.', 'Erro!');
           else {
@@ -46,6 +48,5 @@ export class LoginComponent implements OnInit {
 
       .add(() => this.spinner.hide())
 
-      //window.location.reload();
   }
 }

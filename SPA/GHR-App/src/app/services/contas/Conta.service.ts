@@ -60,9 +60,9 @@ export class ContaService {
       );
   }
 
-  public recuperarConta(): Observable<Conta> {
+  public recuperarContaAtiva(): Observable<Conta> {
     return this.http
-      .get<Conta>(this.baseURL + 'recuperarConta').pipe(take(1));
+      .get<Conta>(this.baseURL + 'recuperarContaAtiva').pipe(take(1));
   }
 
   public recuperarContaPorUserName(userName: string): Observable<Conta> {
