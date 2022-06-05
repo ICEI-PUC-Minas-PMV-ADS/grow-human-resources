@@ -8,10 +8,10 @@ export class FuncionarioMeta {
   meta: Meta;
   funcionarioId: number;
   funcionario: Funcionario;
-  metaCumprida: boolean;
+  metaCumprida: Boolean;
   inicioAcordado?: string;
   fimAcordado?: string;
-  inicioRealizado: string;
+  inicioRealizadb: string;
   fimRealizado: string;
   supervisor: string;
 }

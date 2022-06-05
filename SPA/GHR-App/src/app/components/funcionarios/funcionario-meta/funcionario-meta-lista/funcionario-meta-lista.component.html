@@ -21,7 +21,10 @@
       (click)="funcionarioDetalheMeta(funcionarioMeta.funcionarioId, funcionarioMeta.metaId)"
       style="cursor: pointer" >
       <div class="card m-0 p-0">
-        <div class="card-header bg-info">
+        <div class="card-header bg-success">
+          <div class="h7 text-center">
+            <b>{{funcionario.contas.nomeCompleto}}</b>
+          </div>
           <div class="h7">
             <b>Meta: </b>{{funcionarioMeta.meta?.nomeMeta}}
           </div>

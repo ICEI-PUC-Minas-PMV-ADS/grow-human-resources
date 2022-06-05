@@ -78,8 +78,10 @@ export class CadastroComponent implements OnInit {
     this.accountService
       .cadastrarConta(this.contaCadastro)
       .subscribe(
-        () => this.router.navigateByUrl('/home'),
-
+        () => {
+          window.location.reload();
+          this.router.navigateByUrl('/home');
+        },
         (error: any) => {
           this.toastr.error(error.error, "Erro!");
           console.log(error);  })

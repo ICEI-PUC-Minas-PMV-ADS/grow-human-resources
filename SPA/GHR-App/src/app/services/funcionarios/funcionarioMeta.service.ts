@@ -16,30 +16,11 @@ export class FuncionarioMetaService {
 
   constructor(private http: HttpClient) { }
 
-  public recuperarFuncionariosMetas(pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<FuncionarioMeta[]>> {
-
-    const resultadoPaginacao: ResultadoPaginacao<FuncionarioMeta[]> = new ResultadoPaginacao<FuncionarioMeta[]>();
-
-    let params = new HttpParams;
-
-    if (pagina != null && itensPorPagina != null) {
-      params = params.append('numeroDaPagina', pagina.toString());
-      params = params.append('tamanhoDaPagina', itensPorPagina.toString());
-    };
-
-    if (termo != null && termo != '')
-      params = params.append('termo', termo);
+  public recuperarFuncionariosMetas(): Observable<FuncionarioMeta[]> {
 
     return this.http
-      .get<FuncionarioMeta[]>(this.baseURL, {observe: 'response', params})
-      .pipe(
-        take(1),
-        map((response) => {          resultadoPaginacao.resultado = response.body;
-          if (response.headers.has('Paginacao')) {
-            resultadoPaginacao.paginacao = JSON.parse(response.headers.get('Paginacao'));
-          }
-          return resultadoPaginacao;
-        }));
+      .get<FuncionarioMeta[]>(this.baseURL + "/metas")
+      .pipe(take(1));
   }
 
   public recuperarMetasPorFuncionarioId(funcionarioId: number, pagina?: number, itensPorPagina?: number, termo?: string): Observable<ResultadoPaginacao<FuncionarioMeta[]>> {
@@ -83,7 +64,7 @@ export class FuncionarioMetaService {
 
   public salvarFuncionarioMeta(funcionarioMeta: FuncionarioMeta): Observable<FuncionarioMeta> {
     return this.http
-      .put<FuncionarioMeta>(this.baseURL, funcionarioMeta)
+      .put<FuncionarioMeta>(this.baseURL + "/alterar", funcionarioMeta)
       .pipe(take(1));
   }
 

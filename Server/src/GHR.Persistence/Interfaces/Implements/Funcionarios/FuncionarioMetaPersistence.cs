@@ -24,14 +24,13 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
                             .Include(f => f.Funcionario)
                             .Include(m => m.Meta);
 
-            query = query
+                query = query
                     .AsNoTracking()
                     .OrderBy(fm => fm.MetaId)
                     .Where(fm => fm.FuncionarioId == funcionarioId &&
                                  (fm.Meta.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                                   fm.Meta.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))) ;
 
-            
             return await PaginaLista<FuncionarioMeta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
     
         }
@@ -65,5 +64,20 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             return await query.FirstOrDefaultAsync();
 
         }
+        
+        public async Task<FuncionarioMeta[]> RecuperarFuncionariosMetasAsync()
+        {
+            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
+                .Include(m => m.Meta)
+                .Include(f => f.Funcionario);
+
+            query = query
+                    .AsNoTracking()
+                    .OrderBy(fm => fm.MetaId);
+
+            return await query.ToArrayAsync();
+
+        }
     }
+    
 }

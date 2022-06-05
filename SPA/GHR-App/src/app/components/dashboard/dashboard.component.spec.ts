@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { FuncionarioDetalheMetaComponent } from './funcionario-detalhe-meta.component';
+import { DashboardComponent } from './dashboard.component';
 
-describe('FuncionarioDetalheMetaComponent', () => {
-  let component: FuncionarioDetalheMetaComponent;
-  let fixture: ComponentFixture<FuncionarioDetalheMetaComponent>;
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FuncionarioDetalheMetaComponent ]
+      declarations: [ DashboardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FuncionarioDetalheMetaComponent);
+    fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

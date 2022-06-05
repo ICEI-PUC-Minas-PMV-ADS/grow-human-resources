@@ -148,6 +148,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
     if (this.form.valid) {
       this.funcionario = { ...this.form.value };
+      this.funcionario.funcionarioAtivo = true;
 
       this.funcionarioService
         .salvarFuncionario(this.funcionario)

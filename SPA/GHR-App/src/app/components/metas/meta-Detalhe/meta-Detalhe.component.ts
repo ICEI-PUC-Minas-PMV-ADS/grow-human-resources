@@ -33,7 +33,7 @@ export class MetaDetalheComponent implements OnInit {
       isAnimated: true,
       adaptivePosition: true,
       dateInputFormat: 'DD/MM/YYYY h:mm a',
-      containerClass: 'theme-success'
+      containerClass: 'theme-default '
     };
   }
 

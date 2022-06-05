@@ -6,12 +6,14 @@
         <small>{{subtitulo}}</small>
       </div>
   </div>
-  <div class="d-flex align-items-center ms-auto" *ngIf="contaLogada">
-    <i class="fa fa-binoculars"></i>
-      <div class="lh-1">
-        <h3 class="mb-0">Visão</h3>
-        <small>{{visao}}</small>
+  <div class="d-flex align-items-center ms-auto" *ngIf="(contaLogada)">
+    <ng-container *ngIf="visao">
+      <i class="fa fa-binoculars"></i>
+        <div class="lh-1">
+          <h3 class="mb-0">Visão</h3>
+          <small>{{visao}}</small>
       </div>
+    </ng-container>
   </div>
   <div class="p-2 ms-auto" *ngIf="botaoListar">
     <button class="btn btn-outline-light" (click)="listar()">

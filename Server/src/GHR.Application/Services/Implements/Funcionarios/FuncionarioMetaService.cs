@@ -54,11 +54,15 @@ namespace GHR.Application.Services.Implements.Funcionarios
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionarioMetaPorIdUnicoAsync(model.Id);
+                    .RecuperarFuncionarioMetaAsync(model.FuncionarioId, model.MetaId);
 
                 if (funcionarioMeta == null) return null;
 
-                 _mapper.Map(model, funcionarioMeta);
+                model.Id = funcionarioMeta.Id;
+                model.MetaId = funcionarioMeta.MetaId;
+                model.FuncionarioId = funcionarioMeta.FuncionarioId;
+
+                _mapper.Map(model, funcionarioMeta);
 
                 _globalPersistence.Alterar<FuncionarioMeta>(funcionarioMeta);
 
@@ -163,5 +167,24 @@ namespace GHR.Application.Services.Implements.Funcionarios
             }
         }
 
+            public async Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync()
+        {
+            try
+            {
+                var funcionarioMeta = await _funcionarioMetaPersistence
+                    .RecuperarFuncionariosMetasAsync();
+
+                if (funcionarioMeta == null) return null;
+
+                var funcionarioMetaMapper = _mapper.Map<FuncionarioMetaDto[]>(funcionarioMeta);
+
+                return funcionarioMetaMapper;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

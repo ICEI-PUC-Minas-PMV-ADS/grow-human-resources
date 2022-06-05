@@ -276,7 +276,6 @@ export class FuncionarioContaComponent implements OnInit {
     this.funcionario = {
       dadosPessoaisId: this.dadosPessoais.id,
       enderecoId: this.enderecos.id,
-      funcionarioAtivo: true,
       ...this.form.value};
 
     this.funcionario.contaId = this.contaPesquisa.id;

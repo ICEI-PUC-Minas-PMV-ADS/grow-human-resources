@@ -20,11 +20,11 @@ import { CargoListaComponent } from './components/cargos/cargo-lista/cargo-lista
 import { FuncionarioMetaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta.component';
 import { HomeComponent } from './components/home/home.component';
 import { ContaComponent } from './components/conta/conta.component';
-import { FuncionarioDetalheMetaComponent } from './components/funcionarios/funcionario-detalhe-meta/funcionario-detalhe-meta.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'conta/perfil', pathMatch: 'full' },
 
   { path: '',
     runGuardsAndResolvers: 'always',
@@ -37,7 +37,6 @@ const routes: Routes = [
       { path: 'funcionarios', redirectTo: 'funcionarios/lista', pathMatch: 'full' },
       { path: 'funcionarios', component: FuncionariosComponent,
         children: [
-          { path: 'detalhe/meta/:funcionarioId/:metaId', component: FuncionarioDetalheMetaComponent },
           { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
           { path: 'detalhe', component: FuncionarioDetalheComponent },
           { path: 'lista', component: FuncionarioListaComponent },
@@ -71,6 +70,15 @@ const routes: Routes = [
           { path: 'lista', component: CargoListaComponent }
         ]
       },
+
+      { path: 'dashboard', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent,
+        children: [
+          { path: 'detalhe/:id', component: CargoDetalheComponent },
+          { path: 'detalhe', component: CargoDetalheComponent },
+          { path: 'lista', component: CargoListaComponent }
+        ]
+      },
     ]
   },
 
@@ -82,7 +90,7 @@ const routes: Routes = [
   },
 
   { path: 'home', component: HomeComponent },
-  { path: '**', redirectTo: 'home', pathMatch: 'full' }
+  { path: '**', redirectTo: 'conta/perfil', pathMatch: 'full' }
 
 ];
 

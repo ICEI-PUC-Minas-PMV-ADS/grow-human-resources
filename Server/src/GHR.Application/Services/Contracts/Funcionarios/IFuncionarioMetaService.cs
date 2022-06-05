@@ -12,5 +12,6 @@ namespace GHR.Application.Services.Contracts.Funcionarios
         Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros);
         Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId);
         Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdIUnicoAsync(int idUnico);
+        Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync();
     }
 }

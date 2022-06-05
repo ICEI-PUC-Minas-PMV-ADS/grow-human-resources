@@ -169,7 +169,7 @@ export class FuncionarioMetaListaComponent implements OnInit {
         .subscribe(
           (funcionarioMeta: FuncionarioMeta) => {
             this.funcionarioMeta = funcionarioMeta;
-            this.funcionarioMeta.inicioRealizado = new Date(Date.now()).toString();
+            this.funcionarioMeta.inicioRealizadb = new Date(Date.now()).toString();
             console.log(this.funcionarioMeta)
             this.funcionarioMetaService
               .salvarFuncionarioMeta(this.funcionarioMeta)

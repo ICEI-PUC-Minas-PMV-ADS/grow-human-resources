@@ -1,3 +1,5 @@
+import { DashboardCabTotaisComponent } from './components/dashboard/dashboard-cabTotais/dashboard-cabTotais.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
@@ -65,7 +67,7 @@ import { FuncionarioMetaService } from './services/funcionarios/funcionarioMeta.
 import { PerfilSenhaComponent } from './components/conta/perfil/perfil-senha/perfil-senha.component';
 import { FuncionarioMetaContaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-conta/funcionario-meta-conta.component';
 import { FuncionarioMetaListaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-lista/funcionario-meta-lista.component';
-import { FuncionarioDetalheMetaComponent } from './components/funcionarios/funcionario-detalhe-meta/funcionario-detalhe-meta.component';
+import { NgChartsModule } from 'ng2-charts';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -78,12 +80,13 @@ defineLocale('pt-br', ptBrLocale);
     ContaComponent,
     DateFormatPipe,
     DateTimeFormatPipe,
+    DashboardCabTotaisComponent,
+    DashboardComponent,
     DepartamentoDetalheComponent,
     DepartamentoListaComponent,
     DepartamentosComponent,
     FuncionarioContaComponent,
     FuncionarioDetalheComponent,
-    FuncionarioDetalheMetaComponent,
     FuncionarioEmpresaComponent,
     FuncionarioEnderecoComponent,
     FuncionarioListaComponent,
@@ -127,6 +130,7 @@ defineLocale('pt-br', ptBrLocale);
       progressBar: true
     }),
     TooltipModule.forRoot(),
+    NgChartsModule,
   ],
   providers: [
     CargoService,

@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GHR.Persistence.Interfaces.Contexts
 {
+
     public class GHRContext : IdentityDbContext<Conta, 
                                                 Funcao, 
                                                 int,
@@ -29,6 +30,7 @@ namespace GHR.Persistence.Interfaces.Contexts
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<FuncionarioMeta> FuncionariosMetas { get; set; }
         public DbSet<Meta> Metas { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -50,10 +52,11 @@ namespace GHR.Persistence.Interfaces.Contexts
                 }
             );
 
- //           modelBuilder.Entity<FuncionarioMeta>()
- //               .HasKey(FM => new { FM.FuncionarioId, FM.MetaId });
+            modelBuilder.Entity<FuncionarioMeta>()
+                .HasKey(FM => new { FM.FuncionarioId, FM.MetaId });
 
         }
+
 
     }
 }

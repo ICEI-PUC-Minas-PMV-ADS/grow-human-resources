@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -14,6 +15,9 @@ import { ContaService } from 'src/app/services/contas/Conta.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  public intervalo;
+  public tempo = 0;
 
   public contaLogin = {} as ContaLogin;
 
@@ -34,9 +38,9 @@ export class LoginComponent implements OnInit {
       .login(this.contaLogin)
       .subscribe(
         () => {
-          window.location.reload
+          location.reload;
           this.router.navigateByUrl('/home')
-        },
+       },
 
         (error: any) => {
           if (error.status = 401)
@@ -46,7 +50,8 @@ export class LoginComponent implements OnInit {
             this.toastr.error('Falha ao realizar login.', 'Erro!');
           }})
 
-      .add(() => this.spinner.hide())
-
+      .add(() => {
+        this.spinner.hide();
+      })
   }
 }

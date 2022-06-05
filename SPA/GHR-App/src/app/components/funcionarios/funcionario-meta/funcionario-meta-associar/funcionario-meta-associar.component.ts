@@ -52,7 +52,7 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
   public validarFormulario(): void {
     this.form = this.fb.group(       {
       nomeMeta: ['', Validators.required],
-      metaCumprida: [false, Validators.required],
+      metaCumprida: ['', Validators.required],
       metaAprovada: [false, Validators.required],
       inicioPlanejado: [null],
       fimPlanejado: [null],
@@ -134,9 +134,9 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
       .subscribe(
         (funcionarioMeta: FuncionarioMeta) => {
           if (funcionarioMeta !== null) {
-            this.toastr.info("Meta já associada a um funcionario!", "Informação!");
+              this.salvarFuncionarioMeta(funcionarioId, metaId);
           } else {
-              this.gravarFuncionarioMeta(funcionarioId, metaId);
+              this.criarFuncionarioMeta(funcionarioId, metaId);
           }
         },
         (error: any) => {
@@ -146,7 +146,7 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
       .add(() => this.spinner.hide());
   }
 
-  public gravarFuncionarioMeta(funcionarioId: number, metaId: number): void {
+  public criarFuncionarioMeta(funcionarioId: number, metaId: number): void {
     this.spinner.show();
 
 
@@ -161,13 +161,39 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
       .subscribe(
         () => {
           this.toastr.success("Associação realizada com sucesso!", "Sucesso!");
-          location.reload();
         },
         (error: any) => {
           console.error(error);
-          this.toastr.info("Meta já associada ao funcionário", "Info!");
+          this.toastr.error("Falha ao cadastrar metas para um funcionario", "Erro!");
         })
       .add(() => this.spinner.hide());
   }
+
+  public salvarFuncionarioMeta(funcionarioId: number, metaId: number): void {
+    this.spinner.show();
+
+
+    this.funcionarioMeta.funcionarioId = funcionarioId;
+    this.funcionarioMeta.metaId = metaId;
+    this.funcionarioMeta.metaCumprida = this.form.get('metaCumprida').value
+    this.funcionarioMeta.inicioRealizadb =   this.funcionarioMeta.inicioAcordado
+    this.funcionarioMeta.fimRealizado = this.form.get('fimRealizado').value
+    console.log("update", this.funcionarioMeta.metaCumprida, this.funcionarioMeta.inicioRealizadb, this.funcionarioMeta.inicioAcordado)
+    console.log(funcionarioId, metaId, this.funcionarioMeta)
+
+    this.funcionarioMetaService
+      .salvarFuncionarioMeta(this.funcionarioMeta)
+      .subscribe(
+        () => {
+          this.toastr.success("Funiconario/Meta atualizado!", "Sucesso!");
+        },
+        (error: any) => {
+          console.error(error);
+          this.toastr.error("Falha ao atualizar meta de um funcionário", "Erro!");
+        })
+      .add(() => this.spinner.hide());
+  }
+
+
 
 }

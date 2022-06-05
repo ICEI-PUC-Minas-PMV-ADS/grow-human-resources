@@ -1,4 +1,4 @@
-<form class="row m-0 p-1 bg-white" [formGroup]="form" (ngSubmit)="associarFuncionarioMeta()">
+<form class="row m-0 p-1 bg-white" [formGroup]="form">
 
   <div class="card d-flex m-0 p-0 bg-light">
     <div class="card-header m-1 p-1 bg-light">
@@ -37,7 +37,7 @@
                         [ngClass]="validarCampo(ctrMeta.metaCumprida)"
                         readonly="true">
                     <option value="false">Não</option>
-                    <option option value="true">Sim</option>
+                    <option value="true">Sim</option>
                   </select>
                   <div class="invalid-feedback">
                     {{retornarValidacao(ctrMeta.metaCumprida, "")}}
@@ -50,7 +50,7 @@
                          [ngClass]="validarCampo(ctrMeta.metaAprovada)"
                         readonly="true">
                     <option value="false">Não</option>
-                    <option option value="true">Sim</option>
+                    <option value="true">Sim</option>
                   </select>
                   <div class="invalid-feedback">
                     {{retornarValidacao(ctrMeta.metaAprovada, "")}}
@@ -93,7 +93,7 @@
       </div>
       <div class="card-footer bg-secondary p-0">
         <div class="d-flex ">
-          <button class="btn btn-success m-1 ms-auto" [disabled]="!form.valid" type="submit">
+          <button class="btn btn-success m-1 ms-auto" [disabled]="!form.valid" (click)="associarFuncionarioMeta()">
             Associar Meta
           </button>
         </div>
@@ -102,5 +102,5 @@
     </div>
 </form>
 
-<!-- <p>Form value: {{form.value | json}}</p>
+ <p>Form value: {{form.value | json}}</p>
 <p>Form status: {{form.status | json}}</p> -->

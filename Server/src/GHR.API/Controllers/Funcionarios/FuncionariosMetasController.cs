@@ -47,6 +47,26 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
 
+        [HttpGet("metas")]
+        public async Task<IActionResult> RecuperarFuncionariosMetasAsync()
+        {
+            try
+            {
+                var funcionarioMeta = await _funcionarioMetaService
+                    .RecuperarFuncionariosMetasAsync();
+
+                if (funcionarioMeta == null) return NoContent();
+
+                return Ok(funcionarioMeta);
+            }
+            catch (Exception ex)
+            {
+
+                return this.StatusCode(StatusCodes.Status500InternalServerError, 
+                $"Erro ao tentar recuperar metas de um funcionário. Erro: {ex.Message}");
+            }
+        }
+
         [HttpGet("{funcionarioId}/{metaId}/meta")]
         public async Task<IActionResult> RecuperarFuncionarioMetaAsync(int funcionarioId, int metaId)
         {
@@ -86,7 +106,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
 
-        [HttpPut]
+        [HttpPut("alterar")]
         public async Task<IActionResult> AlterarFuncionarioMeta(FuncionarioMetaDto model)
         {
             try
