@@ -27,8 +27,9 @@ namespace GHR.API.Controllers.Departamentos
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var departamentos = await _departamentoService
-                    .RecuperarDepartamentosAsync(paginaParametros);
+                    .RecuperarDepartamentosAsync(empresaId, paginaParametros);
 
                 if (departamentos == null) return NoContent();
 
@@ -52,8 +53,9 @@ namespace GHR.API.Controllers.Departamentos
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var departamento = await _departamentoService
-                    .RecuperarDepartamentoPorIdAsync(id);
+                    .RecuperarDepartamentoPorIdAsync(id, empresaId);
 
                 if (departamento == null) return NoContent();
 
@@ -89,7 +91,7 @@ namespace GHR.API.Controllers.Departamentos
         {
             try
             {
-                var departamento = await _departamentoService.AlterarDepartamento(id, model);
+                var departamento = await _departamentoService.AlterarDepartamento(id, model.EmpresaId, model);
 
                 if (departamento == null) return NoContent();
 
@@ -107,12 +109,13 @@ namespace GHR.API.Controllers.Departamentos
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var departamento = await _departamentoService
-                    .RecuperarDepartamentoPorIdAsync(id);
+                    .RecuperarDepartamentoPorIdAsync(id, empresaId);
 
                 if (departamento == null) return NoContent();
 
-                return await _departamentoService.ExcluirDepartamento( id)
+                return await _departamentoService.ExcluirDepartamento( id, empresaId)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar o departamento.");
             }

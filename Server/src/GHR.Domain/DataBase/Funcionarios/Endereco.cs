@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GHR.Domain.DataBase.Empresas;
 
 namespace GHR.Domain.DataBase.Funcionarios
 {
     public class Endereco
     {
         public int Id { get; set; }
+        public int EmpresaId { get; set; }
+        public Empresa Empresas { get; set; }
+        public int FuncionarioId { get; set; }
         public string CEP { get; set; }
         public string Logradouro { get; set; }
         public string Numero { get; set; }
@@ -18,5 +22,6 @@ namespace GHR.Domain.DataBase.Funcionarios
         public string Pais { get; set; }
         public string CaixaPostal { get; set; }
         public string ComplementoEndereco { get; set; }
+        public DateTime DataHoraCriacao { get; set; }
     }
 }

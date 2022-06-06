@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace GHR.Domain.DataBase.Contas
 {
@@ -9,6 +10,9 @@ namespace GHR.Domain.DataBase.Contas
         public string Visao { get; set; }
         public string Descricao { get; set; }
         public string ImagemURL { get; set; }
+        public DateTime Cadastro { get; set; }
+        public DateTime? Encerramento { get; set; }
+        public Boolean Ativa { get; set; }
         public IEnumerable<ContaFuncao> ContasFuncoes { get; set; }
     }
 }   

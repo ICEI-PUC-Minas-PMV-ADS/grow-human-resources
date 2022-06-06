@@ -8,12 +8,11 @@ namespace GHR.Application.Services.Contracts.Funcionarios
         Task<DadoPessoalDto> CriarDadoPessoalAsync(DadoPessoalDto model);
 
         Task<DadoPessoalDto>
-        AlterarDadoPessoalAsync(
-            int dadoPessoalId, DadoPessoalDto model
+        AlterarDadoPessoalAsync(int dadoPessoalId, DadoPessoalDto model
         );
 
-        Task<bool> ExcluirDadoPessoalAsync(int dadoPeassoalId);
+        Task<bool> ExcluirDadoPessoalAsync(int dadoPeassoalId, int empresaId, int fucionarioId);
 
-        Task<DadoPessoalDto> RecuperarDadoPessoalPorIdAsync(int dadoPessoalId);
+        Task<DadoPessoalDto> RecuperarDadoPessoalPorIdAsync(int dadoPessoalId, int empresaId, int fucionarioId);
     }
 }

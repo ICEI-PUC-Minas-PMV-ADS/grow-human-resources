@@ -1,6 +1,6 @@
 using System;
-using GHR.Domain.DataBase.Funcionarios;
-using GHR.Domain.DataBase.Metas;
+using GHR.Application.Dtos.Empresas;
+using GHR.Application.Dtos.Metas;
 
 namespace GHR.Application.Dtos.Funcionarios
 {
@@ -8,22 +8,24 @@ namespace GHR.Application.Dtos.Funcionarios
     {
       public int Id { get; set; }
      public int MetaId { get; set; }
+      public int EmpresaId { get; set; }
+      public EmpresaDto Empresas { get; set; }
 
-      public Meta Meta { get; set; }
+      public MetaDto Meta { get; set; }
 
       public int FuncionarioId { get; set; }
 
-      public Funcionario Funcionario { get; set; }
+      public FuncionarioDto Funcionario { get; set; }
 
       public Boolean MetaCumprida { get; set; }
 
-      public string InicioAcordado { get; set; }
+      public DateTime InicioAcordado { get; set; }
       
-      public string FimAcordado { get; set; }
+      public DateTime FimAcordado { get; set; }
       
-      public string InicioRealizado { get; set; }
+      public DateTime InicioRealizado { get; set; }
       
-      public string FimRealizado { get; set; }
+      public DateTime FimRealizado { get; set; }
       
       public string Supervisor { get; set; }
 

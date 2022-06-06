@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using GHR.Domain.DataBase.Cargos;
 using GHR.Domain.DataBase.Contas;
 using GHR.Domain.DataBase.Departamentos;
+using GHR.Domain.DataBase.Empresas;
 
 namespace  GHR.Domain.DataBase.Funcionarios
 
@@ -10,10 +11,12 @@ namespace  GHR.Domain.DataBase.Funcionarios
     public class Funcionario
     {
         public int Id { get; set; }
+        public int EmpresaId { get; set; }
+        public Empresa Empresas { get; set; }
         public float Salario { get; set; }
-        public string DataAdmissao { get; set; }
-        public string DataDemissao { get; set; }
-        public Boolean FuncionarioAtivo { get; set; }
+        public DateTime DataAdmissao { get; set; }
+        public DateTime? DataDemissao { get; set; }
+        public Boolean Ativo { get; set; }
         public int? CargoId { get; set; }
         public Cargo Cargos { get; set; }
         public int? DepartamentoId { get; set; }

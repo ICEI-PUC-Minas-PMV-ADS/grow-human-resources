@@ -7,8 +7,8 @@ namespace GHR.Persistence.Interfaces.Contracts.Cargos
 {
     public interface ICargoPersistence : IGlobalPersistence
     {
-        Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros);
-        Task<Cargo> RecuperarCargoPorIdAsync(int cargoId);
-        Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId);
+        Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros, int empresaId);
+        Task<Cargo> RecuperarCargoPorIdAsync(int cargoId, int empresaId);
+        Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId, int empresaId);
     }
 }

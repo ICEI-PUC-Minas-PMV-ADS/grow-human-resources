@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 using GHR.Domain.DataBase.Contas;
@@ -21,22 +22,29 @@ namespace GHR.Persistence.Interfaces.Implements.Contas
         
         public async Task<Conta> RecuperarContaPorIdAsync(int id)
         {
-            return await _context.Users
-                                 .FindAsync(id);
+            IQueryable<Conta> query = _context.Users;
+
+            query = query
+                .Where(u => u.Id == id );
+
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<Conta> RecuperarContaPorUserNameAsync(string userName)
         {
-            return await _context.Users
-                                 .SingleOrDefaultAsync(
-                                     user => user.UserName == userName.ToLower()
-                                 );
+            IQueryable<Conta> query = _context.Users;
+
+            query = query
+                .Where(u => u.UserName == userName);    
+            
+            return await query.FirstOrDefaultAsync();
         }
 
         public async Task<IEnumerable<Conta>> RecuperarContasAsync()
         {
-            return await _context.Users
-                                 .ToListAsync();
+            IQueryable<Conta> query = _context.Users;  
+            
+            return await query.ToListAsync();
         }
     }
 

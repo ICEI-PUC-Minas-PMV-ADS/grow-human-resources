@@ -1,10 +1,14 @@
-using System.ComponentModel.DataAnnotations;
+using System;
+using GHR.Application.Dtos.Empresas;
 
 namespace GHR.Application.Dtos.Funcionarios
 {
     public class EnderecoDto
     {
       public int Id { get; set; }
+      public int EmpresaId { get; set; }
+      public EmpresaDto Empresas { get; set; }
+      public int FuncionarioId { get; set; }
       public string CEP { get; set; }
       public string Logradouro { get; set; }
       public string Numero { get; set; }
@@ -15,5 +19,6 @@ namespace GHR.Application.Dtos.Funcionarios
       public string Pais { get; set; }
       public string CaixaPostal { get; set; }
       public string ComplementoEndereco { get; set; }
+      public DateTime DataHoraCriacao { get; set; }
        }
 }

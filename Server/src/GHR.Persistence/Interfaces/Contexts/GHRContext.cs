@@ -2,6 +2,7 @@ using System.Linq;
 using GHR.Domain.DataBase.Cargos;
 using GHR.Domain.DataBase.Contas;
 using GHR.Domain.DataBase.Departamentos;
+using GHR.Domain.DataBase.Empresas;
 using GHR.Domain.DataBase.Funcionarios;
 using GHR.Domain.DataBase.Metas;
 
@@ -30,6 +31,7 @@ namespace GHR.Persistence.Interfaces.Contexts
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<FuncionarioMeta> FuncionariosMetas { get; set; }
         public DbSet<Meta> Metas { get; set; }
+        public DbSet<Empresa> Empresas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,20 +42,48 @@ namespace GHR.Persistence.Interfaces.Contexts
                 {
                     contaFuncao.HasKey(cf => new { cf.UserId, cf.RoleId });
 
-                    contaFuncao.HasOne(fs => fs.Funcoes)
-                            .WithMany(cfs => cfs.ContasFuncoes)
-                            .HasForeignKey(f => f.RoleId)
+                    contaFuncao.HasOne(cf => cf.Funcoes)
+                            .WithMany(cf => cf.ContasFuncoes)
+                            .HasForeignKey(cf => cf.RoleId)
                             .IsRequired();
 
                     contaFuncao.HasOne(cs => cs.Contas)
                             .WithMany(cfs => cfs.ContasFuncoes)
-                            .HasForeignKey(c => c.UserId)
-                            .IsRequired();
+                               .HasForeignKey(c => c.UserId)
+                             .IsRequired();
+
                 }
             );
 
-            modelBuilder.Entity<FuncionarioMeta>()
-                .HasKey(FM => new { FM.FuncionarioId, FM.MetaId });
+        modelBuilder.Entity<Cargo>(            
+            cargo =>
+            {
+                cargo.HasKey(c => new { c.EmpresaId, c.Id });
+
+            });
+
+        modelBuilder.Entity<Departamento>(            
+            departamento =>
+            {
+                departamento.HasKey(d => new { d.EmpresaId, d.Id });
+
+            });
+                    
+        modelBuilder.Entity<Funcionario>(            
+            funcionario =>
+            {
+                funcionario.HasKey(f => new { f.EmpresaId, f.Id });
+
+            });
+   
+        modelBuilder.Entity<FuncionarioMeta>()
+                .HasKey(fm => new { fm.EmpresaId, fm.FuncionarioId, fm.MetaId });
+        
+        modelBuilder.Entity<Endereco>()
+                .HasKey(e => new { e.EmpresaId, e.FuncionarioId, e.Id });
+
+        modelBuilder.Entity<DadoPessoal>()
+                .HasKey(dp => new { dp.EmpresaId, dp.FuncionarioId, dp.Id });
 
         }
 

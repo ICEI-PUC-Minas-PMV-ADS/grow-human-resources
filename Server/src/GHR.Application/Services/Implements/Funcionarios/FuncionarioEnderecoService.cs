@@ -37,7 +37,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var enderecoRetorno = await _funcionarioEnderecoPersistence
-                        .RecuperarEnderecoPorIdAsync(endereco.Id);
+                        .RecuperarEnderecoPorIdAsync(endereco.Id, endereco.EmpresaId, model.FuncionarioId);
 
                     return _mapper.Map<EnderecoDto>(enderecoRetorno);
                 }
@@ -55,7 +55,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
             try
             {
                 var endereco = await _funcionarioEnderecoPersistence
-                    .RecuperarEnderecoPorIdAsync(enderecoId);
+                    .RecuperarEnderecoPorIdAsync(enderecoId, model.EmpresaId, model.FuncionarioId);
 
                 if (endereco == null) return null;
 
@@ -68,7 +68,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var enderecoRetorno = await _funcionarioEnderecoPersistence
-                        .RecuperarEnderecoPorIdAsync( endereco.Id);
+                        .RecuperarEnderecoPorIdAsync( endereco.Id, model.EmpresaId, model.FuncionarioId);
 
                     return _mapper.Map<EnderecoDto>(enderecoRetorno);
                 }
@@ -80,12 +80,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> ExcluirEnderecoAsync(int enderecoId)
+        public async Task<bool> ExcluirEnderecoAsync(int enderecoId, int empresaId, int funcionarioId)
         {
             try
             {
                 var endereco = await _funcionarioEnderecoPersistence
-                    .RecuperarEnderecoPorIdAsync(enderecoId);
+                    .RecuperarEnderecoPorIdAsync(enderecoId,  funcionarioId, empresaId);
 
                 if (endereco == null) throw new Exception("Dado Pessoal não encontrado para exclusão");
                 
@@ -103,12 +103,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
 
            } 
 
-        public async Task<EnderecoDto> RecuperarEnderecoPorIdAsync(int enderecoId)
+        public async Task<EnderecoDto> RecuperarEnderecoPorIdAsync(int enderecoId, int empresaId, int funcionarioId)
         {
             try
             {
                 var endereco = await _funcionarioEnderecoPersistence
-                    .RecuperarEnderecoPorIdAsync(enderecoId);
+                    .RecuperarEnderecoPorIdAsync(enderecoId, funcionarioId, empresaId);
 
                 if (endereco == null) return null;
 

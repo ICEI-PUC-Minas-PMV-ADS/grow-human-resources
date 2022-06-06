@@ -8,9 +8,9 @@ namespace GHR.Application.Services.Contracts.Metas
     {
         Task<MetaDto> CriarMeta(MetaDto model);
         Task<MetaDto> AlterarMeta(int metaId, MetaDto model);
-        Task<bool> ExcluirMeta(int metaId);
-        Task<PaginaLista<MetaDto>> RecuperarMetasAsync(PaginaParametros paginaParametros, bool incluirFuncionarios = false);
-        Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false);
-        Task<MetaDto[]> RecuperarMetasAtivasAsync();
+        Task<bool> ExcluirMeta(int metaId, int empresaId);
+        Task<PaginaLista<MetaDto>> RecuperarMetasAsync(int empresaId, PaginaParametros paginaParametros, bool incluirFuncionarios = false);
+        Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, int empresaId, bool incluirFuncionarios = false);
+        Task<MetaDto[]> RecuperarMetasAtivasAsync(int empresaId);
     }
 }

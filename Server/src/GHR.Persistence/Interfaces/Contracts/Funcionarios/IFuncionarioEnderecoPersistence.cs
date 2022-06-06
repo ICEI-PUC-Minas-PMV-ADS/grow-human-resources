@@ -6,6 +6,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Funcionarios
 {
     public interface IFuncionarioEnderecoPersistence: IGlobalPersistence
     {
-        Task<Endereco> RecuperarEnderecoPorIdAsync(int id);
+        Task<Endereco> RecuperarEnderecoPorIdAsync(int id, int funcionarioId, int empresaId);
     }
 }

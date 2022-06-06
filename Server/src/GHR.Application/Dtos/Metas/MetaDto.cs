@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using GHR.Application.Dtos.Empresas;
 using GHR.Application.Dtos.Funcionarios;
 
 namespace GHR.Application.Dtos.Metas
@@ -8,6 +9,8 @@ namespace GHR.Application.Dtos.Metas
     public class MetaDto
     {
         public int Id { get; set; }
+                public int EmpresaId { get; set; }
+        public EmpresaDto Empresas { get; set; }
         public string Supervisor { get; set; }
         [Display(Name = "Meta"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
@@ -29,10 +32,10 @@ namespace GHR.Application.Dtos.Metas
         Required(ErrorMessage = "O campo {0} é obrigatório.")]
         public Boolean MetaAprovada { get; set; }
 
-        public string InicioPlanejado { get; set; }
-        public string FimPlanejado { get; set; }
-        public string InicioRealizado { get; set; }
-        public string FimRealizado { get; set; }
+        public DateTime? InicioPlanejado { get; set; }
+        public DateTime? FimPlanejado { get; set; }
+        public DateTime? InicioRealizado { get; set; }
+        public DateTime? FimRealizado { get; set; }
         public IEnumerable<FuncionarioDto> FuncionariosDto { get; set; }
     }
 }

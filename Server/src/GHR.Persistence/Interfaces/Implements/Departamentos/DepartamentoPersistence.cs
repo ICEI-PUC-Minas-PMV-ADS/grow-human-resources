@@ -19,28 +19,30 @@ namespace GHR.Persistence.Interfaces.Implements.Departamentos
         {
             _context = context;
         }
-        public async Task<PaginaLista<Departamento>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros)
+        public async Task<PaginaLista<Departamento>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros, int empresaId)
         {
-            IQueryable<Departamento> query = _context.Departamentos;
+            IQueryable<Departamento> query = _context.Departamentos
+                .Include(e => e.Empresas);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.Id > 1 && 
+                .Where(d => d.Id > 1 && d.EmpresaId == empresaId &&
                     (d.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      d.SiglaDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
 
             return await PaginaLista<Departamento>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
         }
 
-        public async Task<Departamento> RecuperarDepartamentoPorIdAsync(int departamentoId)
+        public async Task<Departamento> RecuperarDepartamentoPorIdAsync(int departamentoId, int empresaId)
         {
-            IQueryable<Departamento> query = _context.Departamentos;
+            IQueryable<Departamento> query = _context.Departamentos
+                .Include(e => e.Empresas);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(d => d.Id)
-                .Where(d => d.Id == departamentoId && d.Id > 0);
+                .Where(d => d.Id == departamentoId && d.Id > 1 && d.EmpresaId == empresaId);
 
             return await query.FirstOrDefaultAsync();
         }

@@ -18,62 +18,52 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             _context = context;
         }
         //Funcionarios
-        public async Task<PaginaLista<FuncionarioMeta>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros)
+        public async Task<PaginaLista<FuncionarioMeta>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, int empresaId, PaginaParametros paginaParametros)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas               
-                            .Include(f => f.Funcionario)
-                            .Include(m => m.Meta);
+                .Include(e => e.Empresas)
+                .Include(f => f.Funcionarios)
+                .Include(m => m.Metas);
 
                 query = query
                     .AsNoTracking()
                     .OrderBy(fm => fm.MetaId)
-                    .Where(fm => fm.FuncionarioId == funcionarioId &&
-                                 (fm.Meta.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                                  fm.Meta.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))) ;
+                    .Where(fm => fm.FuncionarioId == funcionarioId && fm.EmpresaId == empresaId &&
+                                 (fm.Metas.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                                  fm.Metas.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))) ;
 
             return await PaginaLista<FuncionarioMeta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
     
         }
-        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaAsync(int funcionarioId, int metaId)
+        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaAsync(int funcionarioId, int metaId, int empresaId)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
-                .Include(m => m.Meta)
-                .Include(f => f.Funcionario);
+                .Include(e => e.Empresas)
+                .Include(m => m.Metas)
+                .Include(f => f.Funcionarios);
 
             query = query
                     .AsNoTracking()
                     .OrderBy(fm => fm.MetaId)
                     .Where(fm => fm.FuncionarioId == funcionarioId &&
-                                 fm.MetaId == metaId);
+                                 fm.MetaId == metaId &&
+                                 fm.EmpresaId == empresaId );
 
             return await query.FirstOrDefaultAsync();
 
         }
-
-        public async Task<FuncionarioMeta> RecuperarFuncionarioMetaPorIdUnicoAsync(int idUnico)
+       
+        public async Task<FuncionarioMeta[]> RecuperarFuncionariosMetasAsync(int empresaId)
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
-                .Include(m => m.Meta)
-                .Include(f => f.Funcionario);
+                .Include(e => e.Empresas)
+                .Include(m => m.Metas)
+                .Include(f => f.Funcionarios);
 
             query = query
                     .AsNoTracking()
                     .OrderBy(fm => fm.MetaId)
-                    .Where(fm => fm.Id == idUnico);
-
-            return await query.FirstOrDefaultAsync();
-
-        }
-        
-        public async Task<FuncionarioMeta[]> RecuperarFuncionariosMetasAsync()
-        {
-            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
-                .Include(m => m.Meta)
-                .Include(f => f.Funcionario);
-
-            query = query
-                    .AsNoTracking()
-                    .OrderBy(fm => fm.MetaId);
+                    .Where(fm => fm.EmpresaId == empresaId);
 
             return await query.ToArrayAsync();
 

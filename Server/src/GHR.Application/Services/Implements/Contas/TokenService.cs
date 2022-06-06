@@ -29,12 +29,12 @@ namespace GHR.Application
             _mapper = mapper;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
-        public async Task<string> CriarToken(ContaAtualizarDto contaAtualizarDto)
+        public async Task<string> CriarToken(ContaAtualizarDto contaAtualizarDto, int empresaId)
         {
             var user = _mapper.Map<Conta>(contaAtualizarDto);
 
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.NameIdentifier, Convert.ToString(empresaId)),
                 new Claim(ClaimTypes.Name, user.UserName),
             };
 

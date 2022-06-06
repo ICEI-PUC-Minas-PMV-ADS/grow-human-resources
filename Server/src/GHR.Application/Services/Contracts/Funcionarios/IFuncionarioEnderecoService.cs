@@ -12,8 +12,8 @@ namespace GHR.Application.Services.Contracts.Funcionarios
             int enderecoId, EnderecoDto model
         );
 
-        Task<bool> ExcluirEnderecoAsync(int enderecoId);
+        Task<bool> ExcluirEnderecoAsync(int enderecoId, int empresaId, int funcionarioId);
 
-        Task<EnderecoDto> RecuperarEnderecoPorIdAsync(int enderecoId);
+        Task<EnderecoDto> RecuperarEnderecoPorIdAsync(int enderecoId, int empresaId, int funcionarioId);
     }
 }

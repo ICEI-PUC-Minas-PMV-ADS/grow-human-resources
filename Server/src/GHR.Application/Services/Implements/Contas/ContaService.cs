@@ -80,7 +80,7 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId)
+        public async Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId, int empresaId)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace GHR.Application.Services.Implements.Contas
         }
 
 
-        public async Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName)
+        public async Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName, int empresaId)
         {
             try
             {
@@ -119,7 +119,7 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName)
+        public async Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName, int empresaId)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace GHR.Application.Services.Implements.Contas
             }
         }
 
-        public async Task<ContaAtualizarDto> AlterarConta(ContaAtualizarDto contaAtualizarDto)
+        public async Task<ContaAtualizarDto> AlterarConta(int empresaId, ContaAtualizarDto contaAtualizarDto)
         {
             try
             {
@@ -171,13 +171,13 @@ namespace GHR.Application.Services.Implements.Contas
             }    
         }
 
-        public async Task<bool> VerificarContaExiste(string userName)
+        public async Task<bool> VerificarContaExiste(string userName, int empresaId)
         {
             try
             {
                 return await _userManager
                     .Users                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                    .AnyAsync(user => user.UserName == userName.ToLower());
+                    .AnyAsync(user => user.UserName == userName.ToLower() );
             }
             catch (System.Exception ex)
             {
@@ -193,7 +193,7 @@ namespace GHR.Application.Services.Implements.Contas
                 var conta = await _userManager
                     .Users
                     .SingleOrDefaultAsync(conta =>
-                        conta.UserName == contaAtualizarDto.UserName.ToLower());
+                        conta.UserName == contaAtualizarDto.UserName.ToLower() );
 
                 return await _signInManager
                     .CheckPasswordSignInAsync(conta, password, false);

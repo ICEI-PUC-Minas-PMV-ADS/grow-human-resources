@@ -26,13 +26,13 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet]
-        public async Task<IActionResult> RecuperarFuncionarios([FromQuery]PaginaParametros paginaParametros)
+        public async Task<IActionResult> RecuperarFuncionarios(int empresaId, [FromQuery]PaginaParametros paginaParametros)
         {
             try
             {
 
                 var funcionarios = await _funcionarioService
-                    .RecuperarFuncionariosAsync(paginaParametros, true);
+                    .RecuperarFuncionariosAsync(empresaId, paginaParametros, true);
 
                 if (funcionarios == null) return NoContent();
 
@@ -52,12 +52,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> RecuperarFuncionarioPorId(int id)
+        public async Task<IActionResult> RecuperarFuncionarioPorId(int id, int empresaId)
         {
             try
             {
                 var funcionario = await _funcionarioService
-                    .RecuperarFuncionarioPorIdAsync(id, true);
+                    .RecuperarFuncionarioPorIdAsync(id, empresaId, true);
 
                 if (funcionario == null) return NoContent();
 
@@ -71,12 +71,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{contaId}/contaId")]
-        public async Task<IActionResult> RecuperarFuncionarioPorUserId(int contaId)
+        public async Task<IActionResult> RecuperarFuncionarioPorUserId(int contaId, int empresaId)
         {
             try
             {
                 var funcionario = await _funcionarioService
-                    .RecuperarFuncionarioPorContaIdAsync(contaId);
+                    .RecuperarFuncionarioPorContaIdAsync(contaId, empresaId);
 
                 if (funcionario == null) return NoContent();
 
@@ -111,12 +111,12 @@ namespace GHR.API.Controllers.Funcionarios
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> SalvarFuncionario(int id, FuncionarioDto model)
+        public async Task<IActionResult> SalvarFuncionario(int id, int empresaId, FuncionarioDto model)
         {
             try
             {
                 var funcionario = await _funcionarioService
-                    .AlterarFuncionario(id, model);
+                    .AlterarFuncionario(id, empresaId, model);
 
                 if (funcionario == null) return NoContent();
 
@@ -130,17 +130,17 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> ExcluirFuncioanrio(int id)
+        public async Task<IActionResult> ExcluirFuncioanrio(int id, int empresaId)
         {
             try
             {
                 var funcionario = await _funcionarioService
-                    .RecuperarFuncionarioPorIdAsync(id, true);
+                    .RecuperarFuncionarioPorIdAsync(id, empresaId,  true);
 
                 if (funcionario == null) return NoContent();
 
                 
-                if (await _funcionarioService.ExcluirFuncionario( id)){
+                if (await _funcionarioService.ExcluirFuncionario( id, empresaId)){
                     return Ok(new { message = "Excluído" });
                 }
                     throw new Exception("Ocorreu ma falaha ao tentar deletar o funcionario.");
@@ -154,13 +154,13 @@ namespace GHR.API.Controllers.Funcionarios
         }
         
         [HttpGet("{departamentoId}/deptoId")]
-        public async Task<IActionResult> RecuperarFuncionarioPorDepartamentoCargo(int departamentoId)
+        public async Task<IActionResult> RecuperarFuncionarioPorDepartamentoCargo(int departamentoId, int empresaId)
         {
             try
             {
 
                 var funcionarios = await _funcionarioService
-                    .RecuperarFuncionarioPorDepartamentoIdAsync(departamentoId);
+                    .RecuperarFuncionarioPorDepartamentoIdAsync(departamentoId, empresaId);
 
                 if (funcionarios == null) return NoContent();
 

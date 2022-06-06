@@ -19,11 +19,25 @@ namespace GHR.Persistence.Migrations
 
             modelBuilder.Entity("GHR.Domain.DataBase.Cargos.Cargo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataEncerramento")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<int>("DepartamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartamentosEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartamentosId")
                         .HasColumnType("int");
 
                     b.Property<string>("Funcao")
@@ -32,9 +46,9 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("NomeCargo")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmpresaId", "Id");
 
-                    b.HasIndex("DepartamentoId");
+                    b.HasIndex("DepartamentosEmpresaId", "DepartamentosId");
 
                     b.ToTable("Cargos");
                 });
@@ -47,6 +61,12 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<bool>("Ativa")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("Cadastro")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -61,6 +81,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("Encerramento")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("ImagemURL")
                         .HasColumnType("longtext");
@@ -163,18 +186,26 @@ namespace GHR.Persistence.Migrations
 
             modelBuilder.Entity("GHR.Domain.DataBase.Departamentos.Departamento", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime>("DataHoraCriacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("DataHoraEncerramento")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Diretor")
                         .HasColumnType("longtext");
 
                     b.Property<string>("Gerente")
                         .HasColumnType("longtext");
-
-                    b.Property<int?>("MetaId")
-                        .HasColumnType("int");
 
                     b.Property<string>("NomeDepartamento")
                         .HasColumnType("longtext");
@@ -185,15 +216,57 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("Supervisor")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmpresaId", "Id");
 
                     b.ToTable("Departamentos");
                 });
 
-            modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.DadoPessoal", b =>
+            modelBuilder.Entity("GHR.Domain.DataBase.Empresas.Empresa", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Ativa")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("ContasId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("Desativacao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Logotipo")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NomeEmpresa")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("NomeFantasia")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContasId");
+
+                    b.ToTable("Empresas");
+                });
+
+            modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.DadoPessoal", b =>
+                {
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("CPF")
@@ -202,11 +275,11 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("CarteiraTrabalho")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("DataExpedicaoCarteiraTrabalho")
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("DataExpedicaoCarteiraTrabalho")
+                        .HasColumnType("datetime(6)");
 
-                    b.Property<string>("DataExpedicaoIdentidade")
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("DataExpedicaoIdentidade")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("EstadoCivil")
                         .HasColumnType("longtext");
@@ -223,15 +296,20 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("UfIdentidade")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmpresaId", "FuncionarioId", "Id");
 
                     b.ToTable("DadosPessoais");
                 });
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.Endereco", b =>
                 {
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<string>("Bairro")
@@ -252,6 +330,9 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("ComplementoEndereco")
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("DataHoraCriacao")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Logradouro")
                         .HasColumnType("longtext");
 
@@ -264,61 +345,96 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("UF")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("EmpresaId", "FuncionarioId", "Id");
 
                     b.ToTable("Enderecos");
                 });
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.Funcionario", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int?>("CargoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CargosEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CargosId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ContaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DadosPessoaisEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DadosPessoaisFuncionarioId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("DadosPessoaisId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DataAdmissao")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("DadosPessoaisId1")
+                        .HasColumnType("int");
 
-                    b.Property<string>("DataDemissao")
-                        .HasColumnType("longtext");
+                    b.Property<DateTime>("DataAdmissao")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime?>("DataDemissao")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("DepartamentoId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartamentosEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DepartamentosId")
                         .HasColumnType("int");
 
                     b.Property<int?>("EnderecoId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("FuncionarioAtivo")
-                        .HasColumnType("tinyint(1)");
+                    b.Property<int?>("EnderecosEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EnderecosFuncionarioId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("EnderecosId")
+                        .HasColumnType("int");
 
                     b.Property<float>("Salario")
                         .HasColumnType("float");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("CargoId");
+                    b.HasKey("EmpresaId", "Id");
 
                     b.HasIndex("ContaId");
 
-                    b.HasIndex("DadosPessoaisId");
+                    b.HasIndex("CargosEmpresaId", "CargosId");
 
-                    b.HasIndex("DepartamentoId");
+                    b.HasIndex("DepartamentosEmpresaId", "DepartamentosId");
 
-                    b.HasIndex("EnderecoId");
+                    b.HasIndex("DadosPessoaisEmpresaId", "DadosPessoaisFuncionarioId", "DadosPessoaisId1");
+
+                    b.HasIndex("EnderecosEmpresaId", "EnderecosFuncionarioId", "EnderecosId");
 
                     b.ToTable("Funcionarios");
                 });
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.FuncionarioMeta", b =>
                 {
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("FuncionarioId")
                         .HasColumnType("int");
 
@@ -331,7 +447,10 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("FimRealizado")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Id")
+                    b.Property<int>("FuncionariosEmpresaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FuncionariosId")
                         .HasColumnType("int");
 
                     b.Property<string>("InicioAcordado")
@@ -340,15 +459,17 @@ namespace GHR.Persistence.Migrations
                     b.Property<string>("InicioRealizado")
                         .HasColumnType("longtext");
 
-                    b.Property<bool>("MetaConcluida")
+                    b.Property<bool>("MetaCumprida")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Supervisor")
                         .HasColumnType("longtext");
 
-                    b.HasKey("FuncionarioId", "MetaId");
+                    b.HasKey("EmpresaId", "FuncionarioId", "MetaId");
 
                     b.HasIndex("MetaId");
+
+                    b.HasIndex("FuncionariosEmpresaId", "FuncionariosId");
 
                     b.ToTable("FuncionariosMetas");
                 });
@@ -361,6 +482,9 @@ namespace GHR.Persistence.Migrations
 
                     b.Property<string>("Descricao")
                         .HasColumnType("longtext");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("FimPlanejado")
                         .HasColumnType("longtext");
@@ -387,6 +511,8 @@ namespace GHR.Persistence.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Metas");
                 });
@@ -477,13 +603,21 @@ namespace GHR.Persistence.Migrations
 
             modelBuilder.Entity("GHR.Domain.DataBase.Cargos.Cargo", b =>
                 {
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("GHR.Domain.DataBase.Departamentos.Departamento", "Departamentos")
                         .WithMany()
-                        .HasForeignKey("DepartamentoId")
+                        .HasForeignKey("DepartamentosEmpresaId", "DepartamentosId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Departamentos");
+
+                    b.Navigation("Empresas");
                 });
 
             modelBuilder.Entity("GHR.Domain.DataBase.Contas.ContaFuncao", b =>
@@ -505,27 +639,75 @@ namespace GHR.Persistence.Migrations
                     b.Navigation("Funcoes");
                 });
 
+            modelBuilder.Entity("GHR.Domain.DataBase.Departamentos.Departamento", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresas");
+                });
+
+            modelBuilder.Entity("GHR.Domain.DataBase.Empresas.Empresa", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Contas.Conta", "Contas")
+                        .WithMany()
+                        .HasForeignKey("ContasId");
+
+                    b.Navigation("Contas");
+                });
+
+            modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.DadoPessoal", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresas");
+                });
+
+            modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.Endereco", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresas");
+                });
+
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.Funcionario", b =>
                 {
-                    b.HasOne("GHR.Domain.DataBase.Cargos.Cargo", "Cargos")
-                        .WithMany()
-                        .HasForeignKey("CargoId");
-
                     b.HasOne("GHR.Domain.DataBase.Contas.Conta", "Contas")
                         .WithMany()
                         .HasForeignKey("ContaId");
 
-                    b.HasOne("GHR.Domain.DataBase.Funcionarios.DadoPessoal", "DadosPessoais")
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
                         .WithMany()
-                        .HasForeignKey("DadosPessoaisId");
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GHR.Domain.DataBase.Cargos.Cargo", "Cargos")
+                        .WithMany()
+                        .HasForeignKey("CargosEmpresaId", "CargosId");
 
                     b.HasOne("GHR.Domain.DataBase.Departamentos.Departamento", "Departamentos")
                         .WithMany()
-                        .HasForeignKey("DepartamentoId");
+                        .HasForeignKey("DepartamentosEmpresaId", "DepartamentosId");
+
+                    b.HasOne("GHR.Domain.DataBase.Funcionarios.DadoPessoal", "DadosPessoais")
+                        .WithMany()
+                        .HasForeignKey("DadosPessoaisEmpresaId", "DadosPessoaisFuncionarioId", "DadosPessoaisId1");
 
                     b.HasOne("GHR.Domain.DataBase.Funcionarios.Endereco", "Enderecos")
                         .WithMany()
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecosEmpresaId", "EnderecosFuncionarioId", "EnderecosId");
 
                     b.Navigation("Cargos");
 
@@ -535,26 +717,47 @@ namespace GHR.Persistence.Migrations
 
                     b.Navigation("Departamentos");
 
+                    b.Navigation("Empresas");
+
                     b.Navigation("Enderecos");
                 });
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.FuncionarioMeta", b =>
                 {
-                    b.HasOne("GHR.Domain.DataBase.Funcionarios.Funcionario", "Funcionario")
-                        .WithMany("FuncionariosMetas")
-                        .HasForeignKey("FuncionarioId")
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GHR.Domain.DataBase.Metas.Meta", "Meta")
+                    b.HasOne("GHR.Domain.DataBase.Metas.Meta", "Metas")
                         .WithMany("FuncionariosMetas")
                         .HasForeignKey("MetaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Funcionario");
+                    b.HasOne("GHR.Domain.DataBase.Funcionarios.Funcionario", "Funcionarios")
+                        .WithMany("FuncionariosMetas")
+                        .HasForeignKey("FuncionariosEmpresaId", "FuncionariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Meta");
+                    b.Navigation("Empresas");
+
+                    b.Navigation("Funcionarios");
+
+                    b.Navigation("Metas");
+                });
+
+            modelBuilder.Entity("GHR.Domain.DataBase.Metas.Meta", b =>
+                {
+                    b.HasOne("GHR.Domain.DataBase.Empresas.Empresa", "Empresas")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

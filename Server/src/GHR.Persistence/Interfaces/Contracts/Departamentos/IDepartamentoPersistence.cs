@@ -8,7 +8,7 @@ namespace GHR.Persistence.Interfaces.Contracts.Departamentos
     public interface IDepartamentoPersistence : IGlobalPersistence 
     {
         //Funcionarios
-        Task<PaginaLista<Departamento>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros);
-        Task<Departamento> RecuperarDepartamentoPorIdAsync(int departamentoId);
+        Task<PaginaLista<Departamento>> RecuperarDepartamentosAsync(PaginaParametros paginaParametros, int empresaId);
+        Task<Departamento> RecuperarDepartamentoPorIdAsync(int departamentoId, int empresaId);
     }
 }

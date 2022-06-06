@@ -27,8 +27,9 @@ namespace GHR.API.Controllers.Funcionarios
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarMetasPorFuncionarioIdAsync(funcionarioId, paginaParametros);
+                    .RecuperarMetasPorFuncionarioIdAsync(funcionarioId, empresaId, paginaParametros);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -52,8 +53,9 @@ namespace GHR.API.Controllers.Funcionarios
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarFuncionariosMetasAsync();
+                    .RecuperarFuncionariosMetasAsync(empresaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -72,8 +74,9 @@ namespace GHR.API.Controllers.Funcionarios
         {
             try 
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId);
+                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId, empresaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
@@ -131,12 +134,13 @@ namespace GHR.API.Controllers.Funcionarios
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var funcionarioMeta = await _funcionarioMetaService
-                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId);
+                    .RecuperarFuncionarioMetaPorIdAsync(funcionarioId, metaId, empresaId);
 
                 if (funcionarioMeta == null) return NoContent();
 
-                return await _funcionarioMetaService.ExcluirFuncionarioMeta(funcionarioId, metaId)
+                return await _funcionarioMetaService.ExcluirFuncionarioMeta(funcionarioId, metaId, empresaId)
                     ? Ok(new { message = "Excluído"}) 
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar meta de um funcionário.");
             }

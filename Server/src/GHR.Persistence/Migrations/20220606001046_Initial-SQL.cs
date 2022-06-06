@@ -46,6 +46,9 @@ namespace GHR.Persistence.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ImagemURL = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cadastro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Encerramento = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Ativa = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     UserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     NormalizedUserName = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
@@ -72,123 +75,6 @@ namespace GHR.Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "DadosPessoais",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CPF = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TituloEleitor = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Identidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataExpedicaoIdentidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrgaoExpedicaoIdentidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UfIdentidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    EstadoCivil = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CarteiraTrabalho = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataExpedicaoCarteiraTrabalho = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DadosPessoais", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Departamentos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    NomeDepartamento = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    SiglaDepartamento = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    MetaId = table.Column<int>(type: "int", nullable: true),
-                    Diretor = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Gerente = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Supervisor = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Departamentos", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Enderecos",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CEP = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Logradouro = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Numero = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Complemento = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Bairro = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cidade = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    UF = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Pais = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    CaixaPostal = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    ComplementoEndereco = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Enderecos", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Metas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Supervisor = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    NomeMeta = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Descricao = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    MetaCumprida = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    MetaAprovada = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    InicioPlanejado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FimPlanejado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    InicioRealizado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FimRealizado = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Metas", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -314,24 +200,209 @@ namespace GHR.Persistence.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Cargos",
+                name: "Empresas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    NomeEmpresa = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NomeFantasia = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Ativa = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Desativacao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Logotipo = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ContasId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Empresas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Empresas_AspNetUsers_ContasId",
+                        column: x => x.ContasId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "DadosPessoais",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
+                    CPF = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    TituloEleitor = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Identidade = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataExpedicaoIdentidade = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    OrgaoExpedicaoIdentidade = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UfIdentidade = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EstadoCivil = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CarteiraTrabalho = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataExpedicaoCarteiraTrabalho = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DadosPessoais", x => new { x.EmpresaId, x.FuncionarioId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_DadosPessoais_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Departamentos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    NomeDepartamento = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    SiglaDepartamento = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Diretor = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Gerente = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Supervisor = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataHoraCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DataHoraEncerramento = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departamentos", x => new { x.EmpresaId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_Departamentos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Enderecos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    FuncionarioId = table.Column<int>(type: "int", nullable: false),
+                    CEP = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Logradouro = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Numero = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Complemento = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Bairro = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Cidade = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UF = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Pais = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CaixaPostal = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ComplementoEndereco = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DataHoraCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Enderecos", x => new { x.EmpresaId, x.FuncionarioId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_Enderecos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Metas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
+                    Supervisor = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    NomeMeta = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Descricao = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    MetaCumprida = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    MetaAprovada = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    InicioPlanejado = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    FimPlanejado = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    InicioRealizado = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    FimRealizado = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Metas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Metas_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Cargos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
                     NomeCargo = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Funcao = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DepartamentoId = table.Column<int>(type: "int", nullable: false)
+                    DataCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DataEncerramento = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    DepartamentoId = table.Column<int>(type: "int", nullable: false),
+                    DepartamentosEmpresaId = table.Column<int>(type: "int", nullable: false),
+                    DepartamentosId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cargos", x => x.Id);
+                    table.PrimaryKey("PK_Cargos", x => new { x.EmpresaId, x.Id });
                     table.ForeignKey(
-                        name: "FK_Cargos_Departamentos_DepartamentoId",
-                        column: x => x.DepartamentoId,
+                        name: "FK_Cargos_Departamentos_DepartamentosEmpresaId_DepartamentosId",
+                        columns: x => new { x.DepartamentosEmpresaId, x.DepartamentosId },
                         principalTable: "Departamentos",
+                        principalColumns: new[] { "EmpresaId", "Id" },
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cargos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -341,23 +412,31 @@ namespace GHR.Persistence.Migrations
                 name: "Funcionarios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
                     Salario = table.Column<float>(type: "float", nullable: false),
-                    DataAdmissao = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataDemissao = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    FuncionarioAtivo = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    DataAdmissao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    DataDemissao = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     CargoId = table.Column<int>(type: "int", nullable: true),
+                    CargosEmpresaId = table.Column<int>(type: "int", nullable: true),
+                    CargosId = table.Column<int>(type: "int", nullable: true),
                     DepartamentoId = table.Column<int>(type: "int", nullable: true),
+                    DepartamentosEmpresaId = table.Column<int>(type: "int", nullable: true),
+                    DepartamentosId = table.Column<int>(type: "int", nullable: true),
                     ContaId = table.Column<int>(type: "int", nullable: true),
                     EnderecoId = table.Column<int>(type: "int", nullable: true),
-                    DadosPessoaisId = table.Column<int>(type: "int", nullable: true)
+                    EnderecosEmpresaId = table.Column<int>(type: "int", nullable: true),
+                    EnderecosFuncionarioId = table.Column<int>(type: "int", nullable: true),
+                    EnderecosId = table.Column<int>(type: "int", nullable: true),
+                    DadosPessoaisId = table.Column<int>(type: "int", nullable: true),
+                    DadosPessoaisEmpresaId = table.Column<int>(type: "int", nullable: true),
+                    DadosPessoaisFuncionarioId = table.Column<int>(type: "int", nullable: true),
+                    DadosPessoaisId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Funcionarios", x => x.Id);
+                    table.PrimaryKey("PK_Funcionarios", x => new { x.EmpresaId, x.Id });
                     table.ForeignKey(
                         name: "FK_Funcionarios_AspNetUsers_ContaId",
                         column: x => x.ContaId,
@@ -365,28 +444,34 @@ namespace GHR.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_Cargos_CargoId",
-                        column: x => x.CargoId,
+                        name: "FK_Funcionarios_Cargos_CargosEmpresaId_CargosId",
+                        columns: x => new { x.CargosEmpresaId, x.CargosId },
                         principalTable: "Cargos",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "EmpresaId", "Id" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_DadosPessoais_DadosPessoaisId",
-                        column: x => x.DadosPessoaisId,
+                        name: "FK_Funcionarios_DadosPessoais_DadosPessoaisEmpresaId_DadosPesso~",
+                        columns: x => new { x.DadosPessoaisEmpresaId, x.DadosPessoaisFuncionarioId, x.DadosPessoaisId1 },
                         principalTable: "DadosPessoais",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "EmpresaId", "FuncionarioId", "Id" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_Departamentos_DepartamentoId",
-                        column: x => x.DepartamentoId,
+                        name: "FK_Funcionarios_Departamentos_DepartamentosEmpresaId_Departamen~",
+                        columns: x => new { x.DepartamentosEmpresaId, x.DepartamentosId },
                         principalTable: "Departamentos",
-                        principalColumn: "Id",
+                        principalColumns: new[] { "EmpresaId", "Id" },
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Funcionarios_Enderecos_EnderecoId",
-                        column: x => x.EnderecoId,
-                        principalTable: "Enderecos",
+                        name: "FK_Funcionarios_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Funcionarios_Enderecos_EnderecosEmpresaId_EnderecosFuncionar~",
+                        columns: x => new { x.EnderecosEmpresaId, x.EnderecosFuncionarioId, x.EnderecosId },
+                        principalTable: "Enderecos",
+                        principalColumns: new[] { "EmpresaId", "FuncionarioId", "Id" },
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
@@ -395,10 +480,12 @@ namespace GHR.Persistence.Migrations
                 name: "FuncionariosMetas",
                 columns: table => new
                 {
+                    EmpresaId = table.Column<int>(type: "int", nullable: false),
                     MetaId = table.Column<int>(type: "int", nullable: false),
                     FuncionarioId = table.Column<int>(type: "int", nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    MetaConcluida = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    FuncionariosEmpresaId = table.Column<int>(type: "int", nullable: false),
+                    FuncionariosId = table.Column<int>(type: "int", nullable: false),
+                    MetaCumprida = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     InicioAcordado = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     FimAcordado = table.Column<string>(type: "longtext", nullable: true)
@@ -412,12 +499,18 @@ namespace GHR.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FuncionariosMetas", x => new { x.FuncionarioId, x.MetaId });
+                    table.PrimaryKey("PK_FuncionariosMetas", x => new { x.EmpresaId, x.FuncionarioId, x.MetaId });
                     table.ForeignKey(
-                        name: "FK_FuncionariosMetas_Funcionarios_FuncionarioId",
-                        column: x => x.FuncionarioId,
-                        principalTable: "Funcionarios",
+                        name: "FK_FuncionariosMetas_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FuncionariosMetas_Funcionarios_FuncionariosEmpresaId_Funcion~",
+                        columns: x => new { x.FuncionariosEmpresaId, x.FuncionariosId },
+                        principalTable: "Funcionarios",
+                        principalColumns: new[] { "EmpresaId", "Id" },
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_FuncionariosMetas_Metas_MetaId",
@@ -466,14 +559,19 @@ namespace GHR.Persistence.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cargos_DepartamentoId",
+                name: "IX_Cargos_DepartamentosEmpresaId_DepartamentosId",
                 table: "Cargos",
-                column: "DepartamentoId");
+                columns: new[] { "DepartamentosEmpresaId", "DepartamentosId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_CargoId",
+                name: "IX_Empresas_ContasId",
+                table: "Empresas",
+                column: "ContasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Funcionarios_CargosEmpresaId_CargosId",
                 table: "Funcionarios",
-                column: "CargoId");
+                columns: new[] { "CargosEmpresaId", "CargosId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Funcionarios_ContaId",
@@ -481,24 +579,34 @@ namespace GHR.Persistence.Migrations
                 column: "ContaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_DadosPessoaisId",
+                name: "IX_Funcionarios_DadosPessoaisEmpresaId_DadosPessoaisFuncionario~",
                 table: "Funcionarios",
-                column: "DadosPessoaisId");
+                columns: new[] { "DadosPessoaisEmpresaId", "DadosPessoaisFuncionarioId", "DadosPessoaisId1" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_DepartamentoId",
+                name: "IX_Funcionarios_DepartamentosEmpresaId_DepartamentosId",
                 table: "Funcionarios",
-                column: "DepartamentoId");
+                columns: new[] { "DepartamentosEmpresaId", "DepartamentosId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funcionarios_EnderecoId",
+                name: "IX_Funcionarios_EnderecosEmpresaId_EnderecosFuncionarioId_Ender~",
                 table: "Funcionarios",
-                column: "EnderecoId");
+                columns: new[] { "EnderecosEmpresaId", "EnderecosFuncionarioId", "EnderecosId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FuncionariosMetas_FuncionariosEmpresaId_FuncionariosId",
+                table: "FuncionariosMetas",
+                columns: new[] { "FuncionariosEmpresaId", "FuncionariosId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_FuncionariosMetas_MetaId",
                 table: "FuncionariosMetas",
                 column: "MetaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Metas_EmpresaId",
+                table: "Metas",
+                column: "EmpresaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -531,9 +639,6 @@ namespace GHR.Persistence.Migrations
                 name: "Metas");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Cargos");
 
             migrationBuilder.DropTable(
@@ -544,6 +649,12 @@ namespace GHR.Persistence.Migrations
 
             migrationBuilder.DropTable(
                 name: "Departamentos");
+
+            migrationBuilder.DropTable(
+                name: "Empresas");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }

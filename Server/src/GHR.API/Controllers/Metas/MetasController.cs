@@ -27,8 +27,9 @@ namespace GHR.API.Controllers.Metas
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var metas = await _metaService
-                    .RecuperarMetasAsync(paginaParametros, true);
+                    .RecuperarMetasAsync(empresaId, paginaParametros, true);
 
                 if (metas == null) return NoContent();
 
@@ -52,8 +53,9 @@ namespace GHR.API.Controllers.Metas
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var metas = await _metaService
-                    .RecuperarMetasAtivasAsync();
+                    .RecuperarMetasAtivasAsync(empresaId);
 
                 if (metas == null) return NoContent();
 
@@ -72,8 +74,9 @@ namespace GHR.API.Controllers.Metas
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var meta = await _metaService
-                    .RecuperarMetaPorIdAsync(id, true);
+                    .RecuperarMetaPorIdAsync(id, empresaId, true);
 
                 if (meta == null) return NoContent();
 
@@ -128,12 +131,13 @@ namespace GHR.API.Controllers.Metas
         {
             try
             {
+                var empresaId = User.RecuperarEmpresaIdClaim();
                 var meta = await _metaService
-                    .RecuperarMetaPorIdAsync(id, true);
+                    .RecuperarMetaPorIdAsync(id, empresaId, true);
 
                 if (meta == null) return NoContent();
 
-                return await _metaService.ExcluirMeta(id)
+                return await _metaService.ExcluirMeta(id, empresaId)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar a meta.");
             }

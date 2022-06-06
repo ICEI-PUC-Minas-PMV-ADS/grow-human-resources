@@ -1,11 +1,14 @@
+using System;
 using System.ComponentModel.DataAnnotations;
-using GHR.Domain.DataBase.Funcionarios;
+using GHR.Application.Dtos.Empresas;
 
 namespace GHR.Application.Dtos.Departamentos
 {
     public class DepartamentoDto
     {
         public int Id { get; set; }
+        public int EmpresaId { get; set; }
+        public EmpresaDto Empresas { get; set; }
 
         [Display(Name = "Departamento"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
@@ -21,6 +24,9 @@ namespace GHR.Application.Dtos.Departamentos
         public int MetaId { get; set; }
         public string Diretor { get; set; }
         public string Gerente { get; set; }    
-        public string Supervisor { get; set; }        
+        public string Supervisor { get; set; }     
+        public DateTime DataHoraCriacao { get; set; }   
+        public DateTime DataHoraEncerramento { get; set; }
+        public Boolean Ativo { get; set; }   
     }
 }

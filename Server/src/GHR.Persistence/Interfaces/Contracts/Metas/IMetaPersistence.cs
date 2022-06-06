@@ -12,8 +12,8 @@ namespace GHR.Persistence.Implements.Contracts.Metas
     public interface IMetaPersistence : IGlobalPersistence
     {
         //Metas
-        Task<PaginaLista<Meta>> RecuperarMetasAsync(PaginaParametros paginaParametros, bool incluirFuncionarios = false);
-        Task<Meta> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false);   
-        Task<Meta[]> RecuperarMetasAtivasAsync();
+        Task<PaginaLista<Meta>> RecuperarMetasAsync(int emrpesaId, PaginaParametros paginaParametros, bool incluirFuncionarios = false);
+        Task<Meta> RecuperarMetaPorIdAsync(int metaId, int empresa, bool incluirFuncionarios = false);   
+        Task<Meta[]> RecuperarMetasAtivasAsync(int emrpesaId);
     }
 }

@@ -17,9 +17,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             _context = context;
         }
-        public async Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false)
+        public async Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(int empresaId, PaginaParametros paginaParametros, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
+                .Include(e => e.Empresas)
                 .Include(ca => ca.Cargos)
                 .Include(d => d.Departamentos)
                 .Include(co => co.Contas)
@@ -30,12 +31,12 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             {
                 query = query
                     .Include(fm => fm.FuncionariosMetas)
-                    .ThenInclude(m => m.Meta);
+                    .ThenInclude(m => m.Metas);
             }
 
             query = query
                 .AsNoTracking()
-                .Where(f => f.Id > 1 &&
+                .Where(f => f.Id > 1 && f.EmpresaId == empresaId &&
                             (f.Contas.NomeCompleto.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                              f.Contas.Email.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                              f.Contas.PhoneNumber.ToLower().Contains(paginaParametros.Termo.ToLower())))
@@ -44,9 +45,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             return await PaginaLista<Funcionario>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
         }
 
-        public async Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false)
+        public async Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, int empresaId, bool incluirMetas = false)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
+                .Include(e => e.Empresas)
                 .Include(ca => ca.Cargos)
                 .Include(d => d.Departamentos)
                 .Include(co => co.Contas)
@@ -57,41 +59,43 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
             {
                 query = query
                     .Include(fm => fm.FuncionariosMetas)
-                    .ThenInclude(m => m.Meta);
+                    .ThenInclude(m => m.Metas);
             }
 
             query = query
                 .AsNoTracking()
-                .Where(f => f.Id > 1 && f.Id == funcionarioId)
+                .Where(f => f.Id > 1 && f.Id == funcionarioId && f.EmpresaId == empresaId)
                 .OrderBy(f => f.Id);
 
             return await query.FirstOrDefaultAsync();
         }
-        public async Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId)
+        public async Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId, int empresaId)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
+                .Include(e => e.Empresas)
                 .Include(ca => ca.Cargos)
                 .Include(d => d.Departamentos)
                 .Include(co => co.Contas)
                 .Include(e => e.Enderecos)
                 .Include(dp => dp.DadosPessoais)
                 .AsNoTracking()
-                .Where(f => f.ContaId == contaId)
+                .Where(f => f.ContaId == contaId && f.EmpresaId == empresaId)
                 .OrderBy(f => f.Id);
 
             return await query.FirstOrDefaultAsync();
         }
         
-        public async Task<Funcionario[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId)
+        public async Task<Funcionario[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId, int empresaId)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
+                .Include(e => e.Empresas)
                 .Include(ca => ca.Cargos)
                 .Include(d => d.Departamentos)
                 .Include(co => co.Contas)
                 .Include(e => e.Enderecos)
                 .Include(dp => dp.DadosPessoais)
                 .AsNoTracking()
-                .Where(f => f.Id > 1 && f.DepartamentoId == departamentoId)
+                .Where(f => f.Id > 1 && f.DepartamentoId == departamentoId && f.EmpresaId == empresaId)
                 .OrderBy(f => f.Id);
 
             return await query.ToArrayAsync();

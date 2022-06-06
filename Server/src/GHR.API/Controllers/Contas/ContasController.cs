@@ -4,6 +4,7 @@ using GHR.API.Extensions;
 using GHR.API.Helpers;
 using GHR.Application.Dtos.Contas;
 using GHR.Application.Services.Contracts.Contas;
+using GHR.Application.Services.Contracts.Empresas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +33,10 @@ namespace GHR.API.Controllers.Contas
         public async Task<IActionResult> RecuperarContaAtiva() {
             try
             {
-                var userName = User.RecuperarUserName();
+                var userName = User.RecuperarUserNameClaim();
+                var empresaId = User.RecuperarEmpresaIdClaim();
 
-                var user = await _contaService.RecuperarContaAtivaAsync(userName);
+                var user = await _contaService.RecuperarContaAtivaAsync(userName, empresaId);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -49,7 +51,8 @@ namespace GHR.API.Controllers.Contas
         public async Task<IActionResult> RecuperarContaPorUserName(string userName) {
             try
             {
-                var user = await _contaService.RecuperarContaPorUserNameAsync(userName);
+                var empresaId = User.RecuperarEmpresaIdClaim();
+                var user = await _contaService.RecuperarContaPorUserNameAsync(userName, empresaId);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -64,7 +67,8 @@ namespace GHR.API.Controllers.Contas
         public async Task<IActionResult> RecuperarContaPorIdAsync(int id) {
             try
             {
-                var user = await _contaService.RecuperarContaPorIdAsync(id);
+                var empresaId = User.RecuperarEmpresaIdClaim();
+                var user = await _contaService.RecuperarContaPorIdAsync(id, empresaId);
                 return Ok(user);
             }
             catch (Exception ex)
@@ -77,11 +81,11 @@ namespace GHR.API.Controllers.Contas
 
         [HttpPost("CadastrarConta")]
         [AllowAnonymous]
-        public async Task<IActionResult> CadastrarConta(ContaDto contaDto)
+        public async Task<IActionResult> CadastrarConta(ContaDto contaDto, int empresaId)
         {
             try
             {
-                if (await _contaService.VerificarContaExiste(contaDto.UserName))
+                if (await _contaService.VerificarContaExiste(contaDto.UserName, empresaId))
                     return BadRequest("Conta já cadastrada");
 
                 var contaRetorno = await _contaService.CriarContaAsync(contaDto);
@@ -93,7 +97,9 @@ namespace GHR.API.Controllers.Contas
                         nomeCompleto = contaRetorno.NomeCompleto,
                         funcao = contaRetorno.Funcao,
                         visao = contaRetorno.Visao,
-                        token = _tokenService.CriarToken(contaRetorno).Result
+                        emp = empresaId,
+                        nomeFantasia = contaRetorno.Empresas.NomeFantasia,
+                        token = _tokenService.CriarToken(contaRetorno, empresaId).Result
                     });
 
             return BadRequest("Conta não cadastrada, tente novamente!");
@@ -108,15 +114,14 @@ namespace GHR.API.Controllers.Contas
 
         [HttpPost("Login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(ContaLoginDto contaLoginDto)
+        public async Task<IActionResult> Login(ContaLoginDto contaLoginDto, int empresaId)
         {
             try
             {
                 var conta = await _contaService
-                    .RecuperarContaPorUserNameAsync(contaLoginDto.UserName);
+                    .RecuperarContaPorUserNameAsync(contaLoginDto.UserName, empresaId);
 
                 if (conta == null) return Unauthorized("Conta não cadastrada!");
-
                 var result = await _contaService.ValidarContaSenhaAsync(conta, contaLoginDto.Password);
 
                 if (!result.Succeeded)
@@ -127,7 +132,9 @@ namespace GHR.API.Controllers.Contas
                     nomeCompleto = conta.NomeCompleto,
                     funcao = conta.Funcao,
                     visao = conta.Visao,
-                    token = _tokenService.CriarToken(conta).Result
+                    empId = empresaId,
+                    nomeFantasia = conta.Empresas.NomeFantasia,
+                    token = _tokenService.CriarToken(conta, empresaId).Result
                 });
             }
             catch (Exception ex)
@@ -138,21 +145,21 @@ namespace GHR.API.Controllers.Contas
         }
 
         [HttpPut("AlterarConta")]
-           public async Task<IActionResult> AlterarConta(ContaAtualizarDto contaAtualizarDto)
+           public async Task<IActionResult> AlterarConta(ContaAtualizarDto contaAtualizarDto, int empresaId)
         {
             try
             {
-                if (contaAtualizarDto.UserName != User.RecuperarUserName())
+                if (contaAtualizarDto.UserName != User.RecuperarUserNameClaim())
                 {
                     return Unauthorized("Conta inválida para atualizacao");
                 }
 
-                var conta = await _contaService.RecuperarContaPorUserNameAsync(User.RecuperarUserName());
+                var conta = await _contaService.RecuperarContaPorUserNameAsync(User.RecuperarUserNameClaim(), empresaId);
 
                 if (conta == null)
                     return Unauthorized("Conta inválida");
 
-                var contaRetorno = await _contaService.AlterarConta(contaAtualizarDto);
+                var contaRetorno = await _contaService.AlterarConta(empresaId, contaAtualizarDto);
 
                 if (contaRetorno == null)
                     return NoContent();
@@ -163,7 +170,9 @@ namespace GHR.API.Controllers.Contas
                     nomeCompleto = contaRetorno.NomeCompleto,
                     funcao = contaRetorno.Funcao,
                     visao = contaRetorno.Visao,
-                    token = _tokenService.CriarToken(contaRetorno).Result
+                    empId = empresaId,
+                    nomeFantasia = contaRetorno.Empresas.NomeFantasia,
+                    token = _tokenService.CriarToken(contaRetorno, empresaId).Result
                 });
             }
             catch (Exception ex)
@@ -179,7 +188,7 @@ namespace GHR.API.Controllers.Contas
         {
             try
             {
-                var conta = await _contaService.RecuperarContaPorIdAsync(contaVisaoDto.Id);
+                var conta = await _contaService.RecuperarContaPorIdAsync(contaVisaoDto.Id, contaVisaoDto.EmpresaId);
 
                 if (conta == null)
                     return Unauthorized("Conta não encontrada");
@@ -204,8 +213,10 @@ namespace GHR.API.Controllers.Contas
         {
             try
             {
-                var conta = await _contaService.RecuperarContaPorIdAsync(User.RecuperarUserId());
-
+                var contaUserName = await _contaService.RecuperarContaPorUserNameAsync(User.RecuperarUserNameClaim(), User.RecuperarEmpresaIdClaim());
+                
+                var conta = await _contaService.RecuperarContaPorIdAsync(contaUserName.Id, contaUserName.EmpresaId);
+                
                 if (conta == null) return NoContent();
 
                 var file = Request.Form.Files[0];
