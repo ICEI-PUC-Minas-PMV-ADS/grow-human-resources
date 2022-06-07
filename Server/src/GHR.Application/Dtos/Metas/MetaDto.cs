@@ -9,8 +9,7 @@ namespace GHR.Application.Dtos.Metas
     public class MetaDto
     {
         public int Id { get; set; }
-                public int EmpresaId { get; set; }
-        public EmpresaDto Empresas { get; set; }
+
         public string Supervisor { get; set; }
         [Display(Name = "Meta"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),

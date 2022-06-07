@@ -20,7 +20,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         //Funcionarios
         public async Task<PaginaLista<FuncionarioMeta>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros)
         {
-            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas               
+            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas              
                 .Include(f => f.Funcionarios)
                 .Include(m => m.Metas);
 

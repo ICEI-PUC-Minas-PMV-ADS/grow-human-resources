@@ -83,17 +83,18 @@ export class FuncionarioEmpresaComponent implements OnInit {
    this.form = this.fb.group({
       id: [],
       cargoId: ['', Validators.required],
+      departamentoId: ['', Validators.required],
+      contaId: [],
+      enderecoId: [],
+      dadosPessoaisId: [],
       salario: ['', Validators.required],
       dataAdmissao: ['', Validators.required],
-      dataDemissao: [null],
-      departamentoId: ['', Validators.required],
+      dataDemissao: [''],
       supervisor: [],
       gerente: [],
-      gerenteOperacionaId: [0],
+      gerenteOperacionaId: [],
       diretor: [],
-      contaId: [0],
-      enderecoId: [],
-      dadosPessoaisId: [], });
+   });
 
   }
   public carregarDepartametos(): void {
@@ -104,8 +105,8 @@ export class FuncionarioEmpresaComponent implements OnInit {
       .recuperarDepartamentos()
       .subscribe(
         (departamentoRetorno: ResultadoPaginacao<Departamento[]>) => {
-          this.departamentos = departamentoRetorno.resultado;},
-
+          this.departamentos = departamentoRetorno.resultado;
+        },
         (error: any) => {
           this.toastr.error("Não foi possível carregar os departamentos", "Erro!");
           console.error(error);})
@@ -127,8 +128,10 @@ export class FuncionarioEmpresaComponent implements OnInit {
           (funcionario: Funcionario) => {
             this.funcionario = funcionario;
             this.form.patchValue(funcionario.departamentos)
+
+            this.form.patchValue(funcionario.cargos)
             this.form.patchValue(funcionario)
-            this.recuperarCargosPorDepartamentoId(funcionario.departamentoId);
+            this.recuperarCargosPorDepartamentoId(funcionario.departamentoId)
           },
 
           (error: any) => {
@@ -148,7 +151,7 @@ export class FuncionarioEmpresaComponent implements OnInit {
 
     if (this.form.valid) {
       this.funcionario = { ...this.form.value };
-      this.funcionario.funcionarioAtivo = true;
+      this.funcionario.ativo = true;
 
       this.funcionarioService
         .salvarFuncionario(this.funcionario)

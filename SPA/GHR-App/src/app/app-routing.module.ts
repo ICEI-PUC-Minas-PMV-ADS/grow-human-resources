@@ -40,7 +40,7 @@ const routes: Routes = [
           { path: 'detalhe/:id', component: FuncionarioDetalheComponent },
           { path: 'detalhe', component: FuncionarioDetalheComponent },
           { path: 'lista', component: FuncionarioListaComponent },
-          { path: 'meta/:id', component: FuncionarioMetaComponent }
+          { path: 'meta/:id', component: FuncionarioMetaComponent },
         ]
       },
 

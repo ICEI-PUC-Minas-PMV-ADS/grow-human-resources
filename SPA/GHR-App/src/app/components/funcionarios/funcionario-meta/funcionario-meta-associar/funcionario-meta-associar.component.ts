@@ -6,9 +6,11 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
 import { ValidadorFormularios } from 'src/app/helpers/ValidadorFormularios';
+import { Conta } from 'src/app/models/contas/Conta';
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
 
 import { Meta } from 'src/app/models/metas/Meta';
+import { ContaService } from 'src/app/services/contas/Conta.service';
 
 import { FuncionarioMetaService } from 'src/app/services/funcionarios/funcionarioMeta.service';
 
@@ -26,14 +28,28 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
   public funcionarioMeta = {} as FuncionarioMeta;
   public metas: Meta[] = [];
   public meta = {} as Meta;
+  public contaAtiva = {} as Conta;
+
+  public visaoRH = false;
 
   get ctrMeta(): any
   {
     return this.form.controls;
   }
 
+  get bsConfig(): any {
+    return {
+      isAnimated: true,
+      adaptivePosition: true,
+      dateInputFormat: 'DD/MM/YYYY h:mm a',
+      containerClass: 'theme-default',
+      standalone: true
+    };
+  }
+
   constructor(
     private activatedRouter: ActivatedRoute,
+    private contaService: ContaService,
     private funcionarioMetaService: FuncionarioMetaService,
     private fb: FormBuilder,
     private metaService: MetaService,
@@ -46,13 +62,14 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
   {
     this.spinner.show();
     this.validarFormulario();
+    this.carregarContaAtiva();
     this.carregarComboMetas();
   }
 
   public validarFormulario(): void {
     this.form = this.fb.group(       {
       nomeMeta: ['', Validators.required],
-      metaCumprida: ['', Validators.required],
+      metaCumprida: [false, Validators.required],
       metaAprovada: [false, Validators.required],
       inicioPlanejado: [null],
       fimPlanejado: [null],
@@ -62,6 +79,23 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
       funiconarioId: [],
       id: [],
     });
+  }
+
+  public carregarContaAtiva(): void {
+    this.spinner.show();
+
+    this.contaService.recuperarContaAtiva()
+      .subscribe(
+        (contaAtiva: Conta) => {
+          this.contaAtiva = contaAtiva;
+          this.visaoRH = contaAtiva.visao.includes("RH");
+        },
+        (error: any) => {
+          this.toastr.error("Falha ao carregar conta ativa.", "Erro!");
+          console.error(error);
+        }
+      )
+      .add(() => this.spinner.hide());
   }
 
   public carregarComboMetas(): void {
@@ -107,7 +141,9 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
         .subscribe(
           (metaRetorno: Meta) => {
             this.meta = metaRetorno;
-            this.form.patchValue(this.meta);},
+            this.form.patchValue(this.meta);
+
+          },
           (error: any) => {
             console.error(error);
             this.toastr.error('Falha ao recuperar metas', "Erro!");})
@@ -134,7 +170,7 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
       .subscribe(
         (funcionarioMeta: FuncionarioMeta) => {
           if (funcionarioMeta !== null) {
-              this.salvarFuncionarioMeta(funcionarioId, metaId);
+              this.salvarFuncionarioMeta(funcionarioMeta.funcionarioId, funcionarioMeta.metaId);
           } else {
               this.criarFuncionarioMeta(funcionarioId, metaId);
           }
@@ -172,14 +208,11 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
   public salvarFuncionarioMeta(funcionarioId: number, metaId: number): void {
     this.spinner.show();
 
-
     this.funcionarioMeta.funcionarioId = funcionarioId;
     this.funcionarioMeta.metaId = metaId;
     this.funcionarioMeta.metaCumprida = this.form.get('metaCumprida').value
-    this.funcionarioMeta.inicioRealizadb =   this.funcionarioMeta.inicioAcordado
-    this.funcionarioMeta.fimRealizado = this.form.get('fimRealizado').value
-    console.log("update", this.funcionarioMeta.metaCumprida, this.funcionarioMeta.inicioRealizadb, this.funcionarioMeta.inicioAcordado)
-    console.log(funcionarioId, metaId, this.funcionarioMeta)
+    this.funcionarioMeta.inicioRealizado = this.form.get('inicioPlanejado').value
+    this.funcionarioMeta.fimRealizado = this.form.get('fimPlanejado').value
 
     this.funcionarioMetaService
       .salvarFuncionarioMeta(this.funcionarioMeta)

@@ -8,7 +8,7 @@ namespace GHR.Application.Dtos.Cargos
     public class CargoDto
     {
         public int Id { get; set; }
-        
+
         [Display(Name = "Cargo"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),
         MinLength(4, ErrorMessage = "O campo {0} deve conter no mínimo 4 caracteres."),

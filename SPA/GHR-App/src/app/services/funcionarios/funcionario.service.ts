@@ -30,7 +30,6 @@ export class FuncionarioService {
       params = params.append('tamanhoDaPagina', itensPorPagina.toString());
     };
 
-    console.log("termo", termo)
     if (termo != null && termo != '')
       params = params.append('termo', termo);
 
@@ -83,7 +82,6 @@ export class FuncionarioService {
     const formData = new FormData();
 
     formData.append('file', fileToUpload);
-    console.log('formdata', formData, fileToUpload )
 
     return this.http
       .post<Funcionario>(`${this.baseURL}/salvar-imagem/${funcionarioId}`, formData)

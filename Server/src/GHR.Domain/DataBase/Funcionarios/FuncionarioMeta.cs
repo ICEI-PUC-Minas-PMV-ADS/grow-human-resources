@@ -1,5 +1,4 @@
 using System;
-using GHR.Domain.DataBase.Empresas;
 using GHR.Domain.DataBase.Metas;
 
 namespace GHR.Domain.DataBase.Funcionarios

@@ -57,9 +57,11 @@ export class DashboardCabTotaisComponent implements OnInit {
         (funcionarios: ResultadoPaginacao<Funcionario[]>) => {
           this.funcionarios = funcionarios.resultado;
           this.totalDeFuncionarios = this.funcionarios.length;
+          console.log("Func",this.funcionarios )
+
           this.funcionarios = this.funcionarios.filter(
             (funcionario: Funcionario) =>
-              funcionario.funcionarioAtivo == true);
+              funcionario.ativo == true);
               this.totalDeFuncionariosAtivos = this.funcionarios.length;
               this.percentFuncionariosAtivos = this.totalDeFuncionariosAtivos
                                              / this.totalDeFuncionarios * 100;
@@ -89,7 +91,6 @@ export class DashboardCabTotaisComponent implements OnInit {
           this.percentMetasPendentes = this.totalDeMetasPendentes
             / this.totalDeMetasDistribuidas * 100;
 
-         console.log(this.width)
         },
         (error: any) => {
           console.error(error);

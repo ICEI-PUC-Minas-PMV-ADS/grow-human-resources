@@ -1,7 +1,7 @@
 <nav class="navbar nav-tabs navbar-expand-lg navbar-light bg-white shadow-sm py-0"
       *ngIf="showMenu()">
   <div class="container">
-    <div class="row ">
+    <div class="row">
       <a class="navbar-brand" routerLink="conta/perfil">
         <img class="imgLogo  " src="../../../assets/img/ghr-logo.jpg" alt="">
         GHR
@@ -36,12 +36,6 @@
           </li>
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" routerLink="relatorios">Relatórios</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link disabled">Disabled</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto ml-3" *ngIf="contaLogada">

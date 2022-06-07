@@ -91,7 +91,7 @@ export class CadastroComponent implements OnInit {
         },
         (error: any) => {
           this.toastr.error(error.error, "Erro!");
-          console.log(error);
+          console.error(error);
         })
       .add(() => this.spinner.hide());
   }

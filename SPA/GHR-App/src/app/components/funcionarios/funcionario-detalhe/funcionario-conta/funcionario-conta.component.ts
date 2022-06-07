@@ -92,6 +92,7 @@ export class FuncionarioContaComponent implements OnInit {
       contaOk: [false],
       visaoRhLogado: [],
       id: [],
+      contaId:[]
     });
 
     this.verificarFormulario();
@@ -125,7 +126,9 @@ export class FuncionarioContaComponent implements OnInit {
         (funcionario: Funcionario) => {
           this.funcionario = funcionario;
           this.contaPesquisa = funcionario.contas;
+          this.form.patchValue(funcionario);
           this.form.patchValue(this.contaPesquisa);
+          this.form.get("contaOk").setValue(true);
         },
         (error: any) => {
           this.toastr.error("Erro ao consultar funcionário.", "Errro!");
@@ -208,7 +211,7 @@ export class FuncionarioContaComponent implements OnInit {
     if (this.form.valid) {
 
       this.contaVisao = { id: this.contaPesquisa.id, ...this.form.value };
-      console.log(this.contaVisao)
+
       this.contaService
         .atualizarConta(this.contaVisao)
         .subscribe(

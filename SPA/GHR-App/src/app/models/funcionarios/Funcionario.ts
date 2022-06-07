@@ -10,7 +10,7 @@ export class Funcionario {
   salario: number;
   dataAdmissao?: string;
   dataDemissao?: string;
-  funcionarioAtivo: boolean;
+  ativo: boolean;
   cargoId: number;
   cargos: Cargo;
   departamentoId: number;

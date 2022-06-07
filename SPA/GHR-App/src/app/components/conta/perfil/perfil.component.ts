@@ -56,7 +56,7 @@ export class PerfilComponent implements OnInit {
     const reader = new FileReader();
 
     reader.onload = (event: any) => this.imagemURL = event.target.result;
-    console.log("Reader", reader)
+
     this.file = event.target.files;
 
     reader.readAsDataURL(this.file[0]);
@@ -66,7 +66,7 @@ export class PerfilComponent implements OnInit {
 
   private uploadImagem(): void {
     this.spinner.show();
-    console.log("this.file", this.file, this.contaVisao)
+
     this.contaService
       .salvarImagem(this.file)
       .subscribe(
