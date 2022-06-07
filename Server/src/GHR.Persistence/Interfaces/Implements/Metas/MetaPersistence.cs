@@ -22,10 +22,9 @@ namespace GHR.Persistence.Interfaces.Implements.Metas
         }
 
         //Metas
-        public async Task<Meta> RecuperarMetaPorIdAsync(int metaId, int empresaId, bool incluirFuncionarios)
+        public async Task<Meta> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(e => e.Empresas);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -38,15 +37,14 @@ namespace GHR.Persistence.Interfaces.Implements.Metas
             query = query
                 .AsNoTracking()
                 .OrderBy(m => m.Id)
-                .Where(m => m.Id == metaId && m.EmpresaId == empresaId);
+                .Where(m => m.Id == metaId);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<PaginaLista<Meta>> RecuperarMetasAsync(int empresaId, PaginaParametros paginaParametros, bool incluirFuncionarios = false)
+        public async Task<PaginaLista<Meta>> RecuperarMetasAsync( PaginaParametros paginaParametros, bool incluirFuncionarios = false)
         {
-            IQueryable<Meta> query = _context.Metas
-                .Include(e => e.Empresas);
+            IQueryable<Meta> query = _context.Metas;
 
             if (incluirFuncionarios)
             {
@@ -57,21 +55,20 @@ namespace GHR.Persistence.Interfaces.Implements.Metas
 
             query = query
                 .AsNoTracking()
-                .Where(m => m.EmpresaId == empresaId &&
-                            (m.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
-                             m.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower())))
+                .Where(m => m.Descricao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
+                             m.NomeMeta.ToLower().Contains(paginaParametros.Termo.ToLower()))
                 .OrderBy(m => m.Id);
 
             return await PaginaLista<Meta>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina);
         }
         
-        public async Task<Meta[]> RecuperarMetasAtivasAsync(int empresaId)
+        public async Task<Meta[]> RecuperarMetasAtivasAsync()
         {
             IQueryable<Meta> query = _context.Metas;
 
             query = query
                 .AsNoTracking()
-                .Where(m => m.MetaAprovada && !m.MetaCumprida && m.EmpresaId == empresaId)
+                .Where(m => m.MetaAprovada && !m.MetaCumprida )
                 .OrderBy(m => m.Id);
 
             return await query.ToArrayAsync();

@@ -91,6 +91,7 @@ export class FuncionarioContaComponent implements OnInit {
       visao: ['Funcionário', Validators.required],
       contaOk: [false],
       visaoRhLogado: [],
+      id: [],
     });
 
     this.verificarFormulario();
@@ -207,7 +208,7 @@ export class FuncionarioContaComponent implements OnInit {
     if (this.form.valid) {
 
       this.contaVisao = { id: this.contaPesquisa.id, ...this.form.value };
-
+      console.log(this.contaVisao)
       this.contaService
         .atualizarConta(this.contaVisao)
         .subscribe(

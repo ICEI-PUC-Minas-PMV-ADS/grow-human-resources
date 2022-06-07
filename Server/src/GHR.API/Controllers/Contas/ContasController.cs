@@ -4,7 +4,6 @@ using GHR.API.Extensions;
 using GHR.API.Helpers;
 using GHR.Application.Dtos.Contas;
 using GHR.Application.Services.Contracts.Contas;
-using GHR.Application.Services.Contracts.Empresas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,32 +33,14 @@ namespace GHR.API.Controllers.Contas
             try
             {
                 var userName = User.RecuperarUserNameClaim();
-                var empresaId = User.RecuperarEmpresaIdClaim();
-
-                var user = await _contaService.RecuperarContaAtivaAsync(userName, empresaId);
+                var user = await _contaService.RecuperarContaAtivaAsync(userName);
+                
                 return Ok(user);
             }
             catch (Exception ex)
             {
-
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao recuperar a conta. Erro {ex.Message}");
-            }
-        }
-
-        [HttpGet("{userName}/userName")]
-        public async Task<IActionResult> RecuperarContaPorUserName(string userName) {
-            try
-            {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var user = await _contaService.RecuperarContaPorUserNameAsync(userName, empresaId);
-                return Ok(user);
-            }
-            catch (Exception ex)
-            {
-
-                return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao recuperar a conta. Erro {ex.Message}");
+                    $"Erro ao recuperar a Conta Ativa. Erro {ex.Message}");
             }
         }
 
@@ -67,62 +48,76 @@ namespace GHR.API.Controllers.Contas
         public async Task<IActionResult> RecuperarContaPorIdAsync(int id) {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var user = await _contaService.RecuperarContaPorIdAsync(id, empresaId);
+                var user = await _contaService.RecuperarContaPorIdAsync(id);
+
                 return Ok(user);
             }
             catch (Exception ex)
             {
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao recuperar a conta por Id. Erro {ex.Message}");
+                    $"Erro ao recuperar a conta por ID. Erro {ex.Message}");
+            }
+        }
+
+        [HttpGet("{userName}/userName")]
+        public async Task<IActionResult> RecuperarContaPorUserName(string userName) {
+            try
+            {
+                var user = await _contaService.RecuperarContaPorUserNameAsync(userName);
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Erro ao recuperar a conta por USERNAME. Erro {ex.Message}");
             }
         }
 
         [HttpPost("CadastrarConta")]
         [AllowAnonymous]
-        public async Task<IActionResult> CadastrarConta(ContaDto contaDto, int empresaId)
+        public async Task<IActionResult> CadastrarConta(ContaDto model)
         {
             try
             {
-                if (await _contaService.VerificarContaExiste(contaDto.UserName, empresaId))
+                if (await _contaService.VerificarContaExiste(model.UserName))
                     return BadRequest("Conta já cadastrada");
 
-                var contaRetorno = await _contaService.CriarContaAsync(contaDto);
+                var conta = await _contaService.CadastrarContaAsync(model);
 
-                if (contaRetorno != null)
+                if (conta != null)
                     return Ok(new
                     {
-                        userName = contaRetorno.UserName,
-                        nomeCompleto = contaRetorno.NomeCompleto,
-                        funcao = contaRetorno.Funcao,
-                        visao = contaRetorno.Visao,
-                        emp = empresaId,
-                        nomeFantasia = contaRetorno.Empresas.NomeFantasia,
-                        token = _tokenService.CriarToken(contaRetorno, empresaId).Result
+                        userName = conta.UserName,
+                        nomeCompleto = conta.NomeCompleto,
+                        id = conta.Id,
+                        visao = conta.Visao,
+                        token = _tokenService.CadastrarToken(conta).Result
                     });
 
-            return BadRequest("Conta não cadastrada, tente novamente!");
+            return BadRequest("CONTA não cadastrada!");
             }
             catch (Exception ex)
             {
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao recuperar a conta. Erro {ex.Message}");
+                    $"Erro ao cadastrar a conta. Erro {ex.Message}");
             }
         }
 
         [HttpPost("Login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(ContaLoginDto contaLoginDto, int empresaId)
+        public async Task<IActionResult> Login(ContaLoginDto model)
         {
             try
             {
                 var conta = await _contaService
-                    .RecuperarContaPorUserNameAsync(contaLoginDto.UserName, empresaId);
+                    .RecuperarContaPorUserNameAsync(model.UserName);
 
                 if (conta == null) return Unauthorized("Conta não cadastrada!");
-                var result = await _contaService.ValidarContaSenhaAsync(conta, contaLoginDto.Password);
+               
+                var result = await _contaService.ValidarContaSenhaAsync(conta, model.Password);
 
                 if (!result.Succeeded)
                     return Unauthorized("Conta ou senha inválidos!");
@@ -130,49 +125,47 @@ namespace GHR.API.Controllers.Contas
                 return Ok(new {
                     userName = conta.UserName,
                     nomeCompleto = conta.NomeCompleto,
-                    funcao = conta.Funcao,
+                    id = conta.Id,
                     visao = conta.Visao,
-                    empId = empresaId,
-                    nomeFantasia = conta.Empresas.NomeFantasia,
-                    token = _tokenService.CriarToken(conta, empresaId).Result
+                    token = _tokenService.CadastrarToken(conta).Result
                 });
             }
             catch (Exception ex)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao recuperar a conta. Erro {ex.Message}");
+                    $"Erro ao realizar LOGIN. Erro {ex.Message}");
             }
         }
 
-        [HttpPut("AlterarConta")]
-           public async Task<IActionResult> AlterarConta(ContaAtualizarDto contaAtualizarDto, int empresaId)
+        [HttpPut("AlterarContaToken")]
+           public async Task<IActionResult> AlterarContaToken(ContaAtualizarDto model)
         {
             try
             {
-                if (contaAtualizarDto.UserName != User.RecuperarUserNameClaim())
+                var useNameClaim = User.RecuperarUserNameClaim();
+                
+                if (model.UserName != useNameClaim)
                 {
-                    return Unauthorized("Conta inválida para atualizacao");
+                    return Unauthorized("CONTA inválida para atualizacao");
                 }
 
-                var conta = await _contaService.RecuperarContaPorUserNameAsync(User.RecuperarUserNameClaim(), empresaId);
+                var conta = await _contaService.RecuperarContaPorUserNameAsync(useNameClaim);
 
                 if (conta == null)
                     return Unauthorized("Conta inválida");
 
-                var contaRetorno = await _contaService.AlterarConta(empresaId, contaAtualizarDto);
+                var contaAlterada = await _contaService.AlterarContaToken(model);
 
-                if (contaRetorno == null)
+                if (contaAlterada == null)
                     return NoContent();
 
                 return Ok(new
                 {
-                    userName = contaRetorno.UserName,
-                    nomeCompleto = contaRetorno.NomeCompleto,
-                    funcao = contaRetorno.Funcao,
-                    visao = contaRetorno.Visao,
-                    empId = empresaId,
-                    nomeFantasia = contaRetorno.Empresas.NomeFantasia,
-                    token = _tokenService.CriarToken(contaRetorno, empresaId).Result
+                    userName = contaAlterada.UserName,
+                    nomeCompleto = contaAlterada.NomeCompleto,
+                    id = contaAlterada.Id,
+                    visao = contaAlterada.Visao,
+                    token = _tokenService.CadastrarToken(contaAlterada).Result
                 });
             }
             catch (Exception ex)
@@ -183,28 +176,28 @@ namespace GHR.API.Controllers.Contas
             }
         }
         
-        [HttpPut("AtualizarConta")]
-           public async Task<IActionResult> AtualizarConta(ContaVisaoDto contaVisaoDto)
+        [HttpPut("AlterarContaVisao")]
+           public async Task<IActionResult> AlterarContaVisao(ContaVisaoDto model)
         {
             try
             {
-                var conta = await _contaService.RecuperarContaPorIdAsync(contaVisaoDto.Id, contaVisaoDto.EmpresaId);
+                var conta = await _contaService.RecuperarContaPorIdAsync(model.Id);
 
                 if (conta == null)
-                    return Unauthorized("Conta não encontrada");
+                    return Unauthorized("CONTA não encontrada");
 
-                var contaRetorno = await _contaService.AtualizarConta(contaVisaoDto);
+                var contaRetorno = await _contaService.AlterarContaVisao(model);
 
                 if (contaRetorno == null)
                     return NoContent();
 
-                return Ok(contaVisaoDto);
+                return Ok(model);
             }
             catch (Exception ex)
             {
 
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao atualizar a conta. Erro {ex.Message}");
+                    $"Erro ao alterar a conta VISAO. Erro {ex.Message}");
             }
         }
 
@@ -213,10 +206,8 @@ namespace GHR.API.Controllers.Contas
         {
             try
             {
-                var contaUserName = await _contaService.RecuperarContaPorUserNameAsync(User.RecuperarUserNameClaim(), User.RecuperarEmpresaIdClaim());
-                
-                var conta = await _contaService.RecuperarContaPorIdAsync(contaUserName.Id, contaUserName.EmpresaId);
-                
+                var conta = await _contaService.RecuperarContaPorIdAsync(User.RecuperarUserIdClaim());
+                     
                 if (conta == null) return NoContent();
 
                 var file = Request.Form.Files[0];
@@ -226,18 +217,13 @@ namespace GHR.API.Controllers.Contas
                     conta.ImagemURL = await _utilUpload.SalvarImagem(file, _destino);
                 }
 
-                var contaRetorno = await _contaService.AtualizarConta(conta);
-
-                return Ok(contaRetorno);
-
+                return Ok(await _contaService.AlterarContaVisao(conta));
             }
          catch (Exception ex)
             {
-
                 return this.StatusCode(StatusCodes.Status500InternalServerError,
-                    $"Falha ao atualizar a foto. Erro {ex.Message}");
+                    $"Erro ao atualizar a FOTO. Erro {ex.Message}");
             }
         }
-
     }
 }

@@ -16,11 +16,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             _context = context;
         }
-        public async Task<Endereco> RecuperarEnderecoPorIdAsync(int id, int funcionarioId, int empresaId)
+        public async Task<Endereco> RecuperarEnderecoPorIdAsync(int id)
         {
             IQueryable<Endereco> query = _context.Enderecos
-                .Include(e => e.Empresas)
-                .Where(e => e.Id == id && e.EmpresaId == empresaId && e.FuncionarioId == funcionarioId)
+                .Where(e => e.Id == id)
                 .AsNoTracking();
 
             return await query.FirstOrDefaultAsync();

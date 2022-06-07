@@ -6,9 +6,13 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+
 using GHR.Application.Dtos.Contas;
+
 using GHR.Application.Services.Contracts.Contas;
+
 using GHR.Domain.DataBase.Contas;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -29,12 +33,12 @@ namespace GHR.Application
             _mapper = mapper;
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
-        public async Task<string> CriarToken(ContaAtualizarDto contaAtualizarDto, int empresaId)
+        public async Task<string> CadastrarToken(ContaAtualizarDto contaAtualizarDto)
         {
             var user = _mapper.Map<Conta>(contaAtualizarDto);
 
             var claims = new List<Claim> {
-                new Claim(ClaimTypes.NameIdentifier, Convert.ToString(empresaId)),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(ClaimTypes.Name, user.UserName),
             };
 

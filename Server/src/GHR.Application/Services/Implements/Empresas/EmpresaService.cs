@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using AutoMapper;
@@ -98,7 +99,7 @@ namespace GHR.Application.Services.Implements.Empresas
             }
         }
     
-        public async Task<EmpresaDto[]> RecuperarEmpresasAsync()
+        public async Task<IEnumerable<EmpresaDto>> RecuperarEmpresasAsync()
         {
             try
             {

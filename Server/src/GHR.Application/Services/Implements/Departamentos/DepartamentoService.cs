@@ -36,7 +36,7 @@ namespace GHR.Application.Services.Implements.Departamentos
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var departamentoRetorno = await _departamentoPersistence
-                        .RecuperarDepartamentoPorIdAsync(departamento.Id, departamento.EmpresaId);
+                        .RecuperarDepartamentoPorIdAsync(departamento.Id);
 
                     return _mapper.Map<DepartamentoDto>(departamentoRetorno);
                 }
@@ -49,12 +49,12 @@ namespace GHR.Application.Services.Implements.Departamentos
             }
         }
 
-        public async Task<bool> ExcluirDepartamento( int departamentoId, int empresaId)
+        public async Task<bool> ExcluirDepartamento( int departamentoId)
         {
             try
             {
                 var departamento = await _departamentoPersistence
-                    .RecuperarDepartamentoPorIdAsync(departamentoId, empresaId);
+                    .RecuperarDepartamentoPorIdAsync(departamentoId);
 
                 if (departamento == null) throw new Exception("Departamento não encontrado para exclusão");
 
@@ -71,12 +71,12 @@ namespace GHR.Application.Services.Implements.Departamentos
             }
         }
 
-        public async Task<PaginaLista<DepartamentoDto>> RecuperarDepartamentosAsync(int empresaId, PaginaParametros paginaParametros)
+        public async Task<PaginaLista<DepartamentoDto>> RecuperarDepartamentosAsync( PaginaParametros paginaParametros)
         {
             try
             {
                 var departamentos = await _departamentoPersistence
-                    .RecuperarDepartamentosAsync(paginaParametros, empresaId);
+                    .RecuperarDepartamentosAsync(paginaParametros);
 
                 if (departamentos == null) return null;
 
@@ -96,12 +96,12 @@ namespace GHR.Application.Services.Implements.Departamentos
             }
         }
 
-        public async Task<DepartamentoDto> RecuperarDepartamentoPorIdAsync(int departamentoId, int empresaId)
+        public async Task<DepartamentoDto> RecuperarDepartamentoPorIdAsync(int departamentoId)
         {
             try
             {
                 var departamento = await _departamentoPersistence
-                    .RecuperarDepartamentoPorIdAsync(departamentoId, empresaId);
+                    .RecuperarDepartamentoPorIdAsync(departamentoId);
 
                 if (departamento == null) return null;
 
@@ -116,12 +116,12 @@ namespace GHR.Application.Services.Implements.Departamentos
             }
         }
 
-        public async Task<DepartamentoDto> AlterarDepartamento(int departamentoId, int empresaId, DepartamentoDto model)
+        public async Task<DepartamentoDto> AlterarDepartamento(int departamentoId, DepartamentoDto model)
         {
             try
             {
                 var departamento = await _departamentoPersistence
-                    .RecuperarDepartamentoPorIdAsync( departamentoId, empresaId);
+                    .RecuperarDepartamentoPorIdAsync( departamentoId);
 
                 if (departamento == null) return null;
 
@@ -134,7 +134,7 @@ namespace GHR.Application.Services.Implements.Departamentos
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var departamentoRetorno = await _departamentoPersistence
-                        .RecuperarDepartamentoPorIdAsync(departamento.Id, departamento.EmpresaId);
+                        .RecuperarDepartamentoPorIdAsync(departamento.Id);
 
                     return _mapper.Map<DepartamentoDto>(departamentoRetorno);
                 }

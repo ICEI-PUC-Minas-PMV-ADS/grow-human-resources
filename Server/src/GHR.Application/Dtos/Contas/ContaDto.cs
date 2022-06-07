@@ -1,12 +1,9 @@
 using System;
-using GHR.Application.Dtos.Empresas;
 
 namespace GHR.Application.Dtos.Contas
 {
     public class ContaDto
     {
-        public int EmpresaId { get; set; }
-        public EmpresaDto Empresas { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }   
         public string Password { get; set; }

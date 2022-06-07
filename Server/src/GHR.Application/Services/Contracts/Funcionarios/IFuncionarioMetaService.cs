@@ -8,9 +8,9 @@ namespace GHR.Application.Services.Contracts.Funcionarios
     {
         Task<FuncionarioMetaDto> CriarFuncionarioMeta(FuncionarioMetaDto model);
         Task<FuncionarioMetaDto> AlterarFuncionarioMeta(FuncionarioMetaDto model);
-        Task<bool> ExcluirFuncionarioMeta(int funcionarioId, int metaId, int empresaId);
-        Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, int empresaId, PaginaParametros paginaParametros);
-        Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId, int empresaId);
-        Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync(int empresaId);
+        Task<bool> ExcluirFuncionarioMeta(int funcionarioId, int metaId);
+        Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros);
+        Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId);
+        Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync();
     }
 }

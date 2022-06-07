@@ -1,10 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using GHR.API.Extensions;
-using GHR.API.Helpers;
-using GHR.Application.Dtos.Contas;
 using GHR.Application.Dtos.Empresas;
-using GHR.Application.Services.Contracts.Contas;
 using GHR.Application.Services.Contracts.Empresas;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -12,10 +8,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GHR.API.Controllers.Empresas
 {
-    [Authorize]
+     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class EmpresasController : Controller
+    public class EmpresasController : ControllerBase
     {
         private readonly IEmpresaService _empresaService;
         public EmpresasController(
@@ -26,7 +22,7 @@ namespace GHR.API.Controllers.Empresas
         
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> RecuperarEmpreasa() {
+        public async Task<IActionResult> RecuperarEmpreasas() {
             try
             {
                 var empresas = await _empresaService.RecuperarEmpresasAsync();

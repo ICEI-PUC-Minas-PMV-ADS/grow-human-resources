@@ -21,7 +21,6 @@ namespace GHR.Persistence.Interfaces.Contexts
                                                 IdentityUserLogin<int>,
                                                 IdentityRoleClaim<int>,
                                                 IdentityUserToken<int>>
-
     {
         public GHRContext(DbContextOptions<GHRContext> options) : base(options) { }
         public DbSet<Cargo> Cargos { get; set; }
@@ -32,10 +31,17 @@ namespace GHR.Persistence.Interfaces.Contexts
         public DbSet<FuncionarioMeta> FuncionariosMetas { get; set; }
         public DbSet<Meta> Metas { get; set; }
         public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<EmpresaConta> EmpresasContas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Empresa>(
+                empresa =>
+                {
+                    empresa.HasIndex(e => e.MatrizId);
+                });
 
             modelBuilder.Entity<ContaFuncao>(
                 contaFuncao =>
@@ -43,50 +49,19 @@ namespace GHR.Persistence.Interfaces.Contexts
                     contaFuncao.HasKey(cf => new { cf.UserId, cf.RoleId });
 
                     contaFuncao.HasOne(cf => cf.Funcoes)
-                            .WithMany(cf => cf.ContasFuncoes)
-                            .HasForeignKey(cf => cf.RoleId)
-                            .IsRequired();
+                        .WithMany(cf => cf.ContasFuncoes)
+                        .HasForeignKey(cf => cf.RoleId)
+                        .IsRequired();
 
                     contaFuncao.HasOne(cs => cs.Contas)
-                            .WithMany(cfs => cfs.ContasFuncoes)
-                               .HasForeignKey(c => c.UserId)
-                             .IsRequired();
+                        .WithMany(cfs => cfs.ContasFuncoes)
+                        .HasForeignKey(c => c.UserId)
+                        .IsRequired();
 
-                }
-            );
+                });
 
-        modelBuilder.Entity<Cargo>(            
-            cargo =>
-            {
-                cargo.HasKey(c => new { c.EmpresaId, c.Id });
-
-            });
-
-        modelBuilder.Entity<Departamento>(            
-            departamento =>
-            {
-                departamento.HasKey(d => new { d.EmpresaId, d.Id });
-
-            });
-                    
-        modelBuilder.Entity<Funcionario>(            
-            funcionario =>
-            {
-                funcionario.HasKey(f => new { f.EmpresaId, f.Id });
-
-            });
-   
-        modelBuilder.Entity<FuncionarioMeta>()
-                .HasKey(fm => new { fm.EmpresaId, fm.FuncionarioId, fm.MetaId });
-        
-        modelBuilder.Entity<Endereco>()
-                .HasKey(e => new { e.EmpresaId, e.FuncionarioId, e.Id });
-
-        modelBuilder.Entity<DadoPessoal>()
-                .HasKey(dp => new { dp.EmpresaId, dp.FuncionarioId, dp.Id });
-
+            modelBuilder.Entity<FuncionarioMeta>()
+                    .HasKey(fm => new {  fm.FuncionarioId, fm.MetaId });
         }
-
-
     }
 }

@@ -35,7 +35,7 @@ namespace GHR.Application.Services.Implements.Metas
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var metaRetorno = await _metaPersistence
-                        .RecuperarMetaPorIdAsync(meta.Id, meta.EmpresaId, false);
+                        .RecuperarMetaPorIdAsync(meta.Id, false);
 
                     return _mapper.Map<MetaDto>(metaRetorno);
                 }
@@ -53,7 +53,7 @@ namespace GHR.Application.Services.Implements.Metas
             try
             {
                 var meta = await _metaPersistence
-                    .RecuperarMetaPorIdAsync(  metaId, model.EmpresaId, false);
+                    .RecuperarMetaPorIdAsync(  metaId, false);
 
                 if (meta == null) return null;
 
@@ -66,7 +66,7 @@ namespace GHR.Application.Services.Implements.Metas
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var metaRetorno = await _metaPersistence
-                        .RecuperarMetaPorIdAsync(meta.Id, meta.EmpresaId, false);
+                        .RecuperarMetaPorIdAsync(meta.Id, false);
 
                     return _mapper.Map<MetaDto>(metaRetorno);
                 }
@@ -78,12 +78,12 @@ namespace GHR.Application.Services.Implements.Metas
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> ExcluirMeta(int metaId, int empresaId)
+        public async Task<bool> ExcluirMeta(int metaId)
         {
             try
             {
                 var meta = await _metaPersistence
-                    .RecuperarMetaPorIdAsync(metaId, empresaId, false);
+                    .RecuperarMetaPorIdAsync(metaId, false);
 
                 if (meta == null) throw new Exception("Funcionário não encontrado para exclusão");
 
@@ -101,12 +101,12 @@ namespace GHR.Application.Services.Implements.Metas
 
         }
 
-        public async Task<PaginaLista<MetaDto>> RecuperarMetasAsync(int empresaId, PaginaParametros paginaParametros, bool incluirFuncionario = false)
+        public async Task<PaginaLista<MetaDto>> RecuperarMetasAsync(PaginaParametros paginaParametros, bool incluirFuncionario = false)
         {
             try
             {
                 var metas = await _metaPersistence
-                    .RecuperarMetasAsync(empresaId, paginaParametros, incluirFuncionario);
+                    .RecuperarMetasAsync( paginaParametros, incluirFuncionario);
 
                 if (metas == null) return null;
 
@@ -126,12 +126,12 @@ namespace GHR.Application.Services.Implements.Metas
             }
         }
 
-        public async Task<MetaDto[]> RecuperarMetasAtivasAsync(int empresaId)
+        public async Task<MetaDto[]> RecuperarMetasAtivasAsync()
         {
             try
             {
                 var metas = await _metaPersistence
-                    .RecuperarMetasAtivasAsync(empresaId);
+                    .RecuperarMetasAtivasAsync();
 
                 if (metas == null) return null;
 
@@ -147,12 +147,12 @@ namespace GHR.Application.Services.Implements.Metas
 
         }
 
-        public async Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, int empresaId, bool incluirFuncionarios = false)
+        public async Task<MetaDto> RecuperarMetaPorIdAsync(int metaId, bool incluirFuncionarios = false)
         {
             try
             {
                 var meta = await _metaPersistence
-                    .RecuperarMetaPorIdAsync( metaId, empresaId, incluirFuncionarios);
+                    .RecuperarMetaPorIdAsync( metaId,  incluirFuncionarios);
 
                 if (meta == null) return null;
 

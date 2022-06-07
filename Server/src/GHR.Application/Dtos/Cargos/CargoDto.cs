@@ -8,8 +8,6 @@ namespace GHR.Application.Dtos.Cargos
     public class CargoDto
     {
         public int Id { get; set; }
-        public int EmpresaId { get; set; }
-        public EmpresaDto Empresas { get; set; }
         
         [Display(Name = "Cargo"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),

@@ -10,9 +10,6 @@ namespace GHR.Application.Dtos.Funcionarios
     public class DadoPessoalDto
     {
       public int Id { get; set; }
-      public int EmpresaId { get; set; }
-      public EmpresaDto Empresas { get; set; }
-      public int FuncionarioId { get; set; }
       public string CPF { get; set; }
       public string TituloEleitor { get; set; }
       public string Identidade { get; set; }

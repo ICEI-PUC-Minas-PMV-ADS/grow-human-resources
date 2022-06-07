@@ -6,6 +6,6 @@ namespace GHR.Persistence.Interfaces.Contracts.Funcionarios
 {
     public interface IFuncionarioDadoPessoalPersistence: IGlobalPersistence
     {
-        Task<DadoPessoal> RecuperarDadosPessoaisPorIdAsync(int id, int empresaId, int funcionarioId);
+        Task<DadoPessoal> RecuperarDadosPessoaisPorIdAsync(int id);
     }
 }

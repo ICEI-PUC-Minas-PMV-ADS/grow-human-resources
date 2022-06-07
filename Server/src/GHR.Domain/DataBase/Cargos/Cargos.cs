@@ -7,8 +7,6 @@ namespace GHR.Domain.DataBase.Cargos
     public class Cargo
     {
         public int Id { get; set; }
-        public int EmpresaId { get; set; }  
-        public Empresa Empresas { get; set; }
         public string NomeCargo { get; set; }
         public string Funcao { get; set; }
         public DateTime DataCriacao { get; set; }

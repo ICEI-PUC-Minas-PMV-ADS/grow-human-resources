@@ -2,44 +2,40 @@
   <div class="col-md-6 col-sm-12">
     <div class="card">
       <div class="card-header bg-white ">
- <!-- Figura Lateral Direita -->
+ <!-- Figura Lateral Esquerda -->
         <div class="d-none d-md-block">
           <div class="text-center col-md-12 my-auto side-heder">
             <img class="imgCentral" src="../../../../assets/img/ghr-logo.jpg" alt="" >
             <div class="titulo shadow bg-dark text-white">Grow Human Resources</div>
           </div>
         </div>
-  <!-- Figura Lateral Direita -->
-
-
+      </div>
     <form class="p-2" [formGroup]="form!" (ngSubmit)="cadastrarConta()">
-      <!-- <p>Form value: {{form.value | json}}</p>
-      <p>Form status: {{form.status | json}}</p> -->
+  <!-- Figura Lateral Esquerda -->
 	    <div class="pt-1">
 		    <h4 class="border-bottom">Cadastro de Conta</h4>
 	    </div>
+
     	<div class="form-row d-md-flex">
-		    <div class="form-group col-md-4 p-1">
+		    <div class="form-group col-md-6 p-1">
 			    <label>Conta</label>
 			    <input type="text" class="form-control" placeholder="Insira seu código de usuário"
             [ngClass]="validarCampo(f.userName)"
-            formControlName="userName"
-          />
+            formControlName="userName">
           <div class="invalid-feedback">
             {{retornarValidacao(f.userName, "")}}
           </div>
 		    </div>
-        <div class="form-group col-md-8 p-1">
+        <div class="form-group col-md-6 p-1">
 		    	<label>Nome</label>
 			    <input type="text" class="form-control" placeholder="Insira seu nome completo"
             [ngClass]="validarCampo(f.nomeCompleto)"
-            formControlName="nomeCompleto"
-          />
+            formControlName="nomeCompleto">
           <div class="invalid-feedback">
             {{retornarValidacao(f.nomeCompleto, "")}}
           </div>
         </div>
-	    </div>
+      </div>
       <div class="form-row d-md-flex">
         <div class="form-group col p-1">
           <label for="">Email:</label>
@@ -51,8 +47,8 @@
             {{retornarValidacao(f.email, "")}}
           </div>
         </div>
+	    </div>
 
-      </div>
     	<div class="form-row d-md-flex">
 		    <div class="form-group col-ms-12 col-md-6 p-1">
 			    <label for="">Senha:</label>
@@ -92,9 +88,7 @@
       </div>
     </div>
   </div>
-
-      </div>
-    </div>
+</div>
 
  <!-- Figura Lateral Direita -->
     <div class="col-md-6 d-none d-md-block">

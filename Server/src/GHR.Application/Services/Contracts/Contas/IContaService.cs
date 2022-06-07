@@ -6,13 +6,13 @@ namespace GHR.Application.Services.Contracts.Contas
 {
     public interface IContaService
     {
-        Task<ContaAtualizarDto> AlterarConta(int emrpesaId, ContaAtualizarDto contaAtualizarDto);
-        Task<ContaVisaoDto> AtualizarConta(ContaVisaoDto contaVisaoDto);
-        Task<ContaAtualizarDto> CriarContaAsync(ContaDto contaDto);
-        Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName, int emrpesaId);
-        Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId, int emrpesaId);
-        Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName, int emrpesaId);
+        Task<ContaAtualizarDto> AlterarContaToken(ContaAtualizarDto contaAtualizarDto);
+        Task<ContaVisaoDto> AlterarContaVisao(ContaVisaoDto contaVisaoDto);
+        Task<ContaAtualizarDto> CadastrarContaAsync(ContaDto contaDto);
+        Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName);
+        Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId);
+        Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName);
         Task<SignInResult> ValidarContaSenhaAsync(ContaAtualizarDto contaAtualizarDto, string password);
-        Task<bool> VerificarContaExiste(string userName, int emrpesaId);
+        Task<bool> VerificarContaExiste(string userName);
     }
 }

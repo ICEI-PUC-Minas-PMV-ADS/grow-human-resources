@@ -36,7 +36,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var funcionarioMetaRetorno = await _funcionarioMetaPersistence
-                        .RecuperarFuncionarioMetaAsync(funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId, funcionarioMeta.EmpresaId);
+                        .RecuperarFuncionarioMetaAsync(funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
 
                     return _mapper.Map<FuncionarioMetaDto>(funcionarioMetaRetorno);
                 }
@@ -54,7 +54,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionarioMetaAsync(model.FuncionarioId, model.MetaId, model.EmpresaId);
+                    .RecuperarFuncionarioMetaAsync(model.FuncionarioId, model.MetaId);
 
                 if (funcionarioMeta == null) return null;
 
@@ -68,7 +68,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var funcionarioMetaRetorno = await _funcionarioMetaPersistence
-                        .RecuperarFuncionarioMetaAsync( funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId, funcionarioMeta.EmpresaId);
+                        .RecuperarFuncionarioMetaAsync( funcionarioMeta.FuncionarioId, funcionarioMeta.MetaId);
 
                     return _mapper.Map<FuncionarioMetaDto>(funcionarioMetaRetorno);
                 }
@@ -80,12 +80,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> ExcluirFuncionarioMeta(int funcionarioId, int metaId, int empresaId)
+        public async Task<bool> ExcluirFuncionarioMeta(int funcionarioId, int metaId)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionarioMetaAsync(funcionarioId, metaId, empresaId);
+                    .RecuperarFuncionarioMetaAsync(funcionarioId, metaId);
 
                 if (funcionarioMeta == null) throw new Exception("Funcionário/Meta não encontrado para exclusão");
                 
@@ -103,12 +103,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
 
            } 
 
-        public async Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, int empresaId, PaginaParametros paginaParametros)
+        public async Task<PaginaLista<FuncionarioMetaDto>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarMetasPorFuncionarioIdAsync(funcionarioId, empresaId, paginaParametros);
+                    .RecuperarMetasPorFuncionarioIdAsync(funcionarioId, paginaParametros);
 
                 if (funcionarioMeta == null) return null;
 
@@ -127,12 +127,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId, int empresaId)
+        public async Task<FuncionarioMetaDto> RecuperarFuncionarioMetaPorIdAsync(int funcionarioId, int metaId)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionarioMetaAsync(funcionarioId, metaId, empresaId);
+                    .RecuperarFuncionarioMetaAsync(funcionarioId, metaId);
 
                 if (funcionarioMeta == null) return null;
 
@@ -146,12 +146,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync(int empresaId)
+        public async Task<FuncionarioMetaDto[]> RecuperarFuncionariosMetasAsync()
         {
             try
             {
                 var funcionarioMeta = await _funcionarioMetaPersistence
-                    .RecuperarFuncionariosMetasAsync(empresaId);
+                    .RecuperarFuncionariosMetasAsync();
 
                 if (funcionarioMeta == null) return null;
 

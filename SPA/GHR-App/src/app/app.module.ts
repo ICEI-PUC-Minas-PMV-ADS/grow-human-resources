@@ -59,6 +59,7 @@ import { ContaService } from './services/contas/Conta.service';
 import { DadosPessoaisService } from './services/funcionarios/dadosPessoais.service';
 import { DepartamentoService } from './services/departamentos/departamento.service';
 import { EnderecoService } from './services/funcionarios/endereco.service';
+import { EmpresaService } from './services/empresas/empresa.service';
 import { FuncionarioService } from './services/funcionarios/funcionario.service';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
@@ -68,6 +69,7 @@ import { PerfilSenhaComponent } from './components/conta/perfil/perfil-senha/per
 import { FuncionarioMetaContaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-conta/funcionario-meta-conta.component';
 import { FuncionarioMetaListaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-lista/funcionario-meta-lista.component';
 import { NgChartsModule } from 'ng2-charts';
+import { EmpresaContaService } from './services/empresas/empresa-conta.service';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -138,6 +140,8 @@ defineLocale('pt-br', ptBrLocale);
     DadosPessoaisService,
     DepartamentoService,
     EnderecoService,
+    EmpresaContaService,
+    EmpresaService,
     FuncionarioService,
     FuncionarioMetaService,
     MetaService,

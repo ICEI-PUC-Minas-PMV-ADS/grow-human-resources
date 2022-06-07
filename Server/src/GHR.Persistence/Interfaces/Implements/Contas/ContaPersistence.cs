@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using GHR.Domain.DataBase.Contas;
+
 using GHR.Persistence.Interfaces.Contexts;
 using GHR.Persistence.Interfaces.Contracts.Contas;
 using GHR.Persistence.Interfaces.Implements.Global;
@@ -47,5 +48,4 @@ namespace GHR.Persistence.Interfaces.Implements.Contas
             return await query.ToListAsync();
         }
     }
-
 }

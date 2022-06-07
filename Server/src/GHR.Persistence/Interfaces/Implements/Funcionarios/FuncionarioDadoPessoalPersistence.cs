@@ -16,12 +16,11 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             _context = context;
         }
-        public async Task<DadoPessoal> RecuperarDadosPessoaisPorIdAsync(int id, int empresaId, int funcionarioId)
+        public async Task<DadoPessoal> RecuperarDadosPessoaisPorIdAsync(int id)
         {
             IQueryable<DadoPessoal> query = _context.DadosPessoais
-                .Include(e => e.Empresas)
                 .AsNoTracking()
-                .Where(dp => dp.Id == id && dp.EmpresaId == empresaId && dp.FuncionarioId == funcionarioId);
+                .Where(dp => dp.Id == id );
 
             return await query.FirstOrDefaultAsync();
         }

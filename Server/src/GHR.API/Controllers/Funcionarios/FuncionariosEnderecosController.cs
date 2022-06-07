@@ -21,12 +21,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{enderecoId}")]
-        public async Task<IActionResult> RecuperarEnderecoPorId(int enderecoId, int funcionarioId, int empresaId)
+        public async Task<IActionResult> RecuperarEnderecoPorId(int enderecoId, int funcionarioId)
         {
             try
             {
                 var endereco = await _funcionarioEnderecoService
-                    .RecuperarEnderecoPorIdAsync(enderecoId, empresaId, funcionarioId);
+                    .RecuperarEnderecoPorIdAsync(enderecoId);
 
                 if (endereco == null) return NoContent();
 
@@ -79,16 +79,16 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{enderecoId}")]
-        public async Task<IActionResult> ExcluirEndereco(int enderecoId, int empresaId, int funcionarioId)
+        public async Task<IActionResult> ExcluirEndereco(int enderecoId)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioEnderecoService
-                    .RecuperarEnderecoPorIdAsync(enderecoId, empresaId, funcionarioId);
+                    .RecuperarEnderecoPorIdAsync(enderecoId);
 
                 if (funcionarioMeta == null) return NoContent();
 
-                return await _funcionarioEnderecoService.ExcluirEnderecoAsync(enderecoId, empresaId, funcionarioId)
+                return await _funcionarioEnderecoService.ExcluirEnderecoAsync(enderecoId)
                     ? Ok(new { message = "Excluído"}) 
                     : throw new Exception("Falha ao excluir Endereco.");
             }

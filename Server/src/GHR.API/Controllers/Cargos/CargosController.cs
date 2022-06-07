@@ -27,8 +27,7 @@ namespace GHR.API.Controllers.Cargos
         {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var cargos = await _cargoService.RecuperarCargosAsync(empresaId, paginaParametros);
+                var cargos = await _cargoService.RecuperarCargosAsync( paginaParametros);
 
                 if (cargos == null) return NoContent();
 
@@ -52,8 +51,7 @@ namespace GHR.API.Controllers.Cargos
         {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var cargo = await _cargoService.RecuperarCargoPorIdAsync(id, empresaId);
+                var cargo = await _cargoService.RecuperarCargoPorIdAsync(id);
 
                 if (cargo == null) return NoContent();
 
@@ -72,9 +70,8 @@ namespace GHR.API.Controllers.Cargos
         {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
                 var cargo = await _cargoService
-                .RecuperarCargosPorDepartamentoIdAsync(departamentoId, empresaId);
+                .RecuperarCargosPorDepartamentoIdAsync(departamentoId);
 
                 if (cargo == null) return NoContent();
 
@@ -112,8 +109,7 @@ namespace GHR.API.Controllers.Cargos
         {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var cargo = await _cargoService.AlterarCargo(id, empresaId, model);
+                var cargo = await _cargoService.AlterarCargo(id,  model);
 
                 if (cargo == null) return NoContent();
 
@@ -131,12 +127,11 @@ namespace GHR.API.Controllers.Cargos
         {
             try
             {
-                var empresaId = User.RecuperarEmpresaIdClaim();
-                var cargo = await _cargoService.RecuperarCargoPorIdAsync(id, empresaId);
+                var cargo = await _cargoService.RecuperarCargoPorIdAsync(id);
 
                 if (cargo == null) return NoContent();
 
-                return await _cargoService.ExcluirCargo(id, empresaId)
+                return await _cargoService.ExcluirCargo(id)
                     ? Ok(new { message = "Excluído" })
                     : throw new Exception("Ocorreu ma falaha ao tentar deletar o cargo.");
             }

@@ -7,10 +7,7 @@ namespace GHR.Application.Dtos.Funcionarios
     public class FuncionarioMetaDto
     {
       public int Id { get; set; }
-     public int MetaId { get; set; }
-      public int EmpresaId { get; set; }
-      public EmpresaDto Empresas { get; set; }
-
+      public int MetaId { get; set; }
       public MetaDto Meta { get; set; }
 
       public int FuncionarioId { get; set; }

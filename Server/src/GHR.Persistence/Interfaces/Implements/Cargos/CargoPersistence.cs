@@ -19,16 +19,15 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
         {
             _context = context;
         }
-        public async Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros, int empresaId)
+        public async Task<PaginaLista<Cargo>> RecuperarCargosAsync(PaginaParametros paginaParametros)
         {
             IQueryable<Cargo> query = _context.Cargos
-                .Include(d => d.Departamentos)
-                .Include(e => e.Empresas);
+                .Include(d => d.Departamentos);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.Id > 1 && c.EmpresaId == empresaId &&
+                .Where(c => c.Id > 1 &&
                     (c.NomeCargo.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      c.Funcao.ToLower().Contains(paginaParametros.Termo.ToLower()) ||
                      c.Departamentos.NomeDepartamento.ToLower().Contains(paginaParametros.Termo.ToLower())));
@@ -36,30 +35,28 @@ namespace GHR.Persistence.Interfaces.Implements.Cargos
             return await PaginaLista<Cargo>.CriarPaginaAsync(query, paginaParametros.NumeroDaPagina, paginaParametros.TamanhoDaPagina); 
         }
 
-        public async Task<Cargo> RecuperarCargoPorIdAsync(int cargoId, int empresaId)
+        public async Task<Cargo> RecuperarCargoPorIdAsync(int cargoId)
         {
             IQueryable<Cargo> query = _context.Cargos
-                .Include(d => d.Departamentos)
-                .Include(e => e.Empresas);
+                .Include(d => d.Departamentos);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.Id == cargoId && c.EmpresaId == empresaId);
+                .Where(c => c.Id == cargoId);
 
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId, int empresaId)
+        public async Task<Cargo[]> RecuperarCargosPorDepartamentoIdAsync(int departamentoId)
         {
             IQueryable<Cargo> query = _context.Cargos
-                .Include(d => d.Departamentos)
-                .Include(e => e.Empresas);
+                .Include(d => d.Departamentos);
 
             query = query
                 .AsNoTracking()
                 .OrderBy(c => c.Id)
-                .Where(c => c.DepartamentoId == departamentoId && c.EmpresaId == empresaId);
+                .Where(c => c.DepartamentoId == departamentoId);
 
             return await query.ToArrayAsync();
         }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using GHR.Application.Dtos.Empresas;
 
@@ -11,6 +12,6 @@ namespace GHR.Application.Services.Contracts.Empresas
 
         Task<EmpresaDto> RecuperarEmpresaPorIdAsync(int empresaId);
 
-        Task<EmpresaDto[]> RecuperarEmpresasAsync();
+        Task<IEnumerable<EmpresaDto>> RecuperarEmpresasAsync();
     }
 }

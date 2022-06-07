@@ -6,8 +6,6 @@ namespace GHR.Domain.DataBase.Funcionarios
 {
     public class FuncionarioMeta
     {
-        public int EmpresaId { get; set; }
-        public Empresa Empresas { get; set; }
         public int MetaId { get; set; }
         public Meta Metas { get; set; }
         public int FuncionarioId { get; set; }

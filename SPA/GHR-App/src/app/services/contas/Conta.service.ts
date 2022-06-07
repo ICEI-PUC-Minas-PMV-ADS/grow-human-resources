@@ -27,7 +27,6 @@ export class ContaService {
       .pipe(take(1),
         map((contaRetorno: ContaAtiva) => {
             const conta = contaRetorno;
-
             if(conta) {
               this.definirContaAtual(conta);
             }
@@ -47,7 +46,6 @@ export class ContaService {
   }
 
   public login(model: any): Observable<void> {
-
     return this.http
       .post<ContaAtiva>(this.baseURL + 'login', model)
       .pipe(take(1),
@@ -76,7 +74,7 @@ export class ContaService {
   }
 
   public alterarConta(model: Conta): Observable<void> {
-    return this.http.put<Conta>(this.baseURL + 'alterarConta', model).pipe(take(1),
+    return this.http.put<Conta>(this.baseURL + 'alterarContaToken', model).pipe(take(1),
       map((user: Conta) => {
         this.definirContaAtual(user);
       }));
@@ -84,7 +82,7 @@ export class ContaService {
 
   public atualizarConta(model: ContaVisao): Observable<any> {
     return this.http
-      .put<Conta>(this.baseURL + 'atualizarConta', model)
+      .put<Conta>(this.baseURL + 'alterarContaVisao', model)
       .pipe(take(1));
   }
 

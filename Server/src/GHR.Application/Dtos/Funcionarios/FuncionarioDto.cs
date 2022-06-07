@@ -16,9 +16,6 @@ namespace GHR.Application.Dtos.Funcionarios
     public class FuncionarioDto
     {             
       public int Id { get; set; }
-     public int EmpresaId { get; set; }
-     public EmpresaDto Empresas { get; set; }
-
 //      [Display(Name = "Salário"), Required(ErrorMessage = "O campo {0} é obrigatório."),
  //     Range(100, 9999999999, ErrorMessage = "O campo {0} não pode ser inferior a R$ 100,00")]
       public float Salario { get; set; }

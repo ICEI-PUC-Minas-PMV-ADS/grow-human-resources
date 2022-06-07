@@ -9,9 +9,6 @@ namespace GHR.Domain.DataBase.Funcionarios
     public class Endereco
     {
         public int Id { get; set; }
-        public int EmpresaId { get; set; }
-        public Empresa Empresas { get; set; }
-        public int FuncionarioId { get; set; }
         public string CEP { get; set; }
         public string Logradouro { get; set; }
         public string Numero { get; set; }

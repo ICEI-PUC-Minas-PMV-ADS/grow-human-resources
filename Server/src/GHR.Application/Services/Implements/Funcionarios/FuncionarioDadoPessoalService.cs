@@ -37,7 +37,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var dadoPessoalRetorno = await _funcionarioDadoPessoalPersistence
-                        .RecuperarDadosPessoaisPorIdAsync(dadoPessoal.Id, dadoPessoal.EmpresaId, dadoPessoal.FuncionarioId);
+                        .RecuperarDadosPessoaisPorIdAsync(dadoPessoal.Id);
 
                     return _mapper.Map<DadoPessoalDto>(dadoPessoalRetorno);
                 }
@@ -55,7 +55,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
             try
             {
                 var dadoPessoal = await _funcionarioDadoPessoalPersistence
-                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId, model.EmpresaId, model.FuncionarioId);
+                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId);
 
                 if (dadoPessoal == null) return null;
 
@@ -68,7 +68,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 if (await _globalPersistence.SalvarAsync())
                 {
                     var dadoPessoalRetorno = await _funcionarioDadoPessoalPersistence
-                        .RecuperarDadosPessoaisPorIdAsync( dadoPessoal.Id,  model.EmpresaId, model.FuncionarioId);
+                        .RecuperarDadosPessoaisPorIdAsync( dadoPessoal.Id);
 
                     return _mapper.Map<DadoPessoalDto>(dadoPessoalRetorno);
                 }
@@ -80,12 +80,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<bool> ExcluirDadoPessoalAsync(int dadoPessoalId, int empresaId, int funcionarioId)
+        public async Task<bool> ExcluirDadoPessoalAsync(int dadoPessoalId)
         {
             try
             {
                 var dadoPessoal = await _funcionarioDadoPessoalPersistence
-                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId, empresaId, funcionarioId);
+                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId);
 
                 if (dadoPessoal == null) throw new Exception("Dado Pessoal não encontrado para exclusão");
                 
@@ -103,12 +103,12 @@ namespace GHR.Application.Services.Implements.Funcionarios
 
            } 
 
-        public async Task<DadoPessoalDto> RecuperarDadoPessoalPorIdAsync(int dadoPessoalId, int empresaId, int funcionarioId)
+        public async Task<DadoPessoalDto> RecuperarDadoPessoalPorIdAsync(int dadoPessoalId)
         {
             try
             {
                 var dadoPessoal = await _funcionarioDadoPessoalPersistence
-                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId, empresaId, funcionarioId);
+                    .RecuperarDadosPessoaisPorIdAsync(dadoPessoalId);
 
                 if (dadoPessoal == null) return null;
 

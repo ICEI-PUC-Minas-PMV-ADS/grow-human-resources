@@ -11,8 +11,6 @@ namespace  GHR.Domain.DataBase.Funcionarios
     public class Funcionario
     {
         public int Id { get; set; }
-        public int EmpresaId { get; set; }
-        public Empresa Empresas { get; set; }
         public float Salario { get; set; }
         public DateTime DataAdmissao { get; set; }
         public DateTime? DataDemissao { get; set; }

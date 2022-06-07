@@ -21,12 +21,12 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{dadoPessoalId}")]
-        public async Task<IActionResult> RecuperarDadosPessoaisPorId(int dadoPessoalId, int empresaId, int funcionarioId)
+        public async Task<IActionResult> RecuperarDadosPessoaisPorId(int dadoPessoalId)
         {
             try
             {
                 var dadoPessoal = await _funcionarioDadoPessoalService
-                    .RecuperarDadoPessoalPorIdAsync(dadoPessoalId, empresaId, funcionarioId);
+                    .RecuperarDadoPessoalPorIdAsync(dadoPessoalId);
 
                 if (dadoPessoal == null) return NoContent();
 
@@ -78,16 +78,16 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{dadoPessoalId}")]
-        public async Task<IActionResult> ExcluirDados(int dadoPessoalId, int empresaId, int funcionarioId)
+        public async Task<IActionResult> ExcluirDados(int dadoPessoalId)
         {
             try
             {
                 var funcionarioMeta = await _funcionarioDadoPessoalService
-                    .RecuperarDadoPessoalPorIdAsync(dadoPessoalId, empresaId, funcionarioId);
+                    .RecuperarDadoPessoalPorIdAsync(dadoPessoalId);
 
                 if (funcionarioMeta == null) return NoContent();
 
-                return await _funcionarioDadoPessoalService.ExcluirDadoPessoalAsync(dadoPessoalId, empresaId, funcionarioId)
+                return await _funcionarioDadoPessoalService.ExcluirDadoPessoalAsync(dadoPessoalId)
                     ? Ok(new { message = "Excluído"}) 
                     : throw new Exception("Falha ao excluir Dado Pessoal.");
             }

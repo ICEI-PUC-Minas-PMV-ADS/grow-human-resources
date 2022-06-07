@@ -7,8 +7,6 @@ namespace GHR.Application.Dtos.Departamentos
     public class DepartamentoDto
     {
         public int Id { get; set; }
-        public int EmpresaId { get; set; }
-        public EmpresaDto Empresas { get; set; }
 
         [Display(Name = "Departamento"),
         Required(ErrorMessage = "O campo {0} é obrigatório."),

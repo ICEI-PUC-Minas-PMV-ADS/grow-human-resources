@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using System;
+using GHR.Domain.DataBase.Empresas;
 
 namespace GHR.Domain.DataBase.Contas
 {
@@ -14,5 +15,6 @@ namespace GHR.Domain.DataBase.Contas
         public DateTime? Encerramento { get; set; }
         public Boolean Ativa { get; set; }
         public IEnumerable<ContaFuncao> ContasFuncoes { get; set; }
+        public IEnumerable<EmpresaConta> EmpresasContas { get; set; }
     }
 }   

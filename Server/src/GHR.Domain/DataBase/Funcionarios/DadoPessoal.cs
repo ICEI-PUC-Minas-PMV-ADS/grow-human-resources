@@ -6,9 +6,6 @@ namespace GHR.Domain.DataBase.Funcionarios
     public class DadoPessoal
     {
         public int Id { get; set; } 
-        public int EmpresaId { get; set; }
-        public Empresa Empresas { get; set; }
-        public int FuncionarioId { get; set; }
         public string CPF { get; set; }
         public string TituloEleitor { get; set; }  
         public string Identidade { get; set; }

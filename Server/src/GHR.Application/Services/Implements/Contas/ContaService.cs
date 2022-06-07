@@ -5,8 +5,11 @@ using AutoMapper;
 
 using GHR.Application.Dtos.Contas;
 using GHR.Application.Services.Contracts.Contas;
+
 using GHR.Domain.DataBase.Contas;
+
 using GHR.Persistence.Interfaces.Contracts.Contas;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,7 +22,8 @@ namespace GHR.Application.Services.Implements.Contas
         private readonly IMapper _mapper;
         private readonly IContaPersistence _contaPersistence;
 
-        public ContaService(UserManager<Conta> userManager,
+        public ContaService(
+            UserManager<Conta> userManager,
             SignInManager<Conta> signInManager,
             IMapper mapper,
             IContaPersistence contaPersistence)
@@ -30,115 +34,7 @@ namespace GHR.Application.Services.Implements.Contas
             _contaPersistence = contaPersistence;
         }
 
-        public async Task<ContaVisaoDto> AtualizarConta(ContaVisaoDto contaVisaoDto)
-        {
-            try
-            {
-                var conta = await _contaPersistence.RecuperarContaPorIdAsync(contaVisaoDto.Id);
-
-                if (conta == null) return null;
-                    
-                contaVisaoDto.Id = conta.Id;
-
-                _mapper.Map(contaVisaoDto, conta);
-
-                _contaPersistence.Alterar<Conta>(conta);
-
-                if (await _contaPersistence.SalvarAsync()) {
-                    var contaRetorno = await _contaPersistence.RecuperarContaPorIdAsync(conta.Id);
-
-                    return _mapper.Map<ContaVisaoDto>(contaRetorno);
-                }
-
-                return null;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
-            }    
-        }
-        public async Task<ContaAtualizarDto> CriarContaAsync(ContaDto contaDto)
-        {
-            try
-            {
-                var conta = _mapper.Map<Conta>(contaDto);
-                
-                var contaCriada = await _userManager.CreateAsync(conta, contaDto.Password);
-
-                if (contaCriada.Succeeded) {
-                    var retornaConta = _mapper.Map<ContaAtualizarDto>(conta);
-                    return retornaConta;
-                }
-
-                return null;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new Exception($"Falha ao criar conta. Erro: {ex.Message}");
-            }
-        }
-
-        public async Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId, int empresaId)
-        {
-            try
-            {
-                var conta = await _contaPersistence.RecuperarContaPorIdAsync(userId);
-
-                if (conta == null) return null;
-
-                var contaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
-
-                return contaVisaoDto;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new Exception($"Falha ao recuperar conta por userId. Erro: {ex.Message}");
-            }
-        }
-
-
-        public async Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName, int empresaId)
-        {
-            try
-            {
-                var conta = await _contaPersistence.RecuperarContaPorUserNameAsync(userName);
-
-                if (conta == null) return null;
-
-                var ContaAtualizarDto = _mapper.Map<ContaAtualizarDto>(conta);
-
-                return ContaAtualizarDto;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new Exception($"Falha ao recuperar usuário por username. Erro: {ex.Message}");
-            }
-        }
-
-        public async Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName, int empresaId)
-        {
-            try
-            {
-                var conta = await _contaPersistence.RecuperarContaPorUserNameAsync(userName);
-
-                if (conta == null) return null;
-
-                var ContaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
-
-                return ContaVisaoDto;
-            }
-            catch (System.Exception ex)
-            {
-
-                throw new Exception($"Falha ao recuperar usuário por username. Erro: {ex.Message}");
-            }
-        }
-
-        public async Task<ContaAtualizarDto> AlterarConta(int empresaId, ContaAtualizarDto contaAtualizarDto)
+        public async Task<ContaAtualizarDto> AlterarContaToken(ContaAtualizarDto contaAtualizarDto)
         {
             try
             {
@@ -166,23 +62,109 @@ namespace GHR.Application.Services.Implements.Contas
             }
             catch (System.Exception ex)
             {
-
-                throw new Exception($"Falha ao salvar usuário. Erro: {ex.Message}");
+                throw new Exception($"Erro ao alterar CONTA e TOKEN. Erro: {ex.Message}");
             }    
         }
 
-        public async Task<bool> VerificarContaExiste(string userName, int empresaId)
+        public async Task<ContaVisaoDto> AlterarContaVisao(ContaVisaoDto contaVisaoDto)
         {
             try
             {
-                return await _userManager
-                    .Users                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                    .AnyAsync(user => user.UserName == userName.ToLower() );
+                var conta = await _contaPersistence.RecuperarContaPorIdAsync(contaVisaoDto.Id);
+
+                if (conta == null) return null;
+                    
+                contaVisaoDto.Id = conta.Id;
+
+                _mapper.Map(contaVisaoDto, conta);
+
+                _contaPersistence.Alterar<Conta>(conta);
+
+                if (await _contaPersistence.SalvarAsync()) {
+                    var contaRetorno = await _contaPersistence.RecuperarContaPorIdAsync(conta.Id);
+
+                    return _mapper.Map<ContaVisaoDto>(contaRetorno);
+                }
+
+                return null;
             }
             catch (System.Exception ex)
             {
+                throw new Exception($"Erro ao alterar CONTA VISAO. Erro: {ex.Message}");
+            }    
+        }
+        public async Task<ContaAtualizarDto> CadastrarContaAsync(ContaDto contaDto)
+        {
+            try
+            {
+                var conta = _mapper.Map<Conta>(contaDto);
+                
+                var contaCriada = await _userManager.CreateAsync(conta, contaDto.Password);
 
-                throw new Exception($"Falha ao verificar se a conta existe. Erro: {ex.Message}");
+                if (contaCriada.Succeeded) {
+                    var retornaConta = _mapper.Map<ContaAtualizarDto>(conta);
+                    return retornaConta;
+                }
+
+                return null;
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Erro ao cadastrar a CONTA. Erro: {ex.Message}");
+            }
+        }
+
+        public async Task<ContaVisaoDto> RecuperarContaAtivaAsync(string userName)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorUserNameAsync(userName);
+
+                if (conta == null) return null;
+
+                var ContaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
+
+                return ContaVisaoDto;
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Falha ao consultar CONTA ATIVA. Erro: {ex.Message}");
+            }
+        }
+
+        public async Task<ContaVisaoDto> RecuperarContaPorIdAsync(int userId)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorIdAsync(userId);
+
+                if (conta == null) return null;
+
+                var contaVisaoDto = _mapper.Map<ContaVisaoDto>(conta);
+
+                return contaVisaoDto;
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Erro ao consultar CONTA por USERID. Erro: {ex.Message}");
+            }
+        }
+
+        public async Task<ContaAtualizarDto> RecuperarContaPorUserNameAsync(string userName)
+        {
+            try
+            {
+                var conta = await _contaPersistence.RecuperarContaPorUserNameAsync(userName);
+
+                if (conta == null) return null;
+
+                var ContaAtualizarDto = _mapper.Map<ContaAtualizarDto>(conta);
+
+                return ContaAtualizarDto;
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Error ao consultar conta por USERNAME. Erro: {ex.Message}");
             }
         }
 
@@ -199,9 +181,22 @@ namespace GHR.Application.Services.Implements.Contas
                     .CheckPasswordSignInAsync(conta, password, false);
             }
             catch (System.Exception ex)
-            {
-                
+            {             
                 throw new Exception($"Falha ao validar Conta e Senha. Erro: {ex.Message}");
+            }
+        }
+
+        public async Task<bool> VerificarContaExiste(string userName)
+        {
+            try
+            {
+                return await _userManager
+                    .Users                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                    .AnyAsync(user => user.UserName == userName.ToLower() );
+            }
+            catch (System.Exception ex)
+            {
+                throw new Exception($"Erro ao verificar se a CONTA existe. Erro: {ex.Message}");
             }
         }
     }

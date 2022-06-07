@@ -7,9 +7,9 @@ namespace GHR.Persistence.Interfaces.Contracts.Funcionarios
 {
     public interface IFuncionarioPersistence: IGlobalPersistence
     {
-        Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(int empresaId, PaginaParametros paginaParametros, bool incluirMetas = false);
-        Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, int empresaId, bool incluirMetas = false);
-        Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId, int empresaId);
-        Task<Funcionario[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId, int empresaId);
+        Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false);
+        Task<Funcionario> RecuperarFuncionarioPorIdAsync(int funcionarioId, bool incluirMetas = false);
+        Task<Funcionario> RecuperarFuncionarioPorContaIdAsync(int contaId);
+        Task<Funcionario[]> RecuperarFuncionarioPorDepartamentoIdAsync(int departamentoId);
     }
 }

@@ -42,6 +42,10 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using GHR.Application.Services.Implements.Empresas;
+using GHR.Application.Services.Contracts.Empresas;
+using GHR.Persistence.Interfaces.Implements.Empresas;
+using GHR.Persistence.Interfaces.Contracts.Empresas;
 
 namespace GHR.API
 {
@@ -107,26 +111,30 @@ namespace GHR.API
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<ICargoService, CargoService>();
+            services.AddScoped<IContaService, ContaService>();
             services.AddScoped<IDepartamentoService, DepartamentoService>();
+            services.AddScoped<IEmpresaContaService, EmpresaContaService>();
+            services.AddScoped<IEmpresaService, EmpresaService>();
+            services.AddScoped<IFuncionarioDadoPessoalService, FuncionarioDadoPessoalService>();
+            services.AddScoped<IFuncionarioEnderecoService, FuncionarioEnderecoService>();
             services.AddScoped<IFuncionarioMetaService, FuncionarioMetaService>();
             services.AddScoped<IFuncionarioService, FuncionarioService>();
             services.AddScoped<IMetaService, MetaService>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IContaService, ContaService>();
-            services.AddScoped<IFuncionarioDadoPessoalService, FuncionarioDadoPessoalService>();
-            services.AddScoped<IFuncionarioEnderecoService, FuncionarioEnderecoService>();
             services.AddScoped<IUtilUpload, UtilUpload>();
 
 
             services.AddScoped<ICargoPersistence, CargoPersistence>();
+            services.AddScoped<IContaPersistence, ContaPersistence>();
+            services.AddScoped<IEmpresaContaPersistence, EmpresaContaPersistence>();
+            services.AddScoped<IEmpresaPersistence, EmpresaPersistence>();
             services.AddScoped<IDepartamentoPersistence, DepartamentoPersistence>();
+            services.AddScoped<IFuncionarioDadoPessoalPersistence, FuncionarioDadoPessoalPersistence>();
+            services.AddScoped<IFuncionarioEnderecoPersistence, FuncionarioEnderecoPersistence>();
             services.AddScoped<IFuncionarioMetaPersistence, FuncionarioMetaPersistence>();
             services.AddScoped<IFuncionarioPersistence, FuncionarioPersistence>();
             services.AddScoped<IGlobalPersistence, GlobalPersistence>();
             services.AddScoped<IMetaPersistence, MetaPersistence>();
-            services.AddScoped<IContaPersistence, ContaPersistence>();
-            services.AddScoped<IFuncionarioDadoPessoalPersistence, FuncionarioDadoPessoalPersistence>();
-            services.AddScoped<IFuncionarioEnderecoPersistence, FuncionarioEnderecoPersistence>();
 
             services.AddCors();
             services.AddSwaggerGen(options =>
