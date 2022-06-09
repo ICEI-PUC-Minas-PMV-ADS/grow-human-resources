@@ -1,3 +1,5 @@
+import { FuncionariosMetasDashboard } from './../../../models/suporte/dashboard/FuncionariosMetasDashboard';
+import { ListaDashboard } from '../../../models/suporte/dashboard/ListaDashboard';
 import { FuncionarioMetaService } from './../../../services/funcionarios/funcionarioMeta.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,6 +11,9 @@ import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
 
 import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { FuncionarioDashboard } from '../../../models/suporte/dashboard/FuncionarioDashboard';
+import { MetaDashboard } from '../../../models/suporte/dashboard/MetaDashboard';
+
 
 @Component({
   selector: 'app-dashboard-cabTotais',
@@ -16,23 +21,79 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
   styleUrls: ['./dashboard-cabTotais.component.scss']
 })
 export class DashboardCabTotaisComponent implements OnInit {
+  public paginaAtualParam: 1;
+  public linhasParam: 1000;
+
+  public cores: string[] = [];
+
+  public funcionariosDashboard: FuncionarioDashboard[] = [];
+  public metaDashboard: MetaDashboard[] = [];
+
 
   public funcionarios: Funcionario[] = [];
   public funcionariosMetas: FuncionarioMeta[] = [];
 
-  public totalDeFuncionarios = 0;
-  public totalDeFuncionariosAtivos = 0;
-  public percentFuncionariosAtivos = 0;
+  public metasCumpridasTop5: ListaDashboard[] = [];
+  public metasNaoCumpridasTop5: ListaDashboard[] = [];
 
-  public totalDeMetasDistribuidas = 0;
-  public totalDeMetasCumpridas = 0;
-  public percentMetasCumpridas = 0;
-  public totalDeMetasPendentes = 0;
-  public percentMetasPendentes = 0;
+  public metasCumpridasDepto: ListaDashboard[] = [];
+  public metasNaoCumpridasDepto: ListaDashboard[] = [];
 
-  public width = '';
+    // Doughnut
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartValues: number[] = [];
+  public doughnutChartData: ChartData<'doughnut'> = {
+    labels: this.doughnutChartLabels,
+    datasets: [{ data: this.doughnutChartValues }]
+  };
+  public doughnutChartType: ChartType = 'doughnut';
+    public doughnutChartOptions: any = {
+    responsive: true,
+    cutoutPercentage: 90,
+    maintainAspectRatio: true,
+    segmentShowStroke: true,
+    elements: {
+      arc: {
+          borderWidth: 0
+      }
+    },
+    legend: {
+      display: false,
+    },
+    options: {
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+            return ctx.chartData.dataset.data[ctx.labelsIndex]         }
+        }
+      }
+    }
+  };
 
 
+  public cabDashboardTotFunc = 0;
+  public cabDashboardTotFuncAtivo = 0;
+  public cabDashboardPerFuncAtivo = 0;
+
+  public cabDashboardTotMeta = 0;
+  public cabDashboardTotMetaCumprida = 0;
+  public cabDashboardPerMetaCumprida = 0;
+  public cabDashboardTotMetaPendente = 0;
+  public cabDashboardPerMetaPendente = 0;
+
+  public qtdeFuncionariosPorDepartamento = 0
+
+  public cabDashboardWhidthMetas = '';
+
+  public contadorFuncionarios = 0;
+  public contadorFuncioanriosDepRH = 0;
+  public contadorFuncionariosDepVen = 0;
+  public contadorFuncionariosDepMkt = 0;
+  public contadorFuncionariosDepCom = 0;
+  public contadorFuncionariosDepJur = 0;
+  public contadorFuncionariosDepAdm = 0;
+
+  pu
 
   constructor(
     private funcionarioMetaService: FuncionarioMetaService,
@@ -43,8 +104,14 @@ export class DashboardCabTotaisComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    for (var i = 0; i < 12; i++) {
+      this.cores[i] = this.gerarCor();
+    }
+
     this.carregarFuncionarios();
     this.carregarMetas();
+    console.log('Funcionarios', this.funcionariosDashboard)
+
   }
 
   public carregarFuncionarios(): void {
@@ -52,19 +119,24 @@ export class DashboardCabTotaisComponent implements OnInit {
     this.spinner.show();
 
     this.funcionarioService
-      .recuperarFuncionarios(1, 1000)
+      .recuperarFuncionarios(this.paginaAtualParam, this.linhasParam)
       .subscribe(
         (funcionarios: ResultadoPaginacao<Funcionario[]>) => {
           this.funcionarios = funcionarios.resultado;
-          this.totalDeFuncionarios = this.funcionarios.length;
-          console.log("Func",this.funcionarios )
+          this.funcionarios.forEach((func, i) => {
+            this.funcionariosDashboard[i] =  new FuncionarioDashboard(
+              func.id,
+              func.ativo,
+              func.cargos.nomeCargo,
+              func.departamentoId,
+              func.departamentos.nomeDepartamento,
+              func.departamentos.siglaDepartamento,
+              func.contas.nomeCompleto,
+              func.contas.userName);
+          })
+          this.montarCabDashboardFunc();
+          this.montarDoughnut();
 
-          this.funcionarios = this.funcionarios.filter(
-            (funcionario: Funcionario) =>
-              funcionario.ativo == true);
-              this.totalDeFuncionariosAtivos = this.funcionarios.length;
-              this.percentFuncionariosAtivos = this.totalDeFuncionariosAtivos
-                                             / this.totalDeFuncionarios * 100;
         },
         (error: any) => {
           this.toastr.error('Falha ao carregar os funcionários', 'Erro!');
@@ -79,40 +151,61 @@ export class DashboardCabTotaisComponent implements OnInit {
       .subscribe(
         (funcionariosMetas: FuncionarioMeta[]) => {
           this.funcionariosMetas = funcionariosMetas;
-          this.totalDeMetasDistribuidas = this.funcionariosMetas.length;
-          this.funcionariosMetas = this.funcionariosMetas.filter(
-            (funcionariosMetas: FuncionarioMeta) => funcionariosMetas.metaCumprida == true);
-          this.totalDeMetasCumpridas = this.funcionariosMetas.length;
-          this.percentMetasCumpridas = this.totalDeMetasCumpridas
-            / this.totalDeMetasDistribuidas * 100;
-          this.width = this.percentMetasCumpridas + '%';
-          this.totalDeMetasPendentes = this.totalDeMetasDistribuidas
-            - this.totalDeMetasCumpridas;
-          this.percentMetasPendentes = this.totalDeMetasPendentes
-            / this.totalDeMetasDistribuidas * 100;
 
+          this.funcionariosMetas.forEach((meta, i) => {
+            this.metaDashboard[i] = new MetaDashboard(
+              meta.funcionarioId,
+              meta.funcionarios.ativo,
+              meta.metaCumprida,
+              meta.metaId,
+              meta.metas.metaAprovada,
+              meta.metas.nomeMeta
+            );
+          });
+          console.log("tupla Meta", this. metaDashboard)
+          this.montarCabDashboardMeta();
+          this.topFiveMetas();
+          this.metasPorDepartamento();
         },
         (error: any) => {
           console.error(error);
           this.toastr.error('Falha ao carregar as metas dos funcionarios', 'Erro!');
         })
       .add(() => this.spinner.hide());
+
   }
 
+  public montarCabDashboardFunc(): void {
+
+    this.cabDashboardTotFunc = this.funcionariosDashboard.length;
+
+    this.cabDashboardTotFuncAtivo = this.funcionariosDashboard.filter(
+      (fd) => fd.funcionarioAtivo == true).length;
+
+    this.cabDashboardPerFuncAtivo = +(this.cabDashboardTotFuncAtivo
+      / this.cabDashboardTotFunc * 100).toFixed(2);
+  }
+
+  public montarCabDashboardMeta(): void {
+
+    this.cabDashboardTotMeta = this.metaDashboard.length;
+
+    this.cabDashboardTotMetaCumprida = this.metaDashboard
+      .filter((fm) => fm.metaCumprida == true).length;
+
+    this.cabDashboardPerMetaCumprida = +(this.cabDashboardTotMetaCumprida
+      / this.cabDashboardTotMeta * 100).toFixed(2);
+
+    this.cabDashboardWhidthMetas = this.cabDashboardPerMetaCumprida + '%';
+
+    this.cabDashboardTotMetaPendente = +(this.cabDashboardTotMeta
+      - this.cabDashboardTotMetaCumprida).toFixed(2);
+
+    this.cabDashboardPerMetaPendente = +(this.cabDashboardTotMetaPendente
+      / this.cabDashboardTotMeta * 100).toFixed(2);
+  }
 
   // Doughnut
-  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales', "D1", "D2"];
-
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [350, 450, 100, 100, 150] },
-
-    ]
-  };
-
-  public doughnutChartType: ChartType = 'doughnut';
-
   // events
   public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
    console.log(event, active);
@@ -122,21 +215,206 @@ export class DashboardCabTotaisComponent implements OnInit {
     console.log(event, active);
   }
 
-  public doughnutChartOptions: any = {
-    responsive: true,
-    cutoutPercentage: 70,
-    maintainAspectRatio: true,
-    segmentShowStroke: false,
-    elements: {
-      arc: {
-          borderWidth: 0
-      }
-    },
-    legend: {
-      display: false,
+  public montarDoughnut(): void {
+    var ListaDepartamentos: string[] = [];
+    var ListaDepartamentosSemDuplicidade: string[] = [];
+
+    var funcionariosPorDepartamento: FuncionarioDashboard[] = [];
+
+    funcionariosPorDepartamento = this.funcionariosDashboard
+      .sort(func => func.funcionarioDepartamentoId)
+
+    funcionariosPorDepartamento.forEach((depto) => {
+      ListaDepartamentos.push(depto.funcionarioDepartamento);
+    });
+
+    console.log("ListaDepartamentos", ListaDepartamentos)
+
+    ListaDepartamentosSemDuplicidade = ListaDepartamentos
+        .filter((ele, pos) => ListaDepartamentos.indexOf(ele) == pos);
+
+    console.log("ListaDepartamentosSemDuplicidade", ListaDepartamentosSemDuplicidade)
+
+    for (var dep of ListaDepartamentosSemDuplicidade) {
+      this.doughnutChartLabels.push(dep)
     }
-  };
+
+    for (var i in ListaDepartamentosSemDuplicidade) {
+      this.doughnutChartValues.push(funcionariosPorDepartamento
+        .filter((func) => func.funcionarioDepartamento == ListaDepartamentosSemDuplicidade[i]).length)
+    }
+      console.log("doughnuts",  this.doughnutChartLabels, this.doughnutChartValues)
+
+  }
+
+  public topFiveMetas(): void {
+    var listaMetas: string[] = [];
+    var listametasSemDuplicidade: string[] = [];
+
+    var listaMetasCumpridas: ListaDashboard[] = [];
+    var listaMetasOrdenadas: ListaDashboard[] = [];
+    var listaMetasNaoCumpridas: ListaDashboard[] = [];
 
 
 
+    var meta4: ListaDashboard[] = [];
+
+    this.metaDashboard.forEach((fm) => {
+      listaMetas.push(fm.nomeMeta)
+    })
+
+    console.log("listaMetas", listaMetas);
+
+    listametasSemDuplicidade = listaMetas
+      .filter((ele, pos) => listaMetas.indexOf(ele) == pos);
+
+    console.log("listaMetasSemDuplicidade", listametasSemDuplicidade);
+
+    var qtdCumprida = this.metaDashboard
+      .filter((fm) => fm.metaCumprida == true).length;
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasCumpridas[i] = new ListaDashboard(this.metaDashboard
+        .filter(
+          (fm) => fm.nomeMeta == listametasSemDuplicidade[i]
+            && fm.metaCumprida == true).length,
+          listametasSemDuplicidade[i],
+          qtdCumprida,
+          this.cores[i]);
+    }
+    console.log("listaMetasCumpridas", listaMetasCumpridas)
+
+    listaMetasOrdenadas = listaMetasCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
+
+    this.metasCumpridasTop5 = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+    console.log("metasCumpridasTop5", this.metasCumpridasTop5)
+
+
+    var qtdNaoCumprida = this.metaDashboard.filter((fm) => fm.metaCumprida == false).length;
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasNaoCumpridas[i] = new ListaDashboard(this.metaDashboard
+        .filter(
+          (fm) => fm.nomeMeta == listametasSemDuplicidade[i] && fm.metaCumprida == false).length,
+          listametasSemDuplicidade[i],
+          qtdNaoCumprida,
+          this.cores[i]);
+    }
+
+    console.log("listaMetasNaoCumpridas", listaMetasNaoCumpridas)
+
+    listaMetasOrdenadas = listaMetasNaoCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+        console.log("listaMetasOrdenadas", listaMetasOrdenadas )
+
+    this.metasNaoCumpridasTop5 = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+
+    console.log("metasNaoCumpridasTop5", this.metasNaoCumpridasTop5 )
+
+  }
+
+  public metasPorDepartamento(): void {
+    var funcionarioMetasDashboard: FuncionariosMetasDashboard[] = [];
+
+    var listaDepartamentos: string[] = [];
+    var listametasSemDuplicidade: string[] = [];
+
+    var listaMetasCumpridas: ListaDashboard[] = [];
+    var listaMetasOrdenadas: ListaDashboard[] = [];
+    var listaMetasNaoCumpridas: ListaDashboard[] = [];
+
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+    var j = 0;
+
+    for (var func of this.funcionariosDashboard) {
+      var metas = this.metaDashboard.filter(fm => fm.funcionarioId == func.funcionarioId)
+      for (var meta of metas) {
+        funcionarioMetasDashboard[j] = new FuncionariosMetasDashboard(
+          func.funcionarioId,
+          func.funcionarioAtivo,
+          func.funcionarioCargo,
+          func.funcionarioDepartamentoId,
+          func.funcionarioDepartamento,
+          func.funcionarioSigla,
+          func.funcionarioNome,
+          func.funcionarioUser,
+          meta.metaCumprida,
+          meta.metaId,
+          meta.metaAprovada,
+          meta.nomeMeta
+        )
+        j++;
+      }
+    }
+    console.log ("---------", funcionarioMetasDashboard)
+
+    var meta4: ListaDashboard[] = [];
+
+    funcionarioMetasDashboard.forEach((fm) => {
+      listaDepartamentos.push(fm.funcionarioDepartamento)
+    })
+
+    console.log("listaDepartamentos", listaDepartamentos);
+
+    listametasSemDuplicidade = listaDepartamentos
+      .filter((ele, pos) => listaDepartamentos.indexOf(ele) == pos);
+
+    console.log("listaMetasSemDuplicidade", listametasSemDuplicidade);
+
+    var qtdCumprida = funcionarioMetasDashboard
+      .filter((fm) => fm.metaCumprida == true).length;
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
+        .filter(
+          (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i] && fm.metaCumprida == true).length,
+          listametasSemDuplicidade[i],
+          qtdCumprida,
+          this.cores[i]);
+    }
+    console.log("listaMetasCumpridas", listaMetasCumpridas)
+
+    listaMetasOrdenadas = listaMetasCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
+
+    this.metasCumpridasDepto = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+    console.log("metasCumpridasTop5", this.metasCumpridasDepto)
+
+
+    var qtdNaoCumprida = funcionarioMetasDashboard.filter((fm) => fm.metaCumprida == false).length;
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasNaoCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
+        .filter(
+          (fm) =>  fm.funcionarioDepartamento == listametasSemDuplicidade[i]  && fm.metaCumprida == false).length,
+          listametasSemDuplicidade[i],
+          qtdNaoCumprida,
+          this.cores[i]);
+    }
+
+    console.log("listaMetasNaoCumpridas", listaMetasNaoCumpridas)
+
+    listaMetasOrdenadas = listaMetasNaoCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+        console.log("listaMetasOrdenadas", listaMetasOrdenadas )
+
+    this.metasNaoCumpridasDepto = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+
+    console.log("metasNaoCumpridasTop5", this.metasNaoCumpridasDepto)
+
+  }
+
+  public gerarCor() {
+    var headecimais = '0123456789ABCDEF';
+
+    var cor = '#';
+
+    for (var i = 0; i < 6; i++) {
+      cor += headecimais[Math.floor(Math.random() * 16)];
+    }
+    return cor;
+  }
 }
+

@@ -29,7 +29,7 @@ namespace GHR.Application.Dtos.Funcionarios
 
  //     [Display(Name = "Funcionario Ativo"),
  //     Required(ErrorMessage = "O campo {0} é obrigatório.")]
-      public Boolean FuncionarioAtivo { get; set; }
+      public Boolean Ativo { get; set; }
 
  //     [Display(Name = "Cargo"),
  //     Required(ErrorMessage = "É necessário informa um {0}.")] 

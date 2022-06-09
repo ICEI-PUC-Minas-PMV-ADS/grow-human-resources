@@ -142,6 +142,7 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
           (metaRetorno: Meta) => {
             this.meta = metaRetorno;
             this.form.patchValue(this.meta);
+            this.funcionarioMetaService
 
           },
           (error: any) => {
@@ -213,7 +214,7 @@ export class FuncionarioMetaAssociarComponent implements OnInit {
     this.funcionarioMeta.metaCumprida = this.form.get('metaCumprida').value
     this.funcionarioMeta.inicioRealizado = this.form.get('inicioPlanejado').value
     this.funcionarioMeta.fimRealizado = this.form.get('fimPlanejado').value
-
+    console.log('func', this.funcionarioMeta)
     this.funcionarioMetaService
       .salvarFuncionarioMeta(this.funcionarioMeta)
       .subscribe(

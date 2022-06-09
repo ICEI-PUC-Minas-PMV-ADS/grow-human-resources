@@ -1,4 +1,5 @@
 using System;
+using GHR.Domain.DataBase.Departamentos;
 using GHR.Domain.DataBase.Metas;
 
 namespace GHR.Domain.DataBase.Funcionarios
@@ -15,5 +16,6 @@ namespace GHR.Domain.DataBase.Funcionarios
         public string InicioRealizado { get; set; }
         public string FimRealizado { get; set; }
         public string Supervisor { get; set; }
+        public Departamento Departamentos { get; set; }
     }
 }

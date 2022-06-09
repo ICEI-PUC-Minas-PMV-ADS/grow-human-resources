@@ -102,7 +102,7 @@ namespace GHR.Application.Services.Implements.Funcionarios
 
         } 
 
-        public async Task<PaginaLista<FuncionarioDto>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false)
+        public async Task<PaginaLista<FuncionarioDto>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = true)
         {
             try
             {
