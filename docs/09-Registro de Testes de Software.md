@@ -14,8 +14,6 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 | |
 |Falha ao autenticar no sistema|
 |![image](https://user-images.githubusercontent.com/94413402/173255216-3ce6b929-59b1-49c6-abfe-31e9215ecc62.png)|
-|-----|
-
 =====
 
 |  `Caso de Teste`           |  `CT-02`
