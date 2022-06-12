@@ -5,8 +5,14 @@
 Relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado em um plano de testes pré-definido.
 
 |  `Caso de Teste`           |  `CT-01`
+
 Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;
 ![image](https://user-images.githubusercontent.com/94413402/173254754-85cba624-6964-487f-8ddb-e248e3f04eca.png)
+
+Usuário não autenticado no sistema:
+![image](https://user-images.githubusercontent.com/94413402/173255116-aa23f942-ae0c-40ad-a113-d481a3ebdf47.png)
+
+Falha ao autenticar no sistema
 ![image](https://user-images.githubusercontent.com/94413402/173254814-f7e6a281-c264-459b-8250-6bd820d2b6e3.png)
 
 
