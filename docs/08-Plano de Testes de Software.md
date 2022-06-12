@@ -8,26 +8,25 @@
 
 |  `Caso de Teste`           |  `CT-02`
 |----------------------------|-----------------------------------------------------------------|
-| `Requisitos  Associados`    | RF03: O Sistema deverá Permitir o gerenciamento de usuários (CRUD) - RF01: O sistema deverá permitir o login de colaboradores no sistema;  |
+| `Requisitos  Associados`    | RF03: O Sistema deverá Permitir o gerenciamento de usuários (CRUD) <br> RF01: O sistema deverá permitir o login de colaboradores no sistema; </br> |
 |   `Objetivo do Teste`      | verficar que o usuário foi cadastrado e autenticado no sistema. |
 |         `Passos`           |1. Abrir o navegador Web utilizado pela empresa; <br> 2. Acessar o atalho presente na intranet da empresa;</br> 3. Ir para o link "Quero me cadastrar" <br> 4. Efetua o cadastro dos dados solicitatos. </br> 5. Clicar em "Registrar" |
 |   `Critérios de Êxito`     |• Usuários cadastrado na base de dados;|
 
 |  `Caso de Teste`           |  `CT-03`
 |----------------------------|-----------------------------------------------------------------|
-| `Requisitos  Associados`    | RF03: O Sistema deverá Permitir o gerenciamento de usuários (CRUD) | RF01: O sistema deverá permitir o login de colaboradores no sistema;  |
+| `Requisitos  Associados`    | RF03: O Sistema deverá Permitir o gerenciamento de usuários (CRUD) <br> RF01: O sistema deverá permitir o login de colaboradores no sistema; </br>  |
 |   `Objetivo do Teste`      | Atualização do Perfil realizada com sucesso. |
 |         `Passos`           |1.Selecioar a opção Perfil abaixo do nome do usuário <br> 2. Acessar o atalho presente na intranet da empresa;</br> 3. Preencher os dados solicitaos <br> 4. Clicar em Salvar </br> |
 |   `Critérios de Êxito`     |• Perfil atualizado na base de dados;|
 
-=====
 
-|  `Caso de Teste`           |  `CT-02`
+|  `Caso de Teste`           |  `CT-04`
 |----------------------------|-----------------------------------------------------------------|
-| `Requisitos  Associados`    |RF-03: O sistema deve permitir que o supervisor acompanhe os relatórios de desempenho de seus subordinados.; <br>RF-04: O sistema deve permitir ao gerente visualizar os relatórios de cada departamento pelo qual ele é responsável. </br>  |
-|   `Objetivo do Teste`      | Verificar se os relatórios estão sendo dispostos de acordo com a área e funcionário selecionados. |
-|         `Passos`           |1. Abrir o navegador web utilizado pela empresa; <br> 2. Acessar o atalho presente na intranet;</br> 3. Selecionar ou buscar a área desejada (no caso de o gestor ser responsável por mais de uma área); <br> 4. Selecionar/buscar o funcionário desejado e visualizar relatórios. |
-|   `Critérios de Êxito`     |•  Apresentação e organização correta dos relatórios solicitados. |
+| `Requisitos  Associados`    |RF03: O Sistema deverá Permitir o gerenciamento de usuários (CRUD). ; <br>RF04: O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar funcionários (CRUD) | ALTA |  </br> RF08: O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar cargos e salários (CRUD) <br>RF11: O Sistema deverá Permitir que o Usuário Silver/Golden RH deverá associar um Funcionário a um deparamento</br> RF13: O Sistema deverá Permitir que o Usuário Bronze/Silver/Golden RH deverá associar um funcionário a um cargo e salário|
+|   `Objetivo do Teste`      | Efetivar o cadastro do usuário como funcionário da empresa.|
+|         `Passos`           |1. Logar no sistema com visão Silver RH ou superior RH; <br> 2. Navegar para funcionários;</br> 3. Clicar em Novo; <br> 4. informar o username e clicar na lupa. </br> 5. Definir a visão do funcionário; <br> 6. Preenchear os dados solicitados| </br> 7. Clicar em salvar para cada aba preenchida <br>  8. Clicar em listar funcionarios para verificar se usário foi salvo com funcioário.
+|   `Critérios de Êxito`     |•  Funcionário criado na base de dados. |
 
 =====
 
