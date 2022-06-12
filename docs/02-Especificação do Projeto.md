@@ -129,5 +129,5 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
  ## Representação Visual
 
- ![Diagrama de Classes-Diagrama de Caso de Uso](<img src="/docs/img/agrama-caso-uso.png"
+ ![Diagrama de Classes-Diagrama de Caso de Uso drawio](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1b94imjTEjeaUMr_QMCaFIUFmTRBVSjKR)
 
