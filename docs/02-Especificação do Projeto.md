@@ -108,8 +108,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ATOR|	DESCRIÇÃO|
 |----|-----------|
-|Bonze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
-|Bonze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
+|Bronze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
+|Bronze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
 |Silver| Ator que desempenha o papel de funcionario administrativo, podendo realizar atividades específicas conforme necessidades da organização.|
 |Silver RH| Ator que desempenha o papel de funcionario, realiza o gerenciamento de funcionarios, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH.|
 |Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atribuições de um Silver RH.|
