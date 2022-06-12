@@ -20,7 +20,7 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 
 
 
-## Caso de Teste - CT-01      
+## Caso de Teste - CT-02      
 
 |Usuários Adalberto Ferreira Cruz será cadastrado na base: username: adalberto;|
 |------------------------------------------------------------------------------|
@@ -41,29 +41,32 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 
 
 
-|  `Caso de Teste`           |  `CT-03`
+## Caso de Teste - CT-03     
 
-Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;
-![image](https://user-images.githubusercontent.com/94413402/173255586-346da5e8-fd81-4735-a02b-4584af63fa9a.png)
+|Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173255586-346da5e8-fd81-4735-a02b-4584af63fa9a.png)|
+|![image](https://user-images.githubusercontent.com/94413402/173255630-9ce724fe-9bb9-4e51-9fc5-2870dc4e9958.png)|
+|![image](https://user-images.githubusercontent.com/94413402/173255640-16ac7d8d-1dd9-454f-92fa-835e13db2029.png)|
 
-![image](https://user-images.githubusercontent.com/94413402/173255630-9ce724fe-9bb9-4e51-9fc5-2870dc4e9958.png)
 
-![image](https://user-images.githubusercontent.com/94413402/173255640-16ac7d8d-1dd9-454f-92fa-835e13db2029.png)
 
-=====
-|  `Caso de Teste`           |  `CT-04`
+## Caso de Teste - CT-04  
 
-Selecionar usuário Silver:
-![image](https://user-images.githubusercontent.com/94413402/173256619-5144a909-e676-45ba-9171-1bb2be295a73.png)
+|Selecionar usuário Silver:|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173256619-5144a909-e676-45ba-9171-1bb2be295a73.png)|
 
-logar no sistema:
-![image](https://user-images.githubusercontent.com/94413402/173256686-63823774-789f-41fc-8b5f-3a6e21ed857d.png)
+|logar no sistema:|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173256686-63823774-789f-41fc-8b5f-3a6e21ed857d.png)|
 
-Garantir que usuário tenha visão Silver:
-![image](https://user-images.githubusercontent.com/94413402/173256653-3be4b17e-0672-4921-9e1f-eb5082625bcb.png)
+|Garantir que usuário tenha visão Silver:|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173256653-3be4b17e-0672-4921-9e1f-eb5082625bcb.png)|
 
-Clicar em novo:
-![image](https://user-images.githubusercontent.com/94413402/173256718-154a1368-7596-4df6-86a1-d293e2d7c35f.png)
+|Clicar em novo|
+|![image](https://user-images.githubusercontent.com/94413402/173256718-154a1368-7596-4df6-86a1-d293e2d7c35f.png)|
 
 
 
