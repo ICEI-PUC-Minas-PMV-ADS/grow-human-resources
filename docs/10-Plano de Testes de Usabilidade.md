@@ -22,15 +22,27 @@ Método Utilizado: Avaliação
 
 |Tarefa 4 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Visão Golden associar um funcionário a um departamento. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+|Visão Golden RH associar um funcionário a um departamento. | Inserção do funcionário no departamento.| Concretização da tarefa. |
 
 |Tarefa 5 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Visão Silver criar uma meta. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+|Visão Silver RH deverá criar uma meta. | Criação da meta na base de dados.| Concretização da tarefa. |
 
-|Tarefa 5 |	Critério de Êxito |	O que será avaliado |
+|Tarefa 6 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Visão Silver associar um funcionário a uma meta. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+|Visão Silver RH deverá associar um funcionário a uma meta. | Associação do funcionário à meta.| Concretização da tarefa. |
+
+|Tarefa 7 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Silver RH deverá criar um objetivo. | Criação do objetivo na base de dados.| Concretização da tarefa. |
+
+|Tarefa 8 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Silver RH deverá associar um funcionário a um objetivo. | Associação do funcionário a objetivo.| Concretização da tarefa. |
+
+|Tarefa 9 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Golden RH deverá gerenciar cargos e salários. | Manipular a base de dados e associar cargo e salário a um funcionário.| Concretização da tarefa. |
 
 ## Objetivo
  
