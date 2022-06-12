@@ -65,12 +65,34 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 |------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173256653-3be4b17e-0672-4921-9e1f-eb5082625bcb.png)|
 
-|Clicar em novo|
+|Clicar em novo (observer que o último usuário da lista é o 11) |
 |------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173256718-154a1368-7596-4df6-86a1-d293e2d7c35f.png)|
 
+|Informe o username no campo pesquisa e clicque na lupa|
+|------------------------------------------------------------------------------|
+![image](https://user-images.githubusercontent.com/94413402/173257951-6d9bfe40-8fb9-44d5-88fb-51bbfaf6484d.png)
+
+|Informe o username no campo pesquisa e clicque na lupa e escolha a visão|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173257994-f52e0634-dbc0-443f-9d5a-1b337556170a.png)|
+
+|Funcionário 12 criado sistema|
+|------------------------------------------------------------------------------|
+![image](https://user-images.githubusercontent.com/94413402/173258159-d7e445bd-7781-4cd5-90f9-d4b130187985.png)
+
+|Funcionário 12 criado na base de dados|
+|------------------------------------------------------------------------------|
+![image](https://user-images.githubusercontent.com/94413402/173258192-a2dcaf48-bf75-49ff-92d6-1dd860dccb2c.png)
 
 
+
+
+
+
+
+
+## Caso de Teste - CT-05
 
 ## Avaliação
 
