@@ -10,19 +10,27 @@ Método Utilizado: Avaliação
 
 |Tarefa 1|Critério de Êxito|O que será avaliado|
 |--------|-----------------|-------------------|
-|Cadastro de novo usuário.|	Realizar login no sistema | O sucesso no usuário conseguir logar no sistema.|
+|Visão Bronze RH efetuar o cadastro de novo usuário.|	Realizar o cadastro da base de dados. | O sucesso do usuário conseguir logar no sistema.|
 
 |Tarefa 2 | Critério de Êxito |	O que será avaliado |
 |---------|-------------------|---------------------|
-|Logar no sistema.|Conseguir logar no sistema e ser encaminhado para a página de cadastro.|	Realização positiva ou negatica do login.|
+|Logar no sistema.| Conseguir logar no sistema e ser encaminhado para a Dashboard.|	Realização positiva ou negatica do login.|
 
 |Tarefa 3 |	Critério de Êxito | O que será avaliado|
 |---------|-------------------|--------------------|
-|Verificação de metas | Consultar o desempenho de seus esforços | Concretização da tarefa.|
+|Verificação de metas pelo funcionário. | Consultar as metas associadas. | Concretização da consulta.|
 
 |Tarefa 4 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Associar o funcionário a um departamento. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+|Visão Golden associar um funcionário a um departamento. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+
+|Tarefa 5 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Silver criar uma meta. | Inserção do funcionário no departamento.| Concretização da tarefa. |
+
+|Tarefa 5 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Silver associar um funcionário a uma meta. | Inserção do funcionário no departamento.| Concretização da tarefa. |
 
 ## Objetivo
  
