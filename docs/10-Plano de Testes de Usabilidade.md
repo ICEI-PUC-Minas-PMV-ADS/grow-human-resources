@@ -46,8 +46,8 @@ Método Utilizado: Avaliação
 
 ## Objetivo
  
-Fazer melhorias na plataforma proporcionando uma melhor experiência ao usuário. O que será mensurado no teste:
-•         	A qualidade na navegação
+Fazer melhorias na plataforma proporcionando uma melhor experiência ao usuário. O que será mensurado no teste: <br>
+•         	A qualidade na navegação <br>
 •         	Satisfação do usuário
  
 ## Perfil do Usuário
