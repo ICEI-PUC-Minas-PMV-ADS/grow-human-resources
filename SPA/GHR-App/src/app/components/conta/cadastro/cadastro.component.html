@@ -1,0 +1,99 @@
+<div class="row g-0">
+  <div class="col-md-6 col-sm-12">
+    <div class="card">
+      <div class="card-header bg-white ">
+ <!-- Figura Lateral Esquerda -->
+        <div class="d-none d-md-block">
+          <div class="text-center col-md-12 my-auto side-heder">
+            <img class="imgCentral" src="../../../../assets/img/ghr-logo.jpg" alt="" >
+            <div class="titulo shadow bg-dark text-white">Grow Human Resources</div>
+          </div>
+        </div>
+      </div>
+    <form class="p-2" [formGroup]="form!" (ngSubmit)="cadastrarConta()">
+  <!-- Figura Lateral Esquerda -->
+	    <div class="pt-1">
+		    <h4 class="border-bottom">Cadastro de Conta</h4>
+	    </div>
+
+    	<div class="form-row d-md-flex">
+		    <div class="form-group col-md-6 p-1">
+			    <label>Conta</label>
+			    <input type="text" class="form-control" placeholder="Insira seu código de usuário"
+            [ngClass]="validarCampo(f.userName)"
+            formControlName="userName">
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.userName, "")}}
+          </div>
+		    </div>
+        <div class="form-group col-md-6 p-1">
+		    	<label>Nome</label>
+			    <input type="text" class="form-control" placeholder="Insira seu nome completo"
+            [ngClass]="validarCampo(f.nomeCompleto)"
+            formControlName="nomeCompleto">
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.nomeCompleto, "")}}
+          </div>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col p-1">
+          <label for="">Email:</label>
+          <input class="form-control" type="text" placeholder="Insira seu e-mail pessoal"
+            [ngClass]="validarCampo(f.email)"
+            formControlName="email"
+          />
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.email, "")}}
+          </div>
+        </div>
+	    </div>
+
+    	<div class="form-row d-md-flex">
+		    <div class="form-group col-ms-12 col-md-6 p-1">
+			    <label for="">Senha:</label>
+			    <input class="form-control" type="password" placeholder="Digite uma Senha"
+            [ngClass]="validarCampo(f.password)"
+            formControlName="password"
+          />
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.password, "")}}
+          </div>
+		    </div>
+		    <div class="form-group col-ms-12 col-md-6 p-1">
+			   <label for="">Confirmar Senha:</label>
+			   <input class="form-control" type="password" placeholder="Confirme a Senha"
+            [ngClass]="validarCampo(f.confirmarPassowrd)"
+            formControlName="confirmarPassowrd"
+          />
+          <div class="invalid-feedback">
+            {{retornarValidacao(f.confirmarPassowrd, "Confirmar Senha")}}
+          </div>
+		    </div>
+	    </div>
+      <div class="d-flex row m-1">
+        <button class="btn btn-lg btn-success btn-block" [disabled]="!form.valid" type="submit">
+          Registar
+        </button>
+      </div>
+    </form>
+    <hr class="p-0 m-0">
+    <div class="row ">
+      <div class="d-flex">
+        <div class="custom-control custom-checkbox">
+          <a class="btn btn-link btn-block align-items-center " routerLink="/user/login">
+            Já sou Cadastrado
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Figura Lateral Direita -->
+    <div class="col-md-6 d-none d-md-block">
+      <div class="text-center col-md-12 my-auto side-heder">
+        <img class="imgLateral" src="../../../../assets/img/ghr-rightImg.png" alt="" >
+    </div>
+  <!-- Figura Lateral Direita -->
+</div>

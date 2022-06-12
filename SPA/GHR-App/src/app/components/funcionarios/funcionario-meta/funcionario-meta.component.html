@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="card rounded shadow-sm p-1 m-0 bg-light">
+
+    <div class="card-head text-center text-white bg-secondary">
+      <H3>Formulário de Metas por Funcionários</H3>
+    </div>
+
+    <div class="m-0 p-0 bg-white">
+      <tabset>
+        <tab >
+          <ng-template tabHeading>
+            <i class="fa fa-bullseye m-1"></i>
+            <span>Associar Metas</span>
+          </ng-template>
+          <app-funcionario-meta-associar  [formsParametros]="formsParametros"></app-funcionario-meta-associar>
+        </tab>
+        <tab>
+          <ng-template tabHeading>
+            <i class="fa fa-list m-1"></i>
+            <span>Lista</span>
+          </ng-template>
+          <app-funcionario-meta-lista></app-funcionario-meta-lista>
+        </tab>
+        <tab>
+          <ng-template tabHeading>
+            <i class="fa fa-id-badge m-1"></i>
+            <span>funcionario</span>
+          </ng-template>
+          <app-funcionario-meta-conta></app-funcionario-meta-conta>
+        </tab>
+      </tabset>
+    </div>
+
+  </div>
+</div>

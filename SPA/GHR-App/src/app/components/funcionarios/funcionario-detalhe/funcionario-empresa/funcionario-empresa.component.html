@@ -1,0 +1,111 @@
+<form class="row m-0 p-1 bg-white"
+    [formGroup]="form"
+    (submit)="salvarDadosEmpresa()">
+  <div  class="card d-flex m-0 p-0 bg-light">
+    <div  class="card-body  bg-light m-0 " >
+      <div class="form-row m-0">
+        <div class="form-group col-12 p-1 m-0">
+          <h5 class="border-bottom m-0 p-0">Dados da Empresa</h5>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 p-1">
+          <label>Departamento</label>
+          <select typer="number" class="form-select form-control" aria-label="Default select example"
+            formControlName="departamentoId"
+            (change)="onClickDeptoId($event.target)"
+            [ngClass]="validarCampo(ctrF.departamentoId)">
+            <option *ngFor='let departamento of departamentos'
+              value={{departamento.id}}
+              [disabled]="protegerCampoFuncionario"
+              >
+              {{departamento.nomeDepartamento}}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrF.departamentoId, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Cargo</label>
+          <select typer="number" class="form-select form-control" aria-label="Default select example"
+            formControlName="cargoId"
+            [ngClass]="validarCampo(ctrF.cargoId)">
+            <option *ngFor='let cargo of cargos'
+              value={{cargo.id}} [disabled]="protegerCampoFuncionario">
+              {{cargo.nomeCargo}}
+            </option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrF.cargoId, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Data Admissão</label>
+          <input type="text" class="form-control" placeholder="Informe a data admissão"
+          [readonly]="protegerCampoFuncionario"
+          [ngClass]="validarCampo(ctrF.dataAdmissao)"
+          formControlName="dataAdmissao"
+          bsDatepicker
+          [bsConfig]="bsConfig"
+          value="{{funcionario.dataAdmissao | DateTimeFormat}}"
+          >
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrF.dataAdmissao, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Data Desligamento</label>
+          <input type="text" class="form-control" placeholder="Informe a data desligamento"
+          formControlName="dataDemissao"
+          [readonly]="protegerCampoFuncionario"
+          [ngClass]="validarCampo(ctrF.dataDemissao)"
+          bsDatepicker
+          [bsConfig]="bsConfig"
+          value="{{funcionario.dataDemissao | DateTimeFormat}}">
+        </div>
+      </div>
+      <div class="form-row d-flex">
+        <div class="form-group col-md-3 p-1">
+          <label>Salário</label>
+          <input class="form-control"
+            [readonly]="protegerCampoFuncionario"
+            [ngClass]="validarCampo(ctrF.salario)"
+            currencyMask
+            [options]="{prefix: 'R$ ', thousands: '.', decimal: ','}"
+            formControlName="salario"
+          >
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrF.salario, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Supervisor</label>
+          <input type="text" class="form-control" readonly="true" placeholder="Supervisor"
+            formControlName="supervisor" >
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Gerência</label>
+          <input type="text" class="form-control" readonly="true" placeholder="Gerência Administrativa"
+            formControlName="gerente">
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Diretoria</label>
+          <input type="text" class="form-control" readonly="true" placeholder="Diretoria"
+          formControlName="diretor" >
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-secondary p-0">
+      <div class="d-flex">
+        <button class="btn btn-success m-1 ms-auto"
+        [disabled]="!form.valid || protegerCampoFuncionario" tyep="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<!--    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p> -->

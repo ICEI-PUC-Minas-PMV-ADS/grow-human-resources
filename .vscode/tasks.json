@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"path": "SPA/GHR-App",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build - SPA/GHR-App",
+			"detail": "ng build"
+		}
+	]
+}

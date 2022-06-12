@@ -1,0 +1,44 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="card  d-flex p-2">
+    <div class="form-row bg-light">
+      <div class="form-group col-12 p-1 m-0">
+        <h5 class="pt-3 border-bottom">Mudar Senha</h5>
+        <p>Caso queira mudar de senha, preencha os campos abaixo:</p>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-6 col-12 p-1 m-0">
+          <label>Senha</label>
+          <input type="password" class="form-control"
+                [ngClass]="validarCampo(ctrForm.password)"
+                formControlName="password">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.password, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-6 col-12 p-1">
+          <label>Confirmar Senha</label>
+          <input type="password" class="form-control"
+                [ngClass]="validarCampo(ctrForm.confirmarPassword)"
+                formControlName="confirmarPassword">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.confirmarPassword, "Confirmar Senha")}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-secondary ">
+      <div class="d-flex">
+        <div class="ms-auto p-0">
+          <button type="submit" class="btn btn-success " [disabled]="!form.valid">
+            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!--
+    <p>Form value: {{form.value | json}}</p>
+    <p>Form status: {{form.status | json}}</p> 
+-->
