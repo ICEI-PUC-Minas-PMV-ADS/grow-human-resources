@@ -66,6 +66,7 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 |![image](https://user-images.githubusercontent.com/94413402/173256653-3be4b17e-0672-4921-9e1f-eb5082625bcb.png)|
 
 |Clicar em novo|
+|------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173256718-154a1368-7596-4df6-86a1-d293e2d7c35f.png)|
 
 
