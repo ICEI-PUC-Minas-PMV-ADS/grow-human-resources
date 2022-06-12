@@ -20,18 +20,22 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 
 
 
-|  `Caso de Teste - CT-02`           |
-|------------------------------------|
+## Caso de Teste - CT-01      
+
 |Usuários Adalberto Ferreira Cruz será cadastrado na base: username: adalberto;|
+|------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173255363-56edf58e-3a81-4333-8330-d117b1ac9e10.png)|
-||
+
 |Dados Preenchidos:|
+|------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173255406-8557e186-dae9-423f-87cf-e3f8adec4763.png)|
-||
+
 |Usuário cadastrado e logado no sistema:|
+|------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173255439-0c05fba8-c108-47d1-9615-879cb686c6ea.png)|
-||
+
 |Usuário cadastrado na base de dados:|
+|------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173255457-8dd7e98a-4d6d-42c2-83e7-7b9bc0a938e1.png)|
 
 
