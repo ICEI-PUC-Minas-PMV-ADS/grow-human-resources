@@ -1,0 +1,176 @@
+<form class="row m-1"
+    [formGroup]="form"
+    (submit)="salvarDadosPessoais()">
+  <div class="card d-flex m-0 p-0 bg-light">
+    <div  class="card-body" >
+      <div class="form-row m-0">
+        <div class="form-group col-12 p-1 m-0">
+          <h5 class="border-bottom mt-0">Dados Pessoais</h5>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 p-1">
+          <label>CPF</label>
+          <input type="text"
+            class="form-control"
+            [readonly]="protegerCampoDadosPessoais"
+            placeholder="999.999.999-99"
+            [ngClass]="validarCampo(ctrDP.cpf)"
+            formControlName="cpf">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrDP.cpf, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Título de Eleitor</label>
+          <input type="text"
+            class="form-control"
+            placeholder="somente números"
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.tituloEleitor)"
+            formControlName="tituloEleitor">
+            <div class="invalid-feedback">
+              {{retornarValidacao(ctrDP.tituloEleitor, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Identidade</label>
+          <input type="text"
+            class="form-control"
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.identidade)"
+            formControlName="identidade">
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrDP.identidade, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Data Expedição</label>
+          <input type="text"
+            class="form-control"
+            placeholder="dd/mm/aaaa"
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.dataExpedicaoIdentidade)"
+            formControlName="dataExpedicaoIdentidade"
+            bsDatepicker
+            [bsConfig]="bsConfig"
+            value="{{dadosPessoais.dataExpedicaoIdentidade | DateTimeFormat}}"
+            >
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrDP.dataExpedicaoIdentidade, "")}}
+          </div>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 p-1">
+          <label>Órgão Expedição</label>
+          <input type="text"
+            class="form-control"
+            placeholder="Órgão Expedição"
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.orgaoExpedicaoIdentidade)"
+            formControlName="orgaoExpedicaoIdentidade">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrDP.orgaoExpedicaoIdentidade, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>UF</label>
+          <select class="form-select form-control"
+            aria-label="Default select example"
+            formControlName="ufIdentidade"
+            [ngClass]="validarCampo(ctrDP.ufIdentidade)">
+            <option value="AC" [disabled]="protegerCampoDadosPessoais">Acre</option>
+            <option value="AL" [disabled]="protegerCampoDadosPessoais">Alagoas</option>
+            <option value="AP" [disabled]="protegerCampoDadosPessoais">Amapá</option>
+            <option value="AM" [disabled]="protegerCampoDadosPessoais">Amazonas</option>
+            <option value="BA" [disabled]="protegerCampoDadosPessoais">Bahia</option>
+            <option value="CE" [disabled]="protegerCampoDadosPessoais">Cerá</option>
+            <option value="DF" [disabled]="protegerCampoDadosPessoais">Distrito Federal</option>
+            <option value="ES" [disabled]="protegerCampoDadosPessoais">Espírito Santo</option>
+            <option value="GO" [disabled]="protegerCampoDadosPessoais">Goiás</option>
+            <option value="MA" [disabled]="protegerCampoDadosPessoais">Maranhão</option>
+            <option value="MT" [disabled]="protegerCampoDadosPessoais">Mato Grosso</option>
+            <option value="MS" [disabled]="protegerCampoDadosPessoais">Mato Grosso do Sul</option>
+            <option value="MG" [disabled]="protegerCampoDadosPessoais">Minas Gerais</option>
+            <option value="PA" [disabled]="protegerCampoDadosPessoais">Pará</option>
+            <option value="PB" [disabled]="protegerCampoDadosPessoais">Paraíba</option>
+            <option value="PR" [disabled]="protegerCampoDadosPessoais">Paraná</option>
+            <option value="PE" [disabled]="protegerCampoDadosPessoais">Pernambuco</option>
+            <option value="PI" [disabled]="protegerCampoDadosPessoais">Piauí</option>
+            <option value="RJ" [disabled]="protegerCampoDadosPessoais">Rio de Janeiro</option>
+            <option value="RN" [disabled]="protegerCampoDadosPessoais">Rio Grande do Norte</option>
+            <option value="RS" [disabled]="protegerCampoDadosPessoais">Rio Grande do Sul</option>
+            <option value="RO" [disabled]="protegerCampoDadosPessoais">Rondônia</option>
+            <option value="RR" [disabled]="protegerCampoDadosPessoais">Roraima</option>
+            <option value="SC" [disabled]="protegerCampoDadosPessoais">Santa Catarina</option>
+            <option value="SP" [disabled]="protegerCampoDadosPessoais">São Paulo</option>
+            <option value="SE" [disabled]="protegerCampoDadosPessoais">Sergipe</option>
+            <option value="TO" [disabled]="protegerCampoDadosPessoais">Tocantins</option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrDP.ufIdentidade, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>Estado Civil</label>
+          <select class="form-select form-control"
+            aria-label="Default select example"
+            formControlName="estadoCivil"
+            [ngClass]="validarCampo(ctrDP.estadoCivil)">
+            <option value="Não Informado" [disabled]="protegerCampoDadosPessoais">Não Informado</option>
+            <option value="Solteiro" [disabled]="protegerCampoDadosPessoais">Solteiro</option>
+            <option value="Divorciado" [disabled]="protegerCampoDadosPessoais">Divorciado</option>
+            <option value="Casado" [disabled]="protegerCampoDadosPessoais">Casado</option>
+            <option value="Outros" [disabled]="protegerCampoDadosPessoais">Outros</option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrDP.estadoCivil, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+          <label>C.T.</label>
+          <input type="text"
+            class="form-control"
+            placeholder="C.T."
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.carteiraTrabalho)"
+            formControlName="carteiraTrabalho">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrDP.carteiraTrabalho, "")}}
+          </div>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 p-1">
+          <label>Data Expedição</label>
+          <input type="text"
+            class="form-control"
+            placeholder="dd/mm/aaaa"
+            [readonly]="protegerCampoDadosPessoais"
+            [ngClass]="validarCampo(ctrDP.dataExpedicaoCarteiraTrabalho)"
+            formControlName="dataExpedicaoCarteiraTrabalho"
+            bsDatepicker
+            [bsConfig]="bsConfig"
+            value="{{dadosPessoais.dataExpedicaoCarteiraTrabalho | DateTimeFormat}}"
+            >
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrDP.dataExpedicaoCarteiraTrabalho, "")}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-secondary p-0">
+      <div class="d-flex">
+        <button class="btn btn-success m-1 ms-auto"
+        [disabled]="!form.valid || protegerCampoDadosPessoais" tyep="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!--<p>Form value: {{form.value | json}}</p>
+<p>Form status: {{form.status | json}}</p> -->
