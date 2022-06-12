@@ -8,7 +8,11 @@ Para cada requisito funcional, pode ser entregue um artefato desse tipo
 
 |ID    | Done | front-end | back-end |
 |------|--------------|-----------|----------|
-|RF01| Sim | ..\GHR\SPA\GHR-App\src\app\Components\Conta\Login\login.component.html ..\GHR\SPA\GHR-App\src\app\Components\Conta\Login\login.component.scss ..\GHR\SPA\GHR-App\src\app\Components\Conta\Login\login.component.ts ..\GHR\SPA\GHR-App\src\app\models\Contas\ContaLogin.ts ..\GHR\SPA\GHR-App\src\app\services\contas\Conta.service.ts| ..\GHR\Server\src\GHR.API\Controllers\Contas\ContasController.cs ..\GHR\Server\src\GHR.Application\Services\Contracts\Contas\IContaService.cs ..\GHR\Server\src\GHR.Application\Services\Implements\Contas\IContaService.cs ..\GHR\Server\src\GHR.Application\Dtos\Contas\ContaLoginDto.cs ..\GHR\Server\src\GHR.Domain\DataBase\Contas\Conta.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Contexts\GHRContext.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Contracts\Contas\IContaPersistence.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Implements\Contas\ContaPersistence.cs
+|RF01| Sim 
+| ..\GHR\SPA\GHR-App\src\app\interceptors\jwt.interceptor.ts ..\GHR\SPA\GHR-App\src\app\components\conta\conta.component.html ..\GHR\SPA\GHR-App\src\app\components\conta\conta.component.scss ..\GHR\SPA\GHR-App\src\app\components\conta\conta.component.ts ..\GHR\SPA\GHR-App\src\app\components\conta\login\login.component.html ..\GHR\SPA\GHR-App\src\app\components\conta\login\login.component.scss ..\GHR\SPA\GHR-App\src\app\components\conta\login\login.component.ts ..\GHR\SPA\GHR-App\src\app\models\contas\ContaLogin.ts ..\GHR\SPA\GHR-App\src\app\services\contas\Conta.service.ts 
+| ..\GHR\Server\src\GHR.API\Controllers\Contas\ContasController.cs ..\GHR\Server\src\GHR.API\Extensions\ClaimsPrincipalExtensions.cs ..\GHR\Server\src\GHR.Application\Dtos\Contas\ContaLoginDto.cs ..\GHR\Server\src\GHR.Application\Services\Contracts\Contas\IContaService.cs ..\GHR\Server\src\GHR.Application\Services\Contracts\Contas\ITokenService.cs ..\GHR\Server\src\GHR.Application\Services\Implements\Contas\ContaService.cs ..\GHR\Server\src\GHR.Application\Services\Implements\Contas\TokenService.cs ..\GHR\Server\src\GHR.Domain\DataBase\Contas\Conta.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Contracts\Contas\IContaPersistence.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Implements\Contas\ContaPersistence.cs |
+
+
 
 
 |RF02| O Sistema deverá Permitir o recuperação de senha | BAIXA | 
