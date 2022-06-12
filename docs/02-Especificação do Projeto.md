@@ -13,7 +13,7 @@ Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que 
 
 | **Melissa Fernandes Santos** |      |      |
 |------------------------------|------|------|
-|<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
+|<img src="/docs/img/photo-melissa.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
 | **Motivações:** Melissa está conhecendo o mercado de trabalho e viu a oportunidade de trabalhar na empresa de Lucas desafiadora pois conciliar contabilidade com RH será um desafio inovador para sua carreira.	| **Frustrações:** Não domina a maratona de atividades do RH e precisa se orientar dentro da empresa através de uma ferramenta de suporte e capacitação. | **Hobbies, História:** Além de ser uma jogador de vôlei e estudante, Melissa dedica uma fração do tempo em pesquisa e desenvolvimento interpessoal. |                    |
 
 | **Lúcia De Medeiros Silva** |      |      |
@@ -23,12 +23,12 @@ Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que 
 
 | **Lara Fernandes da Silva** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/photo-lara1.jpg"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
+|<img src="/docs/img/photo-lara1.png"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
 | **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
 
 | **João Matheus de Souza** |      |      |
 |-----------------------------|------|------|
-|<img src="/docs/img/photo-matheus1.jpg"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
+|<img src="/docs/img/photo-matheus1.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
 | **Motivações:** João é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
 
 ## Histórias de Usuários
@@ -129,5 +129,5 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
  ## Representação Visual
 
- ![Diagrama de Classes-Diagrama de Caso de Uso drawio](https://user-images.githubusercontent.com/91227083/162646497-b8ce7d2e-08cf-4c81-b868-dfe941c2fbb7.png)
+ ![Diagrama de Classes-Diagrama de Caso de Uso drawio](https://user-images.githubusercontent.com/91227083/diagrama-caso-uso.png)
 
