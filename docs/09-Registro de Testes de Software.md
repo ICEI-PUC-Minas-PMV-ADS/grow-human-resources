@@ -3,7 +3,7 @@
 <span style="color:red">Pré-requisitos: <a href="3-Projeto de Interface.md"> Projeto de Interface</a></span>, <a href="8-Plano de Testes de Software.md"> Plano de Testes de Software</a>
 
 Relatório com as evidências dos testes de software realizados no sistema pela equipe, baseado em um plano de testes pré-definido.
-
+=====
 |  `Caso de Teste`           |  `CT-01`
 
 Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;
@@ -13,8 +13,8 @@ Usuário não autenticado no sistema:
 ![image](https://user-images.githubusercontent.com/94413402/173255116-aa23f942-ae0c-40ad-a113-d481a3ebdf47.png)
 
 Falha ao autenticar no sistema
-![image](https://user-images.githubusercontent.com/94413402/173254814-f7e6a281-c264-459b-8250-6bd820d2b6e3.png)
-
+![image](https://user-images.githubusercontent.com/94413402/173255216-3ce6b929-59b1-49c6-abfe-31e9215ecc62.png)
+=====
 
 
 
