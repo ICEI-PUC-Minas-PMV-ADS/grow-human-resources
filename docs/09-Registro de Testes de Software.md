@@ -93,6 +93,15 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 
 
 ## Caso de Teste - CT-05
+|Selecionar dashboard:|
+|------------------------------------------------------------------------------|
+|![image](https://user-images.githubusercontent.com/94413402/173258725-2123dc94-8682-4465-86b6-db413ac21029.png)|
+| |
+| |
+|![image](https://user-images.githubusercontent.com/94413402/173258740-3fc4b639-f9a2-4271-b835-8bbe4bb12a0e.png)|
+
+
+
 
 ## Avaliação
 
