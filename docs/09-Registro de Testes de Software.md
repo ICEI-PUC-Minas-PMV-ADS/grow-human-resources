@@ -6,8 +6,8 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 =====
 |  `Caso de Teste`           |  `CT-01`| 
 |----------------------------|---------|
-|Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;| |
-|![image](https://user-images.githubusercontent.com/94413402/173254754-85cba624-6964-487f-8ddb-e248e3f04eca.png)| |
+|Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;| 
+|![image](https://user-images.githubusercontent.com/94413402/173254754-85cba624-6964-487f-8ddb-e248e3f04eca.png)| 
 
 Usuário não autenticado no sistema:
 ![image](https://user-images.githubusercontent.com/94413402/173255116-aa23f942-ae0c-40ad-a113-d481a3ebdf47.png)
