@@ -7,6 +7,7 @@ Relatório com as evidências dos testes de software realizados no sistema pela 
 ## Caso de Teste - CT-01          
 
 |Usuários Adalberto Ferreira Cruz não está cadastrado na base: username: adalberto;| 
+|----------------------------------------------------------------------------------|
 |![image](https://user-images.githubusercontent.com/94413402/173254754-85cba624-6964-487f-8ddb-e248e3f04eca.png)| 
 | |
 | Usuário não autenticado no sistema:|
