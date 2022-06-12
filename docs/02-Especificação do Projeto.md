@@ -69,7 +69,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF05| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar Departamentos (CRUD) | ALTA |
 |RF06| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar metas (CRUD) | ALTA | 
 |RF07| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar objetivos (CRUD) | BAIXA | 
-|RF08| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar cargos e salários (CRUD) | BAIXA | 
+|RF08| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar cargos e salários (CRUD) | BAIXA | 
 |RF09| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Metas para Funcionário | ALTA |
 |RF10| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Objetivos para Funcionário | BAIXA | 
 |RF11| O Sistema deverá Permitir que o Usuário Silver/Golden RH deverá associar um Funcionário a um deparamento | ALTA |
