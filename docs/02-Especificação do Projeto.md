@@ -132,7 +132,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar Cargos e Salários|O sistema deve permitir ao funcionário o gerenciamento de cargos e salários da empresa | RF08 / RF13|
 |Gerenciar Objetivos globais|O sistema deve permitir ao funcionário o gerenciamento dos objetivos globais  | RF07/ RF08 / RF15|
 |Gerenciar Metas globais|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06 / RF09 / RF14 / RF16 / RF17|
-|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golde, Silver e Bronze | EF04|
+|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golde, Silver e Bronze | RF04|
 
 
  ## Representação Visual
