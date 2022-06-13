@@ -1,10 +1,5 @@
 # Programação de Funcionalidades
 
-<span style="color:red">Pré-requisitos: <a href="2-Especificação do Projeto.md"> Especificação do Projeto</a></span>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="4-Metodologia.md"> Metodologia</a>, <a href="3-Projeto de Interface.md"> Projeto de Interface</a>, <a href="5-Arquitetura da Solução.md"> Arquitetura da Solução</a>
-
-Implementação do sistema descritas por meio dos requisitos funcionais e/ou não funcionais. Deve relacionar os requisitos atendidos os artefatos criados (código fonte) além das estruturas de dados utilizadas e as instruções para acesso e verificação da implementação que deve estar funcional no ambiente de hospedagem.
-
-Para cada requisito funcional, pode ser entregue um artefato desse tipo
 
 |ID    | Done | front-end | back-end |
 |------|------|-----------|----------|
@@ -27,11 +22,3 @@ Para cada requisito funcional, pode ser entregue um artefato desse tipo
 | RF17 | Sim | ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard.component.html ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard.component.scss ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard.component.ts ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard-metas\dashboard-metas.component.html ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard-metas\dashboard-metas.component.scss ..\GHR\SPA\GHR-App\src\app\components\dashboard\dashboard-metas\dashboard-metas.component.ts ..\GHR\SPA\GHR-App\src\app\models\suporte\dashboard\FuncionariosMetasDashboard.ts | |
 | SHARED | Sim | ..\GHR\SPA\GHR-App\src\index.html ..\GHR\SPA\GHR-App\src\styles.scss ..\GHR\SPA\GHR-App\src\app\app.component.html ..\GHR\SPA\GHR-App\src\app\app.component.scss ..\GHR\SPA\GHR-App\src\app\app.component.ts ..\GHR\SPA\GHR-App\src\app\app.module.ts ..\GHR\SPA\GHR-App\src\app\components\home\home.component.html ..\GHR\SPA\GHR-App\src\app\components\home\home.component.scss ..\GHR\SPA\GHR-App\src\app\components\home\home.component.ts ..\GHR\SPA\GHR-App\src\app\guard\auth.guard.ts ..\GHR\SPA\GHR-App\src\app\helpers\DateFormat.pipe.ts ..\GHR\SPA\GHR-App\src\app\helpers\DateTimeFormat.pipe.ts ..\GHR\SPA\GHR-App\src\app\helpers\ValidadorFormularios.ts ..\GHR\SPA\GHR-App\src\app\models\suporte\navegacaoEntreForms\navegacaoEntreForms.ts ..\GHR\SPA\GHR-App\src\app\models\suporte\paginacao\paginacao.ts ..\GHR\SPA\GHR-App\src\app\shared\nav\nav.component.html ..\GHR\SPA\GHR-App\src\app\shared\nav\nav.component.scss ..\GHR\SPA\GHR-App\src\app\shared\nav\nav.component.ts ..\GHR\SPA\GHR-App\src\app\shared\titulo\titulo.component.html ..\GHR\SPA\GHR-App\src\app\shared\titulo\titulo.component.scss ..\GHR\SPA\GHR-App\src\app\shared\titulo\titulo.component.ts ..\GHR\SPA\GHR-App\src\app\util\constants.ts | ..\GHR\Server\src\GHR.API\Models\PaginacaoHeaders.cs ..\GHR\Server\src\GHR.API\Extensions\Paginacao.cs ..\GHR\Server\src\GHR.API\Helpers\IUtilUpaload.cs ..\GHR\Server\src\GHR.API\Helpers\UtilUpload.cs ..\GHR\Server\src\GHR.Application\helpers\GHRProfile.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Contexts\GHRContext.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Contracts\_Global\IGlobalPersistence.cs ..\GHR\Server\src\GHR.Persistence\Interfaces\Implements\_Global\GlobalPersistence.cs |
 
-
-> **Links Úteis**:
->
-> - [Trabalhando com HTML5 Local Storage e JSON](https://www.devmedia.com.br/trabalhando-com-html5-local-storage-e-json/29045)
-> - [JSON Tutorial](https://www.w3resource.com/JSON)
-> - [JSON Data Set Sample](https://opensource.adobe.com/Spry/samples/data_region/JSONDataSetSample.html)
-> - [JSON - Introduction (W3Schools)](https://www.w3schools.com/js/js_json_intro.asp)
-> - [JSON Tutorial (TutorialsPoint)](https://www.tutorialspoint.com/json/index.htm)
