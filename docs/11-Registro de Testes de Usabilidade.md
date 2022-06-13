@@ -15,8 +15,3 @@ Teste 3: <br>
 - Adorou o sistema e não teve muita dificuldade (pessoa da área de TI)
 - Elogiou o tempo de resposta e a intuitividade.
 
-
-As referências abaixo irão auxiliá-lo na geração do artefato “Registro de Testes de Usabilidade”.
-
-> **Links Úteis**:
-> - [Ferramentas de Testes de Usabilidade](https://www.usability.gov/how-to-and-tools/resources/templates.html)
