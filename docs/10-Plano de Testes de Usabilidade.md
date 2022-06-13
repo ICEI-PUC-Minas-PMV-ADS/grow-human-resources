@@ -44,6 +44,34 @@ Método Utilizado: Avaliação
 |---------|-------------------|--------------------|
 |Visão Golden RH deverá gerenciar cargos e salários. | Manipular a base de dados e associar cargo e salário a um funcionário.| Concretização da tarefa. |
 
+|Tarefa 11 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Silver/Golden RH deverão associar um funcionário a um departamento | Inserção do funcionário no departamento.| Concretização da tarefa. |
+
+|Tarefa 12 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Bronze/Silver/Golden deverão consultar relatórios estatísticos | Obter o retorno da consulta | Concretização da tarefa. |
+
+|Tarefa 13 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Bronze/Silver/Golden RH deverão associar um funcionário a um cargo e salário | associação de carga e selario ao funcionario | Concretização da tarefa. |
+
+|Tarefa 14 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão  Bronze/Silver/Golden deverá consultar relatório de acompanhamento das metas | realizção de consulta  | Concretização da tarefa. |
+
+|Tarefa 15 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Bronze/Silver/Golden devem consultar relatório de acompanhamento anual dos objetivos |  realizar consulta do relatorio anual | Concretização da tarefa. |
+
+|Tarefa 16 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|Visão Bronze/Silver/Golden RH devem cadastrar metas atingidas/não atingidas | cadastrar metas atingidas/não atingidas | Concretização da tarefa. |
+
+|Tarefa 17 |	Critério de Êxito |	O que será avaliado |
+|---------|-------------------|--------------------|
+|O sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas. | emitir raqueamento(top 5) | Concretização da tarefa.|
+
 ## Objetivo
  
 Fazer melhorias na plataforma proporcionando uma melhor experiência ao usuário. O que será mensurado no teste: <br>
