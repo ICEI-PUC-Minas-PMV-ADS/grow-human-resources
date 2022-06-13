@@ -13,7 +13,7 @@ Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que 
 
 | **Melissa Fernandes Santos** |      |      |
 |------------------------------|------|------|
-|<img src="/docs/img/photo-melissa.jpng.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
+|<img src="/docs/img/photo-melissa.jpeg"> | **Idade:** 22 anos  | **Ocupação:** Estagiária do setor de RH na empresa Xing Ling do Brasil. Faz faculdade de Ciências Contábeis e obteve uma oportunidade de expressar seus conhecimentos contábeis junto ao setor de RH.                        |
 | **Motivações:** Melissa está conhecendo o mercado de trabalho e viu a oportunidade de trabalhar na empresa de Lucas desafiadora pois conciliar contabilidade com RH será um desafio inovador para sua carreira.	| **Frustrações:** Não domina a maratona de atividades do RH e precisa se orientar dentro da empresa através de uma ferramenta de suporte e capacitação. | **Hobbies, História:** Além de ser uma jogador de vôlei e estudante, Melissa dedica uma fração do tempo em pesquisa e desenvolvimento interpessoal. |                    |
 
 | **Lúcia De Medeiros Silva** |      |      |
@@ -21,23 +21,35 @@ Como citado anteriormente, nosso projeto tem foco em desenvolver um sistema que 
 |<img src="/docs/img/photo-lucia.png"> | **Idade:** 42 anos  | **Ocupação:** Supervisora de RH na empresa Xing Ling do Brasil. Faz o gerenciamento do time e atividades de RH.|
 | **Motivações:** Lúcia está na empresa a 10 anos e foi recentemente promovida à supervisora de RH. Está motivada com as ideias e metodologias de Lucas e está empenhada em fazer acontecer a inovação na empresa.	| **Frustrações:** A ausência de ferramentas sistematizadas de gestão de RH, onera seu tempo de pensamento inovador com funções operacionais de preenchimento de formulários de cadastros, envio e recebimento de malotes, dentre outras necessidades do setor. | **Hobbies, História:** Lucia realiza um sonho de estudar e conhecer belas artes. |
 
+| **Lara Fernandes da Silva** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/photo-lara1.png"> | **Idade:** 27 anos  | **Ocupação:** Engenheira de Software na empresa Xing Ling do Brasil. Promove as mudanças de TI.|
+| **Motivações:** Lara entende que se existe mudança na organização é poorque a organização está crescendo.	| **Frustrações:** Sente-se "limitada" na contribuição do crescimento da organização por não conhecer o perfil dos profissionais que transitam pela empresa. | **Hobbies, História:** Estudante de Tecnolgodia de desenvovilemnto de sistema e, nas horas de folga, nadadora. |
+
+| **João Matheus de Souza** |      |      |
+|-----------------------------|------|------|
+|<img src="/docs/img/photo-matheus1.png"> | **Idade:** 25 anos  | **Ocupação:** Engenheiro Industrial na empresa Xing Ling do Brasil. Operações de produção.|
+| **Motivações:** João é um jovem engenheiro que se preocupa em prommover a integração profissional e desenvolvimento do time.	| **Frustrações:** O acesso às ações motivacionais propostas pela empresa são lentas e muitas vezes não pode ser cumprida pelo time por chegarem vencidas. | **Hobbies, História:** Instrutor do Senai e fisioculturista. |
+
 ## Histórias de Usuários
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Lucas | Fornecer metas trimestrais | Balanceamento e cadastro pelo time de RH. |
-|Lucas | Visualizar relatórios individuais de cada departamento | Acompanhar o desenvolvimento da empresa. |
-|Lucas | Apresentar aos funcionarios as metas atingidas e não atingidas | Realizar um feedback consistente e com dados precisos dos pontos de melhoria. |
-|Lucia  | Realizar cadastros de funcionários       | Adicionar funcionários ao Banco de Dados da empresa.          |
-|Lucia  | Realizar cadastros de metas       | Gerar controle de metas.          |
-|Lucia| Controlar metas      | Que reflitam com clareza os indicadores de performance.|
-|Melissa| Emitir situação de metas   | Informar aos gerentes e supervisores a conclusão ou não dos objetivos atribuidos.|
-|Melissa| Alterar minha senha do sistema   | Poder recuperar a senha de acesso em caso de esquecimento.|
-|Melissa|  Efetuar Login no sistema  | Acessar o sistema para dar inicio ao expediente.|
-|Lucas| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais.  |
-|Lucas| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe.  |
+|Lucas | Receber dados estatísticos de funcionários | Analisar tendências, cumprimento das metas e atendimento aos objetivos. |
+|Lucas | Estabelecer metas para atingimento em curto, médio e longo prazo | Balanceamento e cadastro pelo time de RH. |
+|Lucas | Fornecer objetivos ara atingimento em curto, médio e longo prazo | Balanceamento e cadastro pelo time de RH. |
+|Lucia  | Realizar cadastros de funcionários       | Adicionar funcionários ao Banco de Dados da empresa          |
+|Lucia  | Realizar cadastros de metas       | Gerar controle de metas          |
+|Lucia  | Realizar cadastros de objetivos       | Gerar controle de objetivos         |
+|Melissa| Controlar metas      | Que reflitam com clareza os indicadores de performance|
+|Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
+|Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
+|Joao Matheus| Realizar consulta de ponto      | Acompanhar a presença nos treinamentos         |
+|Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
+|Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
+|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
 
 
 
@@ -50,14 +62,23 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-------------------------|------|
-|RF01| O Sistema deverá permitir o login e alteração de senha dos colaboradores.| ALTA | 
-|RF02| O Sistema deve permitir ao supervisor a inserção e exclusão de perfis cadastratos.| ALTA | 
-|RF03| O Sistema deve permitir que o supervisor associe o funcionário a um departamento.| ALTA | 
-|RF04| O Sistema deve permitir que o supervisor acompanhe o relatório de desempenho e metas de seus subordinados.| ALTA | 
-|RF05| O Sistema deve permitir ao gerente e ao supervisor visualizar relatórios de cada departamento.| ALTA | 
-|RF06| O Sistema deve emitir status de metas atingidas/não atingidas que pode ser consultado pelo supervisor, gerente e funcionário.| ALTA | 
-|RF07| O Sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas.| ALTA | 
-
+|RF01| O Sistema deverá Permitir o login de funcionários da empresa | ALTA | 
+|RF02| O Sistema deverá Permitir o recuperação de senha | BAIXA | 
+|RF03| O Sistema deverá Permitir o gerenciamento de usuários (CRUD) | ALTA | 
+|RF04| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar funcionários (CRUD) | ALTA | 
+|RF05| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar Departamentos (CRUD) | ALTA |
+|RF06| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar metas (CRUD) | ALTA | 
+|RF07| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar objetivos (CRUD) | BAIXA | 
+|RF08| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar cargos e salários (CRUD) | BAIXA | 
+|RF09| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Metas para Funcionário | ALTA |
+|RF10| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Objetivos para Funcionário | BAIXA | 
+|RF11| O Sistema deverá Permitir que o Usuário Silver/Golden RH deverá associar um Funcionário a um deparamento | ALTA |
+|RF12| O Sistema deverá Permitir que o Usuário Bronze/Silver/Golden deverá consultar relatórios estatísticos | ALTA | 
+|RF13| O Sistema deverá Permitir que o Usuário Bronze/Silver/Golden RH deverá associar um funcionário a um cargo e salário | MÉDIA | 
+|RF14| O Sistema deve permitir que o Usuário Bronze/Silver/Golden possa consultar relatório de acompanhamento das metas | MÉDIA | 
+|RF15| O Sistema deve permitir que o Usuário Bronze/Silver/Golden possa consultar relatório de acompanhamento anual dos objetivos | BAIXA | 
+|RF16| O Sistema deve permitir que o Usuário Bronze/Silver/Golden RH possa cadastrar metas atingidas/não atingidas| ALTA | 
+|RF17| O sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas. | ALTA |
 
 ### Requisitos não Funcionais
 
@@ -87,24 +108,34 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ATOR|	DESCRIÇÃO|
 |----|-----------|
-|Funcionário| Consulta seu desempenho e metas, realiza seu cadastro, login e alteração de senha. |
-|Supervisor| O supervisor é um funcionário responsável pelo controle de perfis, consulta o desempenho, controle de funcionários, controla departamentos e visualiza relatório.|
-|Gerente| Responsável pelo gerenciamento de departamentos, funcionário e visualiza relatório de desempenho dos mesmos.|
+|Bonze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
+|Bonze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
+|Silver| Ator que desempenha o papel de funcionario administrativo, podendo realizar atividades específicas conforme necessidades da organização|
+|Silver RH| Ator que desempenha o papela de funcionario realiza o gerenciamento de funcionarios, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH|
+|Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atirbuições de um Silver RH.|
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
 |-|-|-|
-|Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01|
-|Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF01 |
-|Gerenciar Desempenho| O funcionário deve consultar seu desempenho e status de metas.| RF06|
-|Associar funcionário a departamento| O supervisor deverá associar cada funcionário a um departamento.| RF03 |
-|Gerenciar Departamentos | O supervisor e o gerente devem visualizar relatório de cada departamento. | RF05 | 
-|Gerenciar Metas | O supervisor e o gerente devem gerenciar o desempenho e metas do funcionário. | RF04 | 
-|Gerenciar Acessos | O supervisor deve gerenciar (incluir, excluir) o acesso do funcionário. | RF02| 
-|Consultar Ranqueamento| O ranqueamento (top 5) metas atingidas e não atingidas poderá ser consultado por funcionário, gerente e supervisor.  | RF07|
-
+|Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01 / RF02|
+|Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF03 |
+|Consultar Objetivos Pessoais| O funcionário deve consultar seus objetivos pessoais| RF07|
+|Consultar Metas Pessoais| O funiconario deve consultar suas metas pessoais| RF06 |
+|Consultar Dashboard | O sistema dever permitir ao funcionarios consultar dos dados do dashboard| RF14, RF15, RF16, RF17 | 
+|Alocar Funcionário ao departamento | O sistema deve permitir ao funcionário o gerenciamento de departamentos | RF05 / RF11 | 
+|Associar Funcionário a Cargos e Salários| O sistema deve permitir ao funcionario o gerenciamento de cargos e salários. | RF08 / RF13| 
+|Gerenciar Funcionários|O sistema deve permitir ao funcionário o gerenciamento de funcionários  | RF04|
+|Gerenciar Objetivos de Equipe|O sistema deve permitir ao funcionário o gerenciamento dos objetivos de equipe  | RF07|
+|Gerenciar Metas de Equipe|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06|
+|Validar Ojetivos Pessoais|O sistema deve permitir ao funcionário a validação dos objetivos pessoais  | RF07|
+|Validar Metas Pessoais|O sistema deve permitir ao funcionário a validação das metas pessoais  | RF06|
+|Gerenciar Departamentos|O sistema deve permitir ao funcionário o gerenciamento dos departemtnos da emrpesa  | RF05 / RF11|
+|Gerenciar Cargos e Salários|O sistema deve permitir ao funcionário o gerenciamento de cargos e salários da empresa | RF08 / RF13|
+|Gerenciar Objetivos globais|O sistema deve permitir ao funcionário o gerenciamento dos objetivos globais  | RF07/ RF08 / RF15|
+|Gerenciar Metas globais|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06 / RF09 / RF14 / RF16 / RF17|
+|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golde, Silver e Bronze | EF04|
 
 
  ## Representação Visual
-
- ![Diagrama de Classes-Diagrama de Caso de Uso drawio](https://user-images.githubusercontent.com/91227083/162646497-b8ce7d2e-08cf-4c81-b868-dfe941c2fbb7.png)
+ Diagrama de Caso de Uso
+ <img src="/docs/img/diagrama-caso-uso.png">
 
