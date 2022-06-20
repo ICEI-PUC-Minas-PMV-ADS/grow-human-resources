@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: black;
+}
+
+main {
+    width: 100%;
+    font-family: Arial;
+}
+
+section.left {
+    float: left;
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+}
+
+section.left img {
+    padding-top: 5%;
+}
+
+section.left h2 {
+    font-weight: 700;
+    margin-bottom: 5%;
+}
+
+section.left .radiobtns {
+    display: inline-flex;
+}
+
+section.left .radio_super {
+    background-color: #bbe2e9;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+section.left .radio_func {
+    background-color: #c4c4c4;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+section.left .container {
+    width: 50%;
+}
+
+section.left button {
+    margin-top: 10px;
+    background: #bbe2e9;
+    color: black;
+}
+
+section.right {
+    float: right;
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+}
+
+section.right img {
+    width: 100%;
+}
+
+@media(max-width: 900px) { 
+    section.right {
+        display: none;
+    }
+    section.left {
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+    }
+}
