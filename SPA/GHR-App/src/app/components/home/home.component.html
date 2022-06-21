@@ -6,27 +6,3 @@
 ></app-titulo>
 
 <a routerLink="/conta/login">Quero Entrar</a>
-<div>
-  <div>
-    <div style="display: block; height: 400px; width: 600px ">
-      <canvas baseChart
-        [data]="doughnutChartData"
-
-        [type]="doughnutChartType">
-      </canvas>
-    </div>
-  </div>
-</div>
-
-<div>
-  <div>
-    <div>
-      <div style="display: block; height: 400px; width: 600px ">
-        <canvas baseChart [data]="barChartData" [options]="barChartOptions"
-          [type]="barChartType" (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-      </div>
-      <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
-    </div>
-  </div>
-</div>

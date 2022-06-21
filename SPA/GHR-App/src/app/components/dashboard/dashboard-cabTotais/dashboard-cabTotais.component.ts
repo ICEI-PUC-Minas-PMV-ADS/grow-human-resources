@@ -10,7 +10,7 @@ import { Funcionario } from 'src/app/models/funcionarios/Funcionario';
 import { ResultadoPaginacao } from 'src/app/models/suporte/paginacao/paginacao';
 import { FuncionarioMeta } from 'src/app/models/funcionarios/FuncionarioMeta';
 
-import { ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartData, ChartEvent, ChartType} from 'chart.js';
 import { FuncionarioDashboard } from '../../../models/suporte/dashboard/FuncionarioDashboard';
 import { MetaDashboard } from '../../../models/suporte/dashboard/MetaDashboard';
 
@@ -39,7 +39,10 @@ export class DashboardCabTotaisComponent implements OnInit {
   public metasCumpridasDepto: ListaDashboard[] = [];
   public metasNaoCumpridasDepto: ListaDashboard[] = [];
 
-    // Doughnut
+  public metasCumpridasDeptoA: ListaDashboard[] = [];
+  public metasNaoCumpridasDeptoA: ListaDashboard[] = [];
+
+  // Doughnut
   public doughnutChartLabels: string[] = [];
   public doughnutChartValues: number[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
@@ -47,14 +50,14 @@ export class DashboardCabTotaisComponent implements OnInit {
     datasets: [{ data: this.doughnutChartValues }]
   };
   public doughnutChartType: ChartType = 'doughnut';
-    public doughnutChartOptions: any = {
+  public doughnutChartOptions: any = {
     responsive: true,
     cutoutPercentage: 90,
     maintainAspectRatio: true,
     segmentShowStroke: true,
     elements: {
       arc: {
-          borderWidth: 0
+        borderWidth: 0
       }
     },
     legend: {
@@ -64,7 +67,8 @@ export class DashboardCabTotaisComponent implements OnInit {
       plugins: {
         datalabels: {
           formatter: (value, ctx) => {
-            return ctx.chartData.dataset.data[ctx.labelsIndex]         }
+            return ctx.chartData.dataset.data[ctx.labelsIndex]
+          }
         }
       }
     }
@@ -81,19 +85,7 @@ export class DashboardCabTotaisComponent implements OnInit {
   public cabDashboardTotMetaPendente = 0;
   public cabDashboardPerMetaPendente = 0;
 
-  public qtdeFuncionariosPorDepartamento = 0
-
   public cabDashboardWhidthMetas = '';
-
-  public contadorFuncionarios = 0;
-  public contadorFuncioanriosDepRH = 0;
-  public contadorFuncionariosDepVen = 0;
-  public contadorFuncionariosDepMkt = 0;
-  public contadorFuncionariosDepCom = 0;
-  public contadorFuncionariosDepJur = 0;
-  public contadorFuncionariosDepAdm = 0;
-
-  pu
 
   constructor(
     private funcionarioMetaService: FuncionarioMetaService,
@@ -104,9 +96,6 @@ export class DashboardCabTotaisComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    for (var i = 0; i < 12; i++) {
-      this.cores[i] = this.gerarCor();
-    }
 
     this.carregarFuncionarios();
     this.carregarMetas();
@@ -124,7 +113,7 @@ export class DashboardCabTotaisComponent implements OnInit {
         (funcionarios: ResultadoPaginacao<Funcionario[]>) => {
           this.funcionarios = funcionarios.resultado;
           this.funcionarios.forEach((func, i) => {
-            this.funcionariosDashboard[i] =  new FuncionarioDashboard(
+            this.funcionariosDashboard[i] = new FuncionarioDashboard(
               func.id,
               func.ativo,
               func.cargos.nomeCargo,
@@ -162,10 +151,11 @@ export class DashboardCabTotaisComponent implements OnInit {
               meta.metas.nomeMeta
             );
           });
-          console.log("tupla Meta", this. metaDashboard)
+          console.log("tupla Meta", this.metaDashboard)
           this.montarCabDashboardMeta();
           this.topFiveMetas();
           this.metasPorDepartamento();
+          this.metasPorDepartamentoAgregado();
         },
         (error: any) => {
           console.error(error);
@@ -208,7 +198,7 @@ export class DashboardCabTotaisComponent implements OnInit {
   // Doughnut
   // events
   public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
-   console.log(event, active);
+    console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
@@ -231,7 +221,7 @@ export class DashboardCabTotaisComponent implements OnInit {
     console.log("ListaDepartamentos", ListaDepartamentos)
 
     ListaDepartamentosSemDuplicidade = ListaDepartamentos
-        .filter((ele, pos) => ListaDepartamentos.indexOf(ele) == pos);
+      .filter((ele, pos) => ListaDepartamentos.indexOf(ele) == pos);
 
     console.log("ListaDepartamentosSemDuplicidade", ListaDepartamentosSemDuplicidade)
 
@@ -243,7 +233,7 @@ export class DashboardCabTotaisComponent implements OnInit {
       this.doughnutChartValues.push(funcionariosPorDepartamento
         .filter((func) => func.funcionarioDepartamento == ListaDepartamentosSemDuplicidade[i]).length)
     }
-      console.log("doughnuts",  this.doughnutChartLabels, this.doughnutChartValues)
+    console.log("doughnuts", this.doughnutChartLabels, this.doughnutChartValues)
 
   }
 
@@ -270,17 +260,18 @@ export class DashboardCabTotaisComponent implements OnInit {
 
     console.log("listaMetasSemDuplicidade", listametasSemDuplicidade);
 
-    var qtdCumprida = this.metaDashboard
-      .filter((fm) => fm.metaCumprida == true).length;
+    this.montaCor();
 
     for (var i in listametasSemDuplicidade) {
+      var qtdMetas = this.metaDashboard
+        .filter((fm) => fm.nomeMeta == listametasSemDuplicidade[i]).length;
       listaMetasCumpridas[i] = new ListaDashboard(this.metaDashboard
         .filter(
           (fm) => fm.nomeMeta == listametasSemDuplicidade[i]
             && fm.metaCumprida == true).length,
-          listametasSemDuplicidade[i],
-          qtdCumprida,
-          this.cores[i]);
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
     }
     console.log("listaMetasCumpridas", listaMetasCumpridas)
 
@@ -291,26 +282,27 @@ export class DashboardCabTotaisComponent implements OnInit {
     this.metasCumpridasTop5 = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
     console.log("metasCumpridasTop5", this.metasCumpridasTop5)
 
+    this.montaCor();
 
-    var qtdNaoCumprida = this.metaDashboard.filter((fm) => fm.metaCumprida == false).length;
 
     for (var i in listametasSemDuplicidade) {
+      var qtdMetas = this.metaDashboard.filter((fm) => fm.nomeMeta == listametasSemDuplicidade[i]).length;
       listaMetasNaoCumpridas[i] = new ListaDashboard(this.metaDashboard
         .filter(
           (fm) => fm.nomeMeta == listametasSemDuplicidade[i] && fm.metaCumprida == false).length,
-          listametasSemDuplicidade[i],
-          qtdNaoCumprida,
-          this.cores[i]);
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
     }
 
     console.log("listaMetasNaoCumpridas", listaMetasNaoCumpridas)
 
     listaMetasOrdenadas = listaMetasNaoCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
-        console.log("listaMetasOrdenadas", listaMetasOrdenadas )
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
 
     this.metasNaoCumpridasTop5 = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
 
-    console.log("metasNaoCumpridasTop5", this.metasNaoCumpridasTop5 )
+    console.log("metasNaoCumpridasTop5", this.metasNaoCumpridasTop5)
 
   }
 
@@ -348,9 +340,7 @@ export class DashboardCabTotaisComponent implements OnInit {
         j++;
       }
     }
-    console.log ("---------", funcionarioMetasDashboard)
-
-    var meta4: ListaDashboard[] = [];
+    console.log("---------", funcionarioMetasDashboard)
 
     funcionarioMetasDashboard.forEach((fm) => {
       listaDepartamentos.push(fm.funcionarioDepartamento)
@@ -363,16 +353,17 @@ export class DashboardCabTotaisComponent implements OnInit {
 
     console.log("listaMetasSemDuplicidade", listametasSemDuplicidade);
 
-    var qtdCumprida = funcionarioMetasDashboard
-      .filter((fm) => fm.metaCumprida == true).length;
+    this.montaCor();
 
     for (var i in listametasSemDuplicidade) {
+      var qtdMetas = funcionarioMetasDashboard.filter(
+        (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i]).length;
       listaMetasCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
         .filter(
           (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i] && fm.metaCumprida == true).length,
-          listametasSemDuplicidade[i],
-          qtdCumprida,
-          this.cores[i]);
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
     }
     console.log("listaMetasCumpridas", listaMetasCumpridas)
 
@@ -383,22 +374,24 @@ export class DashboardCabTotaisComponent implements OnInit {
     this.metasCumpridasDepto = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
     console.log("metasCumpridasTop5", this.metasCumpridasDepto)
 
+    this.montaCor();
 
-    var qtdNaoCumprida = funcionarioMetasDashboard.filter((fm) => fm.metaCumprida == false).length;
 
     for (var i in listametasSemDuplicidade) {
+      var qtdMetas = funcionarioMetasDashboard.filter(
+        (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i]).length;
       listaMetasNaoCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
         .filter(
-          (fm) =>  fm.funcionarioDepartamento == listametasSemDuplicidade[i]  && fm.metaCumprida == false).length,
-          listametasSemDuplicidade[i],
-          qtdNaoCumprida,
-          this.cores[i]);
+          (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i] && fm.metaCumprida == false).length,
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
     }
 
     console.log("listaMetasNaoCumpridas", listaMetasNaoCumpridas)
 
     listaMetasOrdenadas = listaMetasNaoCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
-        console.log("listaMetasOrdenadas", listaMetasOrdenadas )
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
 
     this.metasNaoCumpridasDepto = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
 
@@ -406,15 +399,128 @@ export class DashboardCabTotaisComponent implements OnInit {
 
   }
 
+  public metasPorDepartamentoAgregado(): void {
+    var funcionarioMetasDashboard: FuncionariosMetasDashboard[] = [];
+
+    var listaDepartamentos: string[] = [];
+    var listametasSemDuplicidade: string[] = [];
+
+    var listaMetasCumpridas: ListaDashboard[] = [];
+    var listaMetasOrdenadas: ListaDashboard[] = [];
+    var listaMetasNaoCumpridas: ListaDashboard[] = [];
+
+    console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+    var j = 0;
+
+    for (var func of this.funcionariosDashboard) {
+      var metas = this.metaDashboard.filter(fm => fm.funcionarioId == func.funcionarioId)
+      for (var meta of metas) {
+        funcionarioMetasDashboard[j] = new FuncionariosMetasDashboard(
+          func.funcionarioId,
+          func.funcionarioAtivo,
+          func.funcionarioCargo,
+          func.funcionarioDepartamentoId,
+          func.funcionarioDepartamento,
+          func.funcionarioSigla,
+          func.funcionarioNome,
+          func.funcionarioUser,
+          meta.metaCumprida,
+          meta.metaId,
+          meta.metaAprovada,
+          meta.nomeMeta
+        )
+        j++;
+      }
+    }
+    console.log("---------", funcionarioMetasDashboard)
+
+    funcionarioMetasDashboard.forEach((fm) => {
+      listaDepartamentos.push(fm.funcionarioDepartamento)
+    })
+
+    console.log("listaDepartamentos", listaDepartamentos);
+
+    listametasSemDuplicidade = listaDepartamentos
+      .filter((ele, pos) => listaDepartamentos.indexOf(ele) == pos);
+
+    console.log("listaMetasSemDuplicidade", listametasSemDuplicidade);
+
+    var qtdMetas = funcionarioMetasDashboard.length;
+    this.montaCor();
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
+        .filter(
+          (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i] && fm.metaCumprida == true).length,
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
+    }
+    console.log("listaMetasCumpridas", listaMetasCumpridas)
+
+    listaMetasOrdenadas = listaMetasCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
+
+    this.metasCumpridasDeptoA = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+    console.log("metasCumpridasTop5", this.metasCumpridasDepto)
+
+
+    var qtdMetas = funcionarioMetasDashboard.length;
+    this.montaCor();
+
+    for (var i in listametasSemDuplicidade) {
+      listaMetasNaoCumpridas[i] = new ListaDashboard(funcionarioMetasDashboard
+        .filter(
+          (fm) => fm.funcionarioDepartamento == listametasSemDuplicidade[i] && fm.metaCumprida == false).length,
+        listametasSemDuplicidade[i],
+        qtdMetas,
+        this.cores[i]);
+    }
+
+    console.log("listaMetasNaoCumpridas", listaMetasNaoCumpridas)
+
+    listaMetasOrdenadas = listaMetasNaoCumpridas.sort((a, b) => (a.qtde > b.qtde) ? -1 : 1);
+    console.log("listaMetasOrdenadas", listaMetasOrdenadas)
+
+    this.metasNaoCumpridasDeptoA = listaMetasOrdenadas.filter((funcionarioMeta, index) => index < 5)
+
+    console.log("metasNaoCumpridasTop5", this.metasNaoCumpridasDepto)
+
+  }
+
   public gerarCor() {
-    var headecimais = '0123456789ABCDEF';
+    var hexadecimais = '0123456789ABCDEF';
 
     var cor = '#';
 
     for (var i = 0; i < 6; i++) {
-      cor += headecimais[Math.floor(Math.random() * 16)];
+      cor += hexadecimais[Math.floor(Math.random() * 16)];
     }
     return cor;
   }
-}
 
+  public montaCor() {
+
+    for (var i = 0; i < 12; i++) {
+      this.cores[i] = this.gerarCor();
+    }
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@Cores", this.cores)
+  }
+
+    public lineChartData: ChartDataSets[] = [
+    { data: [61, 59, 80, 65, 45, 55, 40, 56, 76, 65, 77, 60], label: 'Apple' },
+    { data: [57, 50, 75, 87, 43, 46, 37, 48, 67, 56, 70, 50], label: 'Mi' },
+  ];
+
+  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+  public lineChartOptions = {
+    responsive: true,
+  };
+
+  public lineChartLegend = true;
+  public lineChartType = 'line';
+  public lineChartPlugins = [];
+}

@@ -139,7 +139,7 @@
       </div>
       <div class="card-body">
         <div class="ng-container" *ngFor="let metaTop5 of metasCumpridasTop5;">
-          <h6 class=" font-weight-bold">
+          <h6 class=" font-weight-bold mt-4">
             {{metaTop5.nome}}
 
             <span class="h5 text-success float-right font-weight-bold"> ({{metaTop5.qtde}} de {{metaTop5.qtdeTotal}} )</span>
@@ -161,7 +161,7 @@
       </div>
       <div class="card-body">
         <div class="ng-container" *ngFor="let metaTop5 of metasNaoCumpridasTop5;">
-          <h6 class=" font-weight-bold">
+          <h6 class=" font-weight-bold mt-4">
             {{metaTop5.nome}}
             <span class="h7 text-success float-right font-weight-bold"> ({{metaTop5.qtde}} de {{metaTop5.qtdeTotal}})</span>
           </h6>
@@ -185,7 +185,7 @@
       </div>
       <div class="card-body">
         <div class="ng-container" *ngFor="let metaDepto of metasCumpridasDepto; ">
-          <h6 class=" font-weight-bold">
+          <h6 class=" font-weight-bold mt-4">
             {{metaDepto.nome}}
             <span class="h7 text-success float-right font-weight-bold"> ({{metaDepto.qtde}} de {{metaDepto.qtdeTotal}})</span>
           </h6>
@@ -207,7 +207,7 @@
       </div>
       <div class="card-body">
         <div class="ng-container" *ngFor="let metaDepto of metasNaoCumpridasDepto; ">
-          <h6 class=" font-weight-bold">
+          <h6 class=" font-weight-bold mt-4">
             {{metaDepto.nome}}
             <span class="h7 text-success float-right font-weight-bold"> ({{metaDepto.qtde}} de {{metaDepto.qtdeTotal}})</span>
           </h6>
@@ -222,7 +222,51 @@
   </div>
 </div>
 
+<div class="row">
+  <!-- Content Row -->
+  <div class="col-xl-6 col-lg-6">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-uppercase text-info">Metas Cumpridas Por Departamento (Total) </h6>
+      </div>
+      <div class="card-body">
+        <div class="ng-container" *ngFor="let metaDepto of metasCumpridasDeptoA; ">
+          <h6 class=" font-weight-bold mt-4">
+            {{metaDepto.nome}}
+            <span class="h7 text-success float-right font-weight-bold"> ({{metaDepto.qtde}} de {{metaDepto.qtdeTotal}})</span>
+          </h6>
+          <div class="progress " style="height: 35px">
+            <div class="h6 progress-bar" role="progressbar" [ngStyle]="{'height': '35px','background-color': metaDepto.styleColor , 'width': metaDepto.stylePercent}"
+            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{{metaDepto.percent}}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+    <!-- Content Row -->
+  <div class="col-xl-6 col-lg-6">
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-uppercase text-info">Metas Não Cumpridas Por Departamento (TOTAL) </h6>
+      </div>
+      <div class="card-body">
+        <div class="ng-container" *ngFor="let metaDepto of metasNaoCumpridasDeptoA; ">
+          <h6 class=" font-weight-bold mt-4">
+            {{metaDepto.nome}}
+            <span class="h7 text-success float-right font-weight-bold"> ({{metaDepto.qtde}} de {{metaDepto.qtdeTotal}})</span>
+          </h6>
+          <div class="progress " style="height: 35px">
+            <div class="h6 progress-bar" role="progressbar" [ngStyle]="{'height': '35px','background-color': metaDepto.styleColor , 'width': metaDepto.stylePercent}"
+            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">{{metaDepto.percent}}%
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -283,3 +327,13 @@
       </div>
     </div>
   </div> -->
+<div style="display: block;">
+  <canvas baseChart width="500" height="200"
+    [datasets]="lineChartData"
+    [labels]="lineChartLabels"
+    [options]="lineChartOptions"
+    [legend]="lineChartLegend"
+    [chartType]="lineChartType"
+    [plugins]="lineChartPlugins">
+  </canvas>
+</div>
