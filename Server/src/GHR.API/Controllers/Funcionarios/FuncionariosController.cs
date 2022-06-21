@@ -52,7 +52,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> RecuperarFuncionarioPorId(int id, int empresaId)
+        public async Task<IActionResult> RecuperarFuncionarioPorId(int id)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{contaId}/contaId")]
-        public async Task<IActionResult> RecuperarFuncionarioPorUserId(int contaId, int empresaId)
+        public async Task<IActionResult> RecuperarFuncionarioPorUserId(int contaId)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace GHR.API.Controllers.Funcionarios
             }
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> ExcluirFuncioanrio(int id, int empresaId)
+        public async Task<IActionResult> ExcluirFuncioanrio(int id)
         {
             try
             {
@@ -154,7 +154,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
         
         [HttpGet("{departamentoId}/deptoId")]
-        public async Task<IActionResult> RecuperarFuncionarioPorDepartamentoCargo(int departamentoId, int empresaId)
+        public async Task<IActionResult> RecuperarFuncionarioPorDepartamentoCargo(int departamentoId)
         {
             try
             {

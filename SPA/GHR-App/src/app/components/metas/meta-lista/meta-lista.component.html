@@ -26,8 +26,8 @@
         <th class="d-none d-md-table-cell">#</th>
         <th>Meta</th>
         <th >Descrição</th>
-        <th class="d-none d-md-table-cell">Cumprida?</th>
         <th class="d-none d-md-table-cell">Aprovada?</th>
+        <th class="d-none d-md-table-cell">Cumprida?</th>
         <th class="d-none d-md-table-cell">Inicio Planejado</th>
         <th class="d-none d-md-table-cell">Fim Planejado</th>
         <th>Opções</th>
@@ -38,8 +38,8 @@
         <td class="d-none d-md-table-cell">{{meta.id}}</td>
         <td>{{meta.nomeMeta}}</td>
         <td>{{meta.descricao}}</td>
-        <td class="d-none d-md-table-cell">{{meta.metaCumprida}}</td>
-        <td class="d-none d-md-table-cell">{{meta.metaAprovada}}</td>
+        <td class="d-none d-md-table-cell">{{(meta.metaAprovada) ? 'Sim' : 'Não'}}</td>
+        <td class="d-none d-md-table-cell">{{(meta.metaCumprida) ? 'Sim' : 'Não'}}</td>
         <td class="d-none d-md-table-cell">{{meta.inicioPlanejado}}</td>
         <td class="d-none d-md-table-cell">{{meta.fimPlanejado}}</td>
         <td>

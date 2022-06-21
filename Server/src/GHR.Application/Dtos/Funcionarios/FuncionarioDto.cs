@@ -16,6 +16,7 @@ namespace GHR.Application.Dtos.Funcionarios
     public class FuncionarioDto
     {             
       public int Id { get; set; }
+
 //      [Display(Name = "Salário"), Required(ErrorMessage = "O campo {0} é obrigatório."),
  //     Range(100, 9999999999, ErrorMessage = "O campo {0} não pode ser inferior a R$ 100,00")]
       public float Salario { get; set; }
@@ -28,7 +29,7 @@ namespace GHR.Application.Dtos.Funcionarios
 
  //     [Display(Name = "Funcionario Ativo"),
  //     Required(ErrorMessage = "O campo {0} é obrigatório.")]
-      public Boolean FuncionarioAtivo { get; set; }
+      public Boolean Ativo { get; set; }
 
  //     [Display(Name = "Cargo"),
  //     Required(ErrorMessage = "É necessário informa um {0}.")] 

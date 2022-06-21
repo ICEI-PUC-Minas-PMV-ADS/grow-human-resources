@@ -144,11 +144,11 @@ export class DepartamentoDetalheComponent implements OnInit {
         (funcionarios: Funcionario[]) => {
           this.funcionarios = funcionarios;
           this.funcionariosDiretor = funcionarios.filter(
-            f => f.cargos.funcao === 'Diretor');
+            f => f.cargos.funcao === 'Diretor' && f.ativo === true);
           this.funcionariosGerente = funcionarios.filter(
-            f => f.cargos.funcao === 'Gerente');
+            f => f.cargos.funcao === 'Gerente' && f.ativo === true);
           this.funcionariosSupervisor = funcionarios.filter(
-            f => f.cargos.funcao === 'Supervisor');
+            f => f.cargos.funcao === 'Supervisor' && f.ativo === true);
         },
         (error: any) => {
           this.toastr.error("Não foi possível carregar funcionario", "Erro!");

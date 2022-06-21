@@ -17,7 +17,7 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             _context = context;
         }
-        public async Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = false)
+        public async Task<PaginaLista<Funcionario>> RecuperarFuncionariosAsync(PaginaParametros paginaParametros, bool incluirMetas = true)
         {
             IQueryable<Funcionario> query = _context.Funcionarios
                 .Include(ca => ca.Cargos)

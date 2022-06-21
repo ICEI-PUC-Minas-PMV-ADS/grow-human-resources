@@ -39,8 +39,8 @@
             <select class="form-select" aria-label="Default select example"
               [ngClass]="validarCampo(f.metaCumprida)"
               formControlName="metaCumprida">
-              <option value="false">Não</option>
-              <option value="true">Sim</option>
+              <option disabled value="false">Não</option>
+              <option disabled value="true">Sim</option>
             </select>
             <div class="invalid-feedback">
               {{retornarValidacao(f.metaCumprida, "")}}

@@ -37,7 +37,7 @@ namespace GHR.API.Controllers.Funcionarios
                     funcionarioMeta.ContadorTotal, 
                     funcionarioMeta.TotalDePaginas);
 
-                return Ok(funcionarioMeta.ToArray());
+                return Ok(funcionarioMeta);
             }
             catch (Exception ex)
             {

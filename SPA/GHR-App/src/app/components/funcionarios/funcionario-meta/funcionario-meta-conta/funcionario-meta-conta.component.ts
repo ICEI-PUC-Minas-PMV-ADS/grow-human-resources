@@ -60,7 +60,7 @@ export class FuncionarioMetaContaComponent implements OnInit {
           (funcionario: Funcionario) => {
             this.funcionario = funcionario;
             this.form.patchValue(this.funcionario);
-            this.form.patchValue(this.funcionario.contas)
+            this.form.patchValue(this.funcionario.contas);
             this.form.patchValue(this.funcionario.cargos)
             this.form.patchValue(this.funcionario.departamentos)
           },

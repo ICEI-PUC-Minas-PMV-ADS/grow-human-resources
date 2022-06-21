@@ -7,10 +7,10 @@
     </div>
 
     <div class="m-0 p-0 bg-white">
-      <tabset>
-        <tab >
+      <tabset #tabset>
+        <tab *ngIf="visaoRH">
           <ng-template tabHeading>
-            <i class="fa fa-bullseye m-1"></i>
+            <i class="fa fa-pen-to-square m-1"></i>
             <span>Associar Metas</span>
           </ng-template>
           <app-funcionario-meta-associar  [formsParametros]="formsParametros"></app-funcionario-meta-associar>

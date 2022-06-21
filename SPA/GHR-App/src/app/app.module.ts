@@ -70,6 +70,7 @@ import { FuncionarioMetaContaComponent } from './components/funcionarios/funcion
 import { FuncionarioMetaListaComponent } from './components/funcionarios/funcionario-meta/funcionario-meta-lista/funcionario-meta-lista.component';
 import { NgChartsModule } from 'ng2-charts';
 import { EmpresaContaService } from './services/empresas/empresa-conta.service';
+import { DashboardDoughnutComponent } from './components/dashboard/dashboard-doughnut/dashboard-doughnut.component';
 
 defineLocale('pt-br', ptBrLocale);
 @NgModule({
@@ -109,6 +110,7 @@ defineLocale('pt-br', ptBrLocale);
     PerfilSenhaComponent,
     TituloComponent,
     FuncionarioDadosPessoaisComponent,
+    DashboardDoughnutComponent,
   ],
   imports: [
     AppRoutingModule,

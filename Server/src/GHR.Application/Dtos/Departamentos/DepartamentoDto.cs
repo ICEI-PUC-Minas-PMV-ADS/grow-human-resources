@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using GHR.Application.Dtos.Empresas;
 
 namespace GHR.Application.Dtos.Departamentos
 {
