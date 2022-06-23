@@ -1,0 +1,74 @@
+<app-titulo
+  [titulo]="'Perfil'"
+  [subtitulo]="'GHR - Grow Human Resource'"
+  [iconClass]="'fa fa-id-card'"
+  [botaoListar]="false"
+  ></app-titulo>
+<div class="container">
+  <div class="card rounded shadow-sm p-1 m-0 bg-light">
+    <div class="card-head text-center text-white bg-secondary">
+      <H3>Formulário de Perfil</H3>
+    </div>
+    <div class="card-body bg-light m-0 p-0">
+      <div class="row g-0">
+        <div class="col-sm-12 col-md-3 p-1" >
+          <div class="card m-0 p-0">
+            <div class="card-header bg-secondary">
+              <input type="file" #file (change)="alterarImagem($event)" style="display: none">
+              <div class="align-self-center text-center pt-1">
+                  <img
+                    [src]="imagemURL"
+                    class="rounded-circle"
+                    (click)="file.click()"
+                    name="aboutme" width="120" height="120" style="cursor: pointer">
+                  <div class="h4 text-center">
+                    @{{contaVisao.userName}}
+                  </div>
+              </div>
+            </div>
+
+            <div class="card-body bg-light">
+              <div class="h7 text-bold pb-1">
+                <b>Nome:</b>{{contaVisao.nomeCompleto}}
+              </div>
+              <div class="h7 text-bold pb-1">
+                <b>email:</b>{{contaVisao.email}}
+              </div>
+              <div class="h7 text-bold pb-1">
+                <b>Telefone:</b>{{contaVisao.phoneNumber}}
+              </div>
+              <div class="h7">
+                {{contaVisao.descricao}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 m-0 p-1" >
+        <div class="form-row d-md-flex">
+            <div class="form-group col-12 ">
+              <tabset>
+                <tab>
+                  <ng-template tabHeading>
+                    <i class="fa fa-id-card m-1"></i>
+                    <span>Perfil</span>
+                  </ng-template>
+                  <app-perfil-detalhe (changeFormValue)="recuperarValorForm($event)"></app-perfil-detalhe>
+                </tab>
+                <tab>
+                  <ng-template tabHeading >
+                    <i class="fa fa-key m-1"></i>
+                    <span>Senha</span>
+                  </ng-template>
+                  <app-perfil-senha></app-perfil-senha>
+                </tab>
+              </tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

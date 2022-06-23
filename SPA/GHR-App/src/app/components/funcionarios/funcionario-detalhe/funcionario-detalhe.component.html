@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="card rounded shadow-sm p-1 m-0 bg-light">
+    <div class="card-head text-center text-white bg-secondary ">
+      <H3 >Formulário de Funcionários</H3>
+    </div>
+    <div class="m-0 p-0 bg-white">
+      <tabset>
+        <tab >
+          <ng-template tabHeading>
+            <i class="fa fa-user-large m-1"></i>
+            <span>Conta</span>
+          </ng-template>
+          <app-funcionario-conta (changeFormValue)="recuperarValorForm($event)"></app-funcionario-conta>
+        </tab>
+        <tab *ngIf='mostrarAbas'>
+          <ng-template tabHeading >
+            <i class="fa fa-building m-1"></i>
+            <span>Empresa</span>
+          </ng-template>
+          <app-funcionario-empresa  [formsParametros]="formsParametros"></app-funcionario-empresa>
+        </tab>
+        <tab *ngIf='mostrarAbas'>
+          <ng-template tabHeading >
+            <i class="fa fa-address-book m-1"></i>
+            <span>Endereco</span>
+          </ng-template>
+          <app-funcionario-endereco  [formsParametros]="formsParametros"></app-funcionario-endereco>
+        </tab>
+        <tab *ngIf='mostrarAbas'>
+          <ng-template tabHeading >
+            <i class="fa fa-person m-1"></i>
+            <span>Dados Pessoais</span>
+          </ng-template>
+          <app-funcionario-dados-pessoais [formsParametros]="formsParametros"></app-funcionario-dados-pessoais>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>

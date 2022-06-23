@@ -1,0 +1,177 @@
+<form class="row m-0 p-1 bg-white"
+    [formGroup]="form"
+    (submit)="salvarEndereco()">
+  <div class="card d-flex m-0 p-0 bg-light">
+    <div  class="card-body  bg-light m-0 ">
+      <div class="form-row m-0">
+        <div class="form-group col-12 p-1 m-0">
+          <h5 class="border-bottom mt-2">Dodos de Endreço</h5>
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-3 p-1">
+           <label label>CEP</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Somente números"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.cep)"
+            formControlName="cep">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.cep, "")}}
+          </div>
+         </div>
+         <div class="form-group col-md-6 p-1">
+           <label label>Rua</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Nome da rua"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.logradouro)"
+            formControlName="logradouro">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.logradouro, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 p-1">
+           <label label>Número</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Número da casa"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.numero)"
+            formControlName="numero">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.numero, "")}}
+          </div>
+         </div>
+      </div>
+      <div class="form-row d-flex">
+        <div class="form-group col-md-2 p-1">
+           <label label>Complemento</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Casa/Apto/Andar"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.complemento)"
+            formControlName="complemento">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.complemento, "")}}
+          </div>
+         </div>
+         <div class="form-group col-md-5 p-1">
+           <label label>Bairro</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Nome do Bairro"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.bairro)"
+            formControlName="bairro">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.bairro, "")}}
+          </div>
+         </div>
+        <div class="form-group col-md-5 p-1">
+           <label label>Cidade</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Nome Cidade"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.cidade)"
+            formControlName="cidade">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.cidade, "")}}
+          </div>
+         </div>
+      </div>
+
+      <div class="form-row d-flex">
+        <div class="form-group col-md-2 p-1">
+          <label>UF</label>
+           <select class="form-select form-control"
+            aria-label="Default select example"
+            placeholder="UF"
+            formControlName="uf"
+            [ngClass]="validarCampo(ctrEmp.uf)">
+            <option value="AC" [disabled]="protegerCampoEndereco">Acre</option>
+            <option value="AL" [disabled]="protegerCampoEndereco">Alagoas</option>
+            <option value="AP" [disabled]="protegerCampoEndereco">Amapá</option>
+            <option value="AM" [disabled]="protegerCampoEndereco">Amazonas</option>
+            <option value="BA" [disabled]="protegerCampoEndereco">Bahia</option>
+            <option value="CE" [disabled]="protegerCampoEndereco">Cerá</option>
+            <option value="DF" [disabled]="protegerCampoEndereco">Distrito Federal</option>
+            <option value="ES" [disabled]="protegerCampoEndereco">Espírito Santo</option>
+            <option value="GO" [disabled]="protegerCampoEndereco">Goiás</option>
+            <option value="MA" [disabled]="protegerCampoEndereco">Maranhão</option>
+            <option value="MT" [disabled]="protegerCampoEndereco">Mato Grosso</option>
+            <option value="MS" [disabled]="protegerCampoEndereco">Mato Grosso do Sul</option>
+            <option value="MG" [disabled]="protegerCampoEndereco">Minas Gerais</option>
+            <option value="PA" [disabled]="protegerCampoEndereco">Pará</option>
+            <option value="PB" [disabled]="protegerCampoEndereco">Paraíba</option>
+            <option value="PR" [disabled]="protegerCampoEndereco">Paraná</option>
+            <option value="PE" [disabled]="protegerCampoEndereco">Pernambuco</option>
+            <option value="PI" [disabled]="protegerCampoEndereco">Piauí</option>
+            <option value="RJ" [disabled]="protegerCampoEndereco">Rio de Janeiro</option>
+            <option value="RN" [disabled]="protegerCampoEndereco">Rio Grande do Norte</option>
+            <option value="RS" [disabled]="protegerCampoEndereco">Rio Grande do Sul</option>
+            <option value="RO" [disabled]="protegerCampoEndereco">Rondônia</option>
+            <option value="RR" [disabled]="protegerCampoEndereco">Roraima</option>
+            <option value="SC" [disabled]="protegerCampoEndereco">Santa Catarina</option>
+            <option value="SP" [disabled]="protegerCampoEndereco">São Paulo</option>
+            <option value="SE" [disabled]="protegerCampoEndereco">Sergipe</option>
+            <option value="TO" [disabled]="protegerCampoEndereco">Tocantins</option>
+          </select>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.uf, "")}}
+          </div>
+         </div>
+        <div class="form-group col-md-2 p-1">
+           <label label>País</label>
+           <input type="text"
+            class="form-control"
+            placeholder="País"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.pais)"
+            formControlName="pais">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.pais, "")}}
+          </div>
+         </div>
+         <div class="form-group col-md-2 p-1">
+           <label label>Caixa Postal</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Caixa Postal"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.caixaPostal)"
+            formControlName="caixaPostal">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.caixaPostal, "")}}
+          </div>
+         </div>
+        <div class="form-group col-md-6 p-1">
+           <label label>Complemento Endereço</label>
+           <input type="text"
+            class="form-control"
+            placeholder="Complemento Endereco"
+            [readonly]="protegerCampoEndereco"
+            [ngClass]="validarCampo(ctrEmp.complementoEndereco)"
+            formControlName="complementoEndereco">
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrEmp.complementoEndereco, "")}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer bg-secondary p-0">
+      <div class="d-flex">
+        <button class="btn btn-success m-1 ms-auto"
+              [disabled]="!form.valid || protegerCampoEndereco" tyep="submit">
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- <p>Form value: {{form.value | json}}</p>
+<p>Form status: {{form.status | json}}</p> -->

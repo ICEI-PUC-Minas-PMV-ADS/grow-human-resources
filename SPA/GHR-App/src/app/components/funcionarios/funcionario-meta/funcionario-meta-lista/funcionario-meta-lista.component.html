@@ -1,0 +1,135 @@
+<div  class="card rounded shadow bg-light p-1 ">
+  <div  class="card-header d-flex">
+    <div  class="flex-fill pr-1" >
+      <div class="input-group mb-2 ">
+        <div class="input-group-prepend">
+          <div class="input-group-text mr-2">Filtro:</div>
+        </div>
+        <input type="text"
+          class="form-control"
+          placeholder="Pesquisar por Meta e Descrição"
+          (input)="filtrarMetas($event.target)">
+      </div>
+    </div>
+  </div>
+  <div class="card-body bg-white">
+    <div *ngIf="funcionarioMetas && funcionarioMetas.length" class="row">
+      <div class="col-md-4 mb-6 d-flex align-itens-stretch"
+        *ngFor="let funcionarioMeta of funcionarioMetas">
+        <div class="card m-0 p-0" >
+          <div class="card-header bg-success">
+            <div class="h7 text-center">
+              <b>{{funcionario.contas.nomeCompleto}}</b>
+            </div>
+            <div class="h7">
+              <b>Meta: </b>{{funcionarioMeta.metas?.nomeMeta}}
+            </div>
+          </div>
+          <div class="card-body bg-light">
+            <div class="h7 text-center">
+              <b>Descricao da Meta </b>
+            </div>
+            <div class="h7 ">
+              {{funcionarioMeta.metas?.descricao}}
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                <b>Aprovada? </b>
+              </div>
+              <div class="h7 col-6 text-center">
+                <b>Cumprida? </b>
+              </div>
+            </div>
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                {{(funcionarioMeta.metas?.metaAprovada) ? "Sim" : "Não"}}
+              </div>
+              <div class="h7 col-6 text-center">
+                {{(funcionarioMeta.metaCumprida) ? "Sim" : "Não"}}
+              </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                <b>Início Planejado: </b>
+              </div>
+              <div class="h7 col-6 text-center">
+                <b>Fim Planejado: </b>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                {{funcionarioMeta.metas?.inicioPlanejado | DateTimeFormat}}
+              </div>
+              <div class="h7 col-6 text-center">
+                {{funcionarioMeta.metas?.fimPlanejado | DateTimeFormat}}
+              </div>
+            </div>
+
+            <div class="dropdown-divider"></div>
+
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                <b>Início Realizado: </b>
+              </div>
+              <div class="h7 col-6 text-center">
+                <b>Fim Realizado: </b>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="h7 col-6 text-center">
+                {{funcionarioMeta.metas?.inicioRealizado | DateTimeFormat}}
+              </div>
+              <div class="h7 col-6 text-center">
+                {{funcionarioMeta.metas?.fimRealizado | DateTimeFormat}}
+              </div>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-white">
+              <div class="row">
+                <div class="col-6 text-center border-right">
+                  <div class="h5">{{TotalMetasCumpridas}}</div>
+                  <div class="h6 text-muted">Metas Cumpridas</div>
+                </div>
+                <div class="col-6 text-center">
+                  <div class="h5">{{TotalMetasNaoCumpridas}}</div>
+                  <div class="h6 text-muted">Metas não Cumpridas</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div *ngIf="!funcionarioMetas.length">
+            <div>
+              <div colspan="8" class="text-center" >
+                <h4>Nenhuma meta encontrada para o funcionairo!</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+      <pagination
+        [totalItems]="paginacao.totalItens"
+        [itemsPerPage]="paginacao.itensPorPagina"
+        [(ngModel)]="paginacao.paginaAtual"
+        [align]="true"
+        (pageChanged)="paginaAlterada($event)"
+        pageBtnClass="btn"
+
+        previousText="&lsaquo;"
+        nextText="&rsaquo;"
+        firstText="&laquo;"
+        lastText="&raquo;">
+
+      </pagination>
+    </div>
+  </div>
+</div>
+

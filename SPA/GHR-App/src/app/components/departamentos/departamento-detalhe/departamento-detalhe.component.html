@@ -1,0 +1,83 @@
+<div class="card rounded shadow-sm p-1">
+
+  <div class="card-head text-center text-white bg-secondary">
+    <H3>Formulário de Departamentos</H3>
+  </div>
+
+  <form class="row" [formGroup]="form!">
+    <div>
+
+      <div class="card-body bg-light ">
+        <h4 class="border-bottom">Dados Departamento</h4>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-10 px-1">
+            <label>Nome</label>
+            <input type="text" class="form-control" placeholder="Nome Departamento"
+              [ngClass]="validarCampo(ctrDep.nomeDepartamento)"
+              formControlName="nomeDepartamento"
+            />
+            <div class="invalid-feedback">
+              {{retornarValidacao(ctrDep.nomeDepartamento, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-2 px-1">
+            <label>Sigla</label>
+            <input type="text" class="form-control" placeholder="Sigla Departamento"
+              [ngClass]="validarCampo(ctrDep.siglaDepartamento)"
+              formControlName="siglaDepartamento"
+            >
+            <div class="invalid-feedback">
+              {{retornarValidacao(ctrDep.siglaDepartamento, "")}}
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-4 px-1">
+            <label>Diretor</label>
+            <select class="form-select form-control"
+              aria-label="Default select example"
+              formControlName="diretor">
+              <option *ngFor='let funcionario of funcionariosDiretor'
+                value={{funcionario.contas.nomeCompleto}}>{{funcionario.contas.nomeCompleto}}</option>
+              </select>
+          </div>
+          <div class="form-group col-md-4 px-1">
+            <label>Gerente</label>
+            <select class="form-select form-control"
+              aria-label="Default select example"
+              formControlName="gerente">
+              <option *ngFor='let funcionario of funcionariosGerente'
+                value={{funcionario.contas.nomeCompleto}}>{{funcionario.contas.nomeCompleto}}</option>
+              </select>
+          </div>
+          <div class="form-group col-md-4 px-1">
+            <label>Supervisor</label>
+            <select class="form-select form-control"
+              aria-label="Default select example"
+              formControlName="supervisor">
+              <option *ngFor='let funcionario of funcionariosSupervisor'
+                value={{funcionario.contas.nomeCompleto}}>{{funcionario.contas.nomeCompleto}}</option>
+              </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer bg-secondary p-0">
+ 		    <div class="d-flex">
+ 			    <button class="btn btn-danger ms-auto m-1" (click)="limparFormulario()">
+ 				    Cancelar
+ 			    </button>
+ 			    <button class="btn btn-success m-1" [disabled]="!form.valid" (click)="salvarAlteracao()">
+ 				  <!--  <span class="spinner-border spinner-border-sm mr-1"></span> -->
+ 				     Salvar
+ 			    </button>
+ 		    </div>
+ 	    </div>
+    </div>
+  </form>
+ </div>
+<!-- <p>Form value: {{form.value | json}}</p>
+<p>Form status: {{form.status | json}}</p> -->

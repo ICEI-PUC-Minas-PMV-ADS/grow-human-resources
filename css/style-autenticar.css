@@ -1,0 +1,68 @@
+@font-face {
+    font-family: 'Jaldi-Bold', sans-serif;
+    font-weight: bold;
+    src: url("../fonts/Jaldi-Bold.ttf") format("ttf");
+    font-family: 'Jaldi-Regular', sans-serif;
+    src: url("../fonts/Jaldi-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family:'Inter', sans-serif;
+    src: url("./fonts/Inter/Inter-VariableFont_slnt\,wght.ttf") format("ttf");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Jaldi&family=Rampart+One&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&family=Jaldi&family=Rampart+One&display=swap');
+
+:root {
+        --verde-fundo:#f7fbfc;
+        --verde-principal: #97d3db;
+        --cinza-fundo: #efe7e7;
+        --branco: #fff;
+        
+}
+
+ .float-left {
+     background-color: var(--verde-principal);
+     border-radius: 20px;
+     width: 30%;
+
+}
+
+     .float-right {
+        background-color: var(--verde-principal);
+        border-radius: 20px;
+        width: 30%;
+ }
+
+ .mb-3 {
+     padding: 30px 50px 50px 30px;
+     background-color: var(--verde-fundo);
+     font-family:'Jaldi-Regular', sans-serif;  
+     font-family: Arial, Helvetica, sans-serif;  
+ 
+ }
+
+.form-label {
+    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;   
+    
+
+}
+.form-control {
+    border-color: var(--verde-principal);
+
+}
+
+.button-voltar {
+    font-family: 'Jaldi-Regular', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;  
+    font-weight: bold; 
+
+}
+
+.container {
+    padding-top: 80px;
+}
