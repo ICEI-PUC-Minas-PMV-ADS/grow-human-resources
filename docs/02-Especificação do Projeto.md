@@ -45,8 +45,6 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Lucia  | Realizar cadastros de objetivos       | Gerar controle de objetivos         |
 |Melissa| Controlar metas      | Que reflitam com clareza os indicadores de performance|
 |Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
-|Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
-|Joao Matheus| Realizar consulta de ponto      | Acompanhar a presença nos treinamentos         |
 |Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
 |Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
 |Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
@@ -113,7 +111,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Bonze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
 |Silver| Ator que desempenha o papel de funcionario administrativo, podendo realizar atividades específicas conforme necessidades da organização|
 |Silver RH| Ator que desempenha o papela de funcionario realiza o gerenciamento de funcionarios, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH|
-|Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atirbuições de um Silver RH.|
+|Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atribuições de um Silver RH.|
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
 |-|-|-|
@@ -129,7 +127,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar Metas de Equipe|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06|
 |Validar Ojetivos Pessoais|O sistema deve permitir ao funcionário a validação dos objetivos pessoais  | RF07|
 |Validar Metas Pessoais|O sistema deve permitir ao funcionário a validação das metas pessoais  | RF06|
-|Gerenciar Departamentos|O sistema deve permitir ao funcionário o gerenciamento dos departemtnos da emrpesa  | RF05 / RF11|
+|Gerenciar Departamentos|O sistema deve permitir ao funcionário o gerenciamento dos departamentos da emrpesa  | RF05 / RF11|
 |Gerenciar Cargos e Salários|O sistema deve permitir ao funcionário o gerenciamento de cargos e salários da empresa | RF08 / RF13|
 |Gerenciar Objetivos globais|O sistema deve permitir ao funcionário o gerenciamento dos objetivos globais  | RF07/ RF08 / RF15|
 |Gerenciar Metas globais|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06 / RF09 / RF14 / RF16 / RF17|

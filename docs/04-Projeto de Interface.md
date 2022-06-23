@@ -44,7 +44,7 @@ Figura 2
 
 
 
-Após fazer o processo descrito na Figura 2 será encaminhado um código ao e-mail verificado para ser inserido um código de segurança 
+Após fazer o processo descrito na Figura 2 será encaminhado um código ao e-mail verificado para ser inserido um código de segurança.
 
 <img src="./img/fig03.jpeg">
 
@@ -88,7 +88,7 @@ Figura 6
 
 
 
- É possível Alterar quase todos os campos, apenas Matricula, cargo e departamento somente      o supervisor tem acesso para alterar essas informações.<img src="./img/fig07.jpeg">
+ É possível Alterar quase todos os campos, apenas Matricula, cargo e departamento somente o supervisor tem acesso para alterar essas informações.<img src="./img/fig07.jpeg">
 
 Figura 7
 
