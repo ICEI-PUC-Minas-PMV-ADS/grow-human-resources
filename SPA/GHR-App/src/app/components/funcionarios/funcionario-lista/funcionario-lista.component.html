@@ -39,7 +39,7 @@
         <th>Telefone</th>
         <th class="d-none d-md-table-cell">Salario</th>
         <th class="d-none d-md-table-cell">Dt. Admissão</th>
-        <th class="d-none d-md-table-cell">Perfil</th>
+        <th class="d-none d-md-table-cell">Ativo</th>
         <th>Opções</th>
       </tr>
     </thead>
@@ -72,7 +72,7 @@
           {{funcionario.dataAdmissao | DateTimeFormat}}
         </td>
         <td class="d-none d-md-table-cell" (click)="detalheFuncionario(funcionario.id)" style="cursor: pointer">
-          {{funcionario.cargoId}}
+          {{(funcionario.ativo) ? "Sim" : "Não"}}
         </td>
         <td>
           <div  class="d-flex">

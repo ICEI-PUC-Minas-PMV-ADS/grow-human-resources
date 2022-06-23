@@ -413,6 +413,9 @@ namespace GHR.Persistence.Migrations
                     b.Property<int>("MetaId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("DepartamentosId")
+                        .HasColumnType("int");
+
                     b.Property<string>("FimAcordado")
                         .HasColumnType("longtext");
 
@@ -432,6 +435,8 @@ namespace GHR.Persistence.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("FuncionarioId", "MetaId");
+
+                    b.HasIndex("DepartamentosId");
 
                     b.HasIndex("MetaId");
 
@@ -640,6 +645,10 @@ namespace GHR.Persistence.Migrations
 
             modelBuilder.Entity("GHR.Domain.DataBase.Funcionarios.FuncionarioMeta", b =>
                 {
+                    b.HasOne("GHR.Domain.DataBase.Departamentos.Departamento", "Departamentos")
+                        .WithMany()
+                        .HasForeignKey("DepartamentosId");
+
                     b.HasOne("GHR.Domain.DataBase.Funcionarios.Funcionario", "Funcionarios")
                         .WithMany("FuncionariosMetas")
                         .HasForeignKey("FuncionarioId")
@@ -651,6 +660,8 @@ namespace GHR.Persistence.Migrations
                         .HasForeignKey("MetaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Departamentos");
 
                     b.Navigation("Funcionarios");
 

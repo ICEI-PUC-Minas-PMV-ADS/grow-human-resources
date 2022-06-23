@@ -21,7 +21,7 @@ namespace GHR.API.Controllers.Funcionarios
         }
 
         [HttpGet("{enderecoId}")]
-        public async Task<IActionResult> RecuperarEnderecoPorId(int enderecoId, int funcionarioId)
+        public async Task<IActionResult> RecuperarEnderecoPorId(int enderecoId)
         {
             try
             {

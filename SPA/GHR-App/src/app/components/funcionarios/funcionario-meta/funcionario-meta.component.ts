@@ -35,7 +35,7 @@ export class FuncionarioMetaComponent implements OnInit {
   public visaoRH = false;
 
   public get mostrarAbas(): boolean {
-    console.log("visao", this.visaoRH)
+
     return (this.visaoRH);
   }
 
@@ -56,7 +56,7 @@ export class FuncionarioMetaComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    console.log("visaRH", this.visaoRH);
+
   }
 
 }

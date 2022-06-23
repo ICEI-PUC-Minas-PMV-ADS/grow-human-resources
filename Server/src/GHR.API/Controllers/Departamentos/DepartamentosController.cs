@@ -72,7 +72,7 @@ namespace GHR.API.Controllers.Departamentos
         {
             try
             {
-                var departamento = await _departamentoService.CriarDepartamento(model);
+                var departamento = await _departamentoService.CadastrarDepartamento(model);
 
                 if (departamento == null) return NoContent();
 

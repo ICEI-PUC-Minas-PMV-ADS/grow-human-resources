@@ -28,7 +28,6 @@ export class MetaService {
       params = params.append('tamanhoDaPagina', itensPorPagina.toString());
     };
 
-    console.log("termo", termo)
     if (termo != null && termo != '')
       params = params.append('termo', termo);
 

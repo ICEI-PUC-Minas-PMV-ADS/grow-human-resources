@@ -19,7 +19,7 @@ export class EmpresaContaService {
   }
 
   public cadastrarEmpresaConta(empresaConta: EmpresaConta): Observable<EmpresaConta> {
-    console.log("service", empresaConta)
+
     return this.http
       .post<EmpresaConta>(this.baseURL, empresaConta)
       .pipe(take(1));

@@ -94,7 +94,7 @@ export class CargoListaComponent implements OnInit {
         (error: any) => {
 
           this.toastr.error('Falha ao carregar os cargos', 'Erro!');
-          console.log(error);})
+          console.error(error);})
 
       .add(() => this.spinner.hide());
   }

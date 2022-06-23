@@ -20,9 +20,10 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         //Funcionarios
         public async Task<PaginaLista<FuncionarioMeta>> RecuperarMetasPorFuncionarioIdAsync(int funcionarioId, PaginaParametros paginaParametros)
         {
-            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas               
+            IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas              
                 .Include(f => f.Funcionarios)
-                .Include(m => m.Metas);
+                .Include(m => m.Metas)
+                .Include(d => d.Departamentos);
 
                 query = query
                     .AsNoTracking()
@@ -38,7 +39,8 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
                 .Include(m => m.Metas)
-                .Include(f => f.Funcionarios);
+                .Include(f => f.Funcionarios)
+                .Include(d => d.Departamentos);
 
             query = query
                     .AsNoTracking()
@@ -54,7 +56,8 @@ namespace GHR.Persistence.Interfaces.Implements.Funcionarios
         {
             IQueryable<FuncionarioMeta> query = _context.FuncionariosMetas
                 .Include(m => m.Metas)
-                .Include(f => f.Funcionarios);
+                .Include(f => f.Funcionarios)
+                .Include(d => d.Departamentos);
 
             query = query
                     .AsNoTracking()

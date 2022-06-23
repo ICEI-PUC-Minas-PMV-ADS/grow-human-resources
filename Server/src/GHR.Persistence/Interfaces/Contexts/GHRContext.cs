@@ -21,6 +21,7 @@ namespace GHR.Persistence.Interfaces.Contexts
                                                 IdentityUserLogin<int>,
                                                 IdentityRoleClaim<int>,
                                                 IdentityUserToken<int>>
+
     {
         public GHRContext(DbContextOptions<GHRContext> options) : base(options) { }
         public DbSet<Cargo> Cargos { get; set; }
@@ -55,13 +56,15 @@ namespace GHR.Persistence.Interfaces.Contexts
 
                     contaFuncao.HasOne(cs => cs.Contas)
                         .WithMany(cfs => cfs.ContasFuncoes)
-                        .HasForeignKey(c => c.UserId)
+                        .HasForeignKey(c => c.UserId) 
                         .IsRequired();
 
                 });
 
+   
             modelBuilder.Entity<FuncionarioMeta>()
                     .HasKey(fm => new {  fm.FuncionarioId, fm.MetaId });
         }
+
     }
 }

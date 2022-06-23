@@ -5,13 +5,13 @@ import { Funcionario } from "./Funcionario";
 export class FuncionarioMeta {
   id: number;
   metaId: number;
-  meta: Meta;
+  metas: Meta;
   funcionarioId: number;
-  funcionario: Funcionario;
-  metaCumprida: Boolean;
+  funcionarios: Funcionario;
+  metaCumprida: boolean;
   inicioAcordado?: string;
   fimAcordado?: string;
-  inicioRealizadb: string;
+  inicioRealizado: string;
   fimRealizado: string;
   supervisor: string;
 }

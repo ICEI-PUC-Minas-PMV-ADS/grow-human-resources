@@ -25,7 +25,7 @@ namespace GHR.Application.Services.Implements.Departamentos
             _departamentoPersistence = DepartamentoPersistence;
             _mapper = mapper;
         }
-        public async Task<DepartamentoDto> CriarDepartamento(DepartamentoDto model)
+        public async Task<DepartamentoDto> CadastrarDepartamento(DepartamentoDto model)
         {
             try
             {
