@@ -47,7 +47,7 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
 |Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
 |Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
-|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
+|Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeiçoamento profissional de cada membro da equipe|
 
 
 
@@ -107,10 +107,10 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ATOR|	DESCRIÇÃO|
 |----|-----------|
-|Bonze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
-|Bonze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
+|Bronze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
+|Bronze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
 |Silver| Ator que desempenha o papel de funcionário administrativo, podendo realizar atividades específicas conforme necessidades da organização|
-|Silver RH| Ator que desempenha o papel de funcionário realiza o gerenciamento de funcionários, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH|
+|Silver RH| Ator que desempenha o papel de funcionário realiza o gerenciamento de funcionários, objetivos pessoais e de equipe, validação do cumprimento de metas além das funções designadas ao Bronze RH|
 |Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atribuições de um Silver RH.|
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
@@ -131,7 +131,7 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |Gerenciar Cargos e Salários|O sistema deve permitir ao funcionário o gerenciamento de cargos e salários da empresa | RF08 / RF13|
 |Gerenciar Objetivos globais|O sistema deve permitir ao funcionário o gerenciamento dos objetivos globais  | RF07/ RF08 / RF15|
 |Gerenciar Metas globais|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06 / RF09 / RF14 / RF16 / RF17|
-|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golde, Silver e Bronze | RF04|
+|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golden, Silver e Bronze | RF04|
 
 
  ## Representação Visual
