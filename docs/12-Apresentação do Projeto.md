@@ -1,15 +1,13 @@
 # Apresentação
 
 <span style="color:red">Pré-requisitos: Todos os demais artefatos</span>
-<video src=".\img\Video de apresentação.mkv"></video>
+<video src=".img\Video de apresentação.mkv"></video>
 
 ## Título do Projeto
 
-Nome e marca do projeto
-
+Grow Human Resources - G.H.R.
 ## Identidade Visual (Marca, Design)
 
-O grupo deve ter o cuidado em utilizar figuras, imagens, e cores dentro do contexto da solução proposta, de forma a manter a temática do problema.
 
 > **Links Úteis**:
 > - [10 dicas de design para slides](https://rockcontent.com/blog/design-para-slides/)

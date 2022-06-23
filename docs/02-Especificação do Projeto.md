@@ -45,8 +45,6 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |Lucia  | Realizar cadastros de objetivos       | Gerar controle de objetivos         |
 |Melissa| Controlar metas      | Que reflitam com clareza os indicadores de performance|
 |Melissa| Controlar objetivo   | Que reflitam com clareza os indicadores de aperfeiçoamento profissional|
-|Melissa | Realizar pesquisa sobre entrada e saída      | Gerar relatório de ponto         |
-|Joao Matheus| Realizar consulta de ponto      | Acompanhar a presença nos treinamentos         |
 |Joao Matheus| Acompanhar metas individuais    | Que cada membro da equipe cumpra as metas individuais  |
 |Joao Matheus| Acompanhar metas de Equipe    | Que cada equipe cumpra metas as metas de equipe  |
 |Joao Matheus| Acompanhar objetivos individuais  | Garantir o aperfeicoamento profissional de cada membro da equipe|
@@ -69,7 +67,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF05| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar Departamentos (CRUD) | ALTA |
 |RF06| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar metas (CRUD) | ALTA | 
 |RF07| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar objetivos (CRUD) | BAIXA | 
-|RF08| O Sistema deverá Permitir que o Usuário Silver RH deverá gerenciar cargos e salários (CRUD) | BAIXA | 
+|RF08| O Sistema deverá Permitir que o Usuário Golden RH deverá gerenciar cargos e salários (CRUD) | BAIXA | 
 |RF09| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Metas para Funcionário | ALTA |
 |RF10| O Sistema deverá Permitir que o Usuário Silver RH deverá cadastrar Objetivos para Funcionário | BAIXA | 
 |RF11| O Sistema deverá Permitir que o Usuário Silver/Golden RH deverá associar um Funcionário a um deparamento | ALTA |
@@ -79,6 +77,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF15| O Sistema deve permitir que o Usuário Bronze/Silver/Golden possa consultar relatório de acompanhamento anual dos objetivos | BAIXA | 
 |RF16| O Sistema deve permitir que o Usuário Bronze/Silver/Golden RH possa cadastrar metas atingidas/não atingidas| ALTA | 
 |RF17| O sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas. | ALTA |
+|RF18| O Sistema deve conter uma busca de CEP automatizada | ALTA |
 
 ### Requisitos não Funcionais
 
@@ -108,26 +107,34 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 |ATOR|	DESCRIÇÃO|
 |----|-----------|
-|Bronze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
-|Bronze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
-|Silver| Ator que desempenha o papel de funcionario administrativo, podendo realizar atividades específicas conforme necessidades da organização.|
-|Silver RH| Ator que desempenha o papel de funcionario, realiza o gerenciamento de funcionarios, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH.|
+|Bonze| Ator que desempenha o papel de funcionário padrão da empresa, realiza consulta seu desempenho e metas, efetiva seu cadastro, login e alteração de senha, além de consultar o dashboard da organização. |
+|Bonze RH| Ator que desempenha o papel de funcionário padrão da empresa no setor de RH, realiza as funções do ator Bronze e é capaz de realizar algumas funções específicas de RH. |
+|Silver| Ator que desempenha o papel de funcionario administrativo, podendo realizar atividades específicas conforme necessidades da organização|
+|Silver RH| Ator que desempenha o papela de funcionario realiza o gerenciamento de funcionarios, objetivos pessoais e de equipe, validação do cumprimento de metas além das funcões designadas ao Bronze RH|
 |Golden RH| Responsável pelo gerenciamento de departamentos, cargos e salários, definção de objetivos, gerenciamento de metas globais e gerenciamento de acessos. Possui, também, as atribuições de um Silver RH.|
 
 |CASO DE USO|	DESCRIÇÃO|	RF|
 |-|-|-|
-|Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01|
-|Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF01 |
-|Gerenciar Desempenho| O funcionário deve consultar seu desempenho e status de metas.| RF06|
-|Associar funcionário a departamento| O supervisor deverá associar cada funcionário a um departamento.| RF03 |
-|Gerenciar Departamentos | O supervisor e o gerente devem visualizar relatório de cada departamento. | RF05 | 
-|Gerenciar Metas | O supervisor e o gerente devem gerenciar o desempenho e metas do funcionário. | RF04 | 
-|Gerenciar Acessos | O supervisor deve gerenciar (incluir, excluir) o acesso do funcionário. | RF02| 
-|Consultar Ranqueamento| O ranqueamento (top 5) metas atingidas e não atingidas poderá ser consultado por funcionário, gerente e supervisor.  | RF07|
-
+|Realizar login no sistema|	O funcionário deve conseguir realizar login com suas credenciais no sistema.| RF01 / RF02|
+|Gerenciar Perfil|	O funcionário deve conseguir gerenciar perfil: (atualizar dados do pessoas e alterar senha) no seu perfil.|	RF03 |
+|Consultar Objetivos Pessoais| O funcionário deve consultar seus objetivos pessoais| RF07|
+|Consultar Metas Pessoais| O funiconario deve consultar suas metas pessoais| RF06 |
+|Consultar Dashboard | O sistema dever permitir ao funcionarios consultar dos dados do dashboard| RF14, RF15, RF16, RF17 | 
+|Alocar Funcionário ao departamento | O sistema deve permitir ao funcionário o gerenciamento de departamentos | RF05 / RF11 | 
+|Associar Funcionário a Cargos e Salários| O sistema deve permitir ao funcionario o gerenciamento de cargos e salários. | RF08 / RF13| 
+|Gerenciar Funcionários|O sistema deve permitir ao funcionário o gerenciamento de funcionários  | RF04|
+|Gerenciar Objetivos de Equipe|O sistema deve permitir ao funcionário o gerenciamento dos objetivos de equipe  | RF07|
+|Gerenciar Metas de Equipe|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06|
+|Validar Ojetivos Pessoais|O sistema deve permitir ao funcionário a validação dos objetivos pessoais  | RF07|
+|Validar Metas Pessoais|O sistema deve permitir ao funcionário a validação das metas pessoais  | RF06|
+|Gerenciar Departamentos|O sistema deve permitir ao funcionário o gerenciamento dos departamentos da emrpesa  | RF05 / RF11|
+|Gerenciar Cargos e Salários|O sistema deve permitir ao funcionário o gerenciamento de cargos e salários da empresa | RF08 / RF13|
+|Gerenciar Objetivos globais|O sistema deve permitir ao funcionário o gerenciamento dos objetivos globais  | RF07/ RF08 / RF15|
+|Gerenciar Metas globais|O sistema deve permitir ao funcionário o gerenciamento das metas de equipe | RF06 / RF09 / RF14 / RF16 / RF17|
+|Gerenciar Acessos|O sistema deve permitir ao funcionário o gerenciamento dos acesso conforme Golde, Silver e Bronze | RF04|
 
 
  ## Representação Visual
  Diagrama de Caso de Uso
- <img src="/docs/img/diagrama-caso-uso.png">
+ <img src="img/diagrama-caso-uso.png">
 
