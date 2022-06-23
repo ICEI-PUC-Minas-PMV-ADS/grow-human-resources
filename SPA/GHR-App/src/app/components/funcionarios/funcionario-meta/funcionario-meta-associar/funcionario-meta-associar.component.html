@@ -1,0 +1,109 @@
+<form class="row m-0 p-1 bg-white" [formGroup]="form">
+
+  <div class="card d-flex m-0 p-0 bg-white">
+    <div class="card-header m-1 p-1 bg-white">
+        <div class="input-group mb-3 mt-1">
+          <div class="input-group-text mr-1">Selecionae uma Meta:</div>
+          <select class="form-select" aria-label="Default select example"
+                formControlName="id">
+            <option *ngFor='let meta of metas'
+                  value={{meta.id}}>{{meta.nomeMeta}}
+            </option>
+          </select>
+          <button class="btn btn-outline-success p-1"
+            (click)="consultarMeta()">
+            <b>Consultar</b>
+          </button>
+        </div>
+      </div>
+
+      <div  class="card-body  bg-white m-0 " >
+        <h4 class="border-bottom">Meta:</h4>
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-6 p-1">
+            <label>Nome Meta</label>
+            <input type="text"
+                class="form-control"
+                formControlName="nomeMeta"
+                readonly="true">
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Meta Cumprida?</label>
+            <select class="form-select disabed" aria-label="Default select example"
+                  formControlName="metaCumprida"
+                  [ngClass]="validarCampo(ctrMeta.metaCumprida)">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(ctrMeta.metaCumprida, "")}}
+            </div>
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Meta Aprovada?</label>
+            <select class="form-select disabed" aria-label="Default select example"
+                  formControlName="metaAprovada"
+                    [ngClass]="validarCampo(ctrMeta.metaAprovada)">
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+            <div class="invalid-feedback">
+              {{retornarValidacao(ctrMeta.metaAprovada, "")}}
+            </div>
+          </div>
+        </div>
+        <div class="form-row d-md-flex">
+          <div class="form-group col-md-3 p-1">
+            <label>Início Planejado</label>
+            <input type="text" class="form-control"
+                  formControlName="inicioPlanejado"
+                  value="{{meta.inicioPlanejado | DateTimeFormat}}"
+                    readonly="true">
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Fim Planejado</label>
+            <input type="text" class="form-control"
+                  formControlName="fimPlanejado"
+                  value="{{meta.fimPlanejado | DateTimeFormat}}"
+                  readonly="true">
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Início Realizado</label>
+            <input type="text" class="form-control"
+              formControlName="inicioRealizado"
+              [ngClass]="validarCampo(ctrMeta.inicioRealizado)"
+              bsDatepicker
+              [bsConfig]="bsConfig"
+              value="{{funcionarioMeta.inicioRealizado | DateTimeFormat}}">
+          </div>
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrMeta.inicioRealizado, "")}}
+          </div>
+          <div class="form-group col-md-3 p-1">
+            <label>Fim Realizado</label>
+            <input type="text" class="form-control"
+              formControlName="fimRealizado"
+              value="{{meta.fimRealizado | DateTimeFormat}}"
+              [ngClass]="validarCampo(ctrMeta.fimRealizado)"
+              bsDatepicker
+              [bsConfig]="bsConfig">
+          </div>
+          <div  class="invalid-feedback">
+            {{retornarValidacao(ctrMeta.fimRealizado, "")}}
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-secondary p-0">
+        <div class="d-flex ">
+          <button class="btn btn-success m-1 ms-auto" [disabled]="!form.valid" (click)="associarFuncionarioMeta()">
+            Associar Meta
+          </button>
+        </div>
+      </div>
+
+    </div>
+</form>
+
+ <p>Form value: {{form.value | json}}</p>
+<p>Form status: {{form.status | json}}</p> -->

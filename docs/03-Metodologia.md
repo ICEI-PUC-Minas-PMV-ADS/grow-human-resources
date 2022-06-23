@@ -5,7 +5,6 @@ Pré-requisitos: Documentação de Especificação
 
 A metodologia contempla as definições de ferramental utilizado pela equipe tanto para a manutenção dos códigos e demais artefatos quanto para a organização do time na execução das tarefas do projeto.
 
-Descreva aqui a metodologia de trabalho do grupo para atacar o problema. Definições sobre os ambiente de trabalho utilizados pela equipe para desenvolver o projeto. Abrange a relação de ambientes utilizados, a estrutura para gestão do código fonte, além da definição do processo e ferramenta através dos quais a equipe se organiza (Gestão de Times).
 
 ## Relação de Ambientes de Trabalho
 
@@ -77,7 +76,7 @@ A tarefas são classificadas em função da natureza ou prioridade da atividade 
 
 As ferramentas empregadas no projeto são:
 
-- Editor de código - Visual Code, Visual Studio.
+- Editor de código - Visual Code.
 - Ferramentas de comunicação - WhatsApp, Microsoft Teams.
 - Ferramentas de desenho de tela - Dra.wio, Figma.
 

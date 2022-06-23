@@ -1,0 +1,80 @@
+<form class="row m-0 p-1 bg-white" [formGroup]="form">
+  <div class="card d-flex m-0 p-0 bg-white">
+
+    <div  class="card-body  m-0 " >
+      <div class="form-row m-0">
+        <h5 class="border-bottom">Dados do Funcionário</h5>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-4 p-1">
+          <label>Nome</label>
+          <input type="text" class="form-control"
+                formControlName="nomeCompleto"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Departamento</label>
+          <input type="text" class="form-control"
+                formControlName="nomeDepartamento"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Cargo</label>
+          <input type="text" class="form-control"
+                formControlName="nomeCargo"
+                readonly="true">
+        </div>
+      </div>
+
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-4 p-1">
+          <label>Supervisor</label>
+          <input type="text" class="form-control"
+                formControlName="supervisor"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Gerente</label>
+          <input type="text" class="form-control"
+                formControlName="gerente"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Diretor</label>
+          <input type="text" class="form-control"
+                formControlName="diretor"
+                readonly="true">
+        </div>
+      </div>
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-4 p-1">
+          <label>Data Admissão</label>
+          <input type="text" class="form-control"
+                value="{{funcionario.dataAdmissao | DateTimeFormat}}"
+                formControlName="dataAdmissao"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Data Desligamento</label>
+          <input type="text" class="form-control"
+                value="{{funcionario.dataDemissao | DateTimeFormat}}"
+                formControlName="dataDemissao"
+                readonly="true">
+        </div>
+        <div class="form-group col-md-4 p-1">
+          <label>Contato</label>
+          <input type="text" class="form-control"
+                formControlName="phoneNumber"
+                readonly="true">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</form>
+  <!--
+    <p>Form value: {{form.value | json}}</p>
+   <p>Form status: {{form.status | json}}</p>
+
+      -->

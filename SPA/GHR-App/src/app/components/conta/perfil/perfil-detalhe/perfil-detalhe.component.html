@@ -1,0 +1,63 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <div class="card  d-flex p-2" >
+    <div class="form-row bg-light">
+      <div class="form-group col-12 p-1 m-0">
+        <h5 class="pt-3 border-bottom">Detalhe Perfil</h5>
+      </div>
+      
+      <div class="form-row d-md-flex">
+        <div class="form-group col-md-5 col-12 p-1 m-0">
+          <label>Nome</label>
+          <input type="text " class="form-control"
+                [ngClass]="validarCampo(ctrForm.nomeCompleto)"
+                formControlName="nomeCompleto"/>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.nomeCompleto, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-4 col-12 p-1">
+          <label>E-mail</label>
+          <input type="text" class="form-control"
+                [ngClass]="validarCampo(ctrForm.email)"
+                formControlName="email"/>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.email, "")}}
+          </div>
+        </div>
+        <div class="form-group col-md-3 col-12 p-1">
+          <label>Telefone</label>
+          <input type="text" class="form-control"
+                [ngClass]="validarCampo(ctrForm.phoneNumber)"
+                formControlName="phoneNumber"/>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.phoneNumber, "")}}
+          </div>
+        </div>
+      </div>
+      <div class="form-row d-md-flex ">
+        <div class="form-group col p-1 ">
+          <label>Mini Currículo</label>
+          <textarea name="euMesmo"  class="form-control" style="height: 150px"
+                  [ngClass]="validarCampo(ctrForm.descricao)"
+                  formControlName="descricao">
+          </textarea>
+          <div class="invalid-feedback">
+            {{retornarValidacao(ctrForm.descricao, "")}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer bg-secondary ">
+      <div class="d-flex">
+        <div class="ms-auto p-0">
+          <button type="submit" class="btn btn-success " [disabled]="!form.valid">
+            <!-- <span class="spinner-border spinner-border-sm mr-1"></span> -->
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</form>

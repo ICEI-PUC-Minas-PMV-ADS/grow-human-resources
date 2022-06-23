@@ -1,0 +1,53 @@
+.imgCentral {
+    width: 66.5%;
+}
+.imgLateral {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+.titulo {
+  font-size: 2rem;
+}
+@media only screen and (max-width: 1399px) {
+  .imgCentral {
+      width: 57.5%;
+  }
+  .imgLateral {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+  }
+
+}
+@media only screen and (max-width: 1199px) {
+  .imgCentral {
+      width: 45%;
+  }
+  .imgLateral {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+  }
+
+}
+@media only screen and (max-width: 991px) {
+  .imgCentral {
+      width: 16.5%;
+  }
+  .imgLateral {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: 0;
+  }
+
+  .titulo {
+   font-size: 1rem;
+  }
+
+}
