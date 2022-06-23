@@ -54,7 +54,7 @@ Método Utilizado: Avaliação
 
 |Tarefa 13 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Visão Bronze/Silver/Golden RH deverão associar um funcionário a um cargo e salário | associação de carga e selario ao funcionario | Concretização da tarefa. |
+|Visão Bronze/Silver/Golden RH deverão associar um funcionário a um cargo e salário | associação de carga e selário ao funcionário | Concretização da tarefa. |
 
 |Tarefa 14 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
@@ -62,7 +62,7 @@ Método Utilizado: Avaliação
 
 |Tarefa 15 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
-|Visão Bronze/Silver/Golden devem consultar relatório de acompanhamento anual dos objetivos |  realizar consulta do relatorio anual | Concretização da tarefa. |
+|Visão Bronze/Silver/Golden devem consultar relatório de acompanhamento anual dos objetivos |  realizar consulta do relatório anual | Concretização da tarefa. |
 
 |Tarefa 16 |	Critério de Êxito |	O que será avaliado |
 |---------|-------------------|--------------------|
