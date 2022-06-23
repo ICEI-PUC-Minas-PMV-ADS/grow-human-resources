@@ -79,6 +79,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF15| O Sistema deve permitir que o Usuário Bronze/Silver/Golden possa consultar relatório de acompanhamento anual dos objetivos | BAIXA | 
 |RF16| O Sistema deve permitir que o Usuário Bronze/Silver/Golden RH possa cadastrar metas atingidas/não atingidas| ALTA | 
 |RF17| O sistema deverá emitir ranqueamento (top 5) de: metas atingidas, metas não atingidas. | ALTA |
+|RF18| O Sistema deve conter uma busca de CEP automatizada | ALTA |
 
 ### Requisitos não Funcionais
 
@@ -137,5 +138,5 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
  ## Representação Visual
  Diagrama de Caso de Uso
- <img src="/docs/img/diagrama-caso-uso.png">
+ <img src="img/diagrama-caso-uso.png">
 
