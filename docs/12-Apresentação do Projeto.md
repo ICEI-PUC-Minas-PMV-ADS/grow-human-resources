@@ -1,4 +1,4 @@
-# Apresentação
+v# Apresentação
 
 <span style="color:red">Pré-requisitos: Todos os demais artefatos</span>
 <video src=".img\Video de apresentação.mkv"></video>
@@ -7,7 +7,9 @@
 
 Grow Human Resources - G.H.R.
 ## Identidade Visual (Marca, Design)
-<video src="GHRv1.mp4"></video>
+<video width="500" controls autoplay loop>
+<source src="midia/GHRv1.mp4" type"video/mp4">
+</video>
 
 ## Conjunto de Slides (Estrutura)
 
