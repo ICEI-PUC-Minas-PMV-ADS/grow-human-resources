@@ -7,7 +7,13 @@ v# Apresentação
 
 Grow Human Resources - G.H.R.
 ## Identidade Visual (Marca, Design)
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MWT6Ah2aygU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<object style="height: 390px; width: 640px">
+		<param name="movie" value="https://www.youtube.com/embed/MWT6Ah2aygU">
+		<param name="allowFullScreen" value="true">
+		<param name="allowScriptAccess" value="always">
+		<embed src="https://www.youtube.com/embed/MWT6Ah2aygU" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="640" height="360">
+	</object>
+	
 
 ## Conjunto de Slides (Estrutura)
 
