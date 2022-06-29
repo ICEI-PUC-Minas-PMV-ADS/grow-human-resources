@@ -9,6 +9,10 @@ Grow Human Resources - G.H.R.
 ## Identidade Visual (Marca, Design)
 [Video De Apresentação](https://www.youtube.com/embed/MWT6Ah2aygU)
 
+
+  <a href="https://www.youtube.com/embed/MWT6Ah2aygU" alt="gago.io" target="_blank" align="center">
+  </a>
+
 ## Conjunto de Slides (Estrutura)
 
 O grupo deve distribuir de forma coerente o conteúdo a ser apresentado, dentro do tempo determinado. Importante ressaltar a importância da descrição clara de todo o andamento do projeto, insumos gerados e requisitos atendidos.
