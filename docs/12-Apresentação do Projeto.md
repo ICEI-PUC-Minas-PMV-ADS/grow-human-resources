@@ -7,7 +7,9 @@ v# Apresentação
 
 Grow Human Resources - G.H.R.
 ## Identidade Visual (Marca, Design)
-[Video De Apresentação](https://www.youtube.com/embed/MWT6Ah2aygU)
+<!-- [Video De Apresentação](https://www.youtube.com/embed/MWT6Ah2aygU) -->
+
+[![Everything Is AWESOME](/img/capa-video.png)](https://www.youtube.com/embed/MWT6Ah2aygU "Everything Is AWESOME")
 
 ## Conjunto de Slides (Estrutura)
 
