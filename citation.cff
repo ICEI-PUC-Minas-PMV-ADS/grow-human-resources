@@ -1,0 +1,29 @@
+message: Please cite this software using these metadata.
+title: Grow Human Resources
+authors:
+  - family-names: Gabriella Maffei Corrêa
+    given-names: Vitória
+  - family-names: De Souza Galdino
+    given-names: Alex
+  - family-names: Luiz Braga Andrade Leite
+    given-names: Pedro 
+  - family-names: Alessandra Simão Reis
+    given-names: Nayra 
+  - family-names: Pacheco Leite
+    given-names: Rafael
+  - family-names: Carolino Lopes
+    given-names: Bruno 
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Curcino de Lima
+    given-names: Mateus 
+keywords:
+  - Gestão
+  - RH
+repository-code: https://github.com/ICEI-PUC-Minas-PMV-ADS/grow-human-resources
+version: 1.0.0
+date-released: 2022-01
+
+
+
+
